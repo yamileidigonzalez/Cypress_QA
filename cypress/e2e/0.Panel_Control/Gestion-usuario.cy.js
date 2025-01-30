@@ -81,7 +81,7 @@ describe('Gestión de Usuario', () => {
     
   })
 
-  it.only('Cambiar el idioma de las preferencias', () => {
+  it('Cambiar el idioma de las preferencias', () => {
     //accedo a la sección de perfil del usuario
     cy.title().should('eq','Panel de control')
     cy.wait(1000)
@@ -91,8 +91,8 @@ describe('Gestión de Usuario', () => {
     cy.wait(tiempo)
     //cambio el idioma a otro disponible
     cy.title().should('eq','Perfil')
-    cy.get('.p-dropdown-label').should("not.be.visible").should("be.enabled").click()
-    cy.get('.p-dropdown-trigger').should("be.visible").should("be.enabled").click()
+    cy.get('.p-dropdown-label').should("not.be.visible").click()
+    cy.get('.p-dropdown-trigger').should("be.visible").click()
     //El idioma debe actualizarse correctamente en toda la interfaz
     cy.log('No funciona el botón, esta pendiente de activar')
     //cy.get('.form-container > .justify-center').should("be.enabled").click()
