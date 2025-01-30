@@ -1,0 +1,5 @@
+Instalar war
+
+-> java -jar jenkins.war
+
+-->  java -jar jenkins.war --httpPort=5555
