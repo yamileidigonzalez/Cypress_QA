@@ -22,7 +22,7 @@ describe('Mantenimiento', () => {
 
     // Scenario Outline: Probar CRUD para <entidad>  
   
-    it.only("debería poder crear un nuevo registro correctamente", () => {
+    it("debería poder crear un nuevo registro correctamente", () => {
       // Simular el proceso de creación de un nuevo registro
       cy.get('[severity="primary"] > .p-ripple').click(); // Hacer clic en el botón para crear un nuevo registro
       // Ingresar un nombre para el nuevo registro
@@ -34,23 +34,43 @@ describe('Mantenimiento', () => {
   
     it("debería poder visualizar los registros existentes", () => {
     // Verificar que se visualizan los registros existentes
-    //cy.get("#listado-registros").should("be.visible"); // Verificar que el listado de registros se muestra
-    //cy.get("#listado-registros tr").should("have.length.greaterThan", 0); // Validar que hay al menos un registro
+    cy.get('.p-scroller-viewport').should("be.visible"); // Verificar que el listado de registros se muestra
+    cy.get('.p-scroller-viewport').should("have.length.greaterThan", 0); // Validar que hay al menos un registro
     });
   
     it("debería poder actualizar un registro correctamente", () => {
     // Simular el proceso de actualización de un registro
-    cy.get("button#btn-editar-registro").first().click(); // Hacer clic en el primer registro para editar
-    cy.get("input#campo-nombre").clear().type("Registro Actualizado"); // Modificar el nombre
-    cy.get("button#btn-guardar").click(); // Guardar los cambios
-    cy.get("#mensaje-exito").should("contain", "Registro actualizado exitosamente"); // Validar mensaje de éxito
+    cy.get('.p-datatable-tbody > .p-element > :nth-child(1)').should("be.visible").click()
+    // Hacer clic en el primer registro para editar y Modificar el canal
+    cy.Editar_Canales_entidad("44 - Ciers 44", '2','999', '200', "127.0.0.1", '60003',"127.0.0.1", '60003', "127.0.0.1",'60003'); 
+    //Guardar
+    cy.Guardar_Confirmar('[icon="pi pi-save"] > .p-ripple', tiempo) 
     });
   
     it("debería poder eliminar un registro correctamente", () => {
-    // Simular el proceso de eliminación de un registro
-    cy.get("button#btn-eliminar-registro").first().click(); // Hacer clic en el primer registro para eliminar
-    cy.get("button#btn-confirmar-eliminar").click(); // Confirmar la eliminación
-    cy.get("#mensaje-exito").should("contain", "Registro eliminado exitosamente"); // Validar mensaje de éxito
+      cy.Eliminar_Anular('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple', '[icon="pi pi-arrow-left"] > .p-ripple', '.p-datatable-tbody > .p-element > :nth-child(1)')
+      cy.wait(tiempo)
+      //Hacer clic en el primer registro para eliminar
+      cy.Eliminar_Confirmar('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple', '.p-datatable-tbody > .p-element > :nth-child(1)')
+      cy.wait(tiempo)
+    });
+    it("debería poder buscar un registro correctamente", () => {
+      //combrobar boton de busqueda
+      cy.Elemento_visible('.gap-x-3 > .inline-flex')
+
+      //busqueda numeros y signos
+      cy.Busqueda('.gap-x-3 > .inline-flex','44',tiempo)
+      cy.Busqueda('.gap-x-3 > .inline-flex','F1-',tiempo)
+      cy.Busqueda('.gap-x-3 > .inline-flex','1212',tiempo)
+      cy.Busqueda('.gap-x-3 > .inline-flex','2323',tiempo)
+      
+      //busqueda letras y espacios
+      cy.Busqueda('.gap-x-3 > .inline-flex','unicaja',tiempo)
+      cy.Busqueda('.gap-x-3 > .inline-flex','bank',tiempo)
+      cy.Busqueda('.gap-x-3 > .inline-flex','Bank ',tiempo)
+      cy.Busqueda('.gap-x-3 > .inline-flex','Cier',tiempo)
+      cy.Busqueda('.gap-x-3 > .inline-flex','blabla',tiempo)
+
     });
 
 })
