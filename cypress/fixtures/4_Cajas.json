@@ -1,0 +1,14 @@
+[
+  {
+    "caja": 1,
+    "centro": "2002 - MERCADONA CABO BLANCO (TNFE)",
+    "empresa": "1 - Empresa 1",
+    "tipo punto servicio": "1 -"
+  },
+  {
+    "caja": 0,
+    "centro": "0 - DEFAULT",
+    "empresa": "1 - Empresa 1",
+    "tipo punto servicio": "9 -"
+  }
+]

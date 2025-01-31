@@ -1,0 +1,37 @@
+[
+  {
+    "empresa": "3 - bacon",
+    "centro": "3488 - FOZ",
+    "caja": 3,
+    "cajon claves": 3,
+    "cuenta": "003 - REDSYS-TEST"
+  },
+  {
+    "empresa": "1 - Empresa 1",
+    "centro": "1 - SAN GREGORIO",
+    "caja": 1,
+    "cajon claves": 1,
+    "cuenta": "001 - REDSYS-TEST"
+  },
+  {
+    "empresa": "1 - Empresa 1",
+    "centro": "2746 - LA MINA",
+    "caja": 2,
+    "cajon claves": 2,
+    "cuenta": "002 - REDSYS-TEST"
+  },
+  {
+    "empresa": "3 - bacon",
+    "centro": "2004 - C.C. PONT DE LA BARCA",
+    "caja": 4,
+    "cajon claves": 4,
+    "cuenta": "004 - REDSYS-TEST"
+  },
+  {
+    "empresa": "3 - bacon",
+    "centro": "2002 - MERCADONA CABO BLANCO (TNFE)",
+    "caja": 3,
+    "cajon claves": 2,
+    "cuenta": "001 - REDSYS-TEST"
+  }
+]

@@ -1,0 +1,263 @@
+[
+  {
+    "pos": 1,
+    "store": "1 - SAN GREGORIO",
+    "company": "1 - Empresa 1",
+    "serialNumber": "00004229722",
+    "manufacturer": 1,
+    "model": 84,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 10,
+    "store": "2448 - PLAZA FRANCISCA NAVARRO",
+    "company": "1 - Empresa 1",
+    "serialNumber": "00022673405",
+    "manufacturer": 1,
+    "model": 72,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 777,
+    "store": "4535 - AVDA. CONSTITUCI�",
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 12,
+    "store": "4535 - AVDA. CONSTITUCI�",
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 9,
+    "store": "4535 - AVDA. CONSTITUCI�",
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 4,
+    "store": "4535 - AVDA. CONSTITUCI�",
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 2,
+    "store": "4535 - AVDA. CONSTITUCI�",
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 6,
+    "store": "4535 - AVDA. CONSTITUCI�",
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 8,
+    "store": "4535 - AVDA. CONSTITUCI�",
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 11,
+    "store": "4535 - AVDA. CONSTITUCI�",
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 13,
+    "store": "4535 - AVDA. CONSTITUCI�",
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 15,
+    "store": "4535 - AVDA. CONSTITUCI�",
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 1,
+    "store": 8888,
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 10,
+    "store": "2448 - PLAZA FRANCISCA NAVARRO",
+    "company": "1 - Empresa 1",
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 10,
+    "store": "4420 - CENTRO COINNOVACI�N JARRODS",
+    "company": "1 - Empresa 1",
+    "serialNumber": "00022673405",
+    "manufacturer": 1,
+    "model": 72,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 21,
+    "store": "2413 - BLASCO IB��EZ",
+    "company": "1 - Empresa 1",
+    "serialNumber": "00022673405",
+    "manufacturer": 1,
+    "model": 72,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 21,
+    "store": "2448 - PLAZA FRANCISCA NAVARRO",
+    "company": "1 - Empresa 1",
+    "serialNumber": "00022673405",
+    "manufacturer": 1,
+    "model": 72,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 1,
+    "store": "1 - SAN GREGORIO",
+    "company": "1 - Empresa 1",
+    "serialNumber": 58215113378,
+    "manufacturer": 28,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 99,
+    "store": "4535 - AVDA. CONSTITUCI�",
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 121,
+    "store": "4535 - AVDA. CONSTITUCI�",
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 3,
+    "store": "4535 - AVDA. CONSTITUCI�",
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 1,
+    "store": "4535 - AVDA. CONSTITUCI�",
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 5,
+    "store": "4535 - AVDA. CONSTITUCI�",
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 7,
+    "store": "4535 - AVDA. CONSTITUCI�",
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 10,
+    "store": "4535 - AVDA. CONSTITUCI�",
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 14,
+    "store": "4535 - AVDA. CONSTITUCI�",
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 16,
+    "store": "4535 - AVDA. CONSTITUCI�",
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 17,
+    "store": "4535 - AVDA. CONSTITUCI�",
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  },
+  {
+    "pos": 9,
+    "store": 1234,
+    "company": 0,
+    "serialNumber": "",
+    "manufacturer": 0,
+    "model": 0,
+    "updateDate": "- -"
+  }
+]

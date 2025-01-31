@@ -1,0 +1,79 @@
+[
+  {
+    "tarjeta": "9 - Caixabank",
+    "empresa": "1 - Empresa 1",
+    "centro": "0 - DEFAULT",
+    "caja": 0,
+    "cuenta": "A09 - CAIXABANK"
+  },
+  {
+    "tarjeta": "19 - BBVA",
+    "empresa": "1 - Empresa 1",
+    "centro": "0 - DEFAULT",
+    "caja": 0,
+    "cuenta": "A19 - BBVA"
+  },
+  {
+    "tarjeta": "88 - Redsys-Ciers44",
+    "empresa": "1 - Empresa 1",
+    "centro": "0 - DEFAULT",
+    "caja": 0,
+    "cuenta": "A88 - REDSYS-TEST"
+  },
+  {
+    "tarjeta": "99 - Sabadell-0081",
+    "empresa": "1 - Empresa 1",
+    "centro": "0 - DEFAULT",
+    "caja": 0,
+    "cuenta": "A99"
+  },
+  {
+    "tarjeta": "1 - Sabadell-paycomet",
+    "empresa": "1 - Empresa 1",
+    "centro": "0 - DEFAULT",
+    "caja": 0,
+    "cuenta": "A01 - SABADELL-PAYCOMET"
+  },
+  {
+    "tarjeta": "24 - Bankinter",
+    "empresa": "1 - Empresa 1",
+    "centro": "0 - DEFAULT",
+    "caja": 0,
+    "cuenta": "A24 - BANKINTER"
+  },
+  {
+    "tarjeta": "30 - Santander",
+    "empresa": "1 - Empresa 1",
+    "centro": "0 - DEFAULT",
+    "caja": 0,
+    "cuenta": "A30 - SANTANDER"
+  },
+  {
+    "tarjeta": "35 - Cajamar",
+    "empresa": "1 - Empresa 1",
+    "centro": "0 - DEFAULT",
+    "caja": 0,
+    "cuenta": "A35 - CAJAMAR"
+  },
+  {
+    "tarjeta": "77 - Redsys-Ciers69",
+    "empresa": "1 - Empresa 1",
+    "centro": "0 - DEFAULT",
+    "caja": 0,
+    "cuenta": "A88 - REDSYS-TEST"
+  },
+  {
+    "tarjeta": "12 - Unicaja",
+    "empresa": "1 - Empresa 1",
+    "centro": "0 - DEFAULT",
+    "caja": 0,
+    "cuenta": "012 - UNICAJA"
+  },
+  {
+    "tarjeta": "0 - testQA",
+    "empresa": "1 - Empresa 1",
+    "centro": "0 - DEFAULT",
+    "caja": 418,
+    "cuenta": "001 - REDSYS-TEST"
+  }
+]

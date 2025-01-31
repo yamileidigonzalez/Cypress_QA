@@ -29,12 +29,6 @@ Cypress.Commands.add("Texto_visible", (selector,texto,t) => {
     cy.wait(tiempo)
  })
 
- Cypress.Commands.add("Texto_visible_xpath", (selector,texto,t) => { 
-    let tiempo=t
-    cy.xpath(selector).should('be.visible').type(texto)
-    cy.wait(tiempo)
- })
-
  Cypress.Commands.add("Click", (selector,t) => { 
     let tiempo=t
     cy.get(selector).should('be.visible').click()
@@ -44,12 +38,6 @@ Cypress.Commands.add("Texto_visible", (selector,texto,t) => {
  Cypress.Commands.add("Click_force", (selector,t) => { 
     let tiempo=t
     cy.get(selector).should('be.visible').click({force:true})
-    cy.wait(tiempo)
- })
-
- Cypress.Commands.add("Click_force_xpath", (selector,t) => { 
-    let tiempo=t
-    cy.xpath(selector).should('be.visible').click({force:true})
     cy.wait(tiempo)
  })
 
@@ -71,6 +59,14 @@ Cypress.Commands.add("Texto_visible", (selector,texto,t) => {
 
 Cypress.Commands.add("Validar_campo2", (selector,men,nombre_campo,t) => { 
    cy.xpath(selector).should("be.visible").should("contain",men).then((val)=>{           
+   cy.log("########################")
+   cy.log("El "+ nombre_campo  +" no es valido")
+   cy.log("########################")      
+    })
+})
+
+Cypress.Commands.add("Añadir_Canales_entidad", (selector,entidad,canal,t_desconexion_,n_transacciones_simu, host_1,puerto_1, host_2,puerto_2,host_3,puerto_3) => { 
+   cy.get(selector).should("be.visible").should("contain",men).then((val)=>{           
    cy.log("########################")
    cy.log("El "+ nombre_campo  +" no es valido")
    cy.log("########################")      

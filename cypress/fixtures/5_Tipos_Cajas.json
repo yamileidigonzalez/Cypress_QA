@@ -1,0 +1,42 @@
+[
+  {
+    "id": 2,
+    "capacidades terminal": "51010151114C",
+    "descripci�n": "Soporte EMV"
+  },
+  {
+    "id": 3,
+    "capacidades terminal": 600250600030,
+    "descripci�n": "Terminal vitual, ce"
+  },
+  {
+    "id": 4,
+    "capacidades terminal": "N10101N5404C",
+    "descripci�n": "Sop. EMV y CTLS band"
+  },
+  {
+    "id": 5,
+    "capacidades terminal": "M10101M5404C",
+    "descripci�n": "Sop. EMV y CTLS"
+  },
+  {
+    "id": 7,
+    "capacidades terminal": "51020151114C",
+    "descripci�n": "Sop. EMV desatentido"
+  },
+  {
+    "id": 8,
+    "capacidades terminal": 100030600004,
+    "descripci�n": "Terminal vitual, tel"
+  },
+  {
+    "id": 1,
+    "capacidades terminal": 200101254040,
+    "descripci�n": "Sin soporte EMV"
+  },
+  {
+    "id": 9,
+    "capacidades terminal": "M00201000040",
+    "descripci�n": "TNA Autopistas"
+  }
+]

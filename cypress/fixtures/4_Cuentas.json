@@ -1,0 +1,162 @@
+[
+  {
+    "ID": "A24",
+    "nombre de cuenta": "BANKINTER",
+    "entidad": "1 - F1-Bank Ciers 44",
+    "n�mero sesi�n": 313,
+    "fecha sesi�n": "2025-01-07",
+    "estado": 1,
+    "tipo cuenta": "1 - Sub-cuenta",
+    "cuenta asociada": "044"
+  },
+  {
+    "ID": "A19",
+    "nombre de cuenta": "BBVA",
+    "entidad": "1 - F1-Bank Ciers 44",
+    "n�mero sesi�n": 313,
+    "fecha sesi�n": "2025-01-07",
+    "estado": 1,
+    "tipo cuenta": "1 - Sub-cuenta",
+    "cuenta asociada": "044"
+  },
+  {
+    "ID": "A09",
+    "nombre de cuenta": "CAIXABANK",
+    "entidad": "1 - F1-Bank Ciers 44",
+    "n�mero sesi�n": 313,
+    "fecha sesi�n": "2025-01-07",
+    "estado": 1,
+    "tipo cuenta": "1 - Sub-cuenta",
+    "cuenta asociada": "044"
+  },
+  {
+    "ID": "002",
+    "nombre de cuenta": "REDSYS-TEST",
+    "entidad": "1 - F1-Bank Ciers 44",
+    "n�mero sesi�n": 313,
+    "fecha sesi�n": "2025-01-07",
+    "estado": 1,
+    "tipo cuenta": "1 - Sub-cuenta",
+    "cuenta asociada": "044"
+  },
+  {
+    "ID": "001",
+    "nombre de cuenta": "REDSYS-TEST",
+    "entidad": "1 - F1-Bank Ciers 44",
+    "n�mero sesi�n": 313,
+    "fecha sesi�n": "2025-01-07",
+    "estado": 1,
+    "tipo cuenta": "1 - Sub-cuenta",
+    "cuenta asociada": "044"
+  },
+  {
+    "ID": "003",
+    "nombre de cuenta": "REDSYS-TEST",
+    "entidad": "1 - F1-Bank Ciers 44",
+    "n�mero sesi�n": 313,
+    "fecha sesi�n": "2025-01-07",
+    "estado": 1,
+    "tipo cuenta": "1 - Sub-cuenta",
+    "cuenta asociada": "044"
+  },
+  {
+    "ID": "A30",
+    "nombre de cuenta": "SANTANDER",
+    "entidad": "1 - F1-Bank Ciers 44",
+    "n�mero sesi�n": 313,
+    "fecha sesi�n": "2025-01-07",
+    "estado": 1,
+    "tipo cuenta": "1 - Sub-cuenta",
+    "cuenta asociada": "044"
+  },
+  {
+    "ID": "A77",
+    "nombre de cuenta": "REDSYS-TEST",
+    "entidad": "1 - F1-Bank Ciers 44",
+    "n�mero sesi�n": 313,
+    "fecha sesi�n": "2025-01-07",
+    "estado": 1,
+    "tipo cuenta": "1 - Sub-cuenta",
+    "cuenta asociada": "044"
+  },
+  {
+    "ID": "004",
+    "nombre de cuenta": "REDSYS-TEST",
+    "entidad": "1 - F1-Bank Ciers 44",
+    "n�mero sesi�n": 313,
+    "fecha sesi�n": "2025-01-07",
+    "estado": 1,
+    "tipo cuenta": "1 - Sub-cuenta",
+    "cuenta asociada": "044"
+  },
+  {
+    "ID": "S09",
+    "nombre de cuenta": "REDSYS-TEST",
+    "entidad": "1 - F1-Bank Ciers 44",
+    "n�mero sesi�n": 313,
+    "fecha sesi�n": "2025-01-07",
+    "estado": 1,
+    "tipo cuenta": "1 - Sub-cuenta",
+    "cuenta asociada": "044"
+  },
+  {
+    "ID": "009",
+    "nombre de cuenta": "REDSYS-TEST",
+    "entidad": "1 - F1-Bank Ciers 44",
+    "n�mero sesi�n": 313,
+    "fecha sesi�n": "2025-01-07",
+    "estado": 1,
+    "tipo cuenta": "1 - Sub-cuenta",
+    "cuenta asociada": "044"
+  },
+  {
+    "ID": "A01",
+    "nombre de cuenta": "SABADELL-PAYCOMET",
+    "entidad": "1 - F1-Bank Ciers 44",
+    "n�mero sesi�n": 313,
+    "fecha sesi�n": "2025-01-07",
+    "estado": 1,
+    "tipo cuenta": "1 - Sub-cuenta",
+    "cuenta asociada": "044"
+  },
+  {
+    "ID": "044",
+    "nombre de cuenta": "SABA/BBVA/CAIXA",
+    "entidad": "1 - F1-Bank Ciers 44",
+    "n�mero sesi�n": 313,
+    "fecha sesi�n": "2025-01-07",
+    "estado": 1,
+    "tipo cuenta": "2 - Super-cuenta",
+    "cuenta asociada": ""
+  },
+  {
+    "ID": "A35",
+    "nombre de cuenta": "CAJAMAR",
+    "entidad": "1 - F1-Bank Ciers 44",
+    "n�mero sesi�n": 313,
+    "fecha sesi�n": "2025-01-07",
+    "estado": 1,
+    "tipo cuenta": "1 - Sub-cuenta",
+    "cuenta asociada": "044"
+  },
+  {
+    "ID": "A88",
+    "nombre de cuenta": "REDSYS-TEST",
+    "entidad": "1 - F1-Bank Ciers 44",
+    "n�mero sesi�n": 313,
+    "fecha sesi�n": "2025-01-07",
+    "estado": 1,
+    "tipo cuenta": "1 - Sub-cuenta",
+    "cuenta asociada": "044"
+  },
+  {
+    "ID": "012",
+    "nombre de cuenta": "UNICAJA",
+    "entidad": "12 - Unicaja",
+    "n�mero sesi�n": 284,
+    "fecha sesi�n": "2024-12-23",
+    "estado": 1,
+    "tipo cuenta": "0 - Cuenta",
+    "cuenta asociada": "012"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "entidad": "44 - Ciers 44",
+    "canal": 1,
+    "tiempo desconexi�n": 999,
+    "n� transacciones simultaneas": 200,
+    "host 1": "127.0.0.1",
+    "puerto 1": 60003,
+    "host 2": "127.0.0.1",
+    "puerto 2": 60003,
+    "host 3": "127.0.0.1",
+    "puerto 3": 60003
+  },
+  {
+    "entidad": "1 - F1-Bank Ciers 44",
+    "canal": 1,
+    "tiempo desconexi�n": 999,
+    "n� transacciones simultaneas": 200,
+    "host 1": "127.0.0.1",
+    "puerto 1": 60003,
+    "host 2": "127.0.0.1",
+    "puerto 2": 60003,
+    "host 3": "127.0.0.1",
+    "puerto 3": 60003
+  },
+  {
+    "entidad": "12 - Unicaja",
+    "canal": 2,
+    "tiempo desconexi�n": 999,
+    "n� transacciones simultaneas": 200,
+    "host 1": "127.0.0.1",
+    "puerto 1": 60003,
+    "host 2": "127.0.0.1",
+    "puerto 2": 60003,
+    "host 3": "127.0.0.1",
+    "puerto 3": 60003
+  }
+]

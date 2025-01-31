@@ -1,0 +1,42 @@
+[
+  {
+    "csb emisor": "6874 - SABADELL-PAYCOMET",
+    "csb adquiriente": "0046 - BANCO GALLEGO"
+  },
+  {
+    "csb emisor": "0081 - BANCOSABADELL",
+    "csb adquiriente": "0046 - BANCO GALLEGO"
+  },
+  {
+    "csb emisor": "0049 - BANCO SANTANDER",
+    "csb adquiriente": "0049 - BANCO SANTANDER"
+  },
+  {
+    "csb emisor": "0049 - BANCO SANTANDER",
+    "csb adquiriente": "0075 - BANCO POPULAR"
+  },
+  {
+    "csb emisor": "0081 - BANCOSABADELL",
+    "csb adquiriente": "0081 - BANCOSABADELL"
+  },
+  {
+    "csb emisor": "6874 - SABADELL-PAYCOMET",
+    "csb adquiriente": "0081 - BANCOSABADELL"
+  },
+  {
+    "csb emisor": "8883 - REDSYS PRUEBAS CARGA EMISORA",
+    "csb adquiriente": "0081 - BANCOSABADELL"
+  },
+  {
+    "csb emisor": "0081 - BANCOSABADELL",
+    "csb adquiriente": "0112 - BANCO URQUIJO UNION"
+  },
+  {
+    "csb emisor": "6874 - SABADELL-PAYCOMET",
+    "csb adquiriente": "0112 - BANCO URQUIJO UNION"
+  },
+  {
+    "csb emisor": "0049 - BANCO SANTANDER",
+    "csb adquiriente": "0649 - SANTANDER CORPORATE"
+  }
+]

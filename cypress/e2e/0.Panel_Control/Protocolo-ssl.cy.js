@@ -26,7 +26,7 @@ describe('Verificar el Protocolo SSL del sitio', () => {
     Then la URL debe comenzar con "https://"
     */
     cy.title().should('eq','Panel de control')
-    cy.wait(1000)
+    cy.wait(tiempo)
     cy.url().should("match", /^https:\/\//); // Verifica que la URL empiece con "https://"
   })
 
@@ -38,7 +38,7 @@ describe('Verificar el Protocolo SSL del sitio', () => {
     Then debo poder visualizar los detalles del certificado SSL, incluyendo su validez y emisor
     */    
     cy.title().should('eq','Panel de control')
-    cy.wait(1000)
+    cy.wait(tiempo)
     cy.window().then((win) => {
       const hasLockIcon = win.location.protocol === "https:";
       expect(hasLockIcon).to.be.true; // Verifica que el icono del candado está presente con HTTPS

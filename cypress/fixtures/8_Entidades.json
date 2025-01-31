@@ -1,0 +1,50 @@
+[
+  {
+    "ID": 44,
+    "nombre": "Ciers 44",
+    "eod requerido": "Si",
+    "punto servicio": 510101514041,
+    "informacion seguridad y control": 9102250001000000,
+    "indentificacion adquirente": 136544,
+    "permitir offline": "Si",
+    "host 1": "192.168.0.157",
+    "puerto 1": 9101,
+    "host 2": "192.168.0.157",
+    "puerto 2": 9101,
+    "host 3": "192.168.0.157",
+    "puerto 3": 9101,
+    "red entidad": "1 - Redsys"
+  },
+  {
+    "ID": 12,
+    "nombre": "Unicaja",
+    "eod requerido": "Si",
+    "punto servicio": 510101514041,
+    "informacion seguridad y control": 9102250001000000,
+    "indentificacion adquirente": "000952",
+    "permitir offline": "Si",
+    "host 1": "192.168.0.157",
+    "puerto 1": 9101,
+    "host 2": "192.168.0.157",
+    "puerto 2": 9101,
+    "host 3": "192.168.0.157",
+    "puerto 3": 9101,
+    "red entidad": "1 - Redsys"
+  },
+  {
+    "ID": 1,
+    "nombre": "F1-Bank Ciers 44",
+    "eod requerido": "Si",
+    "punto servicio": 510101514041,
+    "informacion seguridad y control": 9102250001000000,
+    "indentificacion adquirente": 136544,
+    "permitir offline": "Si",
+    "host 1": "192.168.0.157",
+    "puerto 1": 9101,
+    "host 2": "192.168.0.157",
+    "puerto 2": 9101,
+    "host 3": "192.168.0.157",
+    "puerto 3": 9101,
+    "red entidad": "1 - Redsys"
+  }
+]
