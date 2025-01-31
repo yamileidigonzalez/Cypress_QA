@@ -1,5 +1,5 @@
 const { random } = require("lodash");
-describe('Mantenimiento', () => {
+describe('Canales_Entidad', () => {
     const tiempo = 1000;
     
     beforeEach('Entrar en la página', () => {
@@ -20,9 +20,8 @@ describe('Mantenimiento', () => {
       cy.get('#submenu-bancaria > :nth-child(1)').should("be.visible").click()  
     })
 
-    // Scenario Outline: Probar CRUD para <entidad>  
-  
-    it("debería poder crear un nuevo registro correctamente", () => {
+    // Añadir un nuevo [Elemento]
+    it('Debería añadir un nuevo [Elemento]', () => {
       // Simular el proceso de creación de un nuevo registro
       cy.get('[severity="primary"] > .p-ripple').click(); // Hacer clic en el botón para crear un nuevo registro
       // Ingresar un nombre para el nuevo registro
@@ -31,30 +30,27 @@ describe('Mantenimiento', () => {
       //Guardar
       cy.Guardar_Confirmar('[icon="pi pi-save"] > .p-ripple', tiempo) 
     });
-  
-    it("debería poder visualizar los registros existentes", () => {
-    // Verificar que se visualizan los registros existentes
-    cy.get('.p-scroller-viewport').should("be.visible"); // Verificar que el listado de registros se muestra
-    cy.get('.p-scroller-viewport').should("have.length.greaterThan", 0); // Validar que hay al menos un registro
+
+    // Modificar un [Elemento]
+    it('Debería modificar un [Elemento]', () => {
+      // Simular el proceso de actualización de un registro
+      cy.get('.p-datatable-tbody > .p-element > :nth-child(1)').should("be.visible").click()
+      // Hacer clic en el primer registro para editar y Modificar el canal
+      cy.Editar_Canales_entidad("44 - Ciers 44", '2','999', '200', "127.0.0.1", '60003',"127.0.0.1", '60003', "127.0.0.1",'60003'); 
+      //Guardar
+      cy.Guardar_Confirmar('[icon="pi pi-save"] > .p-ripple', tiempo) 
     });
-  
-    it("debería poder actualizar un registro correctamente", () => {
-    // Simular el proceso de actualización de un registro
-    cy.get('.p-datatable-tbody > .p-element > :nth-child(1)').should("be.visible").click()
-    // Hacer clic en el primer registro para editar y Modificar el canal
-    cy.Editar_Canales_entidad("44 - Ciers 44", '2','999', '200', "127.0.0.1", '60003',"127.0.0.1", '60003', "127.0.0.1",'60003'); 
-    //Guardar
-    cy.Guardar_Confirmar('[icon="pi pi-save"] > .p-ripple', tiempo) 
+
+    // Listar todos los elementos
+    it('Debería listar todos los [elementos]', () => {
+      // Verificar que se visualizan los registros existentes
+      cy.get('.p-scroller-viewport').should("be.visible"); // Verificar que el listado de registros se muestra
+      cy.get('.p-scroller-viewport').should("have.length.greaterThan", 0); // Validar que hay al menos un registro
+      
     });
-  
-    it("debería poder eliminar un registro correctamente", () => {
-      cy.Eliminar_Anular('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple', '[icon="pi pi-arrow-left"] > .p-ripple', '.p-datatable-tbody > .p-element > :nth-child(1)')
-      cy.wait(tiempo)
-      //Hacer clic en el primer registro para eliminar
-      cy.Eliminar_Confirmar('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple', '.p-datatable-tbody > .p-element > :nth-child(1)')
-      cy.wait(tiempo)
-    });
-    it("debería poder buscar un registro correctamente", () => {
+    
+    // Buscar un [Elemento] por ID
+    it('Debería buscar un [Elemento] por ID', () => {
       //combrobar boton de busqueda
       cy.Elemento_visible('.gap-x-3 > .inline-flex')
 
@@ -70,7 +66,15 @@ describe('Mantenimiento', () => {
       cy.Busqueda('.gap-x-3 > .inline-flex','Bank ',tiempo)
       cy.Busqueda('.gap-x-3 > .inline-flex','Cier',tiempo)
       cy.Busqueda('.gap-x-3 > .inline-flex','blabla',tiempo)
+    });
 
+    // Eliminar un [Elemento]
+    it('Debería eliminar un [Elemento]', () => {
+      cy.Eliminar_Anular('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple', '[icon="pi pi-arrow-left"] > .p-ripple', '.p-datatable-tbody > .p-element > :nth-child(1)')
+      cy.wait(tiempo)
+      //Hacer clic en el primer registro para eliminar
+      cy.Eliminar_Confirmar('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple', '.p-datatable-tbody > .p-element > :nth-child(1)')
+      cy.wait(tiempo)
     });
 
 })
