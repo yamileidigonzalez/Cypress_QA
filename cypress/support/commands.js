@@ -124,9 +124,11 @@ Cypress.Commands.add('Guardar_Confirmar', (selector_guardar, t) => {
        // Si la alerta está presente, hacer clic en "Cancelar"
        cy.get('.absolute > [icon="pi pi-times"] > .p-ripple').click({ force: true });
        cy.log('¡El canal de entidad ya existe!'); // Log de la alerta
+       cy.wait(t)
      } else {
        // Si la alerta no aparece, realizar otra acción (guardar, por ejemplo)
        cy.log('¡El canal de entidad ha sido guardado!'); // Log de éxito
+       cy.wait(t)
      }
    });
  
