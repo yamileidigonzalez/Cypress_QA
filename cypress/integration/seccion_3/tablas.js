@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 //https://github.com/4teamwork/cypress-drag-drop
 

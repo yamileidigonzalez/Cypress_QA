@@ -25,9 +25,11 @@ describe('Mantenimiento', () => {
     it.only("debería poder crear un nuevo registro correctamente", () => {
       // Simular el proceso de creación de un nuevo registro
       cy.get('[severity="primary"] > .p-ripple').click(); // Hacer clic en el botón para crear un nuevo registro
-      cy.get("input#campo-nombre").type("Nuevo Registro"); // Ingresar un nombre para el nuevo registro
-      cy.get("button#btn-guardar").click(); // Guardar el nuevo registro
-      cy.get("#mensaje-exito").should("contain", "Registro creado exitosamente"); // Validar mensaje de éxito
+      // Ingresar un nombre para el nuevo registro
+      cy.Añadir_Canales_entidad("44 - Ciers 44", '1','999', '200', "127.0.0.1", '60003',"127.0.0.1", '60003', "127.0.0.1",'60003');
+      cy.wait(tiempo)
+      //Guardar
+      cy.Guardar_Confirmar('[icon="pi pi-save"] > .p-ripple', tiempo) 
     });
   
     it("debería poder visualizar los registros existentes", () => {

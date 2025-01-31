@@ -1,6 +1,4 @@
-/// <reference types="Cypress" />
-
-
+/// <reference types="cypress" />
 
 //https://docs.cypress.io/guides/references/assertions#Chai
 

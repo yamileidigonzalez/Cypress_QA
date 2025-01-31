@@ -1,5 +1,5 @@
 
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 //https://github.com/4teamwork/cypress-drag-drop
 import 'cypress-file-upload';
 require('@4tw/cypress-drag-drop')

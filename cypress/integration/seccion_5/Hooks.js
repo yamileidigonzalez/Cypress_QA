@@ -1,4 +1,4 @@
-/// <reference types="Cypress"  />
+/// <reference types="cypress"  />
 
 
 //https://docs.cypress.io/api/commands/trigger.html#Syntax

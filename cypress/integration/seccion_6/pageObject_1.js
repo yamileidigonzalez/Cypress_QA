@@ -1,5 +1,5 @@
 import ProyectoUno_Po from '../../support/pageObjects/proyectoUno_PO/proyectoUno_PO'
-/// <reference types='Cypress' />
+/// <reference types='cypress' />
 
 import 'cypress-file-upload';
 require('@4tw/cypress-drag-drop')

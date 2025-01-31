@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />  
+/// <reference types="cypress" />  
 //para que función los comandos
 
 describe("Seccion 1 Validando el título  ", () =>{
