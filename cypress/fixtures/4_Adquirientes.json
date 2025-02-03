@@ -1,0 +1,22 @@
+[
+  {
+    "ID": "069",
+    "nombre de cuenta": "BANK/SANTA/CAJA",
+    "entidad": "1 - F1-Bank Ciers 44",
+    "número sesión": 365,
+    "fecha sesión": "2025-01-07",
+    "estado": 1,
+    "tipo cuenta": "2 - Super-account",
+    "cuenta asociada": ""
+  },
+  {
+    "ID": "A01",
+    "nombre de cuenta": "SABADELL-PAYCOMENT CSB6874",
+    "entidad": "1 - F1-Bank Ciers 44",
+    "número sesión": 365,
+    "fecha sesión": "2025-01-07",
+    "estado": 1,
+    "tipo cuenta": "1 - Sub-account",
+    "cuenta asociada": "069"
+  }
+]

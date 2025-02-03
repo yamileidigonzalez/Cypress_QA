@@ -25,19 +25,19 @@
 
 Cypress.Commands.add("Elemento_visible", (selector) => { 
     cy.get(selector).should('be.visible')
- })
+})
 
- Cypress.Commands.add("Click", (selector,t) => { 
+Cypress.Commands.add("Click", (selector,t) => { 
     cy.get(selector).should('be.visible').click()
     cy.wait(t)
- })
+})
 
- Cypress.Commands.add("Click_force", (selector,t) => { 
+Cypress.Commands.add("Click_force", (selector,t) => { 
     cy.get(selector).should('be.visible').click({force:true})
     cy.wait(t)
- })
+})
 
- Cypress.Commands.add("Validar_campo", (selector,men,nombre_campo,t) => { 
+Cypress.Commands.add("Validar_campo", (selector,men,nombre_campo,t) => { 
    cy.xpath(selector).should("be.visible").then((val)=>{
       let dato=val.text()
       cy.log("el valor del log es: " + dato)
@@ -114,7 +114,7 @@ Cypress.Commands.add("Eliminar_Anular", (boton_borrar, boton_anular, elemento) =
    //Sin seleccionar esta desactivada
    cy.get(boton_borrar).should('not.be.enabled');
    //Hacer clic en el primer registro para eliminar
-   cy.get(elemento).should("be.visible").click(); 
+   cy.get(elemento).should("be.visible").wait(1000).click()
    // Seleccionar la papelera la eliminación
    cy.get(boton_borrar).should("be.visible").click(); 
    // Confirmar la eliminación
@@ -129,7 +129,7 @@ Cypress.Commands.add("Eliminar_Confirmar", (boton_borrar, elemento) => {
    //Sin seleccionar esta desactivada
    cy.get(boton_borrar).should('not.be.enabled');
    //Hacer clic en el primer registro para eliminar
-   cy.get(elemento).should("be.visible").click(); 
+   cy.get(elemento).should("be.visible").wait(1000).click(); 
    // Seleccionar la papelera la eliminación
    cy.get(boton_borrar).should("be.visible").click(); 
    // Confirmar la eliminación
@@ -207,7 +207,7 @@ Cypress.Commands.add('Guardar_Cancelar', (selector_guardar,selector_cancel, t) =
 
 Cypress.Commands.add('Volver', (selector_volver, t) => {
    //volver
-   cy.get(selector_volver).click().wait(t)            
+   cy.get(selector_volver).should("be.visible").click().wait(t)            
 })
 
 Cypress.Commands.add('Validar_campo', (selector, men, nombre_campo, selector_volver, t) => { 
@@ -221,4 +221,211 @@ Cypress.Commands.add('Validar_campo', (selector, men, nombre_campo, selector_vol
 Cypress.Commands.add('Busqueda', (selector, valor, t) => { 
    cy.get(selector).should("be.visible").clear().type(valor).wait(t)
 
+})
+
+Cypress.Commands.add("Añadir_Acuerdos_Comisiones", (emisor, adquiriente) => { 
+   cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
+   //Datos 
+   cy.get('#acquirer > .p-dropdown-label').should("be.visible").click().wait(2000)
+   cy.get('.p-dropdown-filter').should("be.visible").clear().type(adquiriente).type("{enter}")
+   cy.get('#issuer > .p-dropdown-label').should("be.visible").click().wait(2000)
+   cy.get('.p-dropdown-filter').type(emisor)
+   
+})
+
+Cypress.Commands.add("Añadir_Adquirientes_comprobar_Check", (off_internacional, off_EMV, forzado_respaldo) => {
+   cy.log(`los valores son ${off_internacional}`);
+   cy.log(`los valores son ${off_EMV}`);
+   cy.log(`los valores son ${forzado_respaldo}`);
+
+   if (off_internacional === '1' && off_EMV === '1' && forzado_respaldo === '1') {
+      //Activa "Permite offline internacional"
+      cy.get('#allowOfflineInternational > .p-checkbox > .p-checkbox-box').should("be.visible").click()
+      cy.get('#allowOfflineInternational .p-checkbox-icon').should('exist'); 
+      // Activa "Permite offline sobre EMV"
+      cy.get('#allowOfflineOverEmv > .p-checkbox > .p-checkbox-box').should("be.visible").click()
+      cy.get('#allowOfflineOverEmv .p-checkbox-icon').should('exist');
+      //No es posible activar Forzado
+      cy.log(`No es posible activar Forzado`);
+   } else if (off_internacional === '1' && off_EMV === '1' && forzado_respaldo === '0') {
+      //Activa "Permite offline internacional"
+      cy.get('#allowOfflineInternational > .p-checkbox > .p-checkbox-box').should("be.visible").click()
+      cy.get('#allowOfflineInternational .p-checkbox-icon').should('exist'); 
+      // Activa "Permite offline sobre EMV"
+      cy.get('#allowOfflineOverEmv > .p-checkbox > .p-checkbox-box').should("be.visible").click()
+      cy.get('#allowOfflineOverEmv .p-checkbox-icon').should('exist');
+
+   } else if (off_internacional === '0' && off_EMV === '1' && forzado_respaldo === '1') {
+      // Activa "Permite offline sobre EMV"
+      cy.get('#allowOfflineOverEmv > .p-checkbox > .p-checkbox-box').should("be.visible").click()
+      cy.get('#allowOfflineOverEmv .p-checkbox-icon').should('exist');
+      //No es posible activar Forzado
+      cy.log(`No es posible activar Forzado`);
+   } else if (off_internacional === '1' && off_EMV === '0' && forzado_respaldo === '1') {
+      //Activa "Permite offline internacional"
+      cy.get('#allowOfflineInternational > .p-checkbox > .p-checkbox-box').should("be.visible").click()
+      cy.get('#allowOfflineInternational .p-checkbox-icon').should('exist'); 
+      //No es posible activar Forzado
+      cy.log(`No es posible activar Forzado`);
+
+   } else if (off_internacional === '0' && off_EMV === '0' && forzado_respaldo === '1') {
+      // Activa "Forzado de respaldo"
+      cy.get('#backupForced > .p-checkbox > .p-checkbox-box').should("be.visible").click()
+      cy.get('#backupForced .p-checkbox-icon').should('exist');
+   } else {
+      cy.log('Valor no reconocido');
+   }
+      
+ });
+
+Cypress.Commands.add("Añadir_Adquirientes", ( ID,numero_cuenta,tipo_cuenta,cuenta_asociada,nombre_cuenta,moneda,entidad,fecha_sesión,numero_secuencia,cuadre,numero_sesión,estado,numero_comercio,numero_terminal,frozado_off,identificacion_adq,CSB,terminal_on,off_internacional, off_EMV, forzado_respaldo) => { 
+   cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
+   //Datos principales
+   cy.get('#pn_id_11_header_action').should("be.visible").click()
+   //ID
+   cy.get('#acquirerId').should("be.visible").clear().type(ID).type("{enter}")
+   //numero de cuenta
+   cy.get('#accountNumber').should("be.visible").clear().type(numero_cuenta).type("{enter}") 
+   //tipo de adquiriente
+   cy.get('#accountType > .p-dropdown-label').should("be.visible").click().wait(2000)
+   .type(tipo_cuenta).type("{enter}")
+   //adquiriente asociado
+   cy.get('#associatedAcquirerId').should("be.visible").clear().type(cuenta_asociada).type("{enter}") 
+   //nombre de adquiriente
+   cy.get('#accountName').should("be.visible").clear().type(nombre_cuenta).type("{enter}") 
+   //moneda
+   cy.get('#currency > .p-dropdown-label').should("be.visible").click().wait(2000)
+   cy.get('.p-dropdown-filter').type(moneda)
+   cy.get('#currency_0').type("{enter}")
+   //entidad
+   cy.get('#entityId > .p-dropdown-label').should("be.visible").click().wait(2000)
+   .type(entidad).type("{enter}")
+
+   //Datos control de sesion
+   cy.get('#pn_id_12_header_action').should("be.visible").click()
+   //fecha de sesion
+   cy.get('.p-calendar > .p-inputtext').should("be.visible").clear().click().type(fecha_sesión).type("{enter}")
+   //numero de secuencias
+   cy.get('#sequenceNumber > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(numero_secuencia).type("{enter}")
+   //cuadre
+   cy.get('#matching > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(cuadre).type("{enter}")
+   //numero de sesion
+   cy.get('#sessionNumber > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(numero_sesión).type("{enter}")
+   //estado
+   cy.get('#status > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(estado).type("{enter}")
+
+   //Datos detalles del adquiriente
+   cy.get('#pn_id_13_header_action').should("be.visible").click()
+   //numero de comercio
+   cy.get('#merchantNumber').should("be.visible").clear().type(numero_comercio).type("{enter}")
+   //numero de terminal
+   cy.get('#terminalNumber').should("be.visible").clear().type(numero_terminal).type("{enter}")
+   //forzado offline
+   cy.get('#offlineForced > .p-dropdown-label')
+   .should("be.visible").click().wait(2000)
+   .type(frozado_off).type("{enter}")
+   //identificacion adquiriente
+   cy.get('#acquirerIdentification').should("be.visible").clear().type(identificacion_adq).type("{enter}")
+   //CSB adquiriente
+   cy.get('#csbAcquirer').should("be.visible").clear().type(CSB).type("{enter}")
+   //terminal online
+   cy.get('#onlineTerminal').should("be.visible").clear().type(terminal_on).type("{enter}")
+   //Checks
+   cy.Añadir_Adquirientes_comprobar_Check(off_internacional, off_EMV, forzado_respaldo)
+   
+})
+
+Cypress.Commands.add("Editar_Adquirientes", ( ID,numero_cuenta,tipo_cuenta,cuenta_asociada,nombre_cuenta,moneda,entidad,fecha_sesión,numero_secuencia,cuadre,numero_sesión,estado,numero_comercio,numero_terminal,frozado_off,identificacion_adq,CSB,terminal_on,off_internacional, off_EMV, forzado_respaldo) => { 
+   //Puslar boton Modificar
+   cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
+   
+   //Datos principales
+   cy.get('#pn_id_11_header_action').should("be.visible").click()
+   //ID
+   cy.get('#acquirerId').should('not.be.enabled'); // Confirma que no aparece la lista
+   cy.log(ID)
+   //numero de cuenta
+   cy.get('#accountNumber').should("be.visible").clear().type(numero_cuenta).type("{enter}") 
+   //tipo de adquiriente
+   cy.get('#accountType > .p-dropdown-label').should("be.visible").click().wait(2000)
+   .type(tipo_cuenta).type("{enter}")
+   //adquiriente asociado
+   cy.get('#associatedAcquirerId').should("be.visible").clear().type(cuenta_asociada).type("{enter}") 
+   //nombre de adquiriente
+   cy.get('#accountName').should("be.visible").clear().type(nombre_cuenta).type("{enter}") 
+   //moneda
+   cy.get('#currency > .p-dropdown-label').should("be.visible").click().wait(2000)
+   cy.get('.p-dropdown-filter').type(moneda)
+   cy.get('#currency_0').type("{enter}")
+   //entidad
+   cy.get('#entityId > .p-dropdown-label').should("be.visible").click().wait(2000)
+   .type(entidad).type("{enter}")
+
+   //Datos control de sesion
+   cy.get('#pn_id_12_header_action').should("be.visible").click()
+   //fecha de sesion
+   cy.get('.p-calendar > .p-inputtext').should("be.visible").clear().click().type(fecha_sesión).type("{enter}")
+   //numero de secuencias
+   cy.get('#sequenceNumber > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(numero_secuencia).type("{enter}")
+   //cuadre
+   cy.get('#matching > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(cuadre).type("{enter}")
+   //numero de sesion
+   cy.get('#sessionNumber > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(numero_sesión).type("{enter}")
+   //estado
+   cy.get('#status > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(estado).type("{enter}")
+
+   //Datos detalles del adquiriente
+   cy.get('#pn_id_13_header_action').should("be.visible").click()
+   //numero de comercio
+   cy.get('#merchantNumber').should("be.visible").clear().type(numero_comercio).type("{enter}")
+   //numero de terminal
+   cy.get('#terminalNumber').should("be.visible").clear().type(numero_terminal).type("{enter}")
+   //forzado offline
+   cy.get('#offlineForced > .p-dropdown-label')
+   .should("be.visible").click().wait(2000)
+   .type(frozado_off).type("{enter}")
+   //identificacion adquiriente
+   cy.get('#acquirerIdentification').should("be.visible").clear().type(identificacion_adq).type("{enter}")
+   //CSB adquiriente
+   cy.get('#csbAcquirer').should("be.visible").clear().type(CSB).type("{enter}")
+   //terminal online
+   cy.get('#onlineTerminal').should("be.visible").clear().type(terminal_on).type("{enter}")
+   //Checks
+   cy.Añadir_Adquirientes_comprobar_Check(off_internacional, off_EMV, forzado_respaldo)   
+})
+
+Cypress.Commands.add('Guardar_Confirmar_Adquirientes', (selector_guardar, t) => {
+   //Pulsar boton guardar 
+   cy.get(selector_guardar).should("be.visible").click()
+   // Espera que el mensaje sea visible
+   cy.get('.bg-white > .flex-col')
+   .should('be.visible') 
+   .then(($alert) => {
+     // Verifica si el texto contiene la alerta esperada
+     if ($alert.text().includes('¡El adquirente ya existe!')) {
+       // Si la alerta está presente, hacer clic en "Cancelar"
+       cy.get('.absolute > [icon="pi pi-times"] > .p-ripple').click({ force: true });
+       cy.log('¡El adquirente ya existe!'); // Log de la alerta
+       cy.wait(t)
+     } else {
+       // Si la alerta no aparece, realizar otra acción (guardar, por ejemplo)
+       cy.log('¡Ha sido guardado!'); // Log de éxito
+       cy.wait(t)
+     }
+   });   
+
+})
+
+Cypress.Commands.add("Eliminar", (boton_borrar, elemento) => { 
+   //Sin seleccionar esta desactivada
+   cy.get(boton_borrar).should('not.be.enabled');
+   //Hacer clic en el primer registro para eliminar
+   cy.get(elemento).should("be.visible").wait(1000).click(); 
+   // Seleccionar la papelera la eliminación
+   cy.get(boton_borrar).should("be.visible").click(); 
+   // Confirmar la eliminación
+   cy.Elemento_visible('#confirmModal')
+   cy.Elemento_visible('[icon="pi pi-check"] > .p-ripple').click()
+   // Validar mensaje de éxito
+ 
 })

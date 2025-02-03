@@ -1,5 +1,5 @@
 const { random } = require("lodash");
-describe('Mantenimiento', () => {
+describe('Acuerdos_Comisiones', () => {
     const tiempo = 1000;
     
     beforeEach('Entrar en la página', () => {
@@ -17,6 +17,58 @@ describe('Mantenimiento', () => {
       cy.get('[data-target="submenu-bancaria"]').should("be.visible").click()  
       
       // Seleccionar la entidad
-      cy.get('#submenu-bancaria > :nth-child(1)').should("be.visible").click()  
+      cy.get('#submenu-bancaria > :nth-child(3)').should("be.visible").click()  
     })
+
+
+    // Añadir un nuevo [Elemento]
+    it.only('Debería añadir un nuevo [Elemento]', () => {
+      cy.Añadir_Acuerdos_Comisiones("6874 - SABADELL-PAYCOMET", "0046 - BANCO GALLEGO")
+    });
+
+    // Modificar un [Elemento]
+    it('Debería modificar un [Elemento]', () => {
+      const elementoModificado = {
+        campo1: 'nuevoValor1',
+        campo2: 'nuevoValor2',
+        campo3: 'nuevoValor3',
+      };
+      cy.request('PUT', `/api/[endpoint]/${itemId}`, elementoModificado)
+        .then((response) => {
+          expect(response.status).to.eq(200);
+          expect(response.body.campo1).to.eq(elementoModificado.campo1);
+          expect(response.body.campo2).to.eq(elementoModificado.campo2);
+          expect(response.body.campo3).to.eq(elementoModificado.campo3);
+        });
+    });
+
+     // Listar todos los elementos
+     it('Debería listar todos los [elementos]', () => {
+      cy.request('GET', '/api/[endpoint]')
+        .then((response) => {
+          expect(response.status).to.eq(200);
+          expect(response.body).to.be.an('array');
+        });
+    });
+    
+    // Buscar un [Elemento] por ID
+    it('Debería buscar un [Elemento] por ID', () => {
+      cy.request('GET', `/api/[endpoint]/${itemId}`)
+        .then((response) => {
+          expect(response.status).to.eq(200);
+          expect(response.body.id).to.eq(itemId);
+        });
+    });
+
+    // Eliminar un [Elemento]
+    it('Debería eliminar un [Elemento]', () => {
+      cy.request('DELETE', `/api/[endpoint]/${itemId}`)
+        .then((response) => {
+          expect(response.status).to.eq(200);
+        });
+      cy.request({ method: 'GET', url: `/api/[endpoint]/${itemId}`, failOnStatusCode: false })
+        .then((response) => {
+          expect(response.status).to.eq(404);
+        });
+    });
 })

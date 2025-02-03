@@ -50,7 +50,6 @@ describe('Mantenimiento', () => {
     cy.Busqueda('label> input','Bank ',1000)
     cy.Busqueda('label> input','Cier',1000)
     cy.Busqueda('label> input','blabla',1000)
-  
    
   })
 
