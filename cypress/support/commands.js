@@ -174,7 +174,7 @@ Cypress.Commands.add('Añadir', (selector_añadir, t) => {
    cy.get(selector_añadir).should("be.visible").click().wait(t)               
 })
 
-Cypress.Commands.add('Guardar_Confirmar', (selector_guardar, t) => {
+Cypress.Commands.add('Guardar_Confirmar_canal_entidad', (selector_guardar, t) => {
    //Pulsar boton guardar 
    cy.get(selector_guardar).should("be.visible").click().wait(t)
    // Espera que el mensaje sea visible
@@ -192,9 +192,7 @@ Cypress.Commands.add('Guardar_Confirmar', (selector_guardar, t) => {
        cy.log('¡El canal de entidad ha sido guardado!'); // Log de éxito
        cy.wait(t)
      }
-   });
- 
-       
+   });       
 
 })
 
@@ -429,3 +427,59 @@ Cypress.Commands.add("Eliminar", (boton_borrar, elemento) => {
    // Validar mensaje de éxito
  
 })
+
+Cypress.Commands.add("Añadir_Enrrutaminetos", (tarjeta, Empresa, centro, caja, adquirente) => { 
+   cy.get('#card > .p-dropdown-label').should("be.visible").click().wait(2000).type(tarjeta,"{enter}");
+   cy.get('#company > .p-dropdown-label').should("be.visible").click().wait(2000).type(Empresa,"{enter}");
+   cy.get('#store > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(centro,"{enter}");
+   cy.get('#posId > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(caja,"{enter}");
+   cy.get('#acquirer > .p-dropdown-label').should("be.visible").click().type(adquirente,"{enter}").click().wait(2000);  
+   
+})
+
+Cypress.Commands.add('Guardar_Confirmar', (selector_guardar, selector_mensaje, t) => {
+   // Interceptar la petición API
+   cy.intercept('POST', '**/api/routing/add').as('guardar');
+
+   // Verificar si el botón de guardar es visible
+   cy.get(selector_guardar).then(($btn) => {
+      if ($btn.is('be.visible')) {
+         cy.get(selector_guardar).click();
+         
+         // Esperar la respuesta del API antes de continuar
+         cy.wait('@guardar').then((interception) => {
+            cy.log('📡 Respuesta del API:', interception.response.statusCode);
+
+            if (interception.response.statusCode === 409) {
+               cy.log('⚠️ Conflicto detectado en el API (409). Verificando mensaje de error...');
+            }   
+
+            // Verificar si el mensaje realmente aparece en el DOM antes de esperar su visibilidad
+            cy.get('body').then(($body) => {
+               if ($body.find(selector_mensaje).length > 0) {
+                  cy.get(selector_mensaje).should('exist').and('be.visible').then(($alert) => {
+                     if ($alert.text().includes('ya existe!')) {
+                        cy.get('.mt-5 > [icon="pi pi-times"] > .p-ripple').click({ force: true });
+                        cy.log('⚠️ ¡Ya existe!');
+                        cy.wait(t);
+                     } else {
+                        cy.log('✅ ¡El canal de entidad ha sido guardado!');
+                     }
+                  });
+               } else {
+                  cy.get('.mt-5 > [icon="pi pi-times"] > .p-ripple').click({ force: true });
+                  cy.log('⚠️ ¡Ya existe!');
+                  cy.wait(t);
+                  cy.log('❌ El mensaje de error NO se encontró en el DOM.');
+               }
+            });
+         });
+      } else {
+         cy.log('❌ El botón de guardar NO está visible.');
+         cy.get('#addModal > .justify-between > p-button.p-element > .p-ripple > .pi')
+            .should('be.visible')
+            .click();
+      }
+   });
+});
+

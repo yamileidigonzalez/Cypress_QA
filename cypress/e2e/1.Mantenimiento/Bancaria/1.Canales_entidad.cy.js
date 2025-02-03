@@ -28,7 +28,7 @@ describe('Canales_Entidad', () => {
       cy.Añadir_Canales_entidad("44 - Ciers 44", '1','999', '200', "127.0.0.1", '60003',"127.0.0.1", '60003', "127.0.0.1",'60003');
       cy.wait(tiempo)
       //Guardar
-      cy.Guardar_Confirmar('[icon="pi pi-save"] > .p-ripple', tiempo) 
+      cy.Guardar_Confirmar_canal_entidad('[icon="pi pi-save"] > .p-ripple', tiempo) 
     });
 
     // Modificar un [Elemento]
@@ -38,7 +38,7 @@ describe('Canales_Entidad', () => {
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.Editar_Canales_entidad("44 - Ciers 44", '2','999', '200', "127.0.0.1", '60003',"127.0.0.1", '60003', "127.0.0.1",'60003'); 
       //Guardar
-      cy.Guardar_Confirmar('[icon="pi pi-save"] > .p-ripple', tiempo) 
+      cy.Guardar_Confirmar_canal_entidad('[icon="pi pi-save"] > .p-ripple', tiempo) 
     });
 
     // Listar todos los elementos
