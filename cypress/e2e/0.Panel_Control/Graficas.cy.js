@@ -23,9 +23,9 @@ describe('Visualización de gráficos', () => {
   // Función general para verificar gráficos
   function verificarGrafico(nombreGrafico) {
     // Ajusta el selector según la estructura de tu HTML
-    cy.get(nombreGrafico).should("be.visible"); // Verificar que el gráfico sea visible
+    cy.get(nombreGrafico).should("be.visible").wait(tiempo); // Verificar que el gráfico sea visible
     // Verificar que no haya errores de renderizado
-    cy.get(nombreGrafico).should("not.have.class", "error");
+    cy.get(nombreGrafico).should("not.have.class", "error").wait(tiempo);
   }
 
   function verificarDatosCorrectos(nombreGrafico) {

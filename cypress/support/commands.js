@@ -32,9 +32,8 @@ Cypress.Commands.add("Click", (selector,t) => {
     cy.wait(t)
 })
 
-Cypress.Commands.add("Click_force", (selector,t) => { 
-    cy.get(selector).should('be.visible').click({force:true})
-    cy.wait(t)
+Cypress.Commands.add("Click_force", (selector) => { 
+    cy.get(selector).should('be.visible').click({force:true})   
 })
 
 Cypress.Commands.add("Validar_campo", (selector,men,nombre_campo,t) => { 
@@ -164,14 +163,18 @@ Cypress.Commands.add('Click_Botón', (selector, t) => {
    cy.wait(t)
 })
 
-Cypress.Commands.add('Combo', (selector, valor, t) => { 
+Cypress.Commands.add('Combo', (selector, valor,t) => { 
    cy.get(selector).select(valor,{force:true})
    cy.wait(t)
 })
 
-Cypress.Commands.add('Añadir', (selector_añadir, t) => {
+Cypress.Commands.add('Añadir_Combo', (selector, valor) => { 
+   cy.get(selector).should("be.visible").click().wait(100).type(valor,"{enter}") 
+})
+
+Cypress.Commands.add('Añadir_text', (selector_añadir, valor) => {
    //boton anadir
-   cy.get(selector_añadir).should("be.visible").click().wait(t)               
+   cy.get(selector_añadir).should("be.visible").clear().type(valor,"{enter}" )               
 })
 
 Cypress.Commands.add('Guardar_Confirmar_canal_entidad', (selector_guardar, t) => {
@@ -486,6 +489,252 @@ Cypress.Commands.add('Guardar_Confirmar', (selector_guardar, selector_mensaje, t
          cy.log('✅ ¡He llegado aqui!');
       }
    })
+})
+
+Cypress.Commands.add("Añadir_Entidad", (id, nombre ,eodRequerido, puntoServicio ,infoSeguridad ,identificacionAdquirente, permitirOffline ,host1 , puerto1, host2 , puerto2 , host3 ,puerto3 ,redEntidad ) => { 
+   let frozado_off= " "
+   let id_protocolo= " "
+   let tipo_red = " "
+
+   let Intentos_max= "0"
+   let T_conexion= "0"
+   let T_error = "0"
+   let T_espera = "0"
+   let T_off = "0"
+   let T_transaccion = "0"
+
+   let indidentif = " "
+   let Identidad = " "
+   let Cajón_claves = " "
+   let Mac = " "
+   let Mac_EMV_1 = " "
+   let Mac_EMV_2 = " "
+
+   let máximo_procesos = " "
+   let Características_1 = " "
+   let Características_2 = " "
+   let Características_3 = " "
+   let Tipo_cir  = " "
+
+   let ID_TCP_IP  = " "
+   let Versión_TCP_IP  = " "
+   let Longitud_cabecera  = " "
+   let ID_conexión  = " "
+   let Dirección_IP_actualizada  = " "
+   let EOD_total_requerido  = "0"
+   let Requiere_autentificación  = "0"
+   let Requiere_proceso_recuperación  = "0"
+   let Bloqueado  = "0"
+         
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.Click_force('#pn_id_11_header_action')
+   //Datos Principales
+   cy.get('#entityId > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(id,"{enter}");//ID
+   cy.get('#entityName').should("be.visible").clear().type(nombre,"{enter}");//Nombre de entidad
+   //Forzado Offline
+   if(permitirOffline == "Si"){
+      cy.get('#allowOffline > .p-checkbox > .p-checkbox-box').click().wait(2000) 
+      cy.Añadir_Combo('#offlineForced > .p-dropdown-label',frozado_off) 
+   }
+   cy.Añadir_Combo('#entityProtocol > .p-dropdown-label',id_protocolo)  //ID protocolo
+   cy.Añadir_Combo('#networkType > .p-dropdown-label',tipo_red)   //Tipo de red
+   cy.get('#entityNetwork > .p-dropdown-label').should("not.be.visible").click().wait(100).type(redEntidad,"{enter}") //Red entidad
+
+   //Datos de tiempo e intentos
+   cy.Click_force('#pn_id_12_header_action')
+   cy.get('#triesMax > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(Intentos_max,"{enter}")  //Intentos máximos
+   cy.get('#timeWait > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_espera,"{enter}")   //Tiempo de espera
+   cy.get('#timeError > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_error,"{enter}")   //Tiempo de error 
+   cy.get('#timeConnect > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_conexion,"{enter}")   //Tiempo de conexión
+   cy.get('#timeOffline > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_off,"{enter}")   //Tiempo offline 
+   cy.get('#timeTransaction > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_transaccion,"{enter}")   //Tiempo de transacción
+
+   //Datos de conexion
+   cy.Click_force('#pn_id_13_header_action')
+   cy.Añadir_text('#host1',host1 )
+   cy.Añadir_text('#port1 > .p-inputnumber > .p-inputtext',puerto1 )
+   cy.Añadir_text('#host2',host2 )
+   cy.Añadir_text('#port2 > .p-inputnumber > .p-inputtext',puerto2 )
+   cy.Añadir_text('#host3',host3 )
+   cy.Añadir_text('#port3 > .p-inputnumber > .p-inputtext',puerto3 )
+  
+   //Conf.de autorizador
+   cy.Click_force('#pn_id_14_header_action')
+   cy.Añadir_text('#indidentif', indidentif)  //Indicador identificación
+   cy.Añadir_text('#identity', Identidad)   //Identidad
+   cy.Añadir_text('#acquirerIdentification', identificacionAdquirente);//Identificación adquirente
+   cy.Añadir_text('#slotKey > .p-inputnumber > .p-inputtext', Cajón_claves)  //Cajón de claves
+   cy.Añadir_text('#macLevel > .p-inputnumber > .p-inputtext', Mac)   //Nivel mac
+   cy.Añadir_text('#macEmv1', Mac_EMV_1)   //Mac EMV 1
+   cy.Añadir_text('#macEmv2', Mac_EMV_2)   //Mac EMV 2
+
+   //Parametrizacion interna
+   cy.Click_force('#pn_id_15_header_action')
+   cy.Añadir_text('#processMaxNumber > .p-inputnumber > .p-inputtext',máximo_procesos )   //Número máximo de procesos
+   cy.Añadir_text('#requireEod > .p-inputnumber > .p-inputtext', eodRequerido);//EOD Requerido
+   cy.Añadir_text('#servicePoint', puntoServicio);//Punto de servicio
+   cy.Añadir_text('#features1', Características_1)   //Características 1
+   cy.Añadir_text('#features2', Características_2)   //Características 2
+   cy.Añadir_text('#features3', Características_3)   //Características 3
+   cy.Añadir_text('#incont', infoSeguridad);//Información Seguridad y Control
+   cy.Añadir_text('#cirType', Tipo_cir)   //Tipo cir
+
+   //P. Interna II
+   cy.Click_force('#pn_id_16_header_action')
+   cy.Añadir_text('#tcpIpConfigurationId', ID_TCP_IP)  //ID configuración TCP/IP
+   cy.Añadir_text('#tcpIpConfigurationVersion', Versión_TCP_IP)   //Versión configuración TCP/IP
+   cy.Añadir_text('#lengthMessageHeader > .p-inputnumber > .p-inputtext', Longitud_cabecera)   //Longitud cabecera mensaje
+   cy.Añadir_text('#connectionId > .p-inputnumber > .p-inputtext', ID_conexión)   //ID conexión
+   //Dirección IP actualizada
+   if (Dirección_IP_actualizada = " ") {
+      cy.log('Se deja igual, sin seleccionar')
+   } else if (Dirección_IP_actualizada = "Desactivado"){
+      cy.Click_force('.p-selectbutton > .p-highlight')
+   } else if (Dirección_IP_actualizada = "Activado"){
+      cy.get('.p-selectbutton > [tabindex="-1"]')
+   }
+
+   if (EOD_total_requerido  = "1"){
+      cy.Click_Botón('#requireTotalEod > .p-checkbox > .p-checkbox-box', 100)  //EOD total requerido
+   }
+   if (Requiere_autentificación  = "1"){
+      cy.Click_Botón('#requireAuthentication > .p-checkbox > .p-checkbox-box', 100)   //Requiere autentificación
+   }
+   if (Requiere_proceso_recuperación  = "1"){
+      cy.Click_Botón('#requireRecoveryThread > .p-checkbox > .p-checkbox-box', 100)   //Requiere proceso de recuperación
+   }
+   if (Bloqueado  = "1"){
+      cy.Click_Botón('#blocked > .p-checkbox > .p-checkbox-box', 100)   //Bloqueado 
+   }
+   
+})
+
+Cypress.Commands.add('Guardar_Confirmar_Entidad', (selector_guardar, selector_mensaje, t) => {
+   // Verificar si el botón de guardar es visible
+   cy.get(selector_guardar).then(($btn) => {
+      if ($btn.is(':visible') && ($btn.is(':enabled')) ){
+         cy.get(selector_guardar).click(); 
+         // Verificar si el mensaje realmente aparece en el DOM antes de esperar su visibilidad
+         cy.get(selector_mensaje).should('exist').and('be.visible').then(($alert) => {
+            if ($alert.text().includes('ya existe!')){
+               cy.get('.absolute > [icon="pi pi-times"] > .p-ripple').should('be.visible').click({ force: true });
+               cy.log('⚠️ ¡Ya existe!');
+               cy.wait(t);
+            } else {
+               cy.log('✅ ¡Ha sido guardado!');
+            }
+         })                 
+      } else if ($btn.is(':disabled') || $btn.hasClass('p-disabled')) {
+           // ⚠ Si el botón está deshabilitado, hacer otra acción
+           cy.log('El botón está deshabilitado, ejecutando otra acción...');
+           
+           // Ejemplo: hacer clic en otro botón, mostrar un mensaje o realizar otra validación
+           cy.get('.mt-5 > [icon="pi pi-times"] > .p-ripple').should('be.visible').click({ force: true })
+           cy.log('✅ ¡No se pudo guardar!')  
+           
+      } else {
+         cy.log('✅ ¡He llegado aqui!');
+      }
+   })
+});
+
+Cypress.Commands.add("Editar_Entidad", (id, nombre ,permitirOffline, frozado_off,id_protocolo,tipo_red, redEntidad, Intentos_max,T_espera, T_error, T_conexion, T_off, T_transaccion,host1 , puerto1, host2 , puerto2 , host3 ,puerto3, indidentif,Identidad, identificacionAdquirente,  Cajón_claves, Mac, Mac_EMV_1, Mac_EMV_2,máximo_procesos, eodRequerido, puntoServicio ,Características_1, Características_2, Características_3, infoSeguridad ,Tipo_cir, ID_TCP_IP,Versión_TCP_IP, Longitud_cabecera,ID_conexión , Dirección_IP_actualizada, EOD_total_requerido, Requiere_autentificación ,Requiere_proceso_recuperación, Bloqueado) => {     
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.Click_force('#pn_id_11_header_action')
+   //Datos Principales
+   cy.get('#entityId > .p-inputnumber > .p-inputtext').should('not.be.enabled')
+   cy.log(id);//ID
+   cy.get('#entityName').should("be.visible").clear().type(nombre,"{enter}");//Nombre de entidad
+   //Forzado Offline
+
+   cy.get('#allowOffline > .p-checkbox > .p-checkbox-box').then(($checkbox) => {
+      // Verificamos si el valor de permitirOffline es "Si" o "No" y la selección del checkbox
+      if ( permitirOffline == "No" && !$checkbox.is(':checked')) {
+         // Si el checkbox no está seleccionado y el valor de permitirOffline es "Si" o "No", seleccionamos el checkbox
+         cy.wrap($checkbox).click();
+         cy.Añadir_Combo('#offlineForced > .p-dropdown-label', frozado_off);
+         cy.log('✅ Checkbox seleccionado');
+      } else if (permitirOffline == "Si" && !$checkbox.is(':checked')) {
+         // Si el checkbox no está seleccionado y el valor de permitirOffline es "Si" o "No", seleccionamos el checkbox
+         cy.wrap($checkbox).click();
+         cy.Añadir_Combo('#offlineForced > .p-dropdown-label', frozado_off);
+         cy.log('✅ Checkbox seleccionado');
+      } else {
+            cy.log('⚠️ El checkbox ya estaba seleccionado, no se hizo clic.')
+      }
+   });
+
+   cy.Añadir_Combo('#entityProtocol > .p-dropdown-label',id_protocolo)  //ID protocolo
+   cy.Añadir_Combo('#networkType > .p-dropdown-label',tipo_red)   //Tipo de red
+   cy.get('#entityNetwork > .p-dropdown-label').should("not.be.visible").click().wait(100).type(redEntidad,"{enter}") //Red entidad
+
+   //Datos de tiempo e intentos
+   cy.Click_force('#pn_id_12_header_action')
+   cy.get('#triesMax > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(Intentos_max,"{enter}")  //Intentos máximos
+   cy.get('#timeWait > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_espera,"{enter}")   //Tiempo de espera
+   cy.get('#timeError > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_error,"{enter}")   //Tiempo de error 
+   cy.get('#timeConnect > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_conexion,"{enter}")   //Tiempo de conexión
+   cy.get('#timeOffline > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_off,"{enter}")   //Tiempo offline 
+   cy.get('#timeTransaction > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_transaccion,"{enter}")   //Tiempo de transacción
+
+   //Datos de conexion
+   cy.Click_force('#pn_id_13_header_action')
+   cy.Añadir_text('#host1',host1 )
+   cy.Añadir_text('#port1 > .p-inputnumber > .p-inputtext',puerto1 )
+   cy.Añadir_text('#host2',host2 )
+   cy.Añadir_text('#port2 > .p-inputnumber > .p-inputtext',puerto2 )
+   cy.Añadir_text('#host3',host3 )
+   cy.Añadir_text('#port3 > .p-inputnumber > .p-inputtext',puerto3 )
+  
+   //Conf.de autorizador
+   cy.Click_force('#pn_id_14_header_action')
+   cy.Añadir_text('#indidentif', indidentif)  //Indicador identificación
+   cy.Añadir_text('#identity', Identidad)   //Identidad
+   cy.Añadir_text('#acquirerIdentification', identificacionAdquirente);//Identificación adquirente
+   cy.Añadir_text('#slotKey > .p-inputnumber > .p-inputtext', Cajón_claves)  //Cajón de claves
+   cy.Añadir_text('#macLevel > .p-inputnumber > .p-inputtext', Mac)   //Nivel mac
+   cy.Añadir_text('#macEmv1', Mac_EMV_1)   //Mac EMV 1
+   cy.Añadir_text('#macEmv2', Mac_EMV_2)   //Mac EMV 2
+
+   //Parametrizacion interna
+   cy.Click_force('#pn_id_15_header_action')
+   cy.Añadir_text('#processMaxNumber > .p-inputnumber > .p-inputtext',máximo_procesos )   //Número máximo de procesos
+   cy.Añadir_text('#requireEod > .p-inputnumber > .p-inputtext', eodRequerido);//EOD Requerido
+   cy.Añadir_text('#servicePoint', puntoServicio);//Punto de servicio
+   cy.Añadir_text('#features1', Características_1)   //Características 1
+   cy.Añadir_text('#features2', Características_2)   //Características 2
+   cy.Añadir_text('#features3', Características_3)   //Características 3
+   cy.Añadir_text('#incont', infoSeguridad);//Información Seguridad y Control
+   cy.Añadir_text('#cirType', Tipo_cir)   //Tipo cir
+
+   //P. Interna II
+   cy.Click_force('#pn_id_16_header_action')
+   cy.Añadir_text('#tcpIpConfigurationId', ID_TCP_IP)  //ID configuración TCP/IP
+   cy.Añadir_text('#tcpIpConfigurationVersion', Versión_TCP_IP)   //Versión configuración TCP/IP
+   cy.Añadir_text('#lengthMessageHeader > .p-inputnumber > .p-inputtext', Longitud_cabecera)   //Longitud cabecera mensaje
+   cy.Añadir_text('#connectionId > .p-inputnumber > .p-inputtext', ID_conexión)   //ID conexión
+   //Dirección IP actualizada
+   if (Dirección_IP_actualizada = " ") {
+      cy.log('Se deja igual, sin seleccionar')
+   } else if (Dirección_IP_actualizada = "Desactivado"){
+      cy.Click_force('.p-selectbutton > .p-highlight')
+   } else if (Dirección_IP_actualizada = "Activado"){
+      cy.get('.p-selectbutton > [tabindex="-1"]')
+   }
+
+   if (EOD_total_requerido  = "1"){
+      cy.Click_Botón('#requireTotalEod > .p-checkbox > .p-checkbox-box', 100)  //EOD total requerido
+   }
+   if (Requiere_autentificación  = "1"){
+      cy.Click_Botón('#requireAuthentication > .p-checkbox > .p-checkbox-box', 100)   //Requiere autentificación
+   }
+   if (Requiere_proceso_recuperación  = "1"){
+      cy.Click_Botón('#requireRecoveryThread > .p-checkbox > .p-checkbox-box', 100)   //Requiere proceso de recuperación
+   }
+   if (Bloqueado  = "1"){
+      cy.Click_Botón('#blocked > .p-checkbox > .p-checkbox-box', 100)   //Bloqueado 
+   }
+   
 })
 
       

@@ -22,7 +22,7 @@ describe('Enrrutamientos', () => {
 
 
     // Añadir un nuevo [Elemento]
-    it.only('Debería añadir un nuevo [Elemento]', () => {
+    it('Debería añadir un nuevo [Elemento]', () => {
       //Conextar con archivo Json
       cy.fixture('7_Enrrutamientos.json').then((enrrutamientos) => {
         enrrutamientos.forEach((enrrutamientos) => {
@@ -44,7 +44,7 @@ describe('Enrrutamientos', () => {
     it('Debería modificar un [Elemento]', () => {
       // Simular el proceso de actualización de un registro
       cy.get('.p-datatable-tbody > .p-element > :nth-child(2)').should("be.visible").wait(tiempo)
-      cy.Click_force('.p-datatable-tbody > .p-element > :nth-child(2)',tiempo)
+      cy.Click_force('.p-datatable-tbody > .p-element > :nth-child(2)')
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
       cy.Añadir_Enrrutaminetos("19 - BBVA","1 - Empresa 1", "0 - DEFAULT",'0',"A19 - BBVA")
