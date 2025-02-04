@@ -21,7 +21,7 @@ describe('Adquirientes', () => {
     })
 
     // Añadir un nuevo [Elemento]
-    it.only('Debería añadir un nuevo [Elemento]', () => {
+    it('Debería añadir un nuevo [Elemento]', () => {
       //Introducir los valores (Los tres ultimos deben tener los valosres 0-descativar y 1-activar )
       cy.Añadir_Adquirientes("069"," ","Supercuenta"," ","BANK/SANTA/CAJA","978 - Euro","1 - F1-Bank Ciers 44", "2025-01-07","0","0", '365','1',"000000000"," ","Desactivado"," "," "," ","1","1","0" )
       cy.Guardar_Confirmar_Adquirientes('[icon="pi pi-save"] > .p-ripple',tiempo)

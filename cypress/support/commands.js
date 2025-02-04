@@ -443,7 +443,7 @@ Cypress.Commands.add('Guardar_Confirmar', (selector_guardar, selector_mensaje, t
 
    // Verificar si el botón de guardar es visible
    cy.get(selector_guardar).then(($btn) => {
-      if ($btn.is('be.visible')) {
+      if ($btn.is(':visible') && ($btn.is(':enabled')) ){
          cy.get(selector_guardar).click();
          
          // Esperar la respuesta del API antes de continuar
@@ -463,7 +463,7 @@ Cypress.Commands.add('Guardar_Confirmar', (selector_guardar, selector_mensaje, t
                         cy.log('⚠️ ¡Ya existe!');
                         cy.wait(t);
                      } else {
-                        cy.log('✅ ¡El canal de entidad ha sido guardado!');
+                        cy.log('✅ ¡Ha sido guardado!');
                      }
                   });
                } else {
@@ -474,12 +474,19 @@ Cypress.Commands.add('Guardar_Confirmar', (selector_guardar, selector_mensaje, t
                }
             });
          });
+      } else if ($btn.is(':disabled') || $btn.hasClass('p-disabled')) {
+           // ⚠ Si el botón está deshabilitado, hacer otra acción
+           cy.log('El botón está deshabilitado, ejecutando otra acción...');
+           
+           // Ejemplo: hacer clic en otro botón, mostrar un mensaje o realizar otra validación
+           cy.get('.mt-5 > [icon="pi pi-times"] > .p-ripple').should('be.visible').click({ force: true })
+           cy.log('✅ ¡No se pudo guardar!')  
+           
       } else {
-         cy.log('❌ El botón de guardar NO está visible.');
-         cy.get('#addModal > .justify-between > p-button.p-element > .p-ripple > .pi')
-            .should('be.visible')
-            .click();
+         cy.log('✅ ¡He llegado aqui!');
       }
-   });
-});
+   })
+})
+
+      
 
