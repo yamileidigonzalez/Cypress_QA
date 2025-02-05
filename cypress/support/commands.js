@@ -76,7 +76,7 @@ Cypress.Commands.add("Editar_Canales_entidad", (entidad, canal, t_desconexion, n
    cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click();
    // Datos principales
    cy.get('.p-dropdown-label').should('not.be.enabled'); // Confirma que no aparece la lista
-   cy.log(entidad)
+   cy.log("⚠️ No esta permitido editar",entidad)
 
    cy.get('#channelId > .p-inputnumber > .p-inputtext')
      .should("be.visible")
@@ -344,7 +344,7 @@ Cypress.Commands.add("Editar_Adquirientes", ( ID,numero_cuenta,tipo_cuenta,cuent
    cy.get('#pn_id_11_header_action').should("be.visible").click()
    //ID
    cy.get('#acquirerId').should('not.be.enabled'); // Confirma que no aparece la lista
-   cy.log(ID)
+   cy.log("⚠️ No esta permitido editar",ID)
    //numero de cuenta
    cy.get('#accountNumber').should("be.visible").clear().type(numero_cuenta).type("{enter}") 
    //tipo de adquiriente
@@ -644,7 +644,7 @@ Cypress.Commands.add("Editar_Entidad", (id, nombre ,permitirOffline, frozado_off
    cy.Click_force('#pn_id_11_header_action')
    //Datos Principales
    cy.get('#entityId > .p-inputnumber > .p-inputtext').should('not.be.enabled')
-   cy.log(id);//ID
+   cy.log("⚠️ No esta permitido editar",id);//ID
    cy.get('#entityName').should("be.visible").clear().type(nombre,"{enter}");//Nombre de entidad
    //Forzado Offline
    cy.get('#allowOffline > .p-checkbox > .p-checkbox-box').then(($checkbox) => {
@@ -736,6 +736,52 @@ Cypress.Commands.add("Editar_Entidad", (id, nombre ,permitirOffline, frozado_off
       cy.Click_Botón('#blocked > .p-checkbox > .p-checkbox-box', 100)   //Bloqueado 
    }
    
+})
+
+Cypress.Commands.add("Añadir_Protocolos", ( id ,descripción, versión) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.Añadir_text('.p-inputnumber > .p-inputtext',id ) //id
+   cy.Añadir_text('#protocolName',descripción )
+   cy.Añadir_text('#protocolVersion',versión )   
+})
+
+Cypress.Commands.add("Editar_Protocolos", ( id ,descripción, versión) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.get(".p-inputnumber > .p-inputtext").should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar", id);//ID
+   cy.get('#protocolName').should('not.be.enabled')//Descripcion
+   cy.log("⚠️ No esta permitido editar",descripción)
+   cy.get('#protocolVersion').should('not.be.enabled')//Version
+   cy.log("⚠️ No esta permitido editar",versión)   
+})
+
+Cypress.Commands.add('Guardar_Confirmar_Protocolo', (selector_guardar, selector_mensaje, t) => {
+   // Interceptar la petición API
+   cy.intercept('POST', '**/api/routing/add').as('guardar');
+   // Verificar si el botón de guardar es visible
+   cy.get(selector_guardar).then(($btn) => {
+      if ($btn.is(':visible') && ($btn.is(':enabled')) ){
+         cy.get(selector_guardar).click()
+         cy.get(selector_mensaje).should('exist').and('be.visible').then(($alert) => {
+            if ($alert.text().includes('ya existe!')){
+               cy.get('.mt-5 > [icon="pi pi-times"] > .p-ripple').should('be.visible').click({ force: true });
+               cy.log('⚠️ ¡Ya existe!');
+               cy.wait(t);
+            } else {
+               cy.log('✅ ¡Ha sido guardado!');
+            }
+         })   
+      } else if ($btn.is(':disabled') || $btn.hasClass('p-disabled')) {
+         // ⚠ Si el botón está deshabilitado, hacer otra acción
+         cy.log('El botón está deshabilitado, ejecutando otra acción...');           
+         // Ejemplo: hacer clic en otro botón, mostrar un mensaje o realizar otra validación
+         cy.get('.mt-5 > [icon="pi pi-times"] > .p-ripple').should('be.visible').click({ force: true })
+         cy.log('✅ ¡No se pudo guardar!')  
+           
+      } else {
+         cy.log('✅ ¡He llegado aqui!');
+      }
+   })
 })
 
       
