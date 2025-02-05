@@ -769,6 +769,7 @@ Cypress.Commands.add('Guardar_Confirmar_Protocolo', (selector_guardar, selector_
                cy.wait(t);
             } else {
                cy.log('✅ ¡Ha sido guardado!');
+               cy.wait(t);
             }
          })   
       } else if ($btn.is(':disabled') || $btn.hasClass('p-disabled')) {
@@ -777,9 +778,11 @@ Cypress.Commands.add('Guardar_Confirmar_Protocolo', (selector_guardar, selector_
          // Ejemplo: hacer clic en otro botón, mostrar un mensaje o realizar otra validación
          cy.get('.mt-5 > [icon="pi pi-times"] > .p-ripple').should('be.visible').click({ force: true })
          cy.log('✅ ¡No se pudo guardar!')  
+         cy.wait(t);
            
       } else {
          cy.log('✅ ¡He llegado aqui!');
+         cy.wait(t);
       }
    })
 })
@@ -796,6 +799,23 @@ Cypress.Commands.add("Editar_Redes_Entidad", ( id ,nombre_red) => {
    cy.log("⚠️ No esta permitido editar", id);//ID
    cy.Añadir_text('#entityNetworkName',nombre_red )   
 })
+
+Cypress.Commands.add("Añadir_Respaldo_Enrrutamiento", (cuenta, cuenta_respaldo, prioridad) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.Añadir_Combo('#account > .p-dropdown-label',cuenta ) //Adquiriente 
+   cy.Añadir_Combo('#bkpAccount > .p-dropdown-label',cuenta_respaldo ) //Adquiriente respaldo
+   cy.Añadir_text('.p-inputnumber > .p-inputtext',prioridad )   //Prioridad
+})
+
+Cypress.Commands.add("Editar_Respaldo_Enrrutamiento", (cuenta, cuenta_respaldo, prioridad) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.get('#account > .p-dropdown-label').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar", cuenta);// //Adquiriente 
+   cy.get('#bkpAccount > .p-dropdown-label').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar", cuenta_respaldo);//Adquiriente respaldo
+   cy.Añadir_text('.p-inputnumber > .p-inputtext',prioridad )    //Prioridad
+})
+
 
       
 
