@@ -22,9 +22,6 @@ describe('Redes_Entidades', () => {
       .should('be.visible')  // Verifica que el elemento es visible
       .click();  // Luego realiza el clic 
       cy.wait(tiempo)
-      cy.wait(tiempo)
-      cy.wait(tiempo)
-
     })
 
 

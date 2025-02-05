@@ -816,6 +816,17 @@ Cypress.Commands.add("Editar_Respaldo_Enrrutamiento", (cuenta, cuenta_respaldo, 
    cy.Añadir_text('.p-inputnumber > .p-inputtext',prioridad )    //Prioridad
 })
 
+Cypress.Commands.add("Añadir_Entidades_Emisoras", (csb_emisor, nombre_emisor) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.Añadir_text('#csbIssuer',csb_emisor )   //csb_emisor
+   cy.Añadir_text('#nameIssuer',nombre_emisor )   //nombre_emisor
+})
 
+Cypress.Commands.add("Editar_Entidades_Emisoras", (csb_emisor, nombre_emisor) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.get('#csbIssuer').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar",csb_emisor )   //csb_emisor
+   cy.Añadir_text('#nameIssuer',nombre_emisor )   //nombre_emisor
+})
       
 
