@@ -35,8 +35,7 @@ describe('Protocolos', () => {
           cy.Añadir_Protocolos(id, descripcion, version)
           cy.Guardar_Confirmar_Protocolo('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
         });
-      }) 
-      
+      })       
     });
 
     // Modificar un [Elemento]

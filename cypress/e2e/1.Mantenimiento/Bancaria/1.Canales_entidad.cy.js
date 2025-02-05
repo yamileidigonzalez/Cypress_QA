@@ -21,14 +21,27 @@ describe('Canales_Entidad', () => {
     })
 
     // Añadir un nuevo [Elemento]
-    it('Debería añadir un nuevo [Elemento]', () => {
-      // Simular el proceso de creación de un nuevo registro
-      cy.get('[severity="primary"] > .p-ripple').click(); // Hacer clic en el botón para crear un nuevo registro
-      // Ingresar un nombre para el nuevo registro
-      cy.Añadir_Canales_entidad("44 - Ciers 44", '1','999', '200', "127.0.0.1", '60003',"127.0.0.1", '60003', "127.0.0.1",'60003');
-      cy.wait(tiempo)
-      //Guardar
-      cy.Guardar_Confirmar_canal_entidad('[icon="pi pi-save"] > .p-ripple', tiempo) 
+    it.only('Debería añadir un nuevo [Elemento]', () => {
+       //Conextar con archivo Json
+       cy.fixture('1_Canales_Entidad.json').then((Canal_entidades) => {
+        Canal_entidades.forEach((config) => {
+          let entidad = config.entidad;
+          let canal = config.canal;
+          let tiempo_des = config["tiempo desconexion"];
+          let n_transacciones_simultaneas = config.n_transacciones_simultaneas;
+          let host1 = config["host_1"];
+          let puerto1 = config["puerto_1"];
+          let host2 = config["host_2"];
+          let puerto2 = config["puerto_2"];
+          let host3 = config["host_3"];
+          let puerto3 = config["puerto_3"];
+       
+          //Boton añadir
+          cy.get('[severity="primary"] > .p-ripple').click(); // Hacer clic en el botón para crear un nuevo registro
+          cy.Añadir_Canales_entidad(entidad, canal , n_transacciones_simultaneas, tiempo_des,host1 , puerto1, host2 , puerto2 , host3 ,puerto3)
+          cy.Guardar_Confirmar_canal_entidad('[icon="pi pi-save"] > .p-ripple', tiempo) 
+        });
+      })      
     });
 
     // Modificar un [Elemento]
@@ -36,7 +49,7 @@ describe('Canales_Entidad', () => {
       // Simular el proceso de actualización de un registro
       cy.get('.p-datatable-tbody > :nth-child(1) > :nth-child(2)').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal
-      cy.Editar_Canales_entidad("44 - Ciers 44", '2','999', '200', "127.0.0.1", '60003',"127.0.0.1", '60003', "127.0.0.1",'60003'); 
+      cy.Editar_Canales_entidad("44 - Ciers 44", '2','999', '200',); 
       //Guardar
       cy.Guardar_Confirmar_canal_entidad('[icon="pi pi-save"] > .p-ripple', tiempo) 
     });

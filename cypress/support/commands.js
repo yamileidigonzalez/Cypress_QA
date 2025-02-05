@@ -52,9 +52,9 @@ Cypress.Commands.add("Validar_campo", (selector,men,nombre_campo,t) => {
 })
 
 Cypress.Commands.add("Añadir_Canales_entidad", (entidad,canal,t_desconexion,n_transacciones_simu, host_1,puerto_1, host_2,puerto_2,host_3,puerto_3) => { 
-   cy.get('#pn_id_11_header_action').should("be.visible")
+   cy.get('#pn_id_11_header_action').should("be.visible").click().wait(100)
    //Datos principales
-   cy.get('.p-dropdown-label').click().wait(2000)
+   cy.get('.p-dropdown-label').click().wait(100)
    .type(entidad).type("{enter}")
    cy.get('#channelId > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(canal)
    cy.get('#timeDisconnect > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(t_desconexion)
@@ -179,9 +179,9 @@ Cypress.Commands.add('Añadir_text', (selector_añadir, valor) => {
 
 Cypress.Commands.add('Guardar_Confirmar_canal_entidad', (selector_guardar, t) => {
    //Pulsar boton guardar 
-   cy.get(selector_guardar).should("be.visible").click().wait(t)
+   cy.get(selector_guardar).should("be.visible").click()
    // Espera que el mensaje sea visible
-   cy.get('.ng-tns-c3576075022-10 > .bg-white > .flex-col')
+   cy.get('app-add > app-custom-toast > p-toast.p-element > .p-toast')
    .should('be.visible') 
    .then(($alert) => {
      // Verifica si el texto contiene la alerta esperada
@@ -782,6 +782,19 @@ Cypress.Commands.add('Guardar_Confirmar_Protocolo', (selector_guardar, selector_
          cy.log('✅ ¡He llegado aqui!');
       }
    })
+})
+
+Cypress.Commands.add("Añadir_Redes_Entidad", ( id ,nombre_red) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.Añadir_text('.p-inputnumber > .p-inputtext',id ) //id
+   cy.Añadir_text('#entityNetworkName',nombre_red )   
+})
+
+Cypress.Commands.add("Editar_Redes_Entidad", ( id ,nombre_red) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.get('.p-inputnumber > .p-inputtext').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar", id);//ID
+   cy.Añadir_text('#entityNetworkName',nombre_red )   
 })
 
       
