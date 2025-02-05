@@ -828,5 +828,27 @@ Cypress.Commands.add("Editar_Entidades_Emisoras", (csb_emisor, nombre_emisor) =>
    cy.log("⚠️ No esta permitido editar",csb_emisor )   //csb_emisor
    cy.Añadir_text('#nameIssuer',nombre_emisor )   //nombre_emisor
 })
+
+Cypress.Commands.add("Añadir_Enrrutamientos_PIN_Online", (empresa, centro, caja, cajon_claves, cuenta) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.Añadir_Combo('#company > .p-dropdown-label',empresa ) //empresa
+   cy.Añadir_text('#store > .p-inputnumber > .p-inputtext',centro )   //centro
+   cy.Añadir_text('#posId > .p-inputnumber > .p-inputtext',caja )   //caja
+   cy.Añadir_text('#slotKey > .p-inputnumber > .p-inputtext',cajon_claves )   //cajon_claves
+   cy.Añadir_Combo('#account > .p-dropdown-label',cuenta ) //cuenta
+})
+
+Cypress.Commands.add("Editar_Enrrutamientos_PIN_Online", (empresa, centro, caja, cajon_claves, cuenta) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.get(':nth-child(1) > :nth-child(1) > .ng-untouched').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar",empresa ) //empresa
+   cy.get('#store > .p-inputnumber > .p-inputtext').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar",centro )   //centro
+   cy.get('#posId > .p-inputnumber > .p-inputtext').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar",caja )   //caja
+   cy.get('#slotKey > .p-inputnumber > .p-inputtext').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar",cajon_claves )   //cajon_claves
+   cy.Añadir_Combo('#account > .p-dropdown-label',cuenta ) //cuenta
+})
       
 
