@@ -34,7 +34,7 @@ describe('Canales_Entidad', () => {
     // Modificar un [Elemento]
     it('Debería modificar un [Elemento]', () => {
       // Simular el proceso de actualización de un registro
-      cy.get('.p-datatable-tbody > .p-element > :nth-child(1)').should("be.visible").click()
+      cy.get('.p-datatable-tbody > :nth-child(1) > :nth-child(2)').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.Editar_Canales_entidad("44 - Ciers 44", '2','999', '200', "127.0.0.1", '60003',"127.0.0.1", '60003', "127.0.0.1",'60003'); 
       //Guardar
@@ -70,10 +70,11 @@ describe('Canales_Entidad', () => {
 
     // Eliminar un [Elemento]
     it('Debería eliminar un [Elemento]', () => {
-      cy.Eliminar_Anular('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple', '[icon="pi pi-arrow-left"] > .p-ripple', '.p-datatable-tbody > .p-element > :nth-child(1)')
+      cy.wait(tiempo)
+      cy.Eliminar_Anular('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple', '[icon="pi pi-arrow-left"] > .p-ripple', '.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
       cy.wait(tiempo)
       //Hacer clic en el primer registro para eliminar
-      cy.Eliminar_Confirmar('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple', '.p-datatable-tbody > .p-element > :nth-child(1)')
+      cy.Eliminar_Confirmar('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple', '.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
       cy.wait(tiempo)
     });
 

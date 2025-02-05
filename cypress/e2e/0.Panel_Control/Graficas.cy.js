@@ -356,14 +356,16 @@ describe('Visualización de gráficos', () => {
     cy.get('app-amount-per-day.col-span-full > .mb-2').should('contains.text', titulo)
     verificarGrafico('app-amount-per-day.col-span-full > .mb-2')
     verificarDatosCorrectos('app-amount-per-day.col-span-full > .mb-2') 
+    cy.wait(tiempo)  
 
     //Todo la Grafica
     verificarGrafico('app-amount-per-day.col-span-full')
     verificarDatosCorrectos('app-amount-per-day.col-span-full')
+    cy.wait(tiempo)  
 
     //Area del Grafico
-    verificarGrafico('[style="width: 478px; height: 370px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
-    verificarDatosCorrectos('[style="width: 478px; height: 370px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
+    verificarGrafico('[style="width: 472px; height: 370px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
+    verificarDatosCorrectos('[style="width: 472px; height: 370px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
     cy.wait(tiempo)  
 
   })

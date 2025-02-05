@@ -111,7 +111,7 @@ Cypress.Commands.add("Editar_Canales_entidad", (entidad, canal, t_desconexion, n
 
 Cypress.Commands.add("Eliminar_Anular", (boton_borrar, boton_anular, elemento) => { 
    //Sin seleccionar esta desactivada
-   cy.get(boton_borrar).should('not.be.enabled');
+   cy.get(boton_borrar).should('not.be.enabled').wait(1000);
    //Hacer clic en el primer registro para eliminar
    cy.get(elemento).should("be.visible").wait(1000).click()
    // Seleccionar la papelera la eliminación
@@ -614,6 +614,7 @@ Cypress.Commands.add('Guardar_Confirmar_Entidad', (selector_guardar, selector_me
    cy.get(selector_guardar).then(($btn) => {
       if ($btn.is(':visible') && ($btn.is(':enabled')) ){
          cy.get(selector_guardar).click(); 
+         cy.wait(100)
          // Verificar si el mensaje realmente aparece en el DOM antes de esperar su visibilidad
          cy.get(selector_mensaje).should('exist').and('be.visible').then(($alert) => {
             if ($alert.text().includes('ya existe!')){
@@ -646,23 +647,23 @@ Cypress.Commands.add("Editar_Entidad", (id, nombre ,permitirOffline, frozado_off
    cy.log(id);//ID
    cy.get('#entityName').should("be.visible").clear().type(nombre,"{enter}");//Nombre de entidad
    //Forzado Offline
-
    cy.get('#allowOffline > .p-checkbox > .p-checkbox-box').then(($checkbox) => {
-      // Verificamos si el valor de permitirOffline es "Si" o "No" y la selección del checkbox
-      if ( permitirOffline == "No" && !$checkbox.is(':checked')) {
-         // Si el checkbox no está seleccionado y el valor de permitirOffline es "Si" o "No", seleccionamos el checkbox
+      const isChecked = $checkbox.attr('data-p-highlight') === 'true'; // Verifica si el checkbox está marcado
+   
+      if (!isChecked && (permitirOffline === "Si" )) {
+         // Si el checkbox no está seleccionado y el valor es "Si", seleccionamos el checkbox
          cy.wrap($checkbox).click();
          cy.Añadir_Combo('#offlineForced > .p-dropdown-label', frozado_off);
          cy.log('✅ Checkbox seleccionado');
-      } else if (permitirOffline == "Si" && !$checkbox.is(':checked')) {
-         // Si el checkbox no está seleccionado y el valor de permitirOffline es "Si" o "No", seleccionamos el checkbox
+      } else if (isChecked && (permitirOffline === "No")){
+         // Si el checkbox está seleccionado y el valor es "No", seleccionamos el checkbox
          cy.wrap($checkbox).click();
-         cy.Añadir_Combo('#offlineForced > .p-dropdown-label', frozado_off);
-         cy.log('✅ Checkbox seleccionado');
+         cy.log('Checkbox deshabilitado');
       } else {
-            cy.log('⚠️ El checkbox ya estaba seleccionado, no se hizo clic.')
+         // Si ya está seleccionado, no hacemos nada
+         cy.log('⚠️ El checkbox ya estaba seleccionado, no se hizo clic.');
       }
-   });
+   });   
 
    cy.Añadir_Combo('#entityProtocol > .p-dropdown-label',id_protocolo)  //ID protocolo
    cy.Añadir_Combo('#networkType > .p-dropdown-label',tipo_red)   //Tipo de red

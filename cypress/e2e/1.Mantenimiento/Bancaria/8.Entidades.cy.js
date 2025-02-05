@@ -49,43 +49,58 @@ describe('Entidades', () => {
     });
 
     // Modificar un [Elemento]
-    it.only('Debería modificar un [Elemento]', () => {
+    it('Debería modificar un [Elemento]', () => {
       // Simular el proceso de actualización de un registro
+      cy.wait(3000)
       cy.Click_force('.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
-      cy.Editar_Entidad('1', "F1-Bank Ciers 44", "Si", "Activado manualmente", " ", " ", "1 - Redsys", "3", "30", "30", "30", "30", "30", "192.168.0.157", "9101", " ", " ", " ", " ", "136544000000000100", "138000", "136569", "2", " ", " ", "1", "No", "510101514041","1000031002", "1100000000", "1000010100", "9102250001000000",  "2","0", "0", "0", "1", "1", "0", "0", "0")
-      cy.Guardar_Confirmar_Entidad('[icon="pi pi-save"] > .p-ripple', '.ng-tns-c3576075022-11 > .bg-white > .flex-col', tiempo)
+      cy.Editar_Entidad('1', "F1-Bank Ciers 44", "Si", "Activado manualmente", " ", " ", "1 - Redsys", "3", "30", "30", "30", "30", "30", "192.168.0.157", "9101", "192.168.0.157", "9101", "192.168.0.157", "9101", "136544000000000100", "138000", "136544", "2", "2", " ", " ","1" ,"1", "510101514041","1000031002", "1100000000", "1000010100", "9102250001000000",  "2","0", "0", "0", "Desactivado", "1", "0", "0", "0")
+      cy.Guardar_Confirmar_Entidad('[icon="pi pi-save"] > .p-ripple', '.bg-white > .flex-col', tiempo)
       
     });
 
      // Listar todos los elementos
-     it('Debería listar todos los [elementos]', () => {
-      cy.request('GET', '/api/[endpoint]')
-        .then((response) => {
-          expect(response.status).to.eq(200);
-          expect(response.body).to.be.an('array');
-        });
+    it('Debería listar todos los [elementos]', () => {
+      cy.get('.p-scroller').should("be.visible").wait(tiempo); // Verificar que el listado de registros se muestra
+      cy.get('.p-scroller').should("have.length.greaterThan", 0).wait(tiempo); // Validar que hay al menos un registro      
     });
     
     // Buscar un [Elemento] por ID
     it('Debería buscar un [Elemento] por ID', () => {
-      cy.request('GET', `/api/[endpoint]/${itemId}`)
-        .then((response) => {
-          expect(response.status).to.eq(200);
-          expect(response.body.id).to.eq(itemId);
-        });
+      //combrobar boton de busqueda
+      cy.Elemento_visible('.gap-x-3 > .inline-flex')
+
+      //busqueda numeros y signos
+      cy.Busqueda('.gap-x-3 > .inline-flex','44',tiempo)
+      cy.Busqueda('.gap-x-3 > .inline-flex','F1-',tiempo)
+      cy.Busqueda('.gap-x-3 > .inline-flex','1212',tiempo)
+      cy.Busqueda('.gap-x-3 > .inline-flex','2323',tiempo)
+      
+      //busqueda letras y espacios
+      cy.Busqueda('.gap-x-3 > .inline-flex','unicaja',tiempo)
+      cy.Busqueda('.gap-x-3 > .inline-flex','bank',tiempo)
+      cy.Busqueda('.gap-x-3 > .inline-flex','Bank ',tiempo)
+      cy.Busqueda('.gap-x-3 > .inline-flex','Cier',tiempo)
+      cy.Busqueda('.gap-x-3 > .inline-flex','pay',tiempo)
+
     });
 
     // Eliminar un [Elemento]
     it('Debería eliminar un [Elemento]', () => {
-      cy.request('DELETE', `/api/[endpoint]/${itemId}`)
-        .then((response) => {
-          expect(response.status).to.eq(200);
-        });
-      cy.request({ method: 'GET', url: `/api/[endpoint]/${itemId}`, failOnStatusCode: false })
-        .then((response) => {
-          expect(response.status).to.eq(404);
-        });
+      cy.wait(tiempo)
+      cy.Eliminar_Anular('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple', '[icon="pi pi-arrow-left"] > .p-ripple', '.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
+      cy.wait(tiempo)
+      //Hacer clic en el primer registro para eliminar
+      cy.Eliminar('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple','.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
+      // Validar mensaje de éxito
+      cy.get('.bg-white > .flex-col')
+      .should('be.visible') 
+      .then(($alert) => {
+        // Verifica si el texto contiene la alerta esperada
+        if ($alert.text().includes('¡El adquiriente se ha eliminado!')) {
+          cy.log('¡El adquiriente se ha eliminado!'); // Log de éxito
+        }
+      }) 
     });
 })
