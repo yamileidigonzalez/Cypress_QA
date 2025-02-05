@@ -850,5 +850,20 @@ Cypress.Commands.add("Editar_Enrrutamientos_PIN_Online", (empresa, centro, caja,
    cy.log("⚠️ No esta permitido editar",cajon_claves )   //cajon_claves
    cy.Añadir_Combo('#account > .p-dropdown-label',cuenta ) //cuenta
 })
+
+Cypress.Commands.add("Añadir_Test_adquirientes", (cuenta, tarjeta, expiracion) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.Añadir_Combo('.p-dropdown-label',cuenta ).type(cuenta).type("{enter}") //cuenta
+   cy.Añadir_text('#pan',tarjeta )   //tarjeta
+   cy.Añadir_text('#expiration > .p-inputtext',expiracion )   //expiracion
+})
+
+Cypress.Commands.add("Editar_Test_adquirientes", (cuenta, tarjeta, expiracion) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar",cuenta ) //cuenta
+   cy.Añadir_text('#pan',tarjeta )   //tarjeta
+   cy.Añadir_text('#expiration > .p-inputtext',expiracion )   //expiracion
+})
       
 

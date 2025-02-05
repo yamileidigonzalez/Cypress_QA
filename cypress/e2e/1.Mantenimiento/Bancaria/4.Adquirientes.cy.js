@@ -36,7 +36,7 @@ describe('Adquirientes', () => {
       cy.get('.p-datatable-tbody > :nth-child(1) > :nth-child(2)').should("be.visible").wait(tiempo)
       cy.Click_force('.p-datatable-tbody > :nth-child(1) > :nth-child(2)',tiempo)
       // Hacer clic en el primer registro para editar y Modificar el canal
-      cy.Editar_Adquirientes("069"," ","Supercuenta"," ","BANK/SANTA/CAJA","978 - Euro","1 - F1-Bank Ciers 44", "2025-01-07","0","0", '365','1',"000000000"," ","Desactivado"," "," "," ","0","0","0")
+      cy.Editar_Test_adquirientes("069"," ","Supercuenta"," ","BANK/SANTA/CAJA","978 - Euro","1 - F1-Bank Ciers 44", "2025-01-07","0","0", '365','1',"000000000"," ","Desactivado"," "," "," ","0","0","0")
       cy.Guardar_Confirmar_Adquirientes('[icon="pi pi-save"] > .p-ripple',tiempo)
 
     });

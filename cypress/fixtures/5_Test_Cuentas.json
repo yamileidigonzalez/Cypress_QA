@@ -1,32 +1,37 @@
 [
   {
+    "cuenta": "A01",
+    "tarjeta": 8888806368324521,
+    "expiracion": "05-27"
+  },
+  {
     "cuenta": "001",
     "tarjeta": 8888806368324521,
-    "expiraci�n": "05-24"
+    "expiracion": "05-24"
   },
   {
     "cuenta": "004",
     "tarjeta": 8888806368324521,
-    "expiraci�n": "05-24"
+    "expiracion": "05-24"
   },
   {
     "cuenta": "002",
     "tarjeta": 8888806368324521,
-    "expiraci�n": "05-24"
+    "expiracion": "05-24"
   },
   {
     "cuenta": "003",
     "tarjeta": 8888806368324521,
-    "expiraci�n": "05-24"
+    "expiracion": "05-24"
   },
   {
     "cuenta": "044",
     "tarjeta": 8888805050201997,
-    "expiraci�n": "04-27"
+    "expiracion": "04-27"
   },
   {
     "cuenta": "A35",
     "tarjeta": 8888805050201997,
-    "expiraci�n": "08-27"
+    "expiracion": "08-27"
   }
 ]

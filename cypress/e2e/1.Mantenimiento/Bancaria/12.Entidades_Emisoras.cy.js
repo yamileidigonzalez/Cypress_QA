@@ -51,6 +51,7 @@ describe('Entidades_Emisoras', () => {
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
       cy.Editar_Entidades_Emisoras('0000', "AAAAAAAAAAAA")
       cy.Guardar_Confirmar_Protocolo('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+    
     });
 
      // Listar todos los elementos
