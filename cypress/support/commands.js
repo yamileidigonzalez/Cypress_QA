@@ -415,7 +415,7 @@ Cypress.Commands.add('Guardar_Confirmar_Adquirientes', (selector_guardar, t) => 
      if ($alert.text().includes('¡El adquirente ya existe!')) {
        // Si la alerta está presente, hacer clic en "Cancelar"
        cy.get('.absolute > [icon="pi pi-times"] > .p-ripple').click({ force: true });
-       cy.log('¡El adquirente ya existe!'); // Log de la alerta
+       cy.log('⚠️ ¡El adquirente ya existe!'); // Log de la alerta
        cy.wait(t)
      } else {
        // Si la alerta no aparece, realizar otra acción (guardar, por ejemplo)
@@ -786,7 +786,7 @@ Cypress.Commands.add('Guardar_Confirmar_Protocolo', (selector_guardar, selector_
          cy.log('El botón está deshabilitado, ejecutando otra acción...');           
          // Ejemplo: hacer clic en otro botón, mostrar un mensaje o realizar otra validación
          cy.get('.mt-5 > [icon="pi pi-times"] > .p-ripple').should('be.visible').click({ force: true })
-         cy.log('✅ ¡No se pudo guardar!')  
+         cy.log('⚠️ ¡No se pudo guardar!')  
          cy.wait(t);
            
       } else {
@@ -902,7 +902,7 @@ Cypress.Commands.add('Guardar_Confirmar_Acuerdo_Comision', (selector_guardar, se
          cy.log('El botón está deshabilitado, ejecutando otra acción...');           
          // Ejemplo: hacer clic en otro botón, mostrar un mensaje o realizar otra validación
          cy.get('.absolute > [icon="pi pi-times"] > .p-ripple').should('be.visible').click({ force: true })
-         cy.log('✅ ¡No se pudo guardar!')
+         cy.log('⚠️ ¡No se pudo guardar!')
            
       } else {
          cy.log('✅ ¡He llegado aqui!');
@@ -917,3 +917,33 @@ Cypress.Commands.add("Editar_Acuerdos_Comision", (csb_emisor, csb_adquiriente) =
    cy.get('.p-dropdown-label').should('not.be.enabled')
    cy.log("⚠️ No esta permitido editar",csb_adquiriente ) //csb_adquiriente
 })
+
+Cypress.Commands.add('Guardar_Confirmar_Comisiones', (selector_guardar, selector_mensaje) => {
+   // Interceptar la petición API
+   cy.intercept('POST', '**/api/routing/add').as('guardar');
+   // Verificar si el botón de guardar es visible
+   cy.get(selector_guardar).then(($btn) => {
+      if ($btn.is(':visible') && ($btn.is(':enabled')) ){
+         cy.get(selector_guardar).click()
+         cy.get(selector_mensaje).should('exist').and('be.visible').then(($alert) => {
+            if ($alert.text().includes('ya existe!')){
+               cy.get('.absolute > [icon="pi pi-times"] > .p-ripple').should('be.visible').click({ force: true });
+               cy.log('⚠️ ¡Ya existe!');
+            } else if ($alert.text().includes('¡Ha ocurrido un error ')){
+               cy.log('⚠️ ¡Ha ocurrido un error :( !');
+            } else {
+               cy.log('✅ ¡Ha sido guardado!');
+            }
+         })   
+      } else if ($btn.is(':disabled') || $btn.hasClass('p-disabled')) {
+         // ⚠ Si el botón está deshabilitado, hacer otra acción
+         cy.log('El botón está deshabilitado, ejecutando otra acción...');           
+         // Ejemplo: hacer clic en otro botón, mostrar un mensaje o realizar otra validación
+         cy.log('⚠️ ¡No se pudo guardar!')
+           
+      } else {
+         cy.log('✅ ¡He llegado aqui!');
+      }
+   })
+})
+
