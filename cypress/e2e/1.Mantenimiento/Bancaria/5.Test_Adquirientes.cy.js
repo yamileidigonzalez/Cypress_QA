@@ -39,14 +39,14 @@ describe('Test_Adquirientes', () => {
     });
 
     // Modificar un [Elemento]
-    it.only('Debería modificar un [Elemento]', () => {
+    it('Debería modificar un [Elemento]', () => {
       // Simular el proceso de actualización de un registro
-      cy.wait(tiempo)
+      cy.Busqueda('.gap-x-3 > .inline-flex','069',tiempo)
       cy.Click_force('.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal
-      cy.Editar_Test_adquirientes("069"," ","44444444444","05-28")
+      cy.Editar_Test_adquirientes("069","44444444444444","05-28")
       cy.Guardar_Confirmar_Adquirientes('[icon="pi pi-save"] > .p-ripple',tiempo)
 
     });
