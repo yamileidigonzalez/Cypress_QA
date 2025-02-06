@@ -172,6 +172,25 @@ Cypress.Commands.add('Añadir_Combo', (selector, valor) => {
    cy.get(selector).should("be.visible").click().wait(100).type(valor,"{enter}") 
 })
 
+Cypress.Commands.add('Añadir_Combo_Buscar', (selector, sector_buscar, valor) => { 
+   cy.get(selector).should("be.visible").click().wait(100);
+   cy.get(sector_buscar).clear().type(valor).type("{enter}")
+
+   // Verificar si el mensaje "No results found" existe antes de interactuar con él
+   cy.get('body').then($body => {
+      if ($body.find('.p-dropdown-empty-message').length > 0) {
+         cy.get('.p-dropdown-empty-message').should('contain', 'No results found');
+         cy.log('El mensaje "No encontrado" está presente');
+         cy.get(selector).should("be.visible").click().wait(100); // Cerrar el dropdown si es necesario
+      } else {
+         cy.log('El valor ha sido encontrado');
+         // Aquí puedes agregar más acciones si el valor sí existe
+         cy.get(selector).should("be.visible").type(valor, "{enter}");
+      }
+   });
+
+})
+
 Cypress.Commands.add('Añadir_text', (selector_añadir, valor) => {
    //boton anadir
    cy.get(selector_añadir).should("be.visible").clear().type(valor,"{enter}" )               
@@ -222,16 +241,6 @@ Cypress.Commands.add('Validar_campo', (selector, men, nombre_campo, selector_vol
 Cypress.Commands.add('Busqueda', (selector, valor, t) => { 
    cy.get(selector).should("be.visible").clear().type(valor).wait(t)
 
-})
-
-Cypress.Commands.add("Añadir_Acuerdos_Comisiones", (emisor, adquiriente) => { 
-   cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
-   //Datos 
-   cy.get('#acquirer > .p-dropdown-label').should("be.visible").click().wait(2000)
-   cy.get('.p-dropdown-filter').should("be.visible").clear().type(adquiriente).type("{enter}")
-   cy.get('#issuer > .p-dropdown-label').should("be.visible").click().wait(2000)
-   cy.get('.p-dropdown-filter').type(emisor)
-   
 })
 
 Cypress.Commands.add("Añadir_Adquirientes_comprobar_Check", (off_internacional, off_EMV, forzado_respaldo) => {
@@ -859,11 +868,52 @@ Cypress.Commands.add("Añadir_Test_adquirientes", (cuenta, tarjeta, expiracion) 
 })
 
 Cypress.Commands.add("Editar_Test_adquirientes", (cuenta, tarjeta, expiracion) => { 
-   // Validaciones en la UI basadas en los datos del JSON
-   cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should('not.be.enabled')
+   // Validaciones en la UI basadas en los datos del JSON   
+   cy.get('.p-dropdown-label').should('not.be.enabled')
    cy.log("⚠️ No esta permitido editar",cuenta ) //cuenta
    cy.Añadir_text('#pan',tarjeta )   //tarjeta
    cy.Añadir_text('#expiration > .p-inputtext',expiracion )   //expiracion
 })
-      
 
+Cypress.Commands.add("Añadir_Acuerdos_Comision", (csb_emisor, csb_adquiriente) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.Añadir_Combo_Buscar('#acquirer > .p-dropdown-label','.p-dropdown-filter', csb_emisor ) //csb_emisor
+   cy.Añadir_Combo_Buscar('#issuer > .p-dropdown-label','.p-dropdown-filter', csb_adquiriente ) //csb_adquiriente
+
+})
+
+Cypress.Commands.add('Guardar_Confirmar_Acuerdo_Comision', (selector_guardar, selector_mensaje) => {
+   // Interceptar la petición API
+   cy.intercept('POST', '**/api/routing/add').as('guardar');
+   // Verificar si el botón de guardar es visible
+   cy.get(selector_guardar).then(($btn) => {
+      if ($btn.is(':visible') && ($btn.is(':enabled')) ){
+         cy.get(selector_guardar).click()
+         cy.get(selector_mensaje).should('exist').and('be.visible').then(($alert) => {
+            if ($alert.text().includes('ya existe!')){
+               cy.get('.absolute > [icon="pi pi-times"] > .p-ripple').should('be.visible').click({ force: true });
+               cy.log('⚠️ ¡Ya existe!');
+            } else {
+               cy.log('✅ ¡Ha sido guardado!');
+            }
+         })   
+      } else if ($btn.is(':disabled') || $btn.hasClass('p-disabled')) {
+         // ⚠ Si el botón está deshabilitado, hacer otra acción
+         cy.log('El botón está deshabilitado, ejecutando otra acción...');           
+         // Ejemplo: hacer clic en otro botón, mostrar un mensaje o realizar otra validación
+         cy.get('.absolute > [icon="pi pi-times"] > .p-ripple').should('be.visible').click({ force: true })
+         cy.log('✅ ¡No se pudo guardar!')
+           
+      } else {
+         cy.log('✅ ¡He llegado aqui!');
+      }
+   })
+})
+
+Cypress.Commands.add("Editar_Acuerdos_Comision", (csb_emisor, csb_adquiriente) => { 
+   // Validaciones en la UI basadas en los datos del JSON   
+   cy.get('.p-dropdown-label').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar",csb_emisor ) //csb_emisor
+   cy.get('.p-dropdown-label').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar",csb_adquiriente ) //csb_adquiriente
+})
