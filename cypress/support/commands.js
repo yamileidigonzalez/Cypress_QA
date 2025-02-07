@@ -428,6 +428,17 @@ Cypress.Commands.add("Añadir_Acuerdos_Comision", (csb_emisor, csb_adquiriente) 
 
 })
 
+Cypress.Commands.add("Añadir_Monedas", (ID, moneda, descripcion, simbolo, pais, decimales) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.Añadir_text('#currencyId > .p-inputnumber > .p-inputtext',ID)
+   cy.Añadir_text('#description',descripcion)
+   cy.Añadir_text('#currency',moneda)
+   cy.Añadir_text('#symbol',simbolo)
+   cy.Añadir_text('#country',pais)
+   cy.Añadir_text('#decimalPlaces > .p-inputnumber > .p-inputtext',decimales)
+   
+})
+
 
 
 Cypress.Commands.add("Editar_Acuerdos_Comision", (csb_emisor, csb_adquiriente) => { 
@@ -700,6 +711,17 @@ Cypress.Commands.add("Editar_Empresas", (ID, descripcion, direccion, municipio, 
    cy.Check('.p-checkbox-box',permite_off)
    //cy.Añadir_text('#pan',codigo_financiero)
    
+})
+
+Cypress.Commands.add("Editar_Monedas", (ID, moneda, descripcion, simbolo, pais, decimales) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.get('#currencyId > .p-inputnumber > .p-inputtext').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar",ID) //ID
+   cy.Añadir_text('#currency',moneda)
+   cy.Añadir_text('#description',descripcion)
+   cy.Añadir_text('#symbol',simbolo)
+   cy.Añadir_text('#country',pais)
+   cy.Añadir_text('#decimalPlaces > .p-inputnumber > .p-inputtext',decimales)   
 })
 
 

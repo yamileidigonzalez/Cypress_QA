@@ -2,1056 +2,1056 @@
   {
     "ID": 840,
     "moneda": "USD",
-    "descripci�n": "Dolar",
-    "s�mbolo": "$",
+    "descripcion": "Dolar",
+    "simbolo": "$",
     "pais": "US",
     "decimales": 2
   },
   {
     "ID": 978,
     "moneda": "EUR",
-    "descripci�n": "Euro",
-    "s�mbolo": "�",
+    "descripcion": "Euro",
+    "simbolo": "�",
     "pais": "ES",
     "decimales": 2
   },
   {
     "ID": 756,
     "moneda": "CHF",
-    "descripci�n": "Swiss Franc",
-    "s�mbolo": "fr.",
+    "descripcion": "Swiss Franc",
+    "simbolo": "fr.",
     "pais": "CH",
     "decimales": 2
   },
   {
     "ID": 752,
     "moneda": "SEK",
-    "descripci�n": "Swedish Krona",
-    "s�mbolo": "kr",
+    "descripcion": "Swedish Krona",
+    "simbolo": "kr",
     "pais": "SE",
     "decimales": 2
   },
   {
     "ID": 208,
     "moneda": "DKK",
-    "descripci�n": "Danish Krone",
-    "s�mbolo": "kr",
+    "descripcion": "Danish Krone",
+    "simbolo": "kr",
     "pais": "DK",
     "decimales": 2
   },
   {
     "ID": 12,
     "moneda": "DZD",
-    "descripci�n": "ALGERIAN DINAR",
-    "s�mbolo": "?.?",
+    "descripcion": "ALGERIAN DINAR",
+    "simbolo": "?.?",
     "pais": "EC",
     "decimales": 2
   },
   {
     "ID": 32,
     "moneda": "ARS",
-    "descripci�n": "ARGENTINE AUSTRAL",
-    "s�mbolo": "$",
+    "descripcion": "ARGENTINE AUSTRAL",
+    "simbolo": "$",
     "pais": "AR",
     "decimales": 2
   },
   {
     "ID": 36,
     "moneda": "AUD",
-    "descripci�n": "AUSTRALIAN DOLLAR",
-    "s�mbolo": "$",
+    "descripcion": "AUSTRALIAN DOLLAR",
+    "simbolo": "$",
     "pais": "AU",
     "decimales": 2
   },
   {
     "ID": 44,
     "moneda": "BSD",
-    "descripci�n": "BAHAMIAN DOLLAR",
-    "s�mbolo": "$",
+    "descripcion": "BAHAMIAN DOLLAR",
+    "simbolo": "$",
     "pais": "BS",
     "decimales": 2
   },
   {
     "ID": 48,
     "moneda": "BHD",
-    "descripci�n": "BAHRAINI DINAR",
-    "s�mbolo": ".?.?",
+    "descripcion": "BAHRAINI DINAR",
+    "simbolo": ".?.?",
     "pais": "BH",
     "decimales": 2
   },
   {
     "ID": 50,
     "moneda": "BDT",
-    "descripci�n": "TAKA",
-    "s�mbolo": "?",
+    "descripcion": "TAKA",
+    "simbolo": "?",
     "pais": "BD",
     "decimales": 2
   },
   {
     "ID": 52,
     "moneda": "BBD",
-    "descripci�n": "BARBADOS DOLLAR",
-    "s�mbolo": "$",
+    "descripcion": "BARBADOS DOLLAR",
+    "simbolo": "$",
     "pais": "BB",
     "decimales": 2
   },
   {
     "ID": 64,
     "moneda": "BTN",
-    "descripci�n": "NGULTRUM BUTANES",
-    "s�mbolo": "Nu.",
+    "descripcion": "NGULTRUM BUTANES",
+    "simbolo": "Nu.",
     "pais": "BT",
     "decimales": 2
   },
   {
     "ID": 68,
     "moneda": "BOB",
-    "descripci�n": "BOLIVIAN PESO",
-    "s�mbolo": "Bs.",
+    "descripcion": "BOLIVIAN PESO",
+    "simbolo": "Bs.",
     "pais": "BO",
     "decimales": 2
   },
   {
     "ID": 70,
     "moneda": "BAM",
-    "descripci�n": "DINAR",
-    "s�mbolo": "KM",
+    "descripcion": "DINAR",
+    "simbolo": "KM",
     "pais": "BA",
     "decimales": 2
   },
   {
     "ID": 72,
     "moneda": "BWP",
-    "descripci�n": "PULA",
-    "s�mbolo": "P",
+    "descripcion": "PULA",
+    "simbolo": "P",
     "pais": "BW",
     "decimales": 2
   },
   {
     "ID": 84,
     "moneda": "BZD",
-    "descripci�n": "BELIZE DOLLAR",
-    "s�mbolo": "$",
+    "descripcion": "BELIZE DOLLAR",
+    "simbolo": "$",
     "pais": "BZ",
     "decimales": 2
   },
   {
     "ID": 90,
     "moneda": "SBD",
-    "descripci�n": "SOLOMON ISLANDS DOLL",
-    "s�mbolo": "$",
+    "descripcion": "SOLOMON ISLANDS DOLL",
+    "simbolo": "$",
     "pais": "SC",
     "decimales": 2
   },
   {
     "ID": 96,
     "moneda": "BND",
-    "descripci�n": "BRUNEI DOLLAR",
-    "s�mbolo": "$",
+    "descripcion": "BRUNEI DOLLAR",
+    "simbolo": "$",
     "pais": "BN",
     "decimales": 2
   },
   {
     "ID": 108,
     "moneda": "BIF",
-    "descripci�n": "BURUNDI FRANC",
-    "s�mbolo": "Fr",
+    "descripcion": "BURUNDI FRANC",
+    "simbolo": "Fr",
     "pais": "BI",
     "decimales": 2
   },
   {
     "ID": 116,
     "moneda": "KHR",
-    "descripci�n": "RIEL",
-    "s�mbolo": "?",
+    "descripcion": "RIEL",
+    "simbolo": "?",
     "pais": "KI",
     "decimales": 2
   },
   {
     "ID": 124,
     "moneda": "CAD",
-    "descripci�n": "CANADIAN DOLLAR",
-    "s�mbolo": "$",
+    "descripcion": "CANADIAN DOLLAR",
+    "simbolo": "$",
     "pais": "CA",
     "decimales": 2
   },
   {
     "ID": 132,
     "moneda": "CVE",
-    "descripci�n": "CAPE VERDE ESCUDO",
-    "s�mbolo": "Esc, $",
+    "descripcion": "CAPE VERDE ESCUDO",
+    "simbolo": "Esc, $",
     "pais": "CW",
     "decimales": 2
   },
   {
     "ID": 136,
     "moneda": "KYD",
-    "descripci�n": "CAYMAN ISLANDS DOLLA",
-    "s�mbolo": "$",
+    "descripcion": "CAYMAN ISLANDS DOLLA",
+    "simbolo": "$",
     "pais": "KZ",
     "decimales": 2
   },
   {
     "ID": 144,
     "moneda": "LKR",
-    "descripci�n": "SRI LANKA RUPEE",
-    "s�mbolo": "Rs",
+    "descripcion": "SRI LANKA RUPEE",
+    "simbolo": "Rs",
     "pais": "LR",
     "decimales": 2
   },
   {
     "ID": 152,
     "moneda": "CLP",
-    "descripci�n": "CHILEAN PESO",
-    "s�mbolo": "$",
+    "descripcion": "CHILEAN PESO",
+    "simbolo": "$",
     "pais": "CL",
     "decimales": 2
   },
   {
     "ID": 156,
     "moneda": "CNY",
-    "descripci�n": "YUAN RENMINBI",
-    "s�mbolo": "�, ?",
+    "descripcion": "YUAN RENMINBI",
+    "simbolo": "�, ?",
     "pais": "CO",
     "decimales": 2
   },
   {
     "ID": 170,
     "moneda": "COP",
-    "descripci�n": "COLOMBIAN PESO",
-    "s�mbolo": "$",
+    "descripcion": "COLOMBIAN PESO",
+    "simbolo": "$",
     "pais": "CR",
     "decimales": 2
   },
   {
     "ID": 174,
     "moneda": "KMF",
-    "descripci�n": "COMORO FRANC",
-    "s�mbolo": "Fr",
+    "descripcion": "COMORO FRANC",
+    "simbolo": "Fr",
     "pais": "KN",
     "decimales": 2
   },
   {
     "ID": 188,
     "moneda": "CRC",
-    "descripci�n": "COSTA RICAN COLON",
-    "s�mbolo": "C=",
+    "descripcion": "COSTA RICAN COLON",
+    "simbolo": "C=",
     "pais": "CU",
     "decimales": 2
   },
   {
     "ID": 191,
     "moneda": "HRK",
-    "descripci�n": "CROATIAN KUNA",
-    "s�mbolo": "kn",
+    "descripcion": "CROATIAN KUNA",
+    "simbolo": "kn",
     "pais": "HT",
     "decimales": 2
   },
   {
     "ID": 203,
     "moneda": "CZK",
-    "descripci�n": "CZECH KORUNA",
-    "s�mbolo": "Kc",
+    "descripcion": "CZECH KORUNA",
+    "simbolo": "Kc",
     "pais": "DE",
     "decimales": 2
   },
   {
     "ID": 214,
     "moneda": "DOP",
-    "descripci�n": "DOMINICAN PESO",
-    "s�mbolo": "$",
+    "descripcion": "DOMINICAN PESO",
+    "simbolo": "$",
     "pais": "DZ",
     "decimales": 2
   },
   {
     "ID": 222,
     "moneda": "SVC",
-    "descripci�n": "EL SALVADOR COLON",
-    "s�mbolo": "C=",
+    "descripcion": "EL SALVADOR COLON",
+    "simbolo": "C=",
     "pais": "SX",
     "decimales": 2
   },
   {
     "ID": 230,
     "moneda": "ETB",
-    "descripci�n": "ETHIOPIAN BIRR",
-    "s�mbolo": "Br",
+    "descripcion": "ETHIOPIAN BIRR",
+    "simbolo": "Br",
     "pais": "FI",
     "decimales": 2
   },
   {
     "ID": 262,
     "moneda": "DJF",
-    "descripci�n": "DJIBOUTI FRANC",
-    "s�mbolo": "Fr",
+    "descripcion": "DJIBOUTI FRANC",
+    "simbolo": "Fr",
     "pais": "DK",
     "decimales": 2
   },
   {
     "ID": 270,
     "moneda": "GMD",
-    "descripci�n": "DALASI",
-    "s�mbolo": "D",
+    "descripcion": "DALASI",
+    "simbolo": "D",
     "pais": "GN",
     "decimales": 2
   },
   {
     "ID": 292,
     "moneda": "GIP",
-    "descripci�n": "GIBRALTAR POUND",
-    "s�mbolo": "�",
+    "descripcion": "GIBRALTAR POUND",
+    "simbolo": "�",
     "pais": "GL",
     "decimales": 2
   },
   {
     "ID": 320,
     "moneda": "GTQ",
-    "descripci�n": "QUETZAL",
-    "s�mbolo": "Q",
+    "descripcion": "QUETZAL",
+    "simbolo": "Q",
     "pais": "GU",
     "decimales": 2
   },
   {
     "ID": 324,
     "moneda": "GNF",
-    "descripci�n": "SYLI",
-    "s�mbolo": "Fr",
+    "descripcion": "SYLI",
+    "simbolo": "Fr",
     "pais": "GP",
     "decimales": 2
   },
   {
     "ID": 332,
     "moneda": "HTG",
-    "descripci�n": "GOURDE",
-    "s�mbolo": "G",
+    "descripcion": "GOURDE",
+    "simbolo": "G",
     "pais": "HU",
     "decimales": 2
   },
   {
     "ID": 340,
     "moneda": "HNL",
-    "descripci�n": "LEMPIRA",
-    "s�mbolo": "L",
+    "descripcion": "LEMPIRA",
+    "simbolo": "L",
     "pais": "HR",
     "decimales": 2
   },
   {
     "ID": 348,
     "moneda": "HUF",
-    "descripci�n": "FORINT",
-    "s�mbolo": "Ft",
+    "descripcion": "FORINT",
+    "simbolo": "Ft",
     "pais": "ID",
     "decimales": 2
   },
   {
     "ID": 352,
     "moneda": "ISK",
-    "descripci�n": "ICELAND KRONA",
-    "s�mbolo": "kr",
+    "descripcion": "ICELAND KRONA",
+    "simbolo": "kr",
     "pais": "IT",
     "decimales": 2
   },
   {
     "ID": 356,
     "moneda": "INR",
-    "descripci�n": "INDIAN RUPEE",
-    "s�mbolo": "INR",
+    "descripcion": "INDIAN RUPEE",
+    "simbolo": "INR",
     "pais": "BT",
     "decimales": 2
   },
   {
     "ID": 360,
     "moneda": "IDR",
-    "descripci�n": "RUPIAH",
-    "s�mbolo": "Rp",
+    "descripcion": "RUPIAH",
+    "simbolo": "Rp",
     "pais": "IE",
     "decimales": 2
   },
   {
     "ID": 368,
     "moneda": "IQD",
-    "descripci�n": "IRAQI DINAR",
-    "s�mbolo": "?.?",
+    "descripcion": "IRAQI DINAR",
+    "simbolo": "?.?",
     "pais": "IR",
     "decimales": 2
   },
   {
     "ID": 376,
     "moneda": "ILS",
-    "descripci�n": "ISRAEL SHEKEL",
-    "s�mbolo": "ILS",
+    "descripcion": "ISRAEL SHEKEL",
+    "simbolo": "ILS",
     "pais": "IM",
     "decimales": 2
   },
   {
     "ID": 388,
     "moneda": "JMD",
-    "descripci�n": "JAMAICAN DOLLAR",
-    "s�mbolo": "$",
+    "descripcion": "JAMAICAN DOLLAR",
+    "simbolo": "$",
     "pais": "JO",
     "decimales": 2
   },
   {
     "ID": 392,
     "moneda": "JPY",
-    "descripci�n": "YEN",
-    "s�mbolo": "�",
+    "descripcion": "YEN",
+    "simbolo": "�",
     "pais": "KE",
     "decimales": 2
   },
   {
     "ID": 398,
     "moneda": "KZT",
-    "descripci�n": "TENGE",
-    "s�mbolo": "KZT",
+    "descripcion": "TENGE",
+    "simbolo": "KZT",
     "pais": "LA",
     "decimales": 2
   },
   {
     "ID": 400,
     "moneda": "JOD",
-    "descripci�n": "JORDANIAN DINAR",
-    "s�mbolo": "?.?",
+    "descripcion": "JORDANIAN DINAR",
+    "simbolo": "?.?",
     "pais": "JP",
     "decimales": 2
   },
   {
     "ID": 404,
     "moneda": "KES",
-    "descripci�n": "KENYAN SHILLING",
-    "s�mbolo": "Sh",
+    "descripcion": "KENYAN SHILLING",
+    "simbolo": "Sh",
     "pais": "KG",
     "decimales": 2
   },
   {
     "ID": 410,
     "moneda": "KRW",
-    "descripci�n": "KOREAN WON",
-    "s�mbolo": "KRW",
+    "descripcion": "KOREAN WON",
+    "simbolo": "KRW",
     "pais": "KW",
     "decimales": 2
   },
   {
     "ID": 414,
     "moneda": "KWD",
-    "descripci�n": "KUWAITI DINAR",
-    "s�mbolo": "?.?",
+    "descripcion": "KUWAITI DINAR",
+    "simbolo": "?.?",
     "pais": "KY",
     "decimales": 2
   },
   {
     "ID": 417,
     "moneda": "KGS",
-    "descripci�n": "SOM",
-    "s�mbolo": "??",
+    "descripcion": "SOM",
+    "simbolo": "??",
     "pais": "KH",
     "decimales": 2
   },
   {
     "ID": 418,
     "moneda": "LAK",
-    "descripci�n": "KIP",
-    "s�mbolo": "?",
+    "descripcion": "KIP",
+    "simbolo": "?",
     "pais": "LB",
     "decimales": 2
   },
   {
     "ID": 422,
     "moneda": "LBP",
-    "descripci�n": "LEBANESE POUND",
-    "s�mbolo": "?.?",
+    "descripcion": "LEBANESE POUND",
+    "simbolo": "?.?",
     "pais": "LC",
     "decimales": 2
   },
   {
     "ID": 430,
     "moneda": "LRD",
-    "descripci�n": "LIBERIAN DOLLAR",
-    "s�mbolo": "$",
+    "descripcion": "LIBERIAN DOLLAR",
+    "simbolo": "$",
     "pais": "LS",
     "decimales": 2
   },
   {
     "ID": 434,
     "moneda": "LYD",
-    "descripci�n": "LIBYAN DINAR",
-    "s�mbolo": "?.?",
+    "descripcion": "LIBYAN DINAR",
+    "simbolo": "?.?",
     "pais": "MA",
     "decimales": 2
   },
   {
     "ID": 446,
     "moneda": "MOP",
-    "descripci�n": "PATACA",
-    "s�mbolo": "P",
+    "descripcion": "PATACA",
+    "simbolo": "P",
     "pais": "MP",
     "decimales": 2
   },
   {
     "ID": 454,
     "moneda": "MWK",
-    "descripci�n": "MALAWI KWACHA",
-    "s�mbolo": "MK",
+    "descripcion": "MALAWI KWACHA",
+    "simbolo": "MK",
     "pais": "MX",
     "decimales": 2
   },
   {
     "ID": 458,
     "moneda": "MYR",
-    "descripci�n": "MALAYSIAN RINGGIT",
-    "s�mbolo": "RM",
+    "descripcion": "MALAYSIAN RINGGIT",
+    "simbolo": "RM",
     "pais": "MZ",
     "decimales": 2
   },
   {
     "ID": 462,
     "moneda": "MVR",
-    "descripci�n": "MALDIVE RUPEE",
-    "s�mbolo": ".?",
+    "descripcion": "MALDIVE RUPEE",
+    "simbolo": ".?",
     "pais": "MW",
     "decimales": 2
   },
   {
     "ID": 478,
     "moneda": "MRO",
-    "descripci�n": "OUGUIYA",
-    "s�mbolo": "UM",
+    "descripcion": "OUGUIYA",
+    "simbolo": "UM",
     "pais": "MS",
     "decimales": 2
   },
   {
     "ID": 480,
     "moneda": "MUR",
-    "descripci�n": "MAURITIUS RUPEE",
-    "s�mbolo": "Rs",
+    "descripcion": "MAURITIUS RUPEE",
+    "simbolo": "Rs",
     "pais": "MV",
     "decimales": 2
   },
   {
     "ID": 484,
     "moneda": "MXN",
-    "descripci�n": "MEXICAN PESO",
-    "s�mbolo": "$",
+    "descripcion": "MEXICAN PESO",
+    "simbolo": "$",
     "pais": "MY",
     "decimales": 2
   },
   {
     "ID": 496,
     "moneda": "MNT",
-    "descripci�n": "TUGRIK",
-    "s�mbolo": "?",
+    "descripcion": "TUGRIK",
+    "simbolo": "?",
     "pais": "MO",
     "decimales": 2
   },
   {
     "ID": 498,
     "moneda": "MDL",
-    "descripci�n": "MOLDOVAN LEU",
-    "s�mbolo": "L",
+    "descripcion": "MOLDOVAN LEU",
+    "simbolo": "L",
     "pais": "ME",
     "decimales": 2
   },
   {
     "ID": 504,
     "moneda": "MAD",
-    "descripci�n": "MORROCCAN DIRHAM",
-    "s�mbolo": "?.?.",
+    "descripcion": "MORROCCAN DIRHAM",
+    "simbolo": "?.?.",
     "pais": "MC",
     "decimales": 2
   },
   {
     "ID": 512,
     "moneda": "OMR",
-    "descripci�n": "RIAL OMANI",
-    "s�mbolo": "?.?.",
+    "descripcion": "RIAL OMANI",
+    "simbolo": "?.?.",
     "pais": "PA",
     "decimales": 2
   },
   {
     "ID": 516,
     "moneda": "NAD",
-    "descripci�n": "NAMIBIAN DOLLAR",
-    "s�mbolo": "$",
+    "descripcion": "NAMIBIAN DOLLAR",
+    "simbolo": "$",
     "pais": "NC",
     "decimales": 2
   },
   {
     "ID": 524,
     "moneda": "NPR",
-    "descripci�n": "NEPALESE RUPEE",
-    "s�mbolo": "Rs",
+    "descripcion": "NEPALESE RUPEE",
+    "simbolo": "Rs",
     "pais": "NR",
     "decimales": 2
   },
   {
     "ID": 532,
     "moneda": "ANG",
-    "descripci�n": "NETHERLANDS ANTILLIA",
-    "s�mbolo": "�",
+    "descripcion": "NETHERLANDS ANTILLIA",
+    "simbolo": "�",
     "pais": "CX",
     "decimales": 2
   },
   {
     "ID": 533,
     "moneda": "AWG",
-    "descripci�n": "ARUBAN GUILDER",
-    "s�mbolo": "�",
+    "descripcion": "ARUBAN GUILDER",
+    "simbolo": "�",
     "pais": "AW",
     "decimales": 2
   },
   {
     "ID": 548,
     "moneda": "VUV",
-    "descripci�n": "VATU",
-    "s�mbolo": "Vt",
+    "descripcion": "VATU",
+    "simbolo": "Vt",
     "pais": "WF",
     "decimales": 2
   },
   {
     "ID": 554,
     "moneda": "NZD",
-    "descripci�n": "NEW ZEALAND DOLLAR",
-    "s�mbolo": "$",
+    "descripcion": "NEW ZEALAND DOLLAR",
+    "simbolo": "$",
     "pais": "CL",
     "decimales": 2
   },
   {
     "ID": 558,
     "moneda": "NIO",
-    "descripci�n": "CORDOBA",
-    "s�mbolo": "C$",
+    "descripcion": "CORDOBA",
+    "simbolo": "C$",
     "pais": "NL",
     "decimales": 2
   },
   {
     "ID": 566,
     "moneda": "NGN",
-    "descripci�n": "NAIRA",
-    "s�mbolo": "?",
+    "descripcion": "NAIRA",
+    "simbolo": "?",
     "pais": "NI",
     "decimales": 2
   },
   {
     "ID": 578,
     "moneda": "NOK",
-    "descripci�n": "NORWEGIAN KRONE",
-    "s�mbolo": "kr",
+    "descripcion": "NORWEGIAN KRONE",
+    "simbolo": "kr",
     "pais": "BV",
     "decimales": 2
   },
   {
     "ID": 586,
     "moneda": "PKR",
-    "descripci�n": "PAKISTAN RUPEE",
-    "s�mbolo": "Rs",
+    "descripcion": "PAKISTAN RUPEE",
+    "simbolo": "Rs",
     "pais": "PL",
     "decimales": 2
   },
   {
     "ID": 590,
     "moneda": "PAB",
-    "descripci�n": "BALBOA",
-    "s�mbolo": "B/.",
+    "descripcion": "BALBOA",
+    "simbolo": "B/.",
     "pais": "PE",
     "decimales": 2
   },
   {
     "ID": 598,
     "moneda": "PGK",
-    "descripci�n": "KINA",
-    "s�mbolo": "K",
+    "descripcion": "KINA",
+    "simbolo": "K",
     "pais": "PH",
     "decimales": 2
   },
   {
     "ID": 600,
     "moneda": "PYG",
-    "descripci�n": "GUARANI",
-    "s�mbolo": "?",
+    "descripcion": "GUARANI",
+    "simbolo": "?",
     "pais": "QA",
     "decimales": 2
   },
   {
     "ID": 604,
     "moneda": "PEN",
-    "descripci�n": "PERU INTI",
-    "s�mbolo": "S/",
+    "descripcion": "PERU INTI",
+    "simbolo": "S/",
     "pais": "PF",
     "decimales": 2
   },
   {
     "ID": 608,
     "moneda": "PHP",
-    "descripci�n": "PHILIPPINE PESO",
-    "s�mbolo": "PHP",
+    "descripcion": "PHILIPPINE PESO",
+    "simbolo": "PHP",
     "pais": "PK",
     "decimales": 2
   },
   {
     "ID": 634,
     "moneda": "QAR",
-    "descripci�n": "QATARI RIAL",
-    "s�mbolo": "?.?",
+    "descripcion": "QATARI RIAL",
+    "simbolo": "?.?",
     "pais": "RE",
     "decimales": 2
   },
   {
     "ID": 643,
     "moneda": "RUB",
-    "descripci�n": "RUSSIAN ROUBLE",
-    "s�mbolo": "RUB",
+    "descripcion": "RUSSIAN ROUBLE",
+    "simbolo": "RUB",
     "pais": "RW",
     "decimales": 2
   },
   {
     "ID": 646,
     "moneda": "RWF",
-    "descripci�n": "RWANDA FRANC",
-    "s�mbolo": "Fr",
+    "descripcion": "RWANDA FRANC",
+    "simbolo": "Fr",
     "pais": "SA",
     "decimales": 2
   },
   {
     "ID": 682,
     "moneda": "SAR",
-    "descripci�n": "SAUDI RIYAL",
-    "s�mbolo": "?.?",
+    "descripcion": "SAUDI RIYAL",
+    "simbolo": "?.?",
     "pais": "SB",
     "decimales": 2
   },
   {
     "ID": 690,
     "moneda": "SCR",
-    "descripci�n": "SEYCHELLES RUPEE",
-    "s�mbolo": "Rs",
+    "descripcion": "SEYCHELLES RUPEE",
+    "simbolo": "Rs",
     "pais": "SD",
     "decimales": 2
   },
   {
     "ID": 694,
     "moneda": "SLL",
-    "descripci�n": "LEONE",
-    "s�mbolo": "Le",
+    "descripcion": "LEONE",
+    "simbolo": "Le",
     "pais": "SM",
     "decimales": 2
   },
   {
     "ID": 702,
     "moneda": "SGD",
-    "descripci�n": "SINGAPORE DOLLAR",
-    "s�mbolo": "$",
+    "descripcion": "SINGAPORE DOLLAR",
+    "simbolo": "$",
     "pais": "SH",
     "decimales": 2
   },
   {
     "ID": 704,
     "moneda": "VND",
-    "descripci�n": "DONG",
-    "s�mbolo": "Dong",
+    "descripcion": "DONG",
+    "simbolo": "Dong",
     "pais": "VU",
     "decimales": 2
   },
   {
     "ID": 710,
     "moneda": "ZAR",
-    "descripci�n": "RAND",
-    "s�mbolo": "R",
+    "descripcion": "RAND",
+    "simbolo": "R",
     "pais": "LT",
     "decimales": 2
   },
   {
     "ID": 748,
     "moneda": "SZL",
-    "descripci�n": "LILANGENI",
-    "s�mbolo": "L",
+    "descripcion": "LILANGENI",
+    "simbolo": "L",
     "pais": "TC",
     "decimales": 2
   },
   {
     "ID": 764,
     "moneda": "THB",
-    "descripci�n": "BAHT",
-    "s�mbolo": "?",
+    "descripcion": "BAHT",
+    "simbolo": "?",
     "pais": "TJ",
     "decimales": 2
   },
   {
     "ID": 776,
     "moneda": "TOP",
-    "descripci�n": "PA'ANGA",
-    "s�mbolo": "T$",
+    "descripcion": "PA'ANGA",
+    "simbolo": "T$",
     "pais": "TR",
     "decimales": 2
   },
   {
     "ID": 780,
     "moneda": "TTD",
-    "descripci�n": "TRINIDAD AND TOBAGO",
-    "s�mbolo": "$",
+    "descripcion": "TRINIDAD AND TOBAGO",
+    "simbolo": "$",
     "pais": "TV",
     "decimales": 2
   },
   {
     "ID": 788,
     "moneda": "TND",
-    "descripci�n": "TUNISIAN DINAR",
-    "s�mbolo": "?.?",
+    "descripcion": "TUNISIAN DINAR",
+    "simbolo": "?.?",
     "pais": "TO",
     "decimales": 2
   },
   {
     "ID": 807,
     "moneda": "MKD",
-    "descripci�n": "MACEDONIAN DENAR",
-    "s�mbolo": "???",
+    "descripcion": "MACEDONIAN DENAR",
+    "simbolo": "???",
     "pais": "ML",
     "decimales": 2
   },
   {
     "ID": 818,
     "moneda": "EGP",
-    "descripci�n": "EGYPTIAN POUND",
-    "s�mbolo": "�, ?.?",
+    "descripcion": "EGYPTIAN POUND",
+    "simbolo": "�, ?.?",
     "pais": "ER",
     "decimales": 2
   },
   {
     "ID": 826,
     "moneda": "GBP",
-    "descripci�n": "POUND STERLING",
-    "s�mbolo": "�",
+    "descripcion": "POUND STERLING",
+    "simbolo": "�",
     "pais": "GD",
     "decimales": 2
   },
   {
     "ID": 834,
     "moneda": "TZS",
-    "descripci�n": "TANZANIAN SHILLING",
-    "s�mbolo": "Sh",
+    "descripcion": "TANZANIAN SHILLING",
+    "simbolo": "Sh",
     "pais": "UA",
     "decimales": 2
   },
   {
     "ID": 858,
     "moneda": "UYU",
-    "descripci�n": "URUGUAYAN PESO",
-    "s�mbolo": "$",
+    "descripcion": "URUGUAYAN PESO",
+    "simbolo": "$",
     "pais": "UZ",
     "decimales": 2
   },
   {
     "ID": 860,
     "moneda": "UZS",
-    "descripci�n": "UZBEKISTAN SUM",
-    "s�mbolo": "??",
+    "descripcion": "UZBEKISTAN SUM",
+    "simbolo": "??",
     "pais": "VA",
     "decimales": 2
   },
   {
     "ID": 882,
     "moneda": "WST",
-    "descripci�n": "TALA",
-    "s�mbolo": "T",
+    "descripcion": "TALA",
+    "simbolo": "T",
     "pais": "XK",
     "decimales": 2
   },
   {
     "ID": 886,
     "moneda": "YER",
-    "descripci�n": "YEMINI RIAL",
-    "s�mbolo": "?",
+    "descripcion": "YEMINI RIAL",
+    "simbolo": "?",
     "pais": "YT",
     "decimales": 2
   },
   {
     "ID": 901,
     "moneda": "TWD",
-    "descripci�n": "NEW TAIWAN DOLLAR",
-    "s�mbolo": "$",
+    "descripcion": "NEW TAIWAN DOLLAR",
+    "simbolo": "$",
     "pais": "TZ",
     "decimales": 2
   },
   {
     "ID": 932,
     "moneda": "ZWL",
-    "descripci�n": "DOLAR ZIMBABUENSE",
-    "s�mbolo": "$",
+    "descripcion": "DOLAR ZIMBABUENSE",
+    "simbolo": "$",
     "pais": "ZW",
     "decimales": 2
   },
   {
     "ID": 936,
     "moneda": "GHS",
-    "descripci�n": "CHANA CEDI",
-    "s�mbolo": "?",
+    "descripcion": "CHANA CEDI",
+    "simbolo": "?",
     "pais": "GI",
     "decimales": 2
   },
   {
     "ID": 938,
     "moneda": "SDG",
-    "descripci�n": "LIBRA SUDANESA",
-    "s�mbolo": "�",
+    "descripcion": "LIBRA SUDANESA",
+    "simbolo": "�",
     "pais": "SE",
     "decimales": 2
   },
   {
     "ID": 941,
     "moneda": "RSD",
-    "descripci�n": "DINAR SERBIO",
-    "s�mbolo": "???. o din.",
+    "descripcion": "DINAR SERBIO",
+    "simbolo": "???. o din.",
     "pais": "RU",
     "decimales": 2
   },
   {
     "ID": 943,
     "moneda": "MZN",
-    "descripci�n": "MOZAMBIQUE METICAL",
-    "s�mbolo": "MT",
+    "descripcion": "MOZAMBIQUE METICAL",
+    "simbolo": "MT",
     "pais": "NA",
     "decimales": 2
   },
   {
     "ID": 946,
     "moneda": "RON",
-    "descripci�n": "LEU RUMANO",
-    "s�mbolo": "L",
+    "descripcion": "LEU RUMANO",
+    "simbolo": "L",
     "pais": "RS",
     "decimales": 2
   },
   {
     "ID": 950,
     "moneda": "XAF",
-    "descripci�n": "CFA FRANC BEAC",
-    "s�mbolo": "Fr",
+    "descripcion": "CFA FRANC BEAC",
+    "simbolo": "Fr",
     "pais": "CF",
     "decimales": 2
   },
   {
     "ID": 951,
     "moneda": "XCD",
-    "descripci�n": "EAST CARIBBEAN DOLLA",
-    "s�mbolo": "$",
+    "descripcion": "EAST CARIBBEAN DOLLA",
+    "simbolo": "$",
     "pais": "AG",
     "decimales": 2
   },
   {
     "ID": 952,
     "moneda": "XOF",
-    "descripci�n": "CFA FRANC BCEAO",
-    "s�mbolo": "Fr",
+    "descripcion": "CFA FRANC BCEAO",
+    "simbolo": "Fr",
     "pais": "BF",
     "decimales": 2
   },
   {
     "ID": 953,
     "moneda": "XPF",
-    "descripci�n": "CFP FRANC",
-    "s�mbolo": "Fr",
+    "descripcion": "CFP FRANC",
+    "simbolo": "Fr",
     "pais": "NE",
     "decimales": 2
   },
   {
     "ID": 968,
     "moneda": "SRD",
-    "descripci�n": "SURINAME DOLLAR",
-    "s�mbolo": "$",
+    "descripcion": "SURINAME DOLLAR",
+    "simbolo": "$",
     "pais": "SS",
     "decimales": 2
   },
   {
     "ID": 969,
     "moneda": "MGA",
-    "descripci�n": "ARIARY",
-    "s�mbolo": "Ar",
+    "descripcion": "ARIARY",
+    "simbolo": "Ar",
     "pais": "MH",
     "decimales": 2
   },
   {
     "ID": 971,
     "moneda": "AFN",
-    "descripci�n": "AFGHANI",
-    "s�mbolo": "?",
+    "descripcion": "AFGHANI",
+    "simbolo": "?",
     "pais": "AF",
     "decimales": 2
   },
   {
     "ID": 972,
     "moneda": "TJS",
-    "descripci�n": "SOMONI",
-    "s�mbolo": "??",
+    "descripcion": "SOMONI",
+    "simbolo": "??",
     "pais": "TK",
     "decimales": 2
   },
   {
     "ID": 973,
     "moneda": "AOA",
-    "descripci�n": "KWANZA",
-    "s�mbolo": "Kz",
+    "descripcion": "KWANZA",
+    "simbolo": "Kz",
     "pais": "AO",
     "decimales": 2
   },
   {
     "ID": 974,
     "moneda": "BYR",
-    "descripci�n": "BELARUSSIAN RUBLE",
-    "s�mbolo": "Br",
+    "descripcion": "BELARUSSIAN RUBLE",
+    "simbolo": "Br",
     "pais": "BY",
     "decimales": 2
   },
   {
     "ID": 975,
     "moneda": "BGN",
-    "descripci�n": "NEW LEV",
-    "s�mbolo": "??",
+    "descripcion": "NEW LEV",
+    "simbolo": "??",
     "pais": "BG",
     "decimales": 2
   },
   {
     "ID": 976,
     "moneda": "CDF",
-    "descripci�n": "FRANCO DEL CONGO",
-    "s�mbolo": "Fr",
+    "descripcion": "FRANCO DEL CONGO",
+    "simbolo": "Fr",
     "pais": "CD",
     "decimales": 2
   },
   {
     "ID": 980,
     "moneda": "UAH",
-    "descripci�n": "HRYVNIA",
-    "s�mbolo": "UAH",
+    "descripcion": "HRYVNIA",
+    "simbolo": "UAH",
     "pais": "UG",
     "decimales": 2
   },
   {
     "ID": 985,
     "moneda": "PLN",
-    "descripci�n": "NEW POLISH ZLOTY",
-    "s�mbolo": "zl",
+    "descripcion": "NEW POLISH ZLOTY",
+    "simbolo": "zl",
     "pais": "PM",
     "decimales": 2
   },
   {
     "ID": 986,
     "moneda": "BRL",
-    "descripci�n": "BRAZILIAN REAL",
-    "s�mbolo": "R$",
+    "descripcion": "BRAZILIAN REAL",
+    "simbolo": "R$",
     "pais": "BR",
     "decimales": 2
   },
   {
     "ID": 999,
     "moneda": "Test",
-    "descripci�n": "Test",
-    "s�mbolo": "TST",
+    "descripcion": "Test",
+    "simbolo": "TST",
     "pais": "Chupilandia",
     "decimales": 2
   },
   {
     "ID": 8,
     "moneda": "ALL",
-    "descripci�n": "LEK",
-    "s�mbolo": "L",
+    "descripcion": "LEK",
+    "simbolo": "L",
     "pais": "AL",
     "decimales": 0
   }
