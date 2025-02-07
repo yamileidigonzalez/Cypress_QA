@@ -27,7 +27,6 @@ Cypress.Commands.add("Elemento_visible", (selector) => {
     cy.get(selector).should('be.visible')
 })
 
-
 Cypress.Commands.add("Click", (selector,t) => { 
     cy.get(selector).should('be.visible').click()
     cy.wait(t)
@@ -109,12 +108,13 @@ Cypress.Commands.add('Añadir_Combo_Buscar', (selector, sector_buscar, valor) =>
 })
 
 Cypress.Commands.add('Añadir_Combo', (selector, valor) => { 
+   cy.log('el valor es:', valor)
    cy.get(selector).should("be.visible").click().wait(100).type(valor,"{enter}") 
 })
 
 Cypress.Commands.add('Añadir_text', (selector_añadir, valor) => {
    //boton anadir
-   cy.get(selector_añadir).should("be.visible").clear().type(valor,"{enter}" )               
+   cy.get(selector_añadir).should("be.visible").clear().type(valor,"{enter}")             
 })
 
 Cypress.Commands.add("Añadir_Adquirientes_comprobar_Check", (off_internacional, off_EMV, forzado_respaldo) => {
@@ -439,6 +439,24 @@ Cypress.Commands.add("Añadir_Monedas", (ID, moneda, descripcion, simbolo, pais,
    
 })
 
+Cypress.Commands.add("Añadir_Tiendas", (ID, FUC, descripcion, provincia, permite_off) => { 
+   let empresa = " ";
+   let direccion = " ";
+   let ciudad = " ";
+   let codigo_postal = " ";
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.Añadir_text('#storeId > .p-inputnumber > .p-inputtext',ID)
+   cy.get('#storeName').clear().type(descripcion).click() 
+   //FUC
+   cy.Añadir_text('#merchantTerminal > .p-inputnumber > .p-inputtext',FUC)
+   cy.Añadir_text('#town',provincia)
+   cy.Check('.p-checkbox-box',permite_off) 
+   //Empresa
+   cy.Añadir_Combo('.p-dropdown-label', empresa).click()
+   cy.Añadir_text('#address',direccion) //direccion
+   cy.Añadir_text('#city',ciudad) //ciudad
+   cy.Añadir_text('#zipCode',codigo_postal) //codigo postal      
+})
 
 
 Cypress.Commands.add("Editar_Acuerdos_Comision", (csb_emisor, csb_adquiriente) => { 
@@ -722,6 +740,22 @@ Cypress.Commands.add("Editar_Monedas", (ID, moneda, descripcion, simbolo, pais, 
    cy.Añadir_text('#symbol',simbolo)
    cy.Añadir_text('#country',pais)
    cy.Añadir_text('#decimalPlaces > .p-inputnumber > .p-inputtext',decimales)   
+})
+
+Cypress.Commands.add("Editar_Tiendas", (ID, descripcion, empresa, FUC, direccion, provincia, ciudad, codigo_postal, permite_off) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.get('#storeId > .p-inputnumber > .p-inputtext').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar",ID) //ID
+   cy.get('#storeName').clear().type(descripcion).click() 
+   //FUC
+   cy.Añadir_text('#merchantTerminal > .p-inputnumber > .p-inputtext',FUC)
+   cy.Añadir_text('#town',provincia)
+   cy.Check('.p-checkbox-box',permite_off) 
+   //Empresa
+   cy.Añadir_Combo('.p-dropdown-label', empresa).click()
+   cy.Añadir_text('#address',direccion) //direccion
+   cy.Añadir_text('#city',ciudad) //ciudad
+   cy.Añadir_text('#zipCode',codigo_postal) //codigo postal      
 })
 
 
@@ -1052,3 +1086,4 @@ Cypress.Commands.add('Validar_campo', (selector, men, nombre_campo, selector_vol
        cy.get(selector_volver).click().wait(t) 
    })   
 })
+
