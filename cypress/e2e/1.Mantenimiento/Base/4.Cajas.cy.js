@@ -20,18 +20,17 @@ describe('Cajas', () => {
     })
 
     // Añadir un nuevo [Elemento]
-    it('Debería añadir un nuevo [Elemento]', () => {
-      cy.fixture('3_Centros.json').then((Tiendas) => {
-        Tiendas.forEach((config) => {
-            let ID = config.ID;
-            let FUC = config.FUC;
-            let descripcion = config.descripcion;
-            let provincia = config.provincia;
-            let permite_off = config["permite offline"]         
+    it.only('Debería añadir un nuevo [Elemento]', () => {
+      cy.fixture('4_Cajas.json').then((Cajas) => {
+        Cajas.forEach((config) => {
+            let caja = config.caja;
+            let centro = config.centro;
+            let tipo_punto_servicio = config["tipo punto servicio"] 
+                   
             //Boton añadir
             cy.wait(tiempo)
             cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
-            cy.Añadir_Tiendas(ID, FUC, descripcion, provincia, permite_off)
+            cy.Añadir_Cajas(caja, centro, tipo_punto_servicio)
             cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
         });
       })
@@ -40,7 +39,7 @@ describe('Cajas', () => {
     // Modificar un [Elemento]
     it('Debería modificar un [Elemento]', () => {
       // Simular el proceso de actualización de un registro
-      cy.Busqueda('.gap-x-3 > .inline-flex','46',tiempo)
+      cy.Busqueda('.gap-x-3 > .inline-flex','0',tiempo)
       cy.Click_force('.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()

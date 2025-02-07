@@ -1,5 +1,5 @@
 const { random } = require("lodash");
-describe('Monedas', () => {
+describe('Tiendas', () => {
     const tiempo = 1000;
     
     beforeEach('Entrar en la página', () => {

@@ -90,7 +90,7 @@ Cypress.Commands.add('Insertar_Texto', (selector, texto, t) => {
 
 Cypress.Commands.add('Añadir_Combo_Buscar', (selector, sector_buscar, valor) => { 
    cy.get(selector).should("be.visible").click().wait(100);
-   cy.get(sector_buscar).clear().type(valor).type("{enter}")
+   cy.get(sector_buscar).clear().type(valor,"{enter}")
 
    // Verificar si el mensaje "No results found" existe antes de interactuar con él
    cy.get('body').then($body => {
@@ -457,6 +457,15 @@ Cypress.Commands.add("Añadir_Tiendas", (ID, FUC, descripcion, provincia, permit
    cy.Añadir_text('#city',ciudad) //ciudad
    cy.Añadir_text('#zipCode',codigo_postal) //codigo postal      
 })
+
+Cypress.Commands.add("Añadir_Cajas", (caja, centro, tipo_punto_servicio) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.wait(1000)
+   cy.Añadir_Combo_Buscar('#store > .p-dropdown-label', '.p-dropdown-filter', centro).click()
+   cy.Añadir_Combo('#servicePointType > .p-dropdown-label', tipo_punto_servicio)
+   cy.Añadir_text('.p-inputnumber > .p-inputtext', caja)     
+})
+
 
 
 Cypress.Commands.add("Editar_Acuerdos_Comision", (csb_emisor, csb_adquiriente) => { 
@@ -868,6 +877,8 @@ Cypress.Commands.add('Guardar_Confirmar_Empresa', (selector_guardar, selector_me
          cy.log('El botón está deshabilitado, ejecutando otra acción...');           
          // Ejemplo: hacer clic en otro botón, mostrar un mensaje o realizar otra validación
          cy.log('⚠️ ¡No se pudo guardar!')
+
+         cy.get('.mt-5 > [icon="pi pi-times"] > .p-ripple').should('be.visible').click({ force: true });
            
       } else {
          cy.log('✅ ¡He llegado aqui!');
