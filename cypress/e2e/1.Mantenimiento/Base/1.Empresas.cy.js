@@ -1,5 +1,5 @@
 const { random } = require("lodash");
-describe('Acuerdos_Comisiones', () => {
+describe('Empresas', () => {
     const tiempo = 1000;
     
     beforeEach('Entrar en la página', () => {
@@ -7,29 +7,35 @@ describe('Acuerdos_Comisiones', () => {
       cy.visit('https://newfront.lab.solverpay.com/login'); 
       cy.title().should('eq','Login')
       //LOGIN
-      cy.get('#user').should("be.visible").should("be.enabled").type('solverpay')
-      cy.get('#password').should("be.visible").should("be.enabled").type('r7auF23wA.A2l1tZ2Dp4{enter}')
+      cy.login('solverpay', 'r7auF23wA.A2l1tZ2Dp4')
       cy.wait(tiempo)
       
       //Seleccionar Mantenimientos en el Menu
       cy.get('[data-target="submenu-maintenance"]').should("be.visible").click()
-      //Seleccionar Bancaria en el Submenu
-      cy.get('[data-target="submenu-bancaria"]').should("be.visible").click()  
+      //Seleccionar en el Submenu
+      cy.get('[data-target="submenu-base"]').should("be.visible").click()  
       
       // Seleccionar la entidad
-      cy.get('#submenu-bancaria > :nth-child(3)').should("be.visible").click()  
+      cy.get('#submenu-base > :nth-child(1)').should("be.visible").click()  
     })
 
     // Añadir un nuevo [Elemento]
     it('Debería añadir un nuevo [Elemento]', () => {
-      cy.fixture('3_Acuerdos_Comision.json').then((Acuerdos_Comision) => {
-        Acuerdos_Comision.forEach((config) => {
-          let csb_emisor = config["csb emisor"];
-          let csb_adquiriente = config["csb adquiriente"];
+      cy.fixture('1_Empresas.json').then((Empresas) => {
+        Empresas.forEach((config) => {
+          let ID = config.ID;
+          let descripcion = config.descripcion;
+          let direccion = config.direccion;
+          let municipio = config.municipio;
+          let ciudad = config.ciudad;
+          let codigo_postal = config["codigo postal"]
+          let permite_off = config["permite offline"]
+          //let codigo_financiero = config["codigo financiero"]          
           //Boton añadir
+          cy.wait(tiempo)
           cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
-          cy.Añadir_Acuerdos_Comision(csb_emisor, csb_adquiriente)
-          cy.Guardar_Confirmar_Acuerdo_Comision('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+          cy.Añadir_Empresas(ID, descripcion, direccion, municipio, ciudad, codigo_postal, permite_off)
+          cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
         });
       })
     });
@@ -37,13 +43,13 @@ describe('Acuerdos_Comisiones', () => {
     // Modificar un [Elemento]
     it('Debería modificar un [Elemento]', () => {
       // Simular el proceso de actualización de un registro
-      cy.Busqueda('.gap-x-3 > .inline-flex','0001',tiempo)
+      cy.Busqueda('.gap-x-3 > .inline-flex','3',tiempo)
       cy.Click_force('.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal
-      cy.Editar_Acuerdos_Comision("6874 - SABADELL-PAYCOMET", "0046 - BANCO GALLEGO")
-      cy.Guardar_Confirmar_Acuerdo_Comision('[icon="pi pi-save"] > .p-ripple',tiempo)
+      cy.Editar_Empresas("1","Empresa X","XXX","Valencia","Valencia",'46022',"No","X")
+      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
 
     });
 

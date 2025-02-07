@@ -1,22 +1,83 @@
 [
   {
     "ID": 1,
-    "descripci�n": "Empresa 1",
-    "direcci�n": "C/ Pepe Alba 1",
+    "descripcion": "Empresa 1",
+    "direccion": "C/ Pepe Alba 1",
     "municipio": "Valencia",
     "ciudad": "Valencia",
-    "c�digo postal": 46022,
+    "codigo postal": 46022,
     "permite offline": "Si",
-    "c�digo financiero": "ES08"
+    "codigo financiero": "ES08"
+  },
+  {
+    "ID": 2,
+    "descripcion": "Empresa 2",
+    "direccion": "Av. del Mar 45",
+    "municipio": "Castellón",
+    "ciudad": "Castellón",
+    "codigo postal": 12001,
+    "permite offline": "No",
+    "codigo financiero": "ES15"
   },
   {
     "ID": 3,
-    "descripci�n": "bacon",
-    "direcci�n": "bcs",
-    "municipio": "bct",
-    "ciudad": "bcc",
-    "c�digo postal": "bcz",
+    "descripcion": "Empresa 3",
+    "direccion": "Paseo de la Playa 10",
+    "municipio": "Alicante",
+    "ciudad": "Alicante",
+    "codigo postal": 30002,
     "permite offline": "Si",
-    "c�digo financiero": ""
+    "codigo financiero": "ES22"
+  },
+  {
+    "ID": 4,
+    "descripcion": "Empresa 4",
+    "direccion": "C/ Mayor 98",
+    "municipio": "Murcia",
+    "ciudad": "Murcia",
+    "codigo postal": 30001,
+    "permite offline": "Si",
+    "codigo financiero": "ES30"
+  },
+  {
+    "ID": 5,
+    "descripcion": "Empresa 5",
+    "direccion": "Av. Andalucía 3",
+    "municipio": "Sevilla",
+    "ciudad": "Sevilla",
+    "codigo postal": 41012,
+    "permite offline": "No",
+    "codigo financiero": "ES45"
+  },
+  {
+    "ID": 6,
+    "descripcion": "Empresa 6",
+    "direccion": "C/ Gran Vía 88",
+    "municipio": "Madrid",
+    "ciudad": "Madrid",
+    "codigo postal": 28013,
+    "permite offline": "Si",
+    "codigo financiero": "ES50"
+  },
+  {
+    "ID": 7,
+    "descripcion": "Empresa 7",
+    "direccion": "Paseo de Gracia 21",
+    "municipio": "Barcelona",
+    "ciudad": "Barcelona",
+    "codigo postal": 80007,
+    "permite offline": "No",
+    "codigo financiero": "ES62"
+  },
+  {
+    "ID": 8,
+    "descripcion": "Empresa 8",
+    "direccion": "C/ La Rambla 12",
+    "municipio": "Tarragona",
+    "ciudad": "Tarragona",
+    "codigo postal": 43004,
+    "permite offline": "Si",
+    "codigo financiero": "ES77"
   }
 ]
+
