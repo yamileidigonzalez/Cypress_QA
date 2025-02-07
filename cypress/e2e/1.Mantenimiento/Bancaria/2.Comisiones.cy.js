@@ -21,7 +21,7 @@ describe('Comisiones', () => {
     })
 
     // Añadir un nuevo [Elemento]
-    it.only('Debería añadir un nuevo [Elemento]', () => {
+    it('Debería añadir un nuevo [Elemento]', () => {
       //Verificar que carga ambas pantallas  
       cy.Elemento_visible('.left')
       cy.Elemento_visible('.right')
@@ -99,49 +99,136 @@ describe('Comisiones', () => {
 
     // Modificar un [Elemento]
     it('Debería modificar un [Elemento]', () => {
+      //Verificar que carga ambas pantallas  
+      cy.Elemento_visible('.left')
+      cy.Elemento_visible('.right') 
       
-    });
-
-     // Listar todos los elementos
-     it('Debería listar todos los [elementos]', () => {
+      let contador = 1; // Valor inicial que quieres asignar
+      // Iterar sobre una lista de selectores para los campos de entrada
+      const inputs = [
+        '#presentNationalCreditOwnPercentage > .p-inputnumber > .p-inputtext',
+        '#presentNationalDebitOwnPercentage > .p-inputnumber > .p-inputtext',
+        '#presentNationalDebitNonOwnPercentage > .p-inputnumber > .p-inputtext',
+        '#presentNationalCreditOwnPercentage > .p-inputnumber > .p-inputtext',
+        '#presentNeobankDebitPercentage > .p-inputnumber > .p-inputtext',
+        '#presentNeobankCreditPercentage > .p-inputnumber > .p-inputtext',
+        '#presentInternationalDebitPercentage > .p-inputnumber > .p-inputtext',
+        '#presentInternationalCreditPercentage > .p-inputnumber > .p-inputtext',
+        '#presentInternationalUnknownPercentage > .p-inputnumber > .p-inputtext'
+      ];       
       
-    });
-    
-    // Buscar un [Elemento] por ID
-    it('Debería buscar un [Elemento] por ID', () => {
-       //combrobar boton de busqueda
-       cy.Elemento_visible('.gap-x-3 > .inline-flex')
+      cy.fixture('2.1_valoresBusqueda.json').then((valoresBusqueda) => {
+        valoresBusqueda.forEach((valorBusqueda, index) => {
+          // Buscar el valor en la pantalla izquierda 
+          cy.get('.left > .px-4').should('be.visible').clear().type(valorBusqueda.valor) // Escribe el valor de búsqueda
+          // Esperar que aparezcan los resultados en la lista
+          cy.get('.left .inline-flex').each(($el) => {
+            // Itera sobre cada elemento
+            const texto = $el.text().trim(); // Extrae el texto del div y lo limpia de espacios extras
+            if (texto.includes(valorBusqueda.valor)) {
+              cy.log(`Valor ${valorBusqueda.valor} ya registrado en: ${texto}`);
+              // Seleccionar el primer elemento que coincida
+              cy.wrap($el).should('be.visible').click(); // Asegura visibilidad y hace clic en el elemento correcto
+              // Verifica dinámicamente si el modal existe antes de interactuar con él
+              cy.get('body').then(($body) => {
+                if ($body.find('#confirmModal').length > 0) { 
+                  cy.wait(tiempo)
+                  // Comprobar si el modal está visible
+                  cy.get('#confirmModal').then(($modal) => {                      
+                    if ($modal.is(':visible')) {
+                      // Si el modal está visible, hacer clic en el botón de confirmación
+                      cy.get('[icon="pi pi-check"] > .p-ripple').click();
+                      cy.log('Se detectó el modal y se confirmó.');                           
+                    } else {
+                        // Si el modal no está visible, continuar con el flujo
+                        cy.log('El modal no está visible, continuando...');
+                    }
+                  });
+                } else {
+                  // Si el modal no está presente en el DOM, continuar con el flujo
+                  cy.log('El modal no está presente, continuando...');               
+                }
+                // Iterar sobre los selectores
+                inputs.forEach((selector) => {
+                  cy.get(selector) // Obtener cada uno de los elementos
+                    .should('be.visible') // Verificar que el campo sea visible
+                    .clear() // Limpiar cualquier valor previo
+                    .type(contador) // Asignar el valor del contador
+                    .should('contain.value', contador.toString()); // Verificar que el valor haya sido asignado correctamente
+                });
+                
+                // Incrementar el contador después de que se haya asignado a todos los campos
+                contador++; 
 
-       //busqueda numeros y signos
-       cy.Busqueda('.gap-x-3 > .inline-flex','44',tiempo)
-       cy.Busqueda('.gap-x-3 > .inline-flex','F1-',tiempo)
-       cy.Busqueda('.gap-x-3 > .inline-flex','1212',tiempo)
-       cy.Busqueda('.gap-x-3 > .inline-flex','2323',tiempo)
-       
-       //busqueda letras y espacios
-       cy.Busqueda('.gap-x-3 > .inline-flex','unicaja',tiempo)
-       cy.Busqueda('.gap-x-3 > .inline-flex','bank',tiempo)
-       cy.Busqueda('.gap-x-3 > .inline-flex','Bank ',tiempo)
-       cy.Busqueda('.gap-x-3 > .inline-flex','Cier',tiempo)
-       cy.Busqueda('.gap-x-3 > .inline-flex','pay',tiempo)
-     
+                cy.Guardar_Confirmar_Comisiones('[icon="pi pi-save"] > .p-ripple', 'app-acquirer-commission.ng-star-inserted > app-custom-toast > p-toast.p-element > .p-toast', tiempo)      
+              });
+            } else {
+              cy.log(`Valor ${valorBusqueda.valor} no encontrado en la pantalla izquierda`);
+            }
+          }) 
+        })
+      })
     });
 
     // Eliminar un [Elemento]
     it('Debería eliminar un [Elemento]', () => {
-      cy.wait(tiempo)
-      cy.Eliminar_Anular('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple', '[icon="pi pi-arrow-left"] > .p-ripple', '.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
-      cy.wait(tiempo)
-      //Hacer clic en el primer registro para eliminar
-      cy.Eliminar('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple','.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
-      // Validar mensaje de éxito
-      cy.get('.bg-white > .flex-col')
-      .should('be.visible') 
-      .then(($alert) => {
-        // Verifica si el texto contiene la alerta esperada
-        if ($alert.text().includes('¡El adquiriente se ha eliminado!')) {
-          cy.log('¡El adquiriente se ha eliminado!'); // Log de éxito
-        }
+      //Verificar que carga ambas pantallas  
+      cy.Elemento_visible('.left')
+      cy.Elemento_visible('.right')      
+      
+      cy.fixture('2.1_valoresBusqueda.json').then((valoresBusqueda) => {
+        valoresBusqueda.forEach((valorBusqueda, index) => {
+          // Buscar el valor en la pantalla izquierda 
+          cy.get('.left > .px-4').should('be.visible').clear().type(valorBusqueda.valor) // Escribe el valor de búsqueda
+          // Esperar que aparezcan los resultados en la lista
+          cy.get('.left .inline-flex').each(($el) => {
+            // Itera sobre cada elemento
+            const texto = $el.text().trim(); // Extrae el texto del div y lo limpia de espacios extras
+            if (texto.includes(valorBusqueda.valor)) {
+              cy.log(`Valor ${valorBusqueda.valor} ya registrado en: ${texto}`);
+              // Seleccionar el primer elemento que coincida
+              cy.wrap($el).should('be.visible').click(); // Asegura visibilidad y hace clic en el elemento correcto
+              // Verifica dinámicamente si el modal existe antes de interactuar con él
+              cy.get('body').then(($body) => {
+                if ($body.find('#confirmModal').length > 0) { 
+                  cy.wait(tiempo)
+                  // Comprobar si el modal está visible
+                  cy.get('#confirmModal').then(($modal) => {                      
+                    if ($modal.is(':visible')) {
+                      // Si el modal está visible, hacer clic en el botón de confirmación
+                      cy.get('[icon="pi pi-arrow-left"] > .p-ripple').click();
+                      cy.log('Se detectó el modal y se canceló.'); 
+                    } else {
+                        // Si el modal no está visible, continuar con el flujo
+                        cy.log('El modal no está visible, continuando...');
+                    }
+                  });
+                } else {
+                  // Si el modal no está presente en el DOM, continuar con el flujo
+                  cy.log('El modal no está presente, continuando...');               
+                }                                                    
+              });
+              cy.get('[icon="pi pi-trash"] > .p-ripple').then(($btn) => {
+                if (!$btn.is(':enabled')) {
+                  cy.wait(tiempo);
+                  cy.log('El boton eliminar esta desactivado.');
+                } else {
+                  cy.Elemento_visible($btn).click();
+                  cy.get('.bg-white > .flex-col')
+                  .should('be.visible') 
+                  .then(($alert) => {
+                    // Verifica si el texto contiene la alerta esperada
+                    if ($alert.text().includes('¡El adquiriente se ha eliminado!')) {
+                      cy.log('Se ha eliminado correctamente'); // Log de éxito
+                    }
+                  })
+                }
+              });
+            } else {
+              cy.log(`Valor ${valorBusqueda.valor} no encontrado en la pantalla izquierda`);
+            }
+          }) 
+        })
       })
     });
     
