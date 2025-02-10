@@ -86,7 +86,18 @@ Cypress.Commands.add('Insertar_Texto', (selector, texto, t) => {
    cy.wait(t)    
 })
 
-
+Cypress.Commands.add('Añadir_Combo_Buscar_caja', (selector, sector_buscar, valor) => { 
+   cy.get(selector).should("be.visible").click().wait(100);
+   cy.get(sector_buscar).clear().wait(1000)
+   cy.log('Buscaremos el valor');
+         // Aquí puedes agregar más acciones si el valor sí existe
+         cy.get(selector).should("be.visible").type(valor, "{enter}");
+          // Verificamos que los resultados se han cargado
+   cy.get('#store_list', { timeout: 10000 })  // Esperamos hasta 10 segundos si es necesario
+   .should('be.visible')  // Verificar que el dropdown se ha mostrado
+   .click() 
+  
+})
 
 Cypress.Commands.add('Añadir_Combo_Buscar', (selector, sector_buscar, valor) => { 
    cy.get(selector).should("be.visible").click().wait(100);
@@ -104,12 +115,26 @@ Cypress.Commands.add('Añadir_Combo_Buscar', (selector, sector_buscar, valor) =>
          cy.get(selector).should("be.visible").type(valor, "{enter}");
       }
    });
-
 })
 
 Cypress.Commands.add('Añadir_Combo', (selector, valor) => { 
-   cy.log('el valor es:', valor)
-   cy.get(selector).should("be.visible").click().wait(100).type(valor,"{enter}") 
+   cy.get(selector).should("be.visible").then(($element) => {   
+      if ($element.length > 0) {  // Si el elemento está presente en el DOM
+         cy.wrap($element)    // Aseguramos que sea un elemento Cypress
+         .click()           // Hacemos clic en el elemento
+         .wait(100)         // Esperamos 100ms antes de escribir
+         .type(valor).click().wait(1000)  // Escribimos el valor y presionamos Enter
+         cy.log('El valor ha sido encontrado');
+      } else {
+         cy.log('El valor no ha sido encontrado');
+         // Aquí puedes agregar más acciones si el valor sí existe
+         cy.get(selector).should("be.visible").click().wait(1000)
+      }
+   })/*
+   .catch((error) => {
+      cy.log("El elemento no está visible o no se encontró.");  // Si no se encontró el elemento o no es visible
+      cy.wrap(error).as("catchError");  // Puedes guardar el error si lo deseas para debug
+   });*/
 })
 
 Cypress.Commands.add('Añadir_text', (selector_añadir, valor) => {
@@ -460,11 +485,12 @@ Cypress.Commands.add("Añadir_Tiendas", (ID, FUC, descripcion, provincia, permit
 
 Cypress.Commands.add("Añadir_Cajas", (caja, centro, tipo_punto_servicio) => { 
    // Validaciones en la UI basadas en los datos del JSON
-   cy.wait(1000)
-   cy.Añadir_Combo_Buscar('#store > .p-dropdown-label', '.p-dropdown-filter', centro).click()
+   cy.wait(1000)  
+   cy.Añadir_Combo_Buscar_caja('#store > .p-dropdown-label', '.p-dropdown-filter', centro)     
    cy.Añadir_Combo('#servicePointType > .p-dropdown-label', tipo_punto_servicio)
    cy.Añadir_text('.p-inputnumber > .p-inputtext', caja)     
 })
+
 
 
 
@@ -767,6 +793,16 @@ Cypress.Commands.add("Editar_Tiendas", (ID, descripcion, empresa, FUC, direccion
    cy.Añadir_text('#zipCode',codigo_postal) //codigo postal      
 })
 
+Cypress.Commands.add("Editar_Cajas", (caja, centro, tipo_punto_servicio) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.wait(1000)  
+   cy.get('#store > .p-dropdown-label').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar", centro)
+   cy.Añadir_Combo('#servicePointType > .p-dropdown-label', tipo_punto_servicio)
+   cy.get('.p-inputnumber > .p-inputtext').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar", caja)     
+})
+
 
 
 Cypress.Commands.add('Guardar_Confirmar_canal_entidad', (selector_guardar, t) => {
@@ -1019,6 +1055,48 @@ Cypress.Commands.add('Guardar_Confirmar_Adquirientes', (selector_guardar, t) => 
      }
    });   
 
+})
+
+Cypress.Commands.add('Guardar_Confirmar_Caja', (selector_guardar, selector_mensaje, t) => {
+   // Interceptar la petición API
+   cy.intercept('POST', '**/api/routing/add').as('guardar');
+
+   // Verificar si el botón de guardar es visible
+   cy.get(selector_guardar).then(($btn) => {
+      if ($btn.is(':visible') && ($btn.is(':enabled')) ){
+         cy.get(selector_guardar).click();
+                  
+         // Verificar si el mensaje realmente aparece en el DOM antes de esperar su visibilidad
+         cy.get('body').then(($body) => {
+            if ($body.find(selector_mensaje).length > 0) {
+               cy.get(selector_mensaje).should('exist').and('be.visible').then(($alert) => {
+                  if ($alert.text().includes('ya existe!')) {
+                     cy.get('.mt-5 > [icon="pi pi-times"] > .p-ripple').click({ force: true });
+                     cy.log('⚠️ ¡Ya existe!');
+                     cy.wait(t);
+                  } else {
+                     cy.log('✅ ¡Ha sido guardado!');
+                  }
+               });
+            } else {
+               cy.get('.mt-5 > [icon="pi pi-times"] > .p-ripple').click({ force: true });
+               cy.log('⚠️ ¡Ya existe!');
+               cy.wait(t);
+               cy.log('❌ El mensaje de error NO se encontró en el DOM.');
+            } 
+         })  
+      } else if ($btn.is(':disabled') || $btn.hasClass('p-disabled')) {
+           // ⚠ Si el botón está deshabilitado, hacer otra acción
+           cy.log('El botón está deshabilitado, ejecutando otra acción...');
+           
+           // Ejemplo: hacer clic en otro botón, mostrar un mensaje o realizar otra validación
+           cy.get('.mt-5 > [icon="pi pi-times"] > .p-ripple').should('be.visible').click({ force: true })
+           cy.log('✅ ¡No se pudo guardar!')  
+           
+      } else {
+         cy.log('✅ ¡He llegado aqui!');
+      }
+   })
 })
 
 

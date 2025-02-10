@@ -2,61 +2,51 @@
   {
     "caja": 10,
     "centro": "MERCADONA CABO BLANCO (TNFE)",
-    "empresa": "1 - Empresa 1",
     "tipo punto servicio": "1 -"
   },
   {
     "caja": 0,
     "centro": "0 - DEFAULT",
-    "empresa": "1 - Empresa 1",
     "tipo punto servicio": "9 -"
   },
   {
     "caja": 1,
     "centro": "2026",
-    "empresa": "1 - Empresa A",
     "tipo punto servicio": "9 - Atención al cliente"
   },
   {
     "caja": 2,
     "centro": "2028",
-    "empresa": "2 - Empresa B",
     "tipo punto servicio": "8 - Soporte técnico"    
   },
   {
     "caja": 3,
     "centro": "2022",
-    "empresa": "3 - Empresa C",
     "tipo punto servicio": "7 - Punto de venta"    
   },
   {
     "caja": 4,
     "centro": "GONZALEZ SERRANO",
-    "empresa": "4 - Empresa D",
     "tipo punto servicio": "6 - Logística"    
   },
   {
     "caja": 5,
     "centro": "LA NORIA",
-    "empresa": "5 - Empresa E",
     "tipo punto servicio": "5 - Administración"    
   },
   {
     "caja": 6,
     "centro": "NUEVO SONSECA",
-    "empresa": "6 - Empresa F",
     "tipo punto servicio": "4 - Almacén"    
   },
   {
     "caja": 7,
     "centro": "2044",
-    "empresa": "7 - Empresa G",
     "tipo punto servicio": "3 - Distribución"    
   },
   {
     "caja": 8,
     "centro": "EL SOTO",
-    "empresa": "8 - Empresa H",
     "tipo punto servicio": "2 - Atención especializada"    
   } 
   

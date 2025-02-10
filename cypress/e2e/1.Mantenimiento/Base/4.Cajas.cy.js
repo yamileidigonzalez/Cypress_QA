@@ -31,7 +31,7 @@ describe('Cajas', () => {
             cy.wait(tiempo)
             cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
             cy.Añadir_Cajas(caja, centro, tipo_punto_servicio)
-            cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+            cy.Guardar_Confirmar_Caja('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
         });
       })
     });
@@ -44,7 +44,7 @@ describe('Cajas', () => {
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal
-      cy.Editar_Tiendas('4657', "LA NORIA", "Empresa 1", "097223366", "C/ Pepe Alba 1",  "MURCIA", "Valencia", '46022', "Si")
+      cy.Editar_Cajas('10', "LA NORIA", "3 - Distribución")
       cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
 
     });
