@@ -491,6 +491,13 @@ Cypress.Commands.add("Añadir_Cajas", (caja, centro, tipo_punto_servicio) => {
    cy.Añadir_text('.p-inputnumber > .p-inputtext', caja)     
 })
 
+Cypress.Commands.add("Añadir_Tipo_Cajas", (id, capacidades_terminal, descripcion) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.wait(1000)  
+   cy.Añadir_text('.p-inputnumber > .p-inputtext', id)     
+   cy.Añadir_text('#posCapabilities', capacidades_terminal)
+   cy.Añadir_text('#posDescription', descripcion)     
+})
 
 
 
@@ -803,6 +810,15 @@ Cypress.Commands.add("Editar_Cajas", (caja, centro, tipo_punto_servicio) => {
    cy.log("⚠️ No esta permitido editar", caja)     
 })
 
+Cypress.Commands.add("Editar_TCajas",(id, capacidades_terminal, descripcion) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.wait(1000)  
+   cy.get('.p-inputnumber > .p-inputtext').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar", id)     
+   cy.Añadir_text('#posCapabilities', capacidades_terminal)
+   cy.Añadir_text('#posDescription', descripcion)     
+})
+
 
 
 Cypress.Commands.add('Guardar_Confirmar_canal_entidad', (selector_guardar, t) => {
@@ -1099,6 +1115,50 @@ Cypress.Commands.add('Guardar_Confirmar_Caja', (selector_guardar, selector_mensa
    })
 })
 
+Cypress.Commands.add('Guardar_Confirmar_TCaja', (selector_guardar, selector_mensaje, t) => {
+   // Interceptar la petición API
+   cy.intercept('POST', '**/api/routing/add').as('guardar');
+
+   // Verificar si el botón de guardar es visible
+   cy.get(selector_guardar).then(($btn) => {
+      if ($btn.is(':visible') && ($btn.is(':enabled')) ){
+         cy.get(selector_guardar).click();
+                  
+         // Verificar si el mensaje realmente aparece en el DOM antes de esperar su visibilidad
+         cy.get('body').then(($body) => {
+            if ($body.find(selector_mensaje).length > 0) {
+               cy.get(selector_mensaje).should('exist').and('be.visible').then(($alert) => {
+                  if ($alert.text().includes('ya existe!')) {
+                     cy.get('.mt-5 > [icon="pi pi-times"] > .p-ripple').click({ force: true });
+                     cy.log('⚠️ ¡Ya existe!');
+                     cy.wait(t);
+                  } else {
+                     cy.log('✅ ¡Ha sido guardado!');
+                     cy.wait(t);
+                  }
+               });
+            } else {
+               cy.get('.mt-5 > [icon="pi pi-times"] > .p-ripple').click({ force: true });
+               cy.log('⚠️ ¡Ya existe!');
+               cy.wait(t);
+               cy.log('❌ El mensaje de error NO se encontró en el DOM.');
+            } 
+         })  
+      } else if ($btn.is(':disabled') || $btn.hasClass('p-disabled')) {
+           // ⚠ Si el botón está deshabilitado, hacer otra acción
+           cy.log('El botón está deshabilitado, ejecutando otra acción...');
+           
+           // Ejemplo: hacer clic en otro botón, mostrar un mensaje o realizar otra validación
+           cy.get('.mt-5 > [icon="pi pi-times"] > .p-ripple').should('be.visible').click({ force: true })
+           cy.log('✅ ¡No se pudo guardar!') 
+           cy.wait(t); 
+           
+      } else {
+         cy.log('✅ ¡He llegado aqui!');
+         cy.wait(t);
+      }
+   })
+})
 
 
 Cypress.Commands.add("Eliminar_Anular", (boton_borrar, boton_anular, elemento) => { 
