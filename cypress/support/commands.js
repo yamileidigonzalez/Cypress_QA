@@ -23,6 +23,8 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
+const { select } = require("async")
+
 Cypress.Commands.add("Elemento_visible", (selector) => { 
     cy.get(selector).should('be.visible')
 })
@@ -85,6 +87,8 @@ Cypress.Commands.add('Insertar_Texto', (selector, texto, t) => {
    cy.get(selector).should('be.visible').type(texto)
    cy.wait(t)    
 })
+
+
 
 Cypress.Commands.add('Añadir_Combo_Buscar_caja', (selector, sector_buscar, valor) => { 
    cy.get(selector).should("be.visible").click().wait(100);
@@ -157,7 +161,6 @@ Cypress.Commands.add('Añadir_Combo', (selector, valor) => {
       }
    });   */
 });
-
 
 Cypress.Commands.add('Añadir_text', (selector_añadir, valor) => {
    //boton anadir
@@ -541,7 +544,125 @@ Cypress.Commands.add("Añadir_Configuracion_Central", (rol, propiedad, tipo, val
    cy.Seleccionar_Opcion_Y_Llenar_Form('.p-dropdown-label', tipo, valor);
 })
 
+Cypress.Commands.add("Añadir_Contraseña", (selector, pass) => { 
+   cy.Añadir_text(selector, pass)
+   cy.get('.ng-trigger').then(($mensaje) => {      
+      if ($mensaje.is(':visible') && $mensaje.text().includes('Demasiado simple')) {
+         cy.log('El mensaje indica que la contraseña es Demasiado simple');
+         // Intentar con contraseña simple
+         cy.get(selector).clear().type('r7auF23wA.A2l1tZ2Dp4')
 
+         cy.get('#password > div > eyeicon > svg').then(($existe) => {
+            if($existe.is(':visible')){
+               cy.get('#password > div > eyeicon > svg').click()
+               cy.get('#password > div > eyeslashicon > svg:nth-child(1)').click()
+            } else {
+               cy.get('#passwordConfirm > div > eyeslashicon').then(($passexiste) => {
+                  if($passexiste.is(':visible')){
+                     cy.get('#passwordConfirm > div > eyeslashicon').click()
+                  }
+               })
+            }
+         })
+         
+      } else if($mensaje.is(':visible') && $mensaje.text().includes('La contraseña es media')) {
+         cy.log('El mensaje indica que la contraseña es de nivel medio');       
+         // Intentar con contraseña de nivel medio
+         cy.get(selector).clear().type('r7auF23wA.A2l1tZ2Dp4')
+        
+
+         cy.get('#password > div > eyeicon > svg').then(($existe) => {
+            if($existe.is(':visible')){
+               cy.get('#password > div > eyeicon > svg').click()
+               cy.get('#password > div > eyeslashicon > svg:nth-child(1)').click()
+            } else {
+               cy.get('#passwordConfirm > div > eyeslashicon').then(($passexiste) => {
+                  if($passexiste.is(':visible')){
+                     cy.get('#passwordConfirm > div > eyeslashicon').click()
+                  }
+               })
+            }
+         })
+        
+
+      } else if ($mensaje.is(':visible') && $mensaje.text().includes('La contraseña es fuerte')) {
+         cy.log('El mensaje indica que la contraseña es de nivel fuerte');
+         // Intentar con contraseña de nivel fuerte
+         cy.get('#password > div > eyeicon > svg').then(($existe) => {
+            if($existe.is(':visible')){
+               cy.get('#password > div > eyeicon > svg').click()
+               cy.get('#password > div > eyeslashicon > svg:nth-child(1)').click()
+            } else {
+               cy.get('#passwordConfirm > div > eyeslashicon').then(($passexiste) => {
+                  if($passexiste.is(':visible')){
+                     cy.get('#passwordConfirm > div > eyeslashicon').click()
+                  }
+               })
+      
+            }
+         })
+        
+      } else {
+         cy.log('No existe mensaje');
+      }
+     
+   }) 
+
+})
+
+Cypress.Commands.add("Añadir_User", (id, usuario, pass, repetir_pass, rol, Idioma, Activo) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   //Nombre user
+   cy.Añadir_text('#username',usuario)   
+   //Pass
+   cy.Añadir_Contraseña('#password > .p-password > .p-inputtext',pass)
+   cy.Añadir_Contraseña('#passwordConfirm > .p-password > .p-inputtext',repetir_pass)
+   //Rol
+   cy.get('#roles')
+     .should('exist')
+     .should('be.visible')
+     .scrollIntoView()
+   cy.Añadir_Combo('#roles', rol)
+     .click({ force: true }); // Forzar el clic si Cypress sigue diciendo que no es visible
+
+   //Idioma
+   cy.Añadir_Combo('#language',Idioma)
+
+   //Activo 
+   cy.get('.p-selectbutton > .p-highlight')//si
+   cy.get('.p-selectbutton > [tabindex="0"]')//no
+   cy.Seleccionar_Opcion_SI_NO('.p-selectbutton > .p-highlight', '.p-selectbutton > [tabindex="0"]', Activo)
+   
+   cy.log(`Usuario añadido: ${id}`)   
+})
+
+
+Cypress.Commands.add("Editar_User", (id, usuario, pass, repetir_pass, rol, Idioma, Activo) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   //Nombre user
+   cy.get('#username').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar",usuario)   
+   //Pass
+   cy.Añadir_Contraseña('#password > .p-password > .p-inputtext',pass)
+   cy.Añadir_Contraseña('#passwordConfirm > .p-password > .p-inputtext',repetir_pass)
+   //Rol
+   cy.get('#roles')
+     .should('exist')
+     .should('be.visible')
+     .scrollIntoView()
+   cy.Añadir_Combo('#roles', rol)
+     .click({ force: true }); // Forzar el clic si Cypress sigue diciendo que no es visible
+
+   //Idioma
+   cy.Añadir_Combo('#language',Idioma)
+
+   //Activo 
+   cy.get('.p-selectbutton > .p-highlight')//si
+   cy.get('.p-selectbutton > [tabindex="0"]')//no
+   cy.Seleccionar_Opcion_SI_NO('.p-selectbutton > .p-highlight', '.p-selectbutton > [tabindex="0"]', Activo)
+   
+   cy.log(`Usuario añadido: ${id}`)   
+})
 
 Cypress.Commands.add("Editar_Configuracion_Central", (rol, propiedad, tipo, valor) => { 
    // Validaciones en la UI basadas en los datos del JSON
@@ -872,6 +993,47 @@ Cypress.Commands.add("Editar_TCajas",(id, capacidades_terminal, descripcion) => 
 })
 
 
+Cypress.Commands.add('Guardar_Confirmar_Usuarios', (selector_guardar, selector_mensaje) => {
+   // Interceptar la petición API
+   cy.intercept('POST', '**/api/routing/add').as('guardar');
+   // Verificar si el botón de guardar es visible
+   cy.get(selector_guardar).then(($btn) => {
+      if ($btn.is(':visible') && ($btn.is(':enabled')) ){
+         cy.get(selector_guardar).click()
+         cy.get(selector_mensaje).should('exist').and('be.visible').then(($alert) => {
+            if ($alert.text().includes('¡Tú contraseña no puede ser igual a la anterior!')){
+               cy.Añadir_Contraseña('#password > .p-password > .p-inputtext','Password123.password123%')
+               cy.Añadir_Contraseña('#passwordConfirm > .p-password > .p-inputtext','Password123.password123%')
+               cy.log('✅ ¡Contraseña Cambiada!').wait(2000)
+               cy.Guardar_Confirmar_Usuarios(selector_guardar, selector_mensaje)               
+            } else if ($alert.text().includes('¡Ha ocurrido un error ')){
+               cy.log('⚠️ ¡Ha ocurrido un error :( !');
+            } else if ($alert.text().includes('ya existe!')){
+               cy.get('.mt-20 > [icon="pi pi-times"] > .p-ripple')
+               .should('exist')
+               .should('be.visible')
+               .scrollIntoView()
+               .click({ force: true });
+               cy.log('⚠️ ¡Ya existe!');
+            } else {
+               cy.log('✅ ¡Ha sido guardado!');
+            }
+         })   
+      } else if ($btn.is(':disabled') || $btn.hasClass('p-disabled')) {
+         // ⚠ Si el botón está deshabilitado, hacer otra acción
+         cy.log('El botón está deshabilitado, ejecutando otra acción...');           
+         // Ejemplo: hacer clic en otro botón, mostrar un mensaje o realizar otra validación
+         cy.log('⚠️ ¡No se pudo guardar!')
+
+         cy.get('.mt-20 > [icon="pi pi-times"] > .p-ripple').should('exist')
+         .should('be.visible')
+         .scrollIntoView()
+         .click({ force: true });
+      } else {
+         cy.log('✅ ¡He llegado aqui!');
+      }
+   })
+})
 
 Cypress.Commands.add('Guardar_Confirmar_canal_entidad', (selector_guardar, t) => {
    //Pulsar boton guardar 
@@ -1341,3 +1503,22 @@ Cypress.Commands.add('Seleccionar_Opcion_Y_Llenar_Form', (selector, valor, datos
    
 });
 
+Cypress.Commands.add('Seleccionar_Opcion_SI_NO', (selectorSi, selectorNo, valor) => { 
+   cy.get(selectorSi).then(($yes) => {
+      cy.get(selectorNo).then(($no) => {                 
+         if (valor === "Si") {
+            // Si el checkbox no está seleccionado y el valor es "Si", seleccionamos el checkbox
+            cy.log('✅ Seleccionamos "Sí"');
+         } else if (valor === "No") {
+            // Si el checkbox está seleccionado y el valor es "No", lo deseleccionamos
+            cy.wrap($no).click();
+            cy.log('✅ Seleccionamos "No"');
+         } else {
+            // Si ya está en el estado deseado, no hacemos nada
+            cy.log('🚫 El checkbox ya estaba en el estado correcto, no se hizo clic.');
+         }
+      });
+   });   
+});
+
+ 

@@ -1,7 +1,47 @@
 [
   {
-    "id": 1,
-    "usuario": "solverpay",
-    "rol": "Super admin"
+    "id": 6,
+    "Nombre de usuario": "usuario1a",
+    "Contraseña": "password123",
+    "Repetir contraseña": "password123",
+    "Rol": "admin",
+    "Idioma": "es",
+    "Activo": "Si"
+  },
+  {
+    "id": 2,
+    "Nombre de usuario": "usuario2a",
+    "Contraseña": "clave456",
+    "Repetir contraseña": "clave456",
+    "Rol": "editor",
+    "Idioma": "en",
+    "Activo": "No"
+  },
+  {
+    "id": 3,
+    "Nombre de usuario": "usuario3a",
+    "Contraseña": "secure789",
+    "Repetir contraseña": "secure789",
+    "Rol": "usuario",
+    "Idioma": "fr",
+    "Activo": "Si"
+  },
+  {
+    "id": 4,
+    "Nombre de usuario": "usuario4a",
+    "Contraseña": "mypassword",
+    "Repetir contraseña": "mypassword",
+    "Rol": "moderador",
+    "Idioma": "de",
+    "Activo": "Si"
+  },
+  {
+    "id": 5,
+    "Nombre de usuario": "usuario5a",
+    "Contraseña": "testpass",
+    "Repetir contraseña": "testpass",
+    "Rol": "invitado",
+    "Idioma": "it",
+    "Activo": "No"
   }
 ]
