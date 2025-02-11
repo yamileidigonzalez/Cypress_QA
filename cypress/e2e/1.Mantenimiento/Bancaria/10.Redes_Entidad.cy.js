@@ -24,7 +24,6 @@ describe('Redes_Entidades', () => {
       cy.wait(tiempo)
     })
 
-
     // Añadir un nuevo [Elemento]
     it('Debería añadir un nuevo [Elemento]', () => {
        //Conextar con archivo Json

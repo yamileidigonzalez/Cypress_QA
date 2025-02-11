@@ -1,0 +1,86 @@
+[
+  {
+    "tag": "body_dcc_text_commission",
+    "texto": "Service and exchange rate<BR>provided by <VAR0> on <VAR1><BR>COMMISSION=<VAR2>%"
+  },
+  {
+    "tag": "body_dcc_visa_text_1",
+    "texto": "I accept that I have been offered a choice of currencies for payment and that this choice is final."
+  },
+  {
+    "tag": "body_dcc_visa_text_2",
+    "texto": "I accept the conversion rate, the final amount and that the selected currency is <VAR0>"
+  },
+  {
+    "tag": "body_sdmit_text",
+    "texto": "AUTORIZO A MERCADONA PARA QUE CARGUE EN MI TARJETA<BR>LA COMPRA EFECTUADA PARA ENTREGAR EN MI DOMICILIO."
+  },
+  {
+    "tag": "bottom_masked_pan",
+    "texto": "TARJETA: <VAR0>"
+  },
+  {
+    "tag": "bottom_authorization",
+    "texto": "AUT: <VAR0>"
+  },
+  {
+    "tag": "bottom_fuc",
+    "texto": "NC: <VAR0>"
+  },
+  {
+    "tag": "header_transaction_op",
+    "texto": "OP: <VAR0>"
+  },
+  {
+    "tag": "header_ticket_num",
+    "texto": "N: <VAR0>"
+  },
+  {
+    "tag": "header_pos",
+    "texto": "CAJA: <VAR0>"
+  },
+  {
+    "tag": "header_store",
+    "texto": "SUP: <VAR0>"
+  },
+  {
+    "tag": "header_total",
+    "texto": "TOTAL...EUROS <VAR0>"
+  },
+  {
+    "tag": "body_legal_1",
+    "texto": "OPERACI�N CON PIN.<BR>FIRMA NO REQUERIDA."
+  },
+  {
+    "tag": "body_dcc_text",
+    "texto": "TRANSACTION CURRENCY"
+  },
+  {
+    "tag": "body_legal_5",
+    "texto": "FIRMA CLIENTE"
+  },
+  {
+    "tag": "body_legal_L",
+    "texto": "VERIFICADO POR DISPOSITIVO"
+  },
+  {
+    "tag": "header_payment_text",
+    "texto": "* PAGO TARJETA BANCARIA *"
+  },
+  {
+    "tag": "body_dcc_eur_amount",
+    "texto": "<VAR0> EUR"
+  },
+  {
+    "tag": "body_dcc_exchange_rate",
+    "texto": "<VAR0> 1.00 = <VAR1> EUR"
+  },
+  {
+    "tag": "body_dcc_markup_bce",
+    "texto": "This exchange rate has a difference of <VAR0>%<BR>over published by ECB"
+  },
+  {
+    "tag": "body_dcc_markup",
+    "texto": "INCLUDES <VAR0>% MARK-UP over wholesale rate<BR>"
+  }
+]

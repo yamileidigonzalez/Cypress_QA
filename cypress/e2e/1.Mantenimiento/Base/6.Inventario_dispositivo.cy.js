@@ -19,7 +19,7 @@ describe('Inventario_dispositivos', () => {
     })
 
     // Añadir un nuevo [Elemento]
-    cy.log("No esta permitido Añadir")/*
+    /*
     it('Debería añadir un nuevo [Elemento]', () => {
       cy.fixture('6_Inventariado_Pinpad.json').then((Inventariado_Pinpad) => {
         Inventariado_Pinpad.forEach((config) => {
@@ -41,7 +41,7 @@ describe('Inventario_dispositivos', () => {
     });*/
 
     // Modificar un [Elemento]
-    cy.log("No esta permitido Modificar")/*
+    /*
     it('Debería modificar un [Elemento]', () => {
       // Simular el proceso de actualización de un registro
       cy.Busqueda('.gap-x-3 > .inline-flex','3',tiempo)
@@ -81,14 +81,26 @@ describe('Inventario_dispositivos', () => {
     // Eliminar un [Elemento]
     it('Debería eliminar un [Elemento]', () => {
       cy.wait(tiempo)
-      cy.Eliminar_Anular('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple', '[icon="pi pi-arrow-left"] > .p-ripple', '.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
-      cy.wait(tiempo)
+      //Sin seleccionar esta desactivada
+      cy.get('.p-element.ng-star-inserted > .p-ripple').should('not.be.enabled')
       //Hacer clic en el primer registro para eliminar
-      cy.Eliminar('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple','.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
+      cy.Elemento_visible('.p-datatable-tbody > :nth-child(2) > :nth-child(2)').click({force:true})
+      cy.Elemento_visible('.p-dialog-content')
+      cy.Elemento_visible('.p-dialog-header')
+      cy.Elemento_visible('.p-dialog-header-icons > .p-ripple').click()
+      // Seleccionar la papelera la eliminación
+      cy.get('.p-element.ng-star-inserted > .p-ripple').should("be.visible").click(); 
+      // Confirmar la eliminación
+      cy.Elemento_visible('#confirmModal')
+      cy.Elemento_visible('[icon="pi pi-arrow-left"] > .p-ripple').click()
+
+      // Seleccionar la papelera la eliminación
+      cy.Elemento_visible('.p-element.ng-star-inserted > .p-ripple').click({force:true});
+      cy.Elemento_visible('[icon="pi pi-check"] > .p-ripple').click({force:true}).wait(tiempo)   
+      cy.wait(tiempo)  
       // Validar mensaje de éxito
-      cy.get('.bg-white > .flex-col')
-      .should('be.visible') 
-      .then(($alert) => {
+      cy.Elemento_visible('.bg-white > .flex-col')
+        .then(($alert) => {
         // Verifica si el texto contiene la alerta esperada
         if ($alert.text().includes('¡El adquiriente se ha eliminado!')) {
           cy.log('¡El adquiriente se ha eliminado!'); // Log de éxito

@@ -21,7 +21,7 @@ describe('Canales_Entidad', () => {
     })
 
     // Añadir un nuevo [Elemento]
-    it.only('Debería añadir un nuevo [Elemento]', () => {
+    it('Debería añadir un nuevo [Elemento]', () => {
        //Conextar con archivo Json
        cy.fixture('1_Canales_Entidad.json').then((Canal_entidades) => {
         Canal_entidades.forEach((config) => {

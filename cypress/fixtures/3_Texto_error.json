@@ -1,0 +1,392 @@
+[
+  {
+    "protocolo": 1,
+    "codigo error": 0,
+    "texto 1": "OPERACION ACEPTADA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 10,
+    "texto 1": "OPERACION ACEPTADA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 60,
+    "texto 1": "OPERACION ACEPTADA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 85,
+    "texto 1": "OPERACION ACEPTADA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 101,
+    "texto 1": "TARJETA CADUCADA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 102,
+    "texto 1": "OPERACION DENEGADA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 106,
+    "texto 1": "EXCEDIDO NUMERO DE",
+    "texto 2": "INTENTOS DEL PIN"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 107,
+    "texto 1": "LLAMAR AL EMISOR",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 112,
+    "texto 1": "PIN OBLIGATORIO",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 117,
+    "texto 1": "PIN INCORRECTO",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 126,
+    "texto 1": "PIN INCORRECTO",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 160,
+    "texto 1": "OPERACION DENEGADA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 172,
+    "texto 1": "OPERACION DENEGADA",
+    "texto 2": "NO REPETIR"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 173,
+    "texto 1": "OPERACION DENEGADA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 174,
+    "texto 1": "OPERACION DENEGADA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 180,
+    "texto 1": "TARJETA NO VALIDA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 190,
+    "texto 1": "OPERACION DENEGADA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 192,
+    "texto 1": "OPERACION DENEGADA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 193,
+    "texto 1": "OPERACION DENEGADA",
+    "texto 2": "IMPORTE EXCEDIDO"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 195,
+    "texto 1": "OPERACION DENEGADA",
+    "texto 2": "REPITA OPERACION"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 196,
+    "texto 1": "PIN REQUERIDO",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 201,
+    "texto 1": "TARJETA CADUCADA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 202,
+    "texto 1": "OPERACION DENEGADA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 206,
+    "texto 1": "EXCEDIDO NUMERO DE",
+    "texto 2": "INTENTOS DEL PIN"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 290,
+    "texto 1": "OPERACION DENEGADA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 300,
+    "texto 1": "OPERACION REALIZADA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 380,
+    "texto 1": "FICHERO COMPLETO",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 400,
+    "texto 1": "ANULACION ACEPTADA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 480,
+    "texto 1": "ANULACION ACEPTADA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 481,
+    "texto 1": "ANULACION ACEPTADA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 500,
+    "texto 1": "CONCILIACION EN",
+    "texto 2": "ACUERDO"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 501,
+    "texto 1": "CONCILIACION EN",
+    "texto 2": "DESACUERDO"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 503,
+    "texto 1": "TOTALES NO",
+    "texto 2": "DISPONIBLES"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 560,
+    "texto 1": "CONCILIACION EN",
+    "texto 2": "ACUERDO"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 561,
+    "texto 1": "CONCILIACION EN",
+    "texto 2": "DESACUERDO"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 563,
+    "texto 1": "TOTALES NO",
+    "texto 2": "DISPONIBLES"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 580,
+    "texto 1": "DATOS DE ABONO",
+    "texto 2": "ERRONEOS"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 581,
+    "texto 1": "DATOS DE ABONO",
+    "texto 2": "ERRONEOS"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 600,
+    "texto 1": "ACEPTADA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 604,
+    "texto 1": "TOTALES NO",
+    "texto 2": "ENCONTRADO"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 660,
+    "texto 1": "ACEPTADA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 687,
+    "texto 1": "MENSAJE NO",
+    "texto 2": "RECONOCIDO"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 800,
+    "texto 1": "ACEPTADO/ACTIVO",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 882,
+    "texto 1": "SUSPENDIDO",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 900,
+    "texto 1": "COMUNICACION",
+    "texto 2": "ACEPTADA"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 901,
+    "texto 1": "COMUNICACION",
+    "texto 2": "ACEPTADA"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 902,
+    "texto 1": "OPERACION NO",
+    "texto 2": "REALIZADA"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 904,
+    "texto 1": "ERROR EN FORMATO",
+    "texto 2": "DE MENSAJE"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 909,
+    "texto 1": "ERROR DEL",
+    "texto 2": "SISTEMA"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 912,
+    "texto 1": "CENTRO NO",
+    "texto 2": "DISPONIBLE"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 913,
+    "texto 1": "MENSAJE DUPLICADO",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 914,
+    "texto 1": "ANULACION NO",
+    "texto 2": "ENCONTRADO"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 915,
+    "texto 1": "RECHAZADA LA COLECTA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 916,
+    "texto 1": "MAC ERRONEO",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 940,
+    "texto 1": "OPERACION YA",
+    "texto 2": "ANULADA"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 944,
+    "texto 1": "SESION NO PERMITIDA",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 947,
+    "texto 1": "PETICION YA RECIBIDO",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 948,
+    "texto 1": "FECHA Y HORA NO",
+    "texto 2": "SINCRONIZADA"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 949,
+    "texto 1": "ERROR FECHA",
+    "texto 2": "DE CADUCIDAD"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 950,
+    "texto 1": "VIOLACION DE NORMAS",
+    "texto 2": "DE AUTORIZACION"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 965,
+    "texto 1": "VIOLACION DE NORMAS",
+    "texto 2": "DE DEVOLUCION"
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 9000,
+    "texto 1": "PROCESADA EN CIDE",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 705,
+    "texto 1": "SALDO EN CUENTA <0",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 1,
+    "codigo error": 712,
+    "texto 1": "CENTRO PUC INVALIDO",
+    "texto 2": ""
+  },
+  {
+    "protocolo": 12,
+    "codigo error": "adf",
+    "texto 1": 321,
+    "texto 2": "ca"
+  }
+]

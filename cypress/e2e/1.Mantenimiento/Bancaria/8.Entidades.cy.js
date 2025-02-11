@@ -20,7 +20,6 @@ describe('Entidades', () => {
       cy.get('#submenu-bancaria > :nth-child(8)').should("be.visible").click()  
     })
 
-
     // Añadir un nuevo [Elemento]
     it('Debería añadir un nuevo [Elemento]', () => {
       //Conextar con archivo Json

@@ -1,0 +1,80 @@
+[
+  {
+    "rol": 0,
+    "propiedad": "INSTANCE_PROCESS_GREEN",
+    "valor": 0.5,
+    "tipo": "Número decimal"
+  },
+  {
+    "rol": 0,
+    "propiedad": "INSTANCE_PROCESS_RED",
+    "valor": 0.75,
+    "tipo": "Número decimal"
+  },
+  {
+    "rol": 0,
+    "propiedad": "INSTANCE_PROCESS_DEFERRED",
+    "valor": 0.25,
+    "tipo": "Número decimal"
+  },
+  {
+    "rol": 0,
+    "propiedad": "DEBUG_LEVEL",
+    "valor": 7,
+    "tipo": "Entero"
+  },
+  {
+    "rol": 0,
+    "propiedad": "DEBUG_PROTOCOL",
+    "valor": true,
+    "tipo": "Activo / Desactivo"
+  },
+  {
+    "rol": 0,
+    "propiedad": "MANAGER_IP_LISTEN",
+    "valor": "127.0.0.1",
+    "tipo": "Texto"
+  },
+  {
+    "rol": 0,
+    "propiedad": "MANAGER_PORT_LISTEN",
+    "valor": 60001,
+    "tipo": "Entero"
+  },
+  {
+    "rol": 0,
+    "propiedad": "PROVIDER_ENABLE",
+    "valor": true,
+    "tipo": "Activo / Desactivo"
+  },
+  {
+    "rol": 0,
+    "propiedad": "PROVIDER_IP_LISTEN",
+    "valor": "127.0.0.1",
+    "tipo": "Texto"
+  },
+  {
+    "rol": 0,
+    "propiedad": "PROVIDER_PORT_LISTEN",
+    "valor": 60003,
+    "tipo": "Entero"
+  },
+  {
+    "rol": 0,
+    "propiedad": "COURIER_EMAIL_USER",
+    "valor": "email@f1-connecting.com",
+    "tipo": "Email"
+  },
+  {
+    "rol": 0,
+    "propiedad": "COURIER_EMAIL_PASS",
+    "valor": "password",
+    "tipo": "Contraseña"
+  },
+  {
+    "rol": 0,
+    "propiedad": "API_PASSWORD",
+    "valor": 123456,
+    "tipo": "Contraseña"
+  }
+]

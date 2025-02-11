@@ -533,7 +533,25 @@ Cypress.Commands.add("Añadir_Inventariado_Pinpad", (pos, store, company, serial
    
 })
 
+Cypress.Commands.add("Añadir_Configuracion_Central", (rol, propiedad, tipo, valor) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.Añadir_text('#role',rol)
+   cy.Añadir_text('#property',propiedad)
+   
+   cy.Seleccionar_Opcion_Y_Llenar_Form('.p-dropdown-label', tipo, valor);
+})
 
+
+
+Cypress.Commands.add("Editar_Configuracion_Central", (rol, propiedad, tipo, valor) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.get('#role').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar",rol)
+   cy.get('#property').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar",propiedad)
+   
+   cy.Seleccionar_Opcion_Y_Llenar_Form('.p-dropdown-label', tipo, valor);
+})
 
 Cypress.Commands.add("Editar_Acuerdos_Comision", (csb_emisor, csb_adquiriente) => { 
    // Validaciones en la UI basadas en los datos del JSON   
@@ -1195,6 +1213,7 @@ Cypress.Commands.add('Guardar_Confirmar_TCaja', (selector_guardar, selector_mens
 })
 
 
+
 Cypress.Commands.add("Eliminar_Anular", (boton_borrar, boton_anular, elemento) => { 
    //Sin seleccionar esta desactivada
    cy.get(boton_borrar).should('not.be.enabled').wait(1000);
@@ -1269,4 +1288,56 @@ Cypress.Commands.add('Validar_campo', (selector, men, nombre_campo, selector_vol
        cy.get(selector_volver).click().wait(t) 
    })   
 })
+
+Cypress.Commands.add('Seleccionar_Opcion_Y_Llenar_Form', (selector, valor, datos) => { 
+   cy.get(selector).should("be.visible").click().wait(500); // Abre el dropdown
+
+   cy.get('ul.p-dropdown-items').should("be.visible") 
+     .contains('li', valor).click(); // Selecciona la opción
+
+   cy.log(`✅ Se seleccionó la opción: ${valor}`);
+
+   // Espera a que el formulario se actualice
+   cy.wait(1000); // Puedes mejorar con un `should("exist")` en el campo que esperas que cambie
+
+   // Rellenar datos según la opción seleccionada
+   cy.get(".p-dropdown-label").then(() => {
+      if (valor === "Texto") {
+         //cy.Elemento_visible('#addModal > .md\:flex-row')
+         //Añadimos el valor
+         cy.Añadir_text('#textInput',datos)
+         
+      } else if (valor === "Número decimal" || valor === "Entero") {
+         //cy.Elemento_visible('#addModal > .md\:flex-row')
+         //Añadimos el valor
+         cy.Añadir_text('.p-inputnumber > .p-inputtext',datos)
+        
+      } else if (valor === "Email") {
+         //cy.Elemento_visible('#addModal > .md\:flex-row')
+         //Añadimos el valor
+         cy.Añadir_text('#emailInput',datos)
+         cy.Añadir_text('#emailRepeatInput',datos)
+
+      } else if (valor === "Activo / Desactivo") {
+         //cy.Elemento_visible('#addModal > .md\:flex-row')
+         //Añadimos el valor
+         cy.Check('.p-checkbox-box')
+
+      } else if (valor === "Contraseña") {
+         //cy.Elemento_visible('#addModal > .md\:flex-row')
+         //Añadimos el valor
+         cy.Añadir_text('#passwordInput > .p-password > .p-inputtext',datos)
+         cy.Añadir_text('#passwordRepeatInput > .p-password > .p-inputtext',datos)
+
+      } else {
+         cy.log("⚠️ No hay acción definida para esta opción.");
+      }
+   });
+
+
+
+   
+   
+   
+});
 
