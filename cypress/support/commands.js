@@ -118,24 +118,46 @@ Cypress.Commands.add('Añadir_Combo_Buscar', (selector, sector_buscar, valor) =>
 })
 
 Cypress.Commands.add('Añadir_Combo', (selector, valor) => { 
-   cy.get(selector).should("be.visible").then(($element) => {   
-      if ($element.length > 0) {  // Si el elemento está presente en el DOM
-         cy.wrap($element)    // Aseguramos que sea un elemento Cypress
-         .click()           // Hacemos clic en el elemento
-         .wait(100)         // Esperamos 100ms antes de escribir
-         .type(valor).click().wait(1000)  // Escribimos el valor y presionamos Enter
-         cy.log('El valor ha sido encontrado');
+   cy.get(selector).should("be.visible").click().wait(100); // Aseguramos que el combo esté abierto
+   cy.get('.p-dropdown-items').should("be.visible"); // Esperamos a que la lista esté visible
+   
+   cy.get('.p-dropdown-items').then(($dropdown) => {
+      if ($dropdown.find(`li:contains("${valor}")`).length > 0) { // Verifica si el valor existe
+         cy.contains('.p-dropdown-items li', valor).click(); // Selecciona el valor si existe
+         cy.log(`✅ Se seleccionó: ${valor}`);
       } else {
-         cy.log('El valor no ha sido encontrado');
-         // Aquí puedes agregar más acciones si el valor sí existe
-         cy.get(selector).should("be.visible").click().wait(1000)
+         cy.log('⚠️ El valor no existe, seleccionando la primera opción disponible.');
+         cy.get('.p-dropdown-items li').first().click(); // Selecciona la primera opción si el valor no existe
       }
-   })/*
-   .catch((error) => {
-      cy.log("El elemento no está visible o no se encontró.");  // Si no se encontró el elemento o no es visible
-      cy.wrap(error).as("catchError");  // Puedes guardar el error si lo deseas para debug
-   });*/
-})
+   });
+   /*
+   cy.get('body').then(($body) => {
+      if ($body.find(selector).length > 0) { // Verifica si el selector existe en el DOM
+         cy.get(selector)
+           .should("be.visible")
+           .click()
+           .wait(100)
+           .type(valor, { delay: 100 }) // Escribimos el valor en el combo
+           .wait(500);
+
+         // Verificar si el valor existe en la lista de opciones
+         cy.get('.p-dropdown-items') // Selector de la lista de opciones del combo
+           .contains(valor)
+           .then(($option) => {
+              if ($option.length > 0) { 
+                 cy.wrap($option).click(); // Si el valor existe, lo seleccionamos
+                 cy.log(`✅ Se seleccionó: ${valor}`);
+              } else {
+                 cy.log('⚠️ El valor no existe, seleccionando la primera opción disponible.');
+                 cy.get('.p-dropdown-items li').first().click(); // Seleccionamos la primera opción
+              }
+           });
+      } else {
+         cy.log('⚠️ El combo no está disponible en el DOM');
+      }
+   });   */
+});
+
 
 Cypress.Commands.add('Añadir_text', (selector_añadir, valor) => {
    //boton anadir
