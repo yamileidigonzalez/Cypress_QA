@@ -38,7 +38,7 @@ describe('Tipos_Cajas', () => {
     });
 
     // Modificar un [Elemento]
-    it.only('Debería modificar un [Elemento]', () => {
+    it('Debería modificar un [Elemento]', () => {
       // Simular el proceso de actualización de un registro
       cy.wait(tiempo)
       cy.Busqueda('.gap-x-3 > .inline-flex','3',tiempo)

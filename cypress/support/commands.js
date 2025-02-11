@@ -521,6 +521,18 @@ Cypress.Commands.add("Añadir_Tipo_Cajas", (id, capacidades_terminal, descripcio
    cy.Añadir_text('#posDescription', descripcion)     
 })
 
+Cypress.Commands.add("Añadir_Inventariado_Pinpad", (pos, store, company, serialNumber, manufacturer, model, updateDate) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.Añadir_text('.p-inputnumber > .p-inputtext',pos)
+   cy.Añadir_text('#companyName',store)
+   cy.Añadir_text('#address',company)
+   cy.Añadir_text('#town',serialNumber)
+   cy.Añadir_text('#city',manufacturer)
+   cy.Añadir_text('#zipCode',model)
+   cy.Check('.p-checkbox-box',updateDate)
+   
+})
+
 
 
 Cypress.Commands.add("Editar_Acuerdos_Comision", (csb_emisor, csb_adquiriente) => { 

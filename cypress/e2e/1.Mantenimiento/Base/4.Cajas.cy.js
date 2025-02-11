@@ -20,7 +20,7 @@ describe('Cajas', () => {
     })
 
     // Añadir un nuevo [Elemento]
-    it.only('Debería añadir un nuevo [Elemento]', () => {
+    it('Debería añadir un nuevo [Elemento]', () => {
       cy.fixture('4_Cajas.json').then((Cajas) => {
         Cajas.forEach((config) => {
             let caja = config.caja;
