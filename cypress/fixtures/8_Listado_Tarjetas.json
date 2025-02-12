@@ -1,0 +1,57 @@
+[
+  {
+    "id": 9,
+    "descripci�n": "Caixabank",
+    "permite offline": "Si"
+  },
+  {
+    "id": 19,
+    "descripci�n": "BBVA",
+    "permite offline": "Si"
+  },
+  {
+    "id": 88,
+    "descripci�n": "Redsys-Ciers44",
+    "permite offline": "Si"
+  },
+  {
+    "id": 99,
+    "descripci�n": "Sabadell-0081",
+    "permite offline": "Si"
+  },
+  {
+    "id": 1,
+    "descripci�n": "Sabadell-paycomet",
+    "permite offline": "Si"
+  },
+  {
+    "id": 24,
+    "descripci�n": "Bankinter",
+    "permite offline": "Si"
+  },
+  {
+    "id": 30,
+    "descripci�n": "Santander",
+    "permite offline": "Si"
+  },
+  {
+    "id": 35,
+    "descripci�n": "Cajamar",
+    "permite offline": "Si"
+  },
+  {
+    "id": 77,
+    "descripci�n": "Redsys-Ciers69",
+    "permite offline": "Si"
+  },
+  {
+    "id": 12,
+    "descripci�n": "Unicaja",
+    "permite offline": "Si"
+  },
+  {
+    "id": 0,
+    "descripci�n": "testQA",
+    "permite offline": "No"
+  }
+]

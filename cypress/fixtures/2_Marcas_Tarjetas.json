@@ -1,0 +1,66 @@
+[
+  {
+    "id": 0,
+    "descripci�n": "SIN ASIGNAR"
+  },
+  {
+    "id": 1,
+    "descripci�n": "VISA"
+  },
+  {
+    "id": 2,
+    "descripci�n": "MASTERCARD"
+  },
+  {
+    "id": 4,
+    "descripci�n": "TARJETA 4B"
+  },
+  {
+    "id": 5,
+    "descripci�n": "TARJETA EURO6000"
+  },
+  {
+    "id": 6,
+    "descripci�n": "DINERS CLUB"
+  },
+  {
+    "id": 7,
+    "descripci�n": "PRIVADAS"
+  },
+  {
+    "id": 8,
+    "descripci�n": "AMERICAN EXPRESS"
+  },
+  {
+    "id": 9,
+    "descripci�n": "JCB"
+  },
+  {
+    "id": 10,
+    "descripci�n": "CITICORP"
+  },
+  {
+    "id": 11,
+    "descripci�n": "CLAU"
+  },
+  {
+    "id": 13,
+    "descripci�n": "GASOLEO"
+  },
+  {
+    "id": 15,
+    "descripci�n": "MULTIBANCO PORTUGAL"
+  },
+  {
+    "id": 16,
+    "descripci�n": "TRANSPONDEDORES"
+  },
+  {
+    "id": 22,
+    "descripci�n": "CHINA UNION PAY"
+  },
+  {
+    "id": 99,
+    "descripci�n": "OTRAS"
+  }
+]

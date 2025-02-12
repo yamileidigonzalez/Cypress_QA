@@ -1,0 +1,386 @@
+[
+  {
+    "id": 1,
+    "descripcion": "VISA CLASICA"
+  },
+  {
+    "id": 2,
+    "descripcion": "VISA ELECTRON"
+  },
+  {
+    "id": 3,
+    "descripcion": "VISA ORO"
+  },
+  {
+    "id": 4,
+    "descripcion": "MASTERCARD"
+  },
+  {
+    "id": 5,
+    "descripcion": "MASTERCARD EU"
+  },
+  {
+    "id": 6,
+    "descripcion": "ACCESS CARD"
+  },
+  {
+    "id": 7,
+    "descripcion": "MASTER EU BUSINESS TO BUSINESS"
+  },
+  {
+    "id": 8,
+    "descripcion": "TARJETA 4B"
+  },
+  {
+    "id": 9,
+    "descripcion": "QR ALIPAY"
+  },
+  {
+    "id": 10,
+    "descripcion": "PLUS"
+  },
+  {
+    "id": 11,
+    "descripcion": "CIRRUS"
+  },
+  {
+    "id": 12,
+    "descripcion": "DINERS"
+  },
+  {
+    "id": 14,
+    "descripcion": "TARJETA EURO6000"
+  },
+  {
+    "id": 15,
+    "descripcion": "SUPERCAS"
+  },
+  {
+    "id": 16,
+    "descripcion": "VISA CORPORATE ORO"
+  },
+  {
+    "id": 17,
+    "descripcion": "AMERICAN EXPRESS"
+  },
+  {
+    "id": 18,
+    "descripcion": "MAESTRO"
+  },
+  {
+    "id": 19,
+    "descripcion": "JCB CONSUMO"
+  },
+  {
+    "id": 20,
+    "descripcion": "CITICORP"
+  },
+  {
+    "id": 21,
+    "descripcion": "CLAU"
+  },
+  {
+    "id": 22,
+    "descripcion": "VISA B2B"
+  },
+  {
+    "id": 23,
+    "descripcion": "MAESTRO"
+  },
+  {
+    "id": 24,
+    "descripcion": "VISA CORPORATE T&E CARD"
+  },
+  {
+    "id": 26,
+    "descripcion": "VISA BUSINESS PLATA"
+  },
+  {
+    "id": 27,
+    "descripcion": "VISA BUSINESS GENERICA"
+  },
+  {
+    "id": 28,
+    "descripcion": "VISA BUSINESS ORO"
+  },
+  {
+    "id": 29,
+    "descripcion": "GAS�LEO DIPLOMATICO"
+  },
+  {
+    "id": 30,
+    "descripcion": "VISA AFFINITY CLASICA"
+  },
+  {
+    "id": 31,
+    "descripcion": "VISA AFFINITY ORO"
+  },
+  {
+    "id": 32,
+    "descripcion": "VISA ATM"
+  },
+  {
+    "id": 33,
+    "descripcion": "TRAVEL VOUCHER"
+  },
+  {
+    "id": 34,
+    "descripcion": "VISA CASH"
+  },
+  {
+    "id": 35,
+    "descripcion": "MASTERCARD ATM"
+  },
+  {
+    "id": 36,
+    "descripcion": "MULTIBANCO SIBS"
+  },
+  {
+    "id": 37,
+    "descripcion": "PRIVATE LEADER (L)"
+  },
+  {
+    "id": 38,
+    "descripcion": "VISA AFFINITY ELECTRON"
+  },
+  {
+    "id": 39,
+    "descripcion": "VISA CASH AFFINITY"
+  },
+  {
+    "id": 40,
+    "descripcion": "VISA CASH-ELECTRON"
+  },
+  {
+    "id": 41,
+    "descripcion": "VISA CASH-CLASSIC"
+  },
+  {
+    "id": 42,
+    "descripcion": "VISA CASH-PREMIER"
+  },
+  {
+    "id": 43,
+    "descripcion": "MONEDERO 4B ANONIMO"
+  },
+  {
+    "id": 44,
+    "descripcion": "FICTICIO PAGO EFECTIVO"
+  },
+  {
+    "id": 45,
+    "descripcion": "S4B CASH MIXTA"
+  },
+  {
+    "id": 46,
+    "descripcion": "MONEDERO TEL. CAIXA"
+  },
+  {
+    "id": 47,
+    "descripcion": "VISA PROPIETARY"
+  },
+  {
+    "id": 48,
+    "descripcion": "MASTER DEBITO CASH S4B"
+  },
+  {
+    "id": 49,
+    "descripcion": "VISA CASH ANONIMA"
+  },
+  {
+    "id": 50,
+    "descripcion": "MAESTRO EURO6000"
+  },
+  {
+    "id": 51,
+    "descripcion": "MASTER BUSINESS CORPORATE"
+  },
+  {
+    "id": 52,
+    "descripcion": "MASTER PURCHASING"
+  },
+  {
+    "id": 53,
+    "descripcion": "VISA TRAVEL MONEY"
+  },
+  {
+    "id": 54,
+    "descripcion": "VISA CASH ELECTR�N AFFINITY"
+  },
+  {
+    "id": 55,
+    "descripcion": "MASTER EU BUSINESS"
+  },
+  {
+    "id": 56,
+    "descripcion": "MASTER EU PURCHASING"
+  },
+  {
+    "id": 57,
+    "descripcion": "MAESTRO ATM"
+  },
+  {
+    "id": 58,
+    "descripcion": "MASTERCARD EU ORO"
+  },
+  {
+    "id": 59,
+    "descripcion": "MASTER EU PLATINUM"
+  },
+  {
+    "id": 60,
+    "descripcion": "MASTERCARD ORO"
+  },
+  {
+    "id": 61,
+    "descripcion": "MASTER PLATINUM WORLD"
+  },
+  {
+    "id": 62,
+    "descripcion": "VISA PLATINUM"
+  },
+  {
+    "id": 63,
+    "descripcion": "PRIVADA"
+  },
+  {
+    "id": 64,
+    "descripcion": "MASTER EU CORPORATE"
+  },
+  {
+    "id": 65,
+    "descripcion": "MASTER EU WORLDSIGN"
+  },
+  {
+    "id": 66,
+    "descripcion": "MASTER WORLD BUSINESS"
+  },
+  {
+    "id": 67,
+    "descripcion": "VISA VIRTUAL"
+  },
+  {
+    "id": 68,
+    "descripcion": "MASTER EU VIRTUAL"
+  },
+  {
+    "id": 69,
+    "descripcion": "MASTERCARD EU CLIP"
+  },
+  {
+    "id": 70,
+    "descripcion": "TRASPONDEDORES"
+  },
+  {
+    "id": 71,
+    "descripcion": "MASTER EU ELECTRONIC"
+  },
+  {
+    "id": 72,
+    "descripcion": "VISA INFINITE"
+  },
+  {
+    "id": 73,
+    "descripcion": "TRAVELCLUB"
+  },
+  {
+    "id": 74,
+    "descripcion": "MASTERCARD EU DEBITO"
+  },
+  {
+    "id": 75,
+    "descripcion": "VISA VPAY"
+  },
+  {
+    "id": 76,
+    "descripcion": "MASTERCARD EU WORLD"
+  },
+  {
+    "id": 77,
+    "descripcion": "AMEX SERVIRED"
+  },
+  {
+    "id": 78,
+    "descripcion": "CUP (ATM CAIXA)"
+  },
+  {
+    "id": 79,
+    "descripcion": "MASTER EU CONSUMER PREPAGO"
+  },
+  {
+    "id": 80,
+    "descripcion": "MASTER EU COMMERCIAL PREPAGO"
+  },
+  {
+    "id": 81,
+    "descripcion": "MAESTRO CONSUMER PREPAGO"
+  },
+  {
+    "id": 82,
+    "descripcion": "MAESTRO COMMERCIAL PREPAGO"
+  },
+  {
+    "id": 83,
+    "descripcion": "MAESTRO SMALL BUSINESS"
+  },
+  {
+    "id": 84,
+    "descripcion": "MASTERCARD WORLD"
+  },
+  {
+    "id": 85,
+    "descripcion": "VIA-T EMPRESA"
+  },
+  {
+    "id": 86,
+    "descripcion": "AMAZON PAY"
+  },
+  {
+    "id": 88,
+    "descripcion": "CUP EMPRESA"
+  },
+  {
+    "id": 89,
+    "descripcion": "CUP CONSUMER"
+  },
+  {
+    "id": 90,
+    "descripcion": "JCB EMPRESA"
+  },
+  {
+    "id": 91,
+    "descripcion": "MASTER MES"
+  },
+  {
+    "id": 92,
+    "descripcion": "MASTER EU PLATINUM DEBITO"
+  },
+  {
+    "id": 93,
+    "descripcion": "DINERS CONSUMER"
+  },
+  {
+    "id": 94,
+    "descripcion": "DINERS COMMERCIAL"
+  },
+  {
+    "id": 97,
+    "descripcion": "MISCELANEA"
+  },
+  {
+    "id": 98,
+    "descripcion": "AGROTARJETA BRASIL"
+  },
+  {
+    "id": 99,
+    "descripcion": "EJEMPLO"
+  },
+  {
+    "id": 3213,
+    "descripcion": "VISA, ASMOND"
+  },
+  {
+    "id": 25,
+    "descripcion": "VISA PURCHASING CARD"
+  }
+]

@@ -1,0 +1,167 @@
+[
+  {
+    "marca": "0 - SIN ASIGNAR",
+    "regi�n": "3 - COMUNIDAD EUROPEA (VISA)",
+    "descripci�n": "CENTRE EUROPE, MIDDLE EAST AND AFRICA"
+  },
+  {
+    "marca": "0 - SIN ASIGNAR",
+    "regi�n": "4 - REGION OCEMA (VISA)",
+    "descripci�n": "ASIA AND PACIFIC"
+  },
+  {
+    "marca": "0 - SIN ASIGNAR",
+    "regi�n": "5 - SUDAMERICA (VISA)",
+    "descripci�n": "CARIBBEAN,MEXICO,CENTRAL,SOUTH AME"
+  },
+  {
+    "marca": "0 - SIN ASIGNAR",
+    "regi�n": "6 - REGION CEMEA (VISA)",
+    "descripci�n": "EUROPEAN UNION"
+  },
+  {
+    "marca": "0 - SIN ASIGNAR",
+    "regi�n": 7,
+    "descripci�n": "EUROPAY INTERNACIONAL"
+  },
+  {
+    "marca": "0 - SIN ASIGNAR",
+    "regi�n": 8,
+    "descripci�n": "EUROPEAN ECONOMIC AREA (NO EU)"
+  },
+  {
+    "marca": "1 - VISA",
+    "regi�n": "A - Test Region",
+    "descripci�n": "ASIA/PACIFICO"
+  },
+  {
+    "marca": "1 - VISA",
+    "regi�n": "B",
+    "descripci�n": "EUROPA ESTE,ORIENTE PROXIMO,AFRIC"
+  },
+  {
+    "marca": "1 - VISA",
+    "regi�n": "C",
+    "descripci�n": "CANADA"
+  },
+  {
+    "marca": "1 - VISA",
+    "regi�n": "E - AREA EC. EUROPEA (MASTERCARD)",
+    "descripci�n": "EUROPA"
+  },
+  {
+    "marca": "1 - VISA",
+    "regi�n": "F",
+    "descripci�n": "AMERICA LATINA/CARIBE"
+  },
+  {
+    "marca": "1 - VISA",
+    "regi�n": "1 - U.S.A (VISA)",
+    "descripci�n": "ESTADOS UNIDOS"
+  },
+  {
+    "marca": "1 - VISA",
+    "regi�n": "2 - CANADA (VISA)",
+    "descripci�n": "CANADA"
+  },
+  {
+    "marca": "1 - VISA",
+    "regi�n": "3 - COMUNIDAD EUROPEA (VISA)",
+    "descripci�n": "EUROPA"
+  },
+  {
+    "marca": "1 - VISA",
+    "regi�n": "4 - REGION OCEMA (VISA)",
+    "descripci�n": "OCEMA(ASIA-PAC�FICO)"
+  },
+  {
+    "marca": "1 - VISA",
+    "regi�n": "5 - SUDAMERICA (VISA)",
+    "descripci�n": "AMERICA LATINA/CARIBE"
+  },
+  {
+    "marca": "1 - VISA",
+    "regi�n": "6 - REGION CEMEA (VISA)",
+    "descripci�n": "CEMEA"
+  },
+  {
+    "marca": "2 - MASTERCARD",
+    "regi�n": "A - Test Region",
+    "descripci�n": "CANADA"
+  },
+  {
+    "marca": "2 - MASTERCARD",
+    "regi�n": "B",
+    "descripci�n": "AMERICA LATINA Y CARIBE"
+  },
+  {
+    "marca": "2 - MASTERCARD",
+    "regi�n": "C",
+    "descripci�n": "ASIA/PACIFIC0"
+  },
+  {
+    "marca": "2 - MASTERCARD",
+    "regi�n": "D",
+    "descripci�n": "EUROPA"
+  },
+  {
+    "marca": "2 - MASTERCARD",
+    "regi�n": "E - AREA EC. EUROPEA (MASTERCARD)",
+    "descripci�n": "ORIENTE MEDIO/AFRICA"
+  },
+  {
+    "marca": "2 - MASTERCARD",
+    "regi�n": "F",
+    "descripci�n": "SUDESTE ASIA/ORIENTE PROX./AFRICA"
+  },
+  {
+    "marca": "2 - MASTERCARD",
+    "regi�n": "M - RESTO DEL MUNDO (MASTERCARD)",
+    "descripci�n": "RESTO DEL MUNDO MASTERCARD"
+  },
+  {
+    "marca": "2 - MASTERCARD",
+    "regi�n": "1 - U.S.A (VISA)",
+    "descripci�n": "ESTADOS UNIDOS"
+  },
+  {
+    "marca": "2 - MASTERCARD",
+    "regi�n": "6 - REGION CEMEA (VISA)",
+    "descripci�n": "EUROPA ESTE"
+  },
+  {
+    "marca": "9 - JCB",
+    "regi�n": "1 - U.S.A (VISA)",
+    "descripci�n": "NORTH & SOUTH AMERICA"
+  },
+  {
+    "marca": "9 - JCB",
+    "regi�n": "2 - CANADA (VISA)",
+    "descripci�n": "JAPAN"
+  },
+  {
+    "marca": "9 - JCB",
+    "regi�n": "3 - COMUNIDAD EUROPEA (VISA)",
+    "descripci�n": "ASIA/ OCEANIA (EXCLUDING JAPAN)"
+  },
+  {
+    "marca": "9 - JCB",
+    "regi�n": "4 - REGION OCEMA (VISA)",
+    "descripci�n": "EUROPE, MIDDLE EAST & AFRICA (EXC. SEPA)"
+  },
+  {
+    "marca": "9 - JCB",
+    "regi�n": "5 - SUDAMERICA (VISA)",
+    "descripci�n": "SEPA"
+  },
+  {
+    "marca": "0 - SIN ASIGNAR",
+    "regi�n": "1 - U.S.A (VISA)",
+    "descripci�n": "UNITED STATES OF AMERICA"
+  },
+  {
+    "marca": "0 - SIN ASIGNAR",
+    "regi�n": "2 - CANADA (VISA)",
+    "descripci�n": "CANADA"
+  }
+]
