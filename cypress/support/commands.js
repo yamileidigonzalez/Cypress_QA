@@ -644,7 +644,26 @@ Cypress.Commands.add("Añadir_Texto_error", (protocolo, codigo_error, texto_1, t
    cy.Añadir_text('#text2',texto_2)
 })
 
+Cypress.Commands.add("Añadir_Texto_ticket", (tag, texto) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.Añadir_text('#tag',tag)
+   cy.Añadir_text('#literal',texto)
+})
 
+
+
+Cypress.Commands.add("Editar_Texto_ticket", (tag, texto) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.get('#tag').then(($el) => {
+      if ($el.length) {
+        cy.wrap($el).should('not.be.enabled')
+        cy.log("⚠️ No esta permitido editar",tag)
+      } else {
+        cy.log('⚠️ Elemento no encontrado')
+      }
+   })
+   cy.Añadir_text('#literal',texto)
+})
 
 Cypress.Commands.add("Editar_Texto_error", (protocolo, codigo_error, texto_1, texto_2) => { 
    // Validaciones en la UI basadas en los datos del JSON
@@ -1413,14 +1432,14 @@ Cypress.Commands.add("Eliminar_Anular", (boton_borrar, boton_anular, elemento) =
    //Sin seleccionar esta desactivada
    cy.get(boton_borrar).should('not.be.enabled').wait(1000);
    //Hacer clic en el primer registro para eliminar
-   cy.get(elemento).should("be.visible").wait(1000).click()
+   cy.get(elemento).should("be.visible").wait(1000).click({ force: true })
    // Seleccionar la papelera la eliminación
    cy.get(boton_borrar).should("be.visible").click(); 
    // Confirmar la eliminación
    cy.Elemento_visible('#confirmModal')
    cy.Elemento_visible(boton_anular).click()
 
-   cy.get(elemento).should("be.visible").click(); 
+   cy.get(elemento).should("be.visible").click({ force: true }); 
       
 });
 
@@ -1449,12 +1468,12 @@ Cypress.Commands.add("Eliminar", (boton_borrar, elemento) => {
    //Sin seleccionar esta desactivada
    cy.get(boton_borrar).should('not.be.enabled');
    //Hacer clic en el primer registro para eliminar
-   cy.get(elemento).should("be.visible").wait(1000).click(); 
+   cy.get(elemento).should("be.visible").wait(1000).click({ force: true }); 
    // Seleccionar la papelera la eliminación
    cy.get(boton_borrar).should("be.visible").click(); 
    // Confirmar la eliminación
    cy.Elemento_visible('#confirmModal')
-   cy.Elemento_visible('[icon="pi pi-check"] > .p-ripple').click()
+   cy.Elemento_visible('[icon="pi pi-check"] > .p-ripple').click({ force: true })
    // Validar mensaje de éxito
  
 })
