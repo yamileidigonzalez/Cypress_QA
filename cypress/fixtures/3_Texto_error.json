@@ -3,37 +3,37 @@
     "protocolo": 1,
     "codigo error": 0,
     "texto 1": "OPERACION ACEPTADA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 10,
     "texto 1": "OPERACION ACEPTADA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 60,
     "texto 1": "OPERACION ACEPTADA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 85,
     "texto 1": "OPERACION ACEPTADA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 101,
     "texto 1": "TARJETA CADUCADA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 102,
     "texto 1": "OPERACION DENEGADA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
@@ -45,31 +45,31 @@
     "protocolo": 1,
     "codigo error": 107,
     "texto 1": "LLAMAR AL EMISOR",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 112,
     "texto 1": "PIN OBLIGATORIO",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 117,
     "texto 1": "PIN INCORRECTO",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 126,
     "texto 1": "PIN INCORRECTO",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 160,
     "texto 1": "OPERACION DENEGADA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
@@ -81,31 +81,31 @@
     "protocolo": 1,
     "codigo error": 173,
     "texto 1": "OPERACION DENEGADA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 174,
     "texto 1": "OPERACION DENEGADA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 180,
     "texto 1": "TARJETA NO VALIDA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 190,
     "texto 1": "OPERACION DENEGADA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 192,
     "texto 1": "OPERACION DENEGADA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
@@ -123,19 +123,19 @@
     "protocolo": 1,
     "codigo error": 196,
     "texto 1": "PIN REQUERIDO",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 201,
     "texto 1": "TARJETA CADUCADA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 202,
     "texto 1": "OPERACION DENEGADA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
@@ -147,37 +147,37 @@
     "protocolo": 1,
     "codigo error": 290,
     "texto 1": "OPERACION DENEGADA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 300,
     "texto 1": "OPERACION REALIZADA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 380,
     "texto 1": "FICHERO COMPLETO",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 400,
     "texto 1": "ANULACION ACEPTADA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 480,
     "texto 1": "ANULACION ACEPTADA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 481,
     "texto 1": "ANULACION ACEPTADA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
@@ -231,7 +231,7 @@
     "protocolo": 1,
     "codigo error": 600,
     "texto 1": "ACEPTADA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
@@ -243,7 +243,7 @@
     "protocolo": 1,
     "codigo error": 660,
     "texto 1": "ACEPTADA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
@@ -255,13 +255,13 @@
     "protocolo": 1,
     "codigo error": 800,
     "texto 1": "ACEPTADO/ACTIVO",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 882,
     "texto 1": "SUSPENDIDO",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
@@ -303,7 +303,7 @@
     "protocolo": 1,
     "codigo error": 913,
     "texto 1": "MENSAJE DUPLICADO",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
@@ -315,13 +315,13 @@
     "protocolo": 1,
     "codigo error": 915,
     "texto 1": "RECHAZADA LA COLECTA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 916,
     "texto 1": "MAC ERRONEO",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
@@ -333,13 +333,13 @@
     "protocolo": 1,
     "codigo error": 944,
     "texto 1": "SESION NO PERMITIDA",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 947,
     "texto 1": "PETICION YA RECIBIDO",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
@@ -369,19 +369,19 @@
     "protocolo": 1,
     "codigo error": 9000,
     "texto 1": "PROCESADA EN CIDE",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 705,
     "texto 1": "SALDO EN CUENTA <0",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 1,
     "codigo error": 712,
     "texto 1": "CENTRO PUC INVALIDO",
-    "texto 2": ""
+    "texto 2": " "
   },
   {
     "protocolo": 12,

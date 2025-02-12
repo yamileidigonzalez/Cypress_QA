@@ -636,6 +636,39 @@ Cypress.Commands.add("Añadir_User", (id, usuario, pass, repetir_pass, rol, Idio
    cy.log(`Usuario añadido: ${id}`)   
 })
 
+Cypress.Commands.add("Añadir_Texto_error", (protocolo, codigo_error, texto_1, texto_2) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.Añadir_text('.p-inputnumber > .p-inputtext',protocolo)
+   cy.Añadir_text('#errorId',codigo_error)
+   cy.Añadir_text('#text1',texto_1)
+   cy.Añadir_text('#text2',texto_2)
+})
+
+
+
+Cypress.Commands.add("Editar_Texto_error", (protocolo, codigo_error, texto_1, texto_2) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.get('.p-inputnumber > .p-inputtext').then(($el) => {
+      if ($el.length) {
+        cy.wrap($el).should('not.be.enabled')
+        cy.log("⚠️ No esta permitido editar",protocolo)
+      } else {
+        cy.log('⚠️ Elemento no encontrado')
+      }
+   })
+   cy.get('#errorId').then(($id) => {
+      if ($id.length) {  // Verifica si el elemento existe
+        cy.wrap($id).should('not.be.enabled')
+        cy.log("⚠️ No está permitido editar", codigo_error)
+      } else { 
+        cy.log("⚠️ Elemento #errorId no encontrado")
+      }
+    })
+    
+   
+   cy.Añadir_text('#text1',texto_1)
+   cy.Añadir_text('#text2',texto_2)
+})
 
 Cypress.Commands.add("Editar_User", (id, usuario, pass, repetir_pass, rol, Idioma, Activo) => { 
    // Validaciones en la UI basadas en los datos del JSON
