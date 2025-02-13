@@ -650,7 +650,156 @@ Cypress.Commands.add("Añadir_Texto_ticket", (tag, texto) => {
    cy.Añadir_text('#literal',texto)
 })
 
+Cypress.Commands.add("Añadir_Marcas", (tag, texto) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.Añadir_text('.p-inputnumber > .p-inputtext',tag)
+   cy.Añadir_text('#cardSchemaName',texto)
+})
 
+Cypress.Commands.add("Añadir_Dos_Parametros_Text", (selector1, selector2, texto1, texto2) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.Añadir_text(selector1,texto1)
+   cy.Añadir_text(selector2,texto2)
+})
+
+Cypress.Commands.add("Añadir_Rango_Bines", (bin_desde, bin_hasta, tarjeta, banco_emisor, credito_debito, internacional, token_movil,prepago, marca_tarjeta, neobanco, neobanco_activo, permite_offline, importe_limite_off, forzado_offline ) => { 
+   cy.Añadir_text(':nth-child(1) > :nth-child(1) > #binFrom', bin_desde) //bin_desde
+   cy.Añadir_text(':nth-child(1) > :nth-child(2) > #binTo', bin_hasta) //bin_hasta
+   cy.Añadir_Combo('#cardId > .p-dropdown-label', tarjeta) //tarjeta
+   cy.Añadir_Combo('.flex-1 > .ng-pristine > #creditDebit > .p-dropdown-label', credito_debito) //credito_debito
+   cy.wait(1000)   
+   //Forzado Offline
+   cy.get('.p-selectbutton [role="radio"]').then(($buttons) => {
+      const btnDesactivado = $buttons.filter('[aria-label="Desactivado"]');
+      cy.log("Valor de btnDesactivado:", btnDesactivado)
+      const btnActivado = $buttons.filter('[aria-label="Activado"]');
+      cy.log("Valor de btnActivado:", btnActivado)
+      const isDesactivado = btnDesactivado.attr('aria-checked') === 'true'; // Verifica si está en "Desactivado"
+      cy.log("Valor de isDesactivado:", isDesactivado)
+      if (forzado_offline === "Si" && isDesactivado) {
+        // Si "Desactivado" está seleccionado pero debe activarse
+        cy.get(':nth-child(3) > #offlineForced > .p-selectbutton > [tabindex="-1"]').click({ multiple: true });
+        cy.log('✅ Se cambió a "Activado" porque forzado_offline es "Si".');
+      } else if (forzado_offline === "No" && !isDesactivado) {
+        // Si "Activado" está seleccionado pero debe desactivarse
+        cy.get(':nth-child(3) > #offlineForced > .p-selectbutton > [tabindex="0"]').click({ multiple: true });
+        cy.log('✅ Se cambió a "Desactivado" porque forzado_offline es "No".');
+      } else {
+        cy.log('⚠️ El estado ya era el esperado, no se hizo clic.');
+      }
+   });
+     
+   //Checks
+   cy.Check(':nth-child(2) > .grid > #allowOffline > .p-checkbox > .p-checkbox-box', permite_offline).then(() => {
+      // Si el check se ha marcado, verificar si importe_limite_off está visible
+      cy.get('.p-inputnumber > .p-inputtext').then(($imp) => {
+         if ($imp.is(':enabled')) {  
+           cy.Añadir_text('.p-inputnumber > .p-inputtext', importe_limite_off); 
+           // Agrega el texto si está habilitado
+         } else {
+           cy.get('.p-inputnumber > .p-inputtext').should('not.be.enabled'); 
+           // Validamos que realmente está deshabilitado
+           cy.log(`⚠️ No se activa el importe: ${importe_limite_off}`);
+         }
+       });
+   })        
+   cy.Check(':nth-child(2) > .grid > #neobank > .p-checkbox > .p-checkbox-box', neobanco)
+   cy.Check(':nth-child(2) > .grid > #tokenMobile > .p-checkbox > .p-checkbox-box', token_movil)
+   cy.Check(':nth-child(2) > .grid > #international > .p-checkbox > .p-checkbox-box', internacional)
+   cy.Check(':nth-child(2) > .grid > #neobankActive > .p-checkbox > .p-checkbox-box',neobanco_activo)
+   cy.Check(':nth-child(2) > .grid > #prepaid > .p-checkbox > .p-checkbox-box', prepago)
+   //banco_emisor
+   cy.Añadir_Combo_Buscar(':nth-child(3) > .ng-untouched > #csbIssuer > .p-dropdown-label', '.p-dropdown-filter', banco_emisor)
+})
+
+
+
+
+
+
+Cypress.Commands.add("Editar_Rango_Bines", (bin_desde, bin_hasta, tarjeta, banco_emisor, credito_debito, internacional, token_movil,prepago, marca_tarjeta, neobanco, neobanco_activo, permite_offline, importe_limite_off, forzado_offline ) => { 
+   cy.Añadir_text(':nth-child(1) > :nth-child(1) > #binFrom', bin_desde) //bin_desde
+   //bin_hasta
+   cy.get(':nth-child(1) > :nth-child(2) > #binTo').then(($el) => {
+      if ($el.length) {
+        cy.wrap($el).should('not.be.enabled')
+        cy.log("⚠️ No esta permitido editar",bin_hasta)
+      } else {
+        cy.log('⚠️ Elemento no encontrado')
+      }
+   }) 
+   cy.Añadir_Combo('#cardId > .p-dropdown-label', tarjeta) //tarjeta
+   cy.Añadir_Combo('.flex-1 > .ng-pristine > #creditDebit > .p-dropdown-label', credito_debito) //credito_debito
+   cy.wait(1000)   
+   //Forzado Offline
+   cy.get('.p-selectbutton [role="radio"]').then(($buttons) => {
+      const btnDesactivado = $buttons.filter('[aria-label="Desactivado"]');
+      cy.log("Valor de btnDesactivado:", btnDesactivado)
+      const btnActivado = $buttons.filter('[aria-label="Activado"]');
+      cy.log("Valor de btnActivado:", btnActivado)
+      const isDesactivado = btnDesactivado.attr('aria-checked') === 'true'; // Verifica si está en "Desactivado"
+      cy.log("Valor de isDesactivado:", isDesactivado)
+      if (forzado_offline === "Si" && isDesactivado) {
+        // Si "Desactivado" está seleccionado pero debe activarse
+        cy.wrap(btnActivado).click({ multiple: true });
+        cy.log('✅ Se cambió a "Activado" porque forzado_offline es "Si".');
+      } else if (forzado_offline === "No" && !isDesactivado) {
+        // Si "Activado" está seleccionado pero debe desactivarse
+        cy.wrap(btnDesactivado).click({ multiple: true });
+        cy.log('✅ Se cambió a "Desactivado" porque forzado_offline es "No".');
+      } else {
+        cy.log('⚠️ El estado ya era el esperado, no se hizo clic.');
+      }
+   });
+    
+   //Checks
+   cy.Check(':nth-child(2) > .grid > #allowOffline > .p-checkbox > .p-checkbox-box', permite_offline).then(() => {
+      // Si el check se ha marcado, verificar si importe_limite_off está visible
+      cy.get('.p-inputnumber > .p-inputtext').then(($imp) => {
+         if ($imp.is(':enabled')) {  
+           cy.Añadir_text('.p-inputnumber > .p-inputtext', importe_limite_off); 
+           // Agrega el texto si está habilitado
+         } else {
+           cy.get('.p-inputnumber > .p-inputtext').should('not.be.enabled'); 
+           // Validamos que realmente está deshabilitado
+           cy.log(`⚠️ No se activa el importe: ${importe_limite_off}`);
+         }
+       });
+   })        
+   cy.Check(':nth-child(2) > .grid > #neobank > .p-checkbox > .p-checkbox-box', neobanco)
+   cy.Check(':nth-child(2) > .grid > #tokenMobile > .p-checkbox > .p-checkbox-box', token_movil)
+   cy.Check(':nth-child(2) > .grid > #international > .p-checkbox > .p-checkbox-box', internacional)
+   cy.Check(':nth-child(2) > .grid > #neobankActive > .p-checkbox > .p-checkbox-box',neobanco_activo)
+   cy.Check(':nth-child(2) > .grid > #prepaid > .p-checkbox > .p-checkbox-box', prepago)
+   //banco_emisor
+   cy.Añadir_Combo_Buscar(':nth-child(3) > .ng-untouched > #csbIssuer > .p-dropdown-label', '.p-dropdown-filter', banco_emisor)   
+})
+
+Cypress.Commands.add("Editar_Dos_Parametros_Text", (selector1, selector2, texto1, texto2) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.get(selector1).then(($el) => {
+      if ($el.length) {
+        cy.wrap($el).should('not.be.enabled')
+        cy.log("⚠️ No esta permitido editar",texto1)
+      } else {
+        cy.log('⚠️ Elemento no encontrado')
+      }
+   })
+   cy.Añadir_text(selector2,texto2)
+})
+
+Cypress.Commands.add("Editar_Marcas", (tag, texto) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   cy.get('.p-inputnumber > .p-inputtext').then(($el) => {
+      if ($el.length) {
+        cy.wrap($el).should('not.be.enabled')
+        cy.log("⚠️ No esta permitido editar",tag)
+      } else {
+        cy.log('⚠️ Elemento no encontrado')
+      }
+   })
+   cy.Añadir_text('#cardSchemaName',texto)
+})
 
 Cypress.Commands.add("Editar_Texto_ticket", (tag, texto) => { 
    // Validaciones en la UI basadas en los datos del JSON
@@ -1473,7 +1622,7 @@ Cypress.Commands.add("Eliminar", (boton_borrar, elemento) => {
    cy.get(boton_borrar).should("be.visible").click(); 
    // Confirmar la eliminación
    cy.Elemento_visible('#confirmModal')
-   cy.Elemento_visible('[icon="pi pi-check"] > .p-ripple').click({ force: true })
+   cy.get('[icon="pi pi-check"] > .p-ripple').click({ force: true })
    // Validar mensaje de éxito
  
 })

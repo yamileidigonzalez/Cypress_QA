@@ -1,558 +1,558 @@
 [
   {
     "id": "01A",
-    "descripci�n": "VISA PREMIER ANDORRA"
+    "descripcion": "VISA PREMIER ANDORRA"
   },
   {
     "id": "01B",
-    "descripci�n": "VISA PREMIER EXTRANJERA"
+    "descripcion": "VISA PREMIER EXTRANJERA"
   },
   {
     "id": "01C",
-    "descripci�n": "VISA ELECTRON REDSYS"
+    "descripcion": "VISA ELECTRON REDSYS"
   },
   {
     "id": "01D",
-    "descripci�n": "VISA ELECTRON ANDORRA"
+    "descripcion": "VISA ELECTRON ANDORRA"
   },
   {
     "id": "01E",
-    "descripci�n": "VISA ELECTRON EXTRANJERA"
+    "descripcion": "VISA ELECTRON EXTRANJERA"
   },
   {
     "id": "01F",
-    "descripci�n": "VISA CASH ELECTRON SERVIRED"
+    "descripcion": "VISA CASH ELECTRON SERVIRED"
   },
   {
     "id": "01G",
-    "descripci�n": "VISA PURCHASING REDES"
+    "descripcion": "VISA PURCHASING REDES"
   },
   {
     "id": "01H",
-    "descripci�n": "VISA CASH CLASSIC SERVIRED"
+    "descripcion": "VISA CASH CLASSIC SERVIRED"
   },
   {
     "id": "01I",
-    "descripci�n": "VPAY REDSYS"
+    "descripcion": "VPAY REDSYS"
   },
   {
     "id": "01J",
-    "descripci�n": "VISA CASH PREMIER SERVIRED"
+    "descripcion": "VISA CASH PREMIER SERVIRED"
   },
   {
     "id": "01K",
-    "descripci�n": "VISA BUSINESS REDES"
+    "descripcion": "VISA BUSINESS REDES"
   },
   {
     "id": "01L",
-    "descripci�n": "VISA CASH SERVIRED"
+    "descripcion": "VISA CASH SERVIRED"
   },
   {
     "id": "01M",
-    "descripci�n": "VISA PLATINUM EXTRANJERA"
+    "descripcion": "VISA PLATINUM EXTRANJERA"
   },
   {
     "id": "01N",
-    "descripci�n": "VISA BUSINESS SERVIRED"
+    "descripcion": "VISA BUSINESS SERVIRED"
   },
   {
     "id": "01O",
-    "descripci�n": "VISA INFINITE SERVIRED"
+    "descripcion": "VISA INFINITE SERVIRED"
   },
   {
     "id": "01P",
-    "descripci�n": "VISA T&E CORPORATE SERVIRED"
+    "descripcion": "VISA T&E CORPORATE SERVIRED"
   },
   {
     "id": "01Q",
-    "descripci�n": "VISA CORPORATE T&E REDES"
+    "descripcion": "VISA CORPORATE T&E REDES"
   },
   {
     "id": "01R",
-    "descripci�n": "VISA CASH ANONIMA SERVIRED"
+    "descripcion": "VISA CASH ANONIMA SERVIRED"
   },
   {
     "id": "01S",
-    "descripci�n": "VISA PLATINUM SERVIRED"
+    "descripcion": "VISA PLATINUM SERVIRED"
   },
   {
     "id": "01T",
-    "descripci�n": "VISA BUSINESS EXTRANJERA"
+    "descripcion": "VISA BUSINESS EXTRANJERA"
   },
   {
     "id": "01U",
-    "descripci�n": "VISA PURCHASING EXTRANJERA"
+    "descripcion": "VISA PURCHASING EXTRANJERA"
   },
   {
     "id": "01V",
-    "descripci�n": "VISA CORPORATE T&E EXTRANJERA"
+    "descripcion": "VISA CORPORATE T&E EXTRANJERA"
   },
   {
     "id": "01W",
-    "descripci�n": "VISA TRAVEL MONEY EXTRANJERA"
+    "descripcion": "VISA TRAVEL MONEY EXTRANJERA"
   },
   {
     "id": "01X",
-    "descripci�n": "VISA PURCHASING SERVIRED"
+    "descripcion": "VISA PURCHASING SERVIRED"
   },
   {
     "id": "01Y",
-    "descripci�n": "VISA ELECTRON REDES"
+    "descripcion": "VISA ELECTRON REDES"
   },
   {
     "id": "01Z",
-    "descripci�n": "VISA INFINITE EXTRANJERA"
+    "descripcion": "VISA INFINITE EXTRANJERA"
   },
   {
     "id": "010",
-    "descripci�n": "VISA VPAY EXTRANJERA"
+    "descripcion": "VISA VPAY EXTRANJERA"
   },
   {
     "id": "011",
-    "descripci�n": "VISA ELECTRON SERVIRED"
+    "descripcion": "VISA ELECTRON SERVIRED"
   },
   {
     "id": "012",
-    "descripci�n": "VISA CLASSIC SERVIRED"
+    "descripcion": "VISA CLASSIC SERVIRED"
   },
   {
     "id": "013",
-    "descripci�n": "VISA CLASSIC REDSYS"
+    "descripcion": "VISA CLASSIC REDSYS"
   },
   {
     "id": "014",
-    "descripci�n": "VISA CLASSIC REDES"
+    "descripcion": "VISA CLASSIC REDES"
   },
   {
     "id": "015",
-    "descripci�n": "VISA CLASSIC ANDORRA"
+    "descripcion": "VISA CLASSIC ANDORRA"
   },
   {
     "id": "016",
-    "descripci�n": "VISA CLASSIC EXTRANJERA"
+    "descripcion": "VISA CLASSIC EXTRANJERA"
   },
   {
     "id": "017",
-    "descripci�n": "VISA PREMIER SERVIRED"
+    "descripcion": "VISA PREMIER SERVIRED"
   },
   {
     "id": "018",
-    "descripci�n": "VISA PREMIER REDSYS"
+    "descripcion": "VISA PREMIER REDSYS"
   },
   {
     "id": "019",
-    "descripci�n": "VISA PREMIER REDES"
+    "descripcion": "VISA PREMIER REDES"
   },
   {
     "id": "02A",
-    "descripci�n": "MASTERCARD EU WORLD SIGNIA EXT"
+    "descripcion": "MASTERCARD EU WORLD SIGNIA EXT"
   },
   {
     "id": "02B",
-    "descripci�n": "MASTER EU COMMERC. PREP EXTR."
+    "descripcion": "MASTER EU COMMERC. PREP EXTR."
   },
   {
     "id": "02C",
-    "descripci�n": "MASTERCARD EU ORO SERVIRED"
+    "descripcion": "MASTERCARD EU ORO SERVIRED"
   },
   {
     "id": "02D",
-    "descripci�n": "DEBIT MASTERCARD EU EXTRANJERA"
+    "descripcion": "DEBIT MASTERCARD EU EXTRANJERA"
   },
   {
     "id": "02E",
-    "descripci�n": "MASTERCARD EU ELECTRONICS EXT"
+    "descripcion": "MASTERCARD EU ELECTRONICS EXT"
   },
   {
     "id": "02F",
-    "descripci�n": "CLIP EXTRANJERA"
+    "descripcion": "CLIP EXTRANJERA"
   },
   {
     "id": "02G",
-    "descripci�n": "MASTERCARD EU ORO EXTRANJERA"
+    "descripcion": "MASTERCARD EU ORO EXTRANJERA"
   },
   {
     "id": "02H",
-    "descripci�n": "MASTER EU PLATINUM EXTRANJERA"
+    "descripcion": "MASTER EU PLATINUM EXTRANJERA"
   },
   {
     "id": "02K",
-    "descripci�n": "MASTER EU BUSINESS REDES"
+    "descripcion": "MASTER EU BUSINESS REDES"
   },
   {
     "id": "02M",
-    "descripci�n": "MASTER EU PLATINUM SERVIRED"
+    "descripcion": "MASTER EU PLATINUM SERVIRED"
   },
   {
     "id": "02N",
-    "descripci�n": "MASTER EU BUSINESS SERVIRED"
+    "descripcion": "MASTER EU BUSINESS SERVIRED"
   },
   {
     "id": "02P",
-    "descripci�n": "MASTER EU CORPORATE SERVIRED"
+    "descripcion": "MASTER EU CORPORATE SERVIRED"
   },
   {
     "id": "02Q",
-    "descripci�n": "MASTER EU CORPORATE REDES"
+    "descripcion": "MASTER EU CORPORATE REDES"
   },
   {
     "id": "02R",
-    "descripci�n": "MASTER EXTRANJERA EU B2B"
+    "descripcion": "MASTER EXTRANJERA EU B2B"
   },
   {
     "id": "02S",
-    "descripci�n": "MC EU PLATINUM SERVIRED DB"
+    "descripcion": "MC EU PLATINUM SERVIRED DB"
   },
   {
     "id": "02T",
-    "descripci�n": "MASTERCARD EU BUSINESS EXT"
+    "descripcion": "MASTERCARD EU BUSINESS EXT"
   },
   {
     "id": "02U",
-    "descripci�n": "MASTERCARD EU PURCHASING EXT"
+    "descripcion": "MASTERCARD EU PURCHASING EXT"
   },
   {
     "id": "02V",
-    "descripci�n": "MASTERCARD EU CORPORATE EXT"
+    "descripcion": "MASTERCARD EU CORPORATE EXT"
   },
   {
     "id": "02W",
-    "descripci�n": "MASTERCARD EU WORLD EXT"
+    "descripcion": "MASTERCARD EU WORLD EXT"
   },
   {
     "id": "02X",
-    "descripci�n": "MASTER EXTRANJERA MES"
+    "descripcion": "MASTER EXTRANJERA MES"
   },
   {
     "id": "021",
-    "descripci�n": "MASTERCARD EU DEBITO SERVIRED"
+    "descripcion": "MASTERCARD EU DEBITO SERVIRED"
   },
   {
     "id": "022",
-    "descripci�n": "MASTERCARD EU SERVIRED"
+    "descripcion": "MASTERCARD EU SERVIRED"
   },
   {
     "id": "023",
-    "descripci�n": "MASTERCARD EU REDSYS"
+    "descripcion": "MASTERCARD EU REDSYS"
   },
   {
     "id": "024",
-    "descripci�n": "MASTERCARD EU REDES"
+    "descripcion": "MASTERCARD EU REDES"
   },
   {
     "id": "025",
-    "descripci�n": "MASTERCARD EU ANDORRA"
+    "descripcion": "MASTERCARD EU ANDORRA"
   },
   {
     "id": "026",
-    "descripci�n": "MASTERCARD EU EXT"
+    "descripcion": "MASTERCARD EU EXT"
   },
   {
     "id": "027",
-    "descripci�n": "MASTER EU CONSUMER PREP SERV"
+    "descripcion": "MASTER EU CONSUMER PREP SERV"
   },
   {
     "id": "028",
-    "descripci�n": "MASTER EU CONSUMER PREP EXTR"
+    "descripcion": "MASTER EU CONSUMER PREP EXTR"
   },
   {
     "id": "029",
-    "descripci�n": "MASTER EU COMM PREP SERV"
+    "descripcion": "MASTER EU COMM PREP SERV"
   },
   {
     "id": "031",
-    "descripci�n": "MONEDERO 4B ANONIMO"
+    "descripcion": "MONEDERO 4B ANONIMO"
   },
   {
     "id": "032",
-    "descripci�n": "MONEDERO 4B DEBITO SIN BANDA"
+    "descripcion": "MONEDERO 4B DEBITO SIN BANDA"
   },
   {
     "id": "033",
-    "descripci�n": "MONEDERO 4B DEBITO CON BANDA"
+    "descripcion": "MONEDERO 4B DEBITO CON BANDA"
   },
   {
     "id": "034",
-    "descripci�n": "4B DEBITO"
+    "descripcion": "4B DEBITO"
   },
   {
     "id": "035",
-    "descripci�n": "TARJETA EMV 4B"
+    "descripcion": "TARJETA EMV 4B"
   },
   {
     "id": "036",
-    "descripci�n": "CUP COMPRAS EXTRANJERA"
+    "descripcion": "CUP COMPRAS EXTRANJERA"
   },
   {
     "id": "042",
-    "descripci�n": "EUROCHEQUE SERVIRED (BAJA)"
+    "descripcion": "EUROCHEQUE SERVIRED (BAJA)"
   },
   {
     "id": "043",
-    "descripci�n": "EUROCHEQUE SERMEPA_(BAJA)"
+    "descripcion": "EUROCHEQUE SERMEPA_(BAJA)"
   },
   {
     "id": "044",
-    "descripci�n": "EUROCHEQUE REDES (BAJA)"
+    "descripcion": "EUROCHEQUE REDES (BAJA)"
   },
   {
     "id": "045",
-    "descripci�n": "EUROCHEQUE ANDORRA (BAJA)"
+    "descripcion": "EUROCHEQUE ANDORRA (BAJA)"
   },
   {
     "id": "046",
-    "descripci�n": "EUROCHEQUE EXTRANJERA (BAJA)"
+    "descripcion": "EUROCHEQUE EXTRANJERA (BAJA)"
   },
   {
     "id": "050",
-    "descripci�n": "CAIXA OBERTA"
+    "descripcion": "CAIXA OBERTA"
   },
   {
     "id": "051",
-    "descripci�n": "MONEDERO TELEFONICO CAIXA"
+    "descripcion": "MONEDERO TELEFONICO CAIXA"
   },
   {
     "id": "06A",
-    "descripci�n": "MASTERCARD WORLD BUSINESS"
+    "descripcion": "MASTERCARD WORLD BUSINESS"
   },
   {
     "id": "06M",
-    "descripci�n": "MASTERCARD WORLD EXTRANJERA"
+    "descripcion": "MASTERCARD WORLD EXTRANJERA"
   },
   {
     "id": "06T",
-    "descripci�n": "MASTERCARD BUSINESS CORPORATE"
+    "descripcion": "MASTERCARD BUSINESS CORPORATE"
   },
   {
     "id": "06U",
-    "descripci�n": "MASTERCARD PURCHASING EXT"
+    "descripcion": "MASTERCARD PURCHASING EXT"
   },
   {
     "id": "06W",
-    "descripci�n": "MASTER PLATINUM/WORLD EXT"
+    "descripcion": "MASTER PLATINUM/WORLD EXT"
   },
   {
     "id": "062",
-    "descripci�n": "MASTERCARD SERVIRED"
+    "descripcion": "MASTERCARD SERVIRED"
   },
   {
     "id": "063",
-    "descripci�n": "MASTERCARD REDSYS"
+    "descripcion": "MASTERCARD REDSYS"
   },
   {
     "id": "064",
-    "descripci�n": "MASTERCARD REDES"
+    "descripcion": "MASTERCARD REDES"
   },
   {
     "id": "065",
-    "descripci�n": "MASTERCARD ANDORRA"
+    "descripcion": "MASTERCARD ANDORRA"
   },
   {
     "id": "066",
-    "descripci�n": "MASTERCARD EXTRANJERA"
+    "descripcion": "MASTERCARD EXTRANJERA"
   },
   {
     "id": "067",
-    "descripci�n": "MASTERCARD DEBITO CASH S4B"
+    "descripcion": "MASTERCARD DEBITO CASH S4B"
   },
   {
     "id": "068",
-    "descripci�n": "MASTERCARD ATM EXTRANJERA"
+    "descripcion": "MASTERCARD ATM EXTRANJERA"
   },
   {
     "id": "070",
-    "descripci�n": "CAJA MADRID - RED 6000"
+    "descripcion": "CAJA MADRID - RED 6000"
   },
   {
     "id": "080",
-    "descripci�n": "SUPERCAS"
+    "descripcion": "SUPERCAS"
   },
   {
     "id": "081",
-    "descripci�n": "AMAZON PAY"
+    "descripcion": "AMAZON PAY"
   },
   {
     "id": "090",
-    "descripci�n": "TARJETAS PRIVADAS"
+    "descripcion": "TARJETAS PRIVADAS"
   },
   {
     "id": "091",
-    "descripci�n": "MISCELANEO"
+    "descripcion": "MISCELANEO"
   },
   {
     "id": "092",
-    "descripci�n": "ALIPAY PRIVADA"
+    "descripcion": "ALIPAY PRIVADA"
   },
   {
     "id": "093",
-    "descripci�n": "QR ALIPAY"
+    "descripcion": "QR ALIPAY"
   },
   {
     "id": "10A",
-    "descripci�n": "MAESTRO ATM SERVIRED"
+    "descripcion": "MAESTRO ATM SERVIRED"
   },
   {
     "id": "10B",
-    "descripci�n": "MAESTRO COMMERC. PREPAGO EXT"
+    "descripcion": "MAESTRO COMMERC. PREPAGO EXT"
   },
   {
     "id": "06D",
-    "descripci�n": "AGROTARJETA BRASIL"
+    "descripcion": "AGROTARJETA BRASIL"
   },
   {
     "id": "10C",
-    "descripci�n": "MAESTRO CONSUMER PREPAGO EXT"
+    "descripcion": "MAESTRO CONSUMER PREPAGO EXT"
   },
   {
     "id": "10D",
-    "descripci�n": "MAESTRO ATM ANDORRA"
+    "descripcion": "MAESTRO ATM ANDORRA"
   },
   {
     "id": "10E",
-    "descripci�n": "MAESTRO SMALL BUSINESS EXT"
+    "descripcion": "MAESTRO SMALL BUSINESS EXT"
   },
   {
     "id": "10F",
-    "descripci�n": "MAESTRO SMALL BUSINESS SERV"
+    "descripcion": "MAESTRO SMALL BUSINESS SERV"
   },
   {
     "id": 100,
-    "descripci�n": "R.U.F."
+    "descripcion": "R.U.F."
   },
   {
     "id": 101,
-    "descripci�n": "MAESTRO CONSUMER PREPAGO SERV"
+    "descripcion": "MAESTRO CONSUMER PREPAGO SERV"
   },
   {
     "id": 102,
-    "descripci�n": "MAESTRO SERVIRED"
+    "descripcion": "MAESTRO SERVIRED"
   },
   {
     "id": 103,
-    "descripci�n": "MAESTRO REDSYS"
+    "descripcion": "MAESTRO REDSYS"
   },
   {
     "id": 104,
-    "descripci�n": "MAESTRO REDES"
+    "descripcion": "MAESTRO REDES"
   },
   {
     "id": 105,
-    "descripci�n": "MAESTRO ANDORRA"
+    "descripcion": "MAESTRO ANDORRA"
   },
   {
     "id": 106,
-    "descripci�n": "MAESTRO EXTRANJERA"
+    "descripcion": "MAESTRO EXTRANJERA"
   },
   {
     "id": 107,
-    "descripci�n": "MAESTRO ATM REDES"
+    "descripcion": "MAESTRO ATM REDES"
   },
   {
     "id": 108,
-    "descripci�n": "MAESTRO ATM EXTRANJERA"
+    "descripcion": "MAESTRO ATM EXTRANJERA"
   },
   {
     "id": 109,
-    "descripci�n": "MAESTRO COMM PREPAGO SERV"
+    "descripcion": "MAESTRO COMM PREPAGO SERV"
   },
   {
     "id": 110,
-    "descripci�n": "TARJETA EURO6000"
+    "descripcion": "TARJETA EURO6000"
   },
   {
     "id": 116,
-    "descripci�n": "CHINA UNION PAY (CUP)"
+    "descripcion": "CHINA UNION PAY (CUP)"
   },
   {
     "id": 120,
-    "descripci�n": "AMEX NACIONAL"
+    "descripcion": "AMEX NACIONAL"
   },
   {
     "id": 121,
-    "descripci�n": "AMEX SERVIRED"
+    "descripcion": "AMEX SERVIRED"
   },
   {
     "id": 126,
-    "descripci�n": "AMEX EXTRANJERA"
+    "descripcion": "AMEX EXTRANJERA"
   },
   {
     "id": 136,
-    "descripci�n": "CIRRUS (ATM) EXTRANJERA"
+    "descripcion": "CIRRUS (ATM) EXTRANJERA"
   },
   {
     "id": 140,
-    "descripci�n": "DINERS NACIONAL"
+    "descripcion": "DINERS NACIONAL"
   },
   {
     "id": 146,
-    "descripci�n": "DINERS EXTRANJERA"
+    "descripcion": "DINERS EXTRANJERA"
   },
   {
     "id": 147,
-    "descripci�n": "DINERS CONSUMER"
+    "descripcion": "DINERS CONSUMER"
   },
   {
     "id": 148,
-    "descripci�n": "DINERS COMMERCIAL"
+    "descripcion": "DINERS COMMERCIAL"
   },
   {
     "id": 156,
-    "descripci�n": "PLUS (ATM) EXTRANJERA"
+    "descripcion": "PLUS (ATM) EXTRANJERA"
   },
   {
     "id": 160,
-    "descripci�n": "JCB EXTRANJERA"
+    "descripcion": "JCB EXTRANJERA"
   },
   {
     "id": 163,
-    "descripci�n": "JCB REDSYS"
+    "descripcion": "JCB REDSYS"
   },
   {
     "id": 166,
-    "descripci�n": "JCB SEPA"
+    "descripcion": "JCB SEPA"
   },
   {
     "id": 170,
-    "descripci�n": "CITICORP"
+    "descripcion": "CITICORP"
   },
   {
     "id": 185,
-    "descripci�n": "CLAU"
+    "descripcion": "CLAU"
   },
   {
     "id": 190,
-    "descripci�n": "VISA B2B"
+    "descripcion": "VISA B2B"
   },
   {
     "id": 194,
-    "descripci�n": "VISA INFINITE REDES"
+    "descripcion": "VISA INFINITE REDES"
   },
   {
     "id": "20F",
-    "descripci�n": "MULTIBANCO (SIBS)"
+    "descripcion": "MULTIBANCO (SIBS)"
   },
   {
     "id": "20H",
-    "descripci�n": "SERMECHIP"
+    "descripcion": "SERMECHIP"
   },
   {
     "id": 200,
-    "descripci�n": "GASOLEO"
+    "descripcion": "GASOLEO"
   },
   {
     "id": 201,
-    "descripci�n": "TRANSPONDEDORES"
+    "descripcion": "TRANSPONDEDORES"
   },
   {
     "id": 202,
-    "descripci�n": "TRASPONDEDOR EMPRESA"
+    "descripcion": "TRASPONDEDOR EMPRESA"
   },
   {
     "id": 223,
-    "descripci�n": "CUP EMPRESA"
+    "descripcion": "CUP EMPRESA"
   },
   {
     "id": 226,
-    "descripci�n": "CHINA UNION PAY"
+    "descripcion": "CHINA UNION PAY"
   }
 ]

@@ -1,50 +1,50 @@
 [
   {
     "id": 1,
-    "descripci�n": "VISA ESPA�A (INTERNO REDSYS)"
+    "descripcion": "VISA ESPA�A (INTERNO REDSYS)"
   },
   {
     "id": 2,
-    "descripci�n": "SISTEMA 4B"
+    "descripcion": "SISTEMA 4B"
   },
   {
     "id": 3,
-    "descripci�n": "SEMP (INTERNO REDSYS)"
+    "descripcion": "SEMP (INTERNO REDSYS)"
   },
   {
     "id": 5,
-    "descripci�n": "REDSYS-Priv SVR y Crossborder"
+    "descripcion": "REDSYS-Priv SVR y Crossborder"
   },
   {
     "id": 6,
-    "descripci�n": "AMEX"
+    "descripcion": "AMEX"
   },
   {
     "id": 8,
-    "descripci�n": "DINERS"
+    "descripcion": "DINERS"
   },
   {
     "id": 11,
-    "descripci�n": "ENTIDAD ANDORRANA"
+    "descripcion": "ENTIDAD ANDORRANA"
   },
   {
     "id": 12,
-    "descripci�n": "ENTIDAD EXTRANJERA"
+    "descripcion": "ENTIDAD EXTRANJERA"
   },
   {
     "id": 13,
-    "descripci�n": "RED CECA"
+    "descripcion": "RED CECA"
   },
   {
     "id": 17,
-    "descripci�n": "PAGOS INMEDIATOS"
+    "descripcion": "PAGOS INMEDIATOS"
   },
   {
     "id": 9000,
-    "descripci�n": "SERVIRED"
+    "descripcion": "SERVIRED"
   },
   {
     "id": 23,
-    "descripci�n": "E5K MIGRADO A REDSYS"
+    "descripcion": "E5K MIGRADO A REDSYS"
   }
 ]

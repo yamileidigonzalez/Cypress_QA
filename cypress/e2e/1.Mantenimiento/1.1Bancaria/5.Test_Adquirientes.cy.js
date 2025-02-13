@@ -1,6 +1,6 @@
 const { random } = require("lodash");
 describe('Test_Adquirientes', () => {
-    const tiempo = 1000;
+    const tiempo = 5000;
     
     beforeEach('Entrar en la página', () => {
       //PAGINA

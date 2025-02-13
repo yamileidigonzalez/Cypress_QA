@@ -25,17 +25,15 @@ describe('Marcas_tarjetas', () => {
     })
 
     // Añadir un nuevo [Elemento]
-    it.only('Debería añadir un nuevo [Elemento]', () => {
-      cy.fixture('1_Configuracion_Central.json').then((Configuracion_Central) => {
-        Configuracion_Central.forEach((config) => {
-            let rol = config.rol;
-            let propiedad = config.propiedad;
-            let valor = config.valor;   
-            let tipo = config.tipo
+    it('Debería añadir un nuevo [Elemento]', () => {
+      cy.fixture('2_Marcas_Tarjetas.json').then((Configuracion) => {
+        Configuracion.forEach((config) => {
+            let id = config.id;
+            let descripcion = config.descripcion;
             //Boton añadir
             cy.wait(tiempo)
             cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
-            cy.Añadir_Configuracion_Central(rol, propiedad, tipo, valor)
+            cy.Añadir_Marcas(id, descripcion)
             cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
         });
       })
@@ -44,12 +42,12 @@ describe('Marcas_tarjetas', () => {
     // Modificar un [Elemento]    
     it('Debería modificar un [Elemento]', () => {
       // Simular el proceso de actualización de un registro
-      cy.Busqueda('.gap-x-3 > .inline-flex','SERVER_PORT_LISTEN',tiempo)
+      cy.Busqueda('.gap-x-3 > .inline-flex','0',tiempo)
       cy.Click_force('.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal
-      cy.Editar_Configuracion_Central("0","SERVER_PORT_LISTEN","Entero", "60002")
+      cy.Editar_Marcas("0","SIN ASIGNAR")
       cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
     }); 
     
