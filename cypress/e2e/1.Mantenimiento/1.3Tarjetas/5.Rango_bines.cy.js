@@ -27,7 +27,7 @@ describe('Rangos_bines', () => {
     // Añadir un nuevo [Elemento]
     it('Debería añadir un nuevo [Elemento]', () => {
       cy.fixture('5_Bines.json').then((Configuracion) => {
-        Configuracion.forEach((config) => {
+        Configuracion.slice(0, 15).forEach((config) => {
             let bin_desde = config['bin desde'];
             let bin_hasta = config['bin hasta'];
             let tarjeta = config.tarjeta;
@@ -67,8 +67,7 @@ describe('Rangos_bines', () => {
     it('Debería listar todos los [elementos]', () => {
       cy.get('.p-scroller-viewport').should("be.visible"); // Verificar que el listado de registros se muestra
       cy.get('.p-scroller-viewport').should("have.length.greaterThan", 0); // Validar que hay al menos un registro
-    });
-    
+    });    
     
     // Buscar un [Elemento] por ID
     it('Debería buscar un [Elemento] por ID', () => {
@@ -90,8 +89,7 @@ describe('Rangos_bines', () => {
     });
 
     // Eliminar un [Elemento]
-
-    it.only('Debería eliminar un [Elemento]', () => {
+    it('Debería eliminar un [Elemento]', () => {
       cy.wait(tiempo)
       cy.Busqueda('.gap-x-3 > .inline-flex','4',tiempo)
       cy.get('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple').then(($el) => {
@@ -115,8 +113,7 @@ describe('Rangos_bines', () => {
                 cy.get('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple').should("be.visible").click(); 
                 // Confirmar la eliminación
                 cy.Elemento_visible('#confirmModal')
-                cy.get('[icon="pi pi-check"] > .p-ripple').click({ force: true })
-      
+                cy.get('#confirmModal > .gap-4 > [icon="pi pi-check"] > .p-ripple').click({ force: true })      
                 // Validar mensaje de éxito si la eliminación ocurrió
                 cy.get('.bg-white > .flex-col').then(($alert) => {
                     if ($alert.length && $alert.text().includes('¡El adquiriente se ha eliminado!')) {

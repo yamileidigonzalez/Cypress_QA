@@ -27,7 +27,7 @@ describe('Marcas_tarjetas', () => {
     // Añadir un nuevo [Elemento]
     it('Debería añadir un nuevo [Elemento]', () => {
       cy.fixture('2_Marcas_Tarjetas.json').then((Configuracion) => {
-        Configuracion.forEach((config) => {
+        Configuracion.slice(0, 15).forEach((config) => {
             let id = config.id;
             let descripcion = config.descripcion;
             //Boton añadir

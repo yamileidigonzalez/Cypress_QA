@@ -78,7 +78,6 @@ describe('Grupos_tarjetas', () => {
     });
 
     // Eliminar un [Elemento]
-
     it('Debería eliminar un [Elemento]', () => {
       cy.wait(tiempo)
       cy.get('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple').then(($el) => {

@@ -59,11 +59,11 @@ describe('Bines_globales_tarjetas', () => {
 
      // Listar todos los elementos
     it('Debería listar todos los [elementos]', () => {
+      cy.wait(tiempo)
       cy.get('.p-scroller-viewport').should("be.visible"); // Verificar que el listado de registros se muestra
       cy.get('.p-scroller-viewport').should("have.length.greaterThan", 0); // Validar que hay al menos un registro
     });
-    
-    
+        
     // Buscar un [Elemento] por ID
     it('Debería buscar un [Elemento] por ID', () => {
       //combrobar boton de busqueda

@@ -25,7 +25,7 @@ describe('Mantenimientos_tipo_tarjetas', () => {
     })
 
     // Añadir un nuevo [Elemento]
-    it.only('Debería añadir un nuevo [Elemento]', () => {
+    it('Debería añadir un nuevo [Elemento]', () => {
       cy.fixture('4_Mantenimientos_tipos_tarjetas.json').then((Configuracion) => {
         Configuracion.forEach((config) => {
             let id = config.id;

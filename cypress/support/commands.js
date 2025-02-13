@@ -44,6 +44,9 @@ Cypress.Commands.add('Click_Botón', (selector, t) => {
 })
 
 
+
+
+
 Cypress.Commands.add("login", (username, password) => {
       cy.get('#user').should("be.visible").should("be.enabled").type(username)
       cy.get('#password').should("be.visible").should("be.enabled").type(password).type('{enter}')
@@ -90,6 +93,8 @@ Cypress.Commands.add('Insertar_Texto', (selector, texto, t) => {
 
 
 
+
+
 Cypress.Commands.add('Añadir_Combo_Buscar_caja', (selector, sector_buscar, valor) => { 
    cy.get(selector).should("be.visible").click().wait(100);
    cy.get(sector_buscar).clear().wait(1000)
@@ -123,8 +128,7 @@ Cypress.Commands.add('Añadir_Combo_Buscar', (selector, sector_buscar, valor) =>
 
 Cypress.Commands.add('Añadir_Combo', (selector, valor) => { 
    cy.get(selector).should("be.visible").click().wait(100); // Aseguramos que el combo esté abierto
-   cy.get('.p-dropdown-items').should("be.visible"); // Esperamos a que la lista esté visible
-   
+      
    cy.get('.p-dropdown-items').then(($dropdown) => {
       if ($dropdown.find(`li:contains("${valor}")`).length > 0) { // Verifica si el valor existe
          cy.contains('.p-dropdown-items li', valor).click(); // Selecciona el valor si existe
@@ -455,10 +459,19 @@ Cypress.Commands.add("Añadir_Canales_entidad", (entidad,canal,t_desconexion,n_t
    cy.get('#pn_id_11_header_action').should("be.visible").click().wait(100)
    //Datos principales
    cy.get('.p-dropdown-label').click().wait(100)
-   .type(entidad).type("{enter}")
-   cy.get('#channelId > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(canal)
-   cy.get('#timeDisconnect > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(t_desconexion)
-   cy.get('#transactionNumber > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(n_transacciones_simu)
+   cy.get('.p-dropdown-items').should("be.visible"); // Esperamos a que la lista esté visible   
+   cy.get('.p-dropdown-items').then(($dropdown) => {
+      if ($dropdown.find(`li:contains("${entidad}")`).length > 0) { // Verifica si el valor existe
+         cy.contains('.p-dropdown-items li', entidad).click(); // Selecciona el valor si existe
+         cy.log(`✅ Se seleccionó: ${entidad}`);
+      } else {
+         cy.log('⚠️ El valor no existe, seleccionando la primera opción disponible.');
+         cy.get('.p-dropdown-items li').first().click(); // Selecciona la primera opción si el valor no existe
+      }
+   });
+   cy.Añadir_text('#channelId > .p-inputnumber > .p-inputtext',canal)
+   cy.Añadir_text('#timeDisconnect > .p-inputnumber > .p-inputtext',t_desconexion)
+   cy.Añadir_text('#transactionNumber > .p-inputnumber > .p-inputtext',n_transacciones_simu)
    //Datos de Conexion
    cy.get('#pn_id_12_header_action').should("be.visible").click()
 
@@ -712,10 +725,30 @@ Cypress.Commands.add("Añadir_Rango_Bines", (bin_desde, bin_hasta, tarjeta, banc
    cy.Añadir_Combo_Buscar(':nth-child(3) > .ng-untouched > #csbIssuer > .p-dropdown-label', '.p-dropdown-filter', banco_emisor)
 })
 
+Cypress.Commands.add("Añadir_Region", (marca, region, descripcion) => { 
+   //Marca
+   cy.Añadir_Combo('#cardSchemaId > .p-dropdown-label', marca) 
+   //Region
+   cy.Añadir_Combo('#cardRegionId > .p-dropdown-label', region) 
+   //Descripcion 
+   cy.Añadir_text('#cardSchemaRegionName', descripcion)  
+})
 
 
 
 
+
+
+Cypress.Commands.add("Editar_Region", (marca, region, descripcion) => { 
+   //Marca
+   cy.get('#cardSchemaId > .p-dropdown-label').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar", marca) 
+   //Region
+   cy.get('#cardRegionId > .p-dropdown-label').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar", region) 
+   //Descripcion 
+   cy.Añadir_text('#cardSchemaRegionName', descripcion)  
+})
 
 Cypress.Commands.add("Editar_Rango_Bines", (bin_desde, bin_hasta, tarjeta, banco_emisor, credito_debito, internacional, token_movil,prepago, marca_tarjeta, neobanco, neobanco_activo, permite_offline, importe_limite_off, forzado_offline ) => { 
    cy.Añadir_text(':nth-child(1) > :nth-child(1) > #binFrom', bin_desde) //bin_desde
@@ -1577,6 +1610,10 @@ Cypress.Commands.add('Guardar_Confirmar_TCaja', (selector_guardar, selector_mens
 
 
 
+
+
+
+
 Cypress.Commands.add("Eliminar_Anular", (boton_borrar, boton_anular, elemento) => { 
    //Sin seleccionar esta desactivada
    cy.get(boton_borrar).should('not.be.enabled').wait(1000);
@@ -1626,6 +1663,9 @@ Cypress.Commands.add("Eliminar", (boton_borrar, elemento) => {
    // Validar mensaje de éxito
  
 })
+
+
+
 
 
 

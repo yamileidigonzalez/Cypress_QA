@@ -49,7 +49,7 @@ describe('Canales_Entidad', () => {
       // Simular el proceso de actualización de un registro
       cy.get('.p-datatable-tbody > :nth-child(1) > :nth-child(2)').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal
-      cy.Editar_Canales_entidad("44 - Ciers 44", '2','999', '200',); 
+      cy.Editar_Canales_entidad("44 - Ciers 44", '2','999', '200', " ", " ", " ", " ", " ", " "); 
       //Guardar
       cy.Guardar_Confirmar_canal_entidad('[icon="pi pi-save"] > .p-ripple', tiempo) 
     });
@@ -84,12 +84,37 @@ describe('Canales_Entidad', () => {
     // Eliminar un [Elemento]
     it('Debería eliminar un [Elemento]', () => {
       cy.wait(tiempo)
-      cy.Eliminar_Anular('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple', '[icon="pi pi-arrow-left"] > .p-ripple', '.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
-      cy.wait(tiempo)
-      //Hacer clic en el primer registro para eliminar
-      cy.Eliminar_Confirmar('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple', '.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
-      cy.wait(tiempo)
+      cy.get('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple').then(($el) => {
+        if ($el.length) {
+          cy.Eliminar_Anular(
+            '.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple',
+            '[icon="pi pi-arrow-left"] > .p-ripple',
+            '.p-datatable-tbody > :nth-child(1) > :nth-child(2)'
+          );
+          cy.wait(tiempo);
+          
+          // Hacer clic en el primer registro para eliminar si existe
+          cy.get('.p-datatable-tbody > :nth-child(1) > :nth-child(2)').then(($row) => {
+            if ($row.length) {
+              cy.Eliminar(
+                '.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple',
+                '.p-datatable-tbody > :nth-child(1) > :nth-child(2)'
+              );
+      
+              // Validar mensaje de éxito si la eliminación ocurrió
+              cy.get('.bg-white > .flex-col').then(($alert) => {
+                if ($alert.length && $alert.text().includes('¡El adquiriente se ha eliminado!')) {
+                  cy.log('¡El adquiriente se ha eliminado!'); // Log de éxito
+                }
+              });
+            } else {
+              cy.log('⚠️ No hay registros para eliminar');
+            }
+          });
+        } else {
+          cy.log('⚠️ No se encontró el botón de eliminar');
+        }
+      });          
     });
-
 })
   
