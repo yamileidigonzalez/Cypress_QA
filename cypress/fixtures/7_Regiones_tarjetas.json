@@ -1,46 +1,46 @@
 [
   {
     "id": 0,
-    "descripci�n": "SIN REGION"
+    "descripcion": "SIN REGION"
   },
   {
     "id": 1,
-    "descripci�n": "U.S.A (VISA)"
+    "descripcion": "U.S.A (VISA)"
   },
   {
     "id": 2,
-    "descripci�n": "CANADA (VISA)"
+    "descripcion": "CANADA (VISA)"
   },
   {
     "id": 3,
-    "descripci�n": "COMUNIDAD EUROPEA (VISA)"
+    "descripcion": "COMUNIDAD EUROPEA (VISA)"
   },
   {
     "id": 4,
-    "descripci�n": "REGION OCEMA (VISA)"
+    "descripcion": "REGION OCEMA (VISA)"
   },
   {
     "id": 5,
-    "descripci�n": "SUDAMERICA (VISA)"
+    "descripcion": "SUDAMERICA (VISA)"
   },
   {
     "id": 6,
-    "descripci�n": "REGION CEMEA (VISA)"
+    "descripcion": "REGION CEMEA (VISA)"
   },
   {
     "id": "E",
-    "descripci�n": "AREA EC. EUROPEA (MASTERCARD)"
+    "descripcion": "AREA EC. EUROPEA (MASTERCARD)"
   },
   {
     "id": "M",
-    "descripci�n": "RESTO DEL MUNDO (MASTERCARD)"
+    "descripcion": "RESTO DEL MUNDO (MASTERCARD)"
   },
   {
     "id": "A",
-    "descripci�n": "Test Region"
+    "descripcion": "Test Region"
   },
   {
     "id": "R",
-    "descripci�n": "EUROPA DEL ESTE (MASTERCARD)"
+    "descripcion": "EUROPA DEL ESTE (MASTERCARD)"
   }
 ]
