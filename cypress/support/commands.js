@@ -812,8 +812,26 @@ Cypress.Commands.add("Añadir_Acciones_Alarmas", (id, accion, destinatarios) => 
    cy.Añadir_text('#recipients', destinatarios)  
 })
 
+Cypress.Commands.add("Añadir_Conf_Alarmas", (id, descripcion, activa) => { 
+   //Marca
+   cy.Añadir_text('#id', id) 
+   //Region
+   cy.Añadir_text('#description', descripcion) 
+   //Descripcion 
+   cy.Añadir_Combo('#active > .p-dropdown-label', activa)  
+})
 
 
+
+Cypress.Commands.add("Editar_Conf_Alarmas", (id, descripcion, activa) => { 
+   //Marca
+   cy.get('#id') .should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar", id) 
+   //Region
+   cy.Añadir_text('#description', descripcion) 
+   //Descripcion 
+   cy.Añadir_Combo('#active > .p-dropdown-label', activa)  
+})
 
 Cypress.Commands.add("Editar_Acciones_Alarmas", (id, accion, destinatarios) => { 
    //Marca
