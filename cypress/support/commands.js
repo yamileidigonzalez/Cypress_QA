@@ -772,7 +772,7 @@ Cypress.Commands.add("Añadir_Tarjetas", ( id, descripcion, permite_offline, ent
 
 
 Cypress.Commands.add("Editar_Tarjeta", ( id, descripcion, permite_offline, entidad, tipo_contabilidad,tipo_red, forzado_offline, credito_debito) => { 
-   cy.Añadir_text('#cardId > .p-inputnumber > .p-inputtext').should('not.be.enabled')
+   cy.get('#cardId > .p-inputnumber > .p-inputtext').should('not.be.enabled')
    cy.log("⚠️ No esta permitido editar", id) //id
    cy.Añadir_text('#cardName', descripcion) //descripcion
    cy.Añadir_Combo('#entityNetworkId > .p-dropdown-label', tipo_red) //tipo_red
@@ -781,26 +781,8 @@ Cypress.Commands.add("Editar_Tarjeta", ( id, descripcion, permite_offline, entid
    cy.log(`El valor del tipo de contabilidad es : ${tipo_contabilidad}`)
    cy.Añadir_text('#accountingType > .p-inputnumber > .p-inputtext', tipo_contabilidad) //tipo_contabilidad
    //Forzado Offline
-   cy.get('#offlineForced > .p-dropdown-label').then(($buttons) => {
-      const btnDesactivado = $buttons.filter('[aria-label="Desactivado"]');
-      cy.log("Valor de btnDesactivado:", btnDesactivado)
-      const btnActivado = $buttons.filter('[aria-label="Activado"]');
-      cy.log("Valor de btnActivado:", btnActivado)
-      const isDesactivado = btnDesactivado.attr('aria-checked') === 'true'; // Verifica si está en "Desactivado"
-      cy.log("Valor de isDesactivado:", isDesactivado)
-      if (forzado_offline === "Si" && isDesactivado) {
-        // Si "Desactivado" está seleccionado pero debe activarse
-        cy.get(':nth-child(3) > #offlineForced > .p-selectbutton > [tabindex="-1"]').click({ multiple: true });
-        cy.log('✅ Se cambió a "Activado" porque forzado_offline es "Si".');
-      } else if (forzado_offline === "No" && !isDesactivado) {
-        // Si "Activado" está seleccionado pero debe desactivarse
-        cy.get(':nth-child(3) > #offlineForced > .p-selectbutton > [tabindex="0"]').click({ multiple: true });
-        cy.log('✅ Se cambió a "Desactivado" porque forzado_offline es "No".');
-      } else {
-        cy.log('⚠️ El estado ya era el esperado, no se hizo clic.');
-      }
-   });
-        //Checks
+   cy.Añadir_Combo('#offlineForced > .p-dropdown-label', forzado_offline)
+   //Checks
    cy.Check('.p-checkbox-box', permite_offline)
    
 })

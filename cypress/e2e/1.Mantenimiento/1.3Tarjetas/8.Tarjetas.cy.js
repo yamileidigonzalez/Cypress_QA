@@ -46,7 +46,7 @@ describe('Tarjetas', () => {
     });   
 
     // Modificar un [Elemento]    
-    it.only('Debería modificar un [Elemento]', () => {
+    it('Debería modificar un [Elemento]', () => {
       // Simular el proceso de actualización de un registro
       cy.Busqueda('.gap-x-3 > .inline-flex','0',tiempo)
       cy.Click_force('.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
