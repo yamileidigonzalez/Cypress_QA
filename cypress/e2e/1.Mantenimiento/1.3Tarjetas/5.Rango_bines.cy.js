@@ -49,8 +49,8 @@ describe('Rangos_bines', () => {
             cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
         });
       })
-    });   
-
+    });  
+    
     // Modificar un [Elemento]    
     it('Debería modificar un [Elemento]', () => {
       // Simular el proceso de actualización de un registro
@@ -67,6 +67,31 @@ describe('Rangos_bines', () => {
     it('Debería listar todos los [elementos]', () => {
       cy.get('.p-scroller-viewport').should("be.visible"); // Verificar que el listado de registros se muestra
       cy.get('.p-scroller-viewport').should("have.length.greaterThan", 0); // Validar que hay al menos un registro
+      // Anulamos busqueda
+      cy.Click_force('app-filter > .z-20 > .inline-flex')
+      cy.Buscar_Rango_Bines("402129**", "402129**", "30 - Santander","0049 - BANCO SANTANDER", "Debito", "No","No", "No","0 - SIN ASIGNAR","No", "No","No", "300,00","Si")
+      //boton anular
+      cy.Click_force('[outlined="true"] > .p-ripple').wait(tiempo)
+      //Limpiamos Datos
+      cy.Click_force('[icon="pi pi-filter-slash"] > .p-ripple').wait(tiempo)
+      // Realizamos busqueda
+      cy.Click_force('app-filter > .z-20 > .inline-flex').wait(tiempo)
+      cy.Buscar_Rango_Bines("402129**", "402129**", "30 - Santander","0049 - BANCO SANTANDER", "Debito", "Si","Si", "Si","0 - SIN ASIGNAR","Si", "Si","Si", "300,00","No")
+      //bolon aplicar
+      cy.contains('button', 'Aplicar').should('be.visible').click()
+      .scrollIntoView()
+      // Verificar que hay un máximo de 15 elementos
+      cy.get('.gap-2 app-filter-badge').should('have.length.lte', 15);
+      // Interactuar con un filtro específico (Ejemplo: "Forzado Offline | Activado")
+      cy.contains('.gap-2 app-filter-badge', 'Forzado Offline')
+      .find('i.ph-x')
+      .click();
+      // Iterar solo sobre los primeros 15 elementos
+      cy.get('.gap-2 app-filter-badge').each(($badge, index) => {
+        if (index < 15) {
+          cy.wrap($badge).find('i.ph-x').click();
+        }
+      });
     });    
     
     // Buscar un [Elemento] por ID

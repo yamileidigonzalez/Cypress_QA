@@ -1,0 +1,12 @@
+[
+  {
+    "id alarma": 1,
+    "accion": "mail",
+    "destinatarios": "sw.solverpay@f1-connecting.com"
+  },
+  {
+    "id alarma": 2323,
+    "accion": 2323,
+    "destinatarios": 2323
+  }
+]

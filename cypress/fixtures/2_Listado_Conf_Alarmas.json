@@ -1,0 +1,37 @@
+[
+  {
+    "id": 6,
+    "descripcion": "6-Trx OFF Denegadas",
+    "activa": "Si"
+  },
+  {
+    "id": 5,
+    "descripcion": "5-Trx OFF",
+    "activa": "Si"
+  },
+  {
+    "id": 4,
+    "descripcion": "4-Denegaci�n movil",
+    "activa": "Si"
+  },
+  {
+    "id": 7,
+    "descripcion": "7-Trx Anulaciones",
+    "activa": "Si"
+  },
+  {
+    "id": 1,
+    "descripcion": "1-Denegadas Emisor",
+    "activa": "Si"
+  },
+  {
+    "id": 2,
+    "descripcion": "2-Tiempo x Adquirente",
+    "activa": "Si"
+  },
+  {
+    "id": 3,
+    "descripcion": "3-Tiempo x Emisor",
+    "activa": "Si"
+  }
+]

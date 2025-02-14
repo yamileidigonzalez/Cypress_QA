@@ -58,11 +58,11 @@ Cypress.Commands.add('Check', (selector, valor) => {
       // Verifica si el checkbox está marcado
          if (!isChecked && (valor === "Si" )) {
          // Si el checkbox no está seleccionado y el valor es "Si", seleccionamos el checkbox
-         cy.wrap($checkbox).click();
+         cy.wrap($checkbox).click({force: true});
          cy.log('✅ Checkbox seleccionado');
       } else if (isChecked && (valor === "No")){
          // Si el checkbox está seleccionado y el valor es "No", seleccionamos el checkbox
-         cy.wrap($checkbox).click();
+         cy.wrap($checkbox).click( {force: true});
          cy.log('Checkbox deshabilitado');
       } else {
          // Si ya está seleccionado, no hacemos nada
@@ -121,7 +121,7 @@ Cypress.Commands.add('Añadir_Combo_Buscar', (selector, sector_buscar, valor) =>
       } else {
          cy.log('El valor ha sido encontrado');
          // Aquí puedes agregar más acciones si el valor sí existe
-         cy.get(selector).should("be.visible").type(valor, "{enter}");
+         cy.get(selector).should("be.visible").type(valor,"{enter}");
       }
    });
 })
@@ -767,9 +767,64 @@ Cypress.Commands.add("Añadir_Tarjetas", ( id, descripcion, permite_offline, ent
    
 })
 
+Cypress.Commands.add("Buscar_Rango_Bines", (bin_desde, bin_hasta, tarjeta, banco_emisor, credito_debito, internacional, token_movil,prepago, marca_tarjeta, neobanco, neobanco_activo, permite_offline, importe_limite_off, forzado_offline ) => { 
+   cy.Añadir_text(':nth-child(2) > :nth-child(1) > #binFrom', bin_desde) //bin_desde
+   cy.Añadir_text(':nth-child(2) > :nth-child(2) > #binTo', bin_hasta) //bin_hasta
+   cy.Añadir_Combo('#card > .p-dropdown-label', tarjeta) //tarjeta
+   cy.Añadir_Combo('#binFilter > :nth-child(2) > :nth-child(3)', credito_debito) //credito_debito
+   cy.wait(1000)  
+   //banco_emisor
+   cy.get('#binFilter > :nth-child(2) > :nth-child(4)').should("be.visible").click().wait(100);
+   cy.get('.p-dropdown-filter').clear().type(banco_emisor, "{enter}").wait(1000)
+   cy.log('Buscaremos el valor');
+   // Verificamos que los resultados se han cargado
+   cy.get('#csbIssuer_list', { timeout: 10000 })  // Esperamos hasta 10 segundos si es necesario
+   .click() 
+   //Forzado Offline
+   cy.get(':nth-child(3) > .gap-2').then(() => {
+         if (forzado_offline === "Si" ) {
+            cy.get(':nth-child(3) > .gap-2 > #offlineForced > .p-selectbutton > [tabindex="0"]').click({ multiple: true });
+            cy.log('✅ Se cambió a "Activado" porque forzado_offline es "Si".');
+                  
+         } else if (forzado_offline === "No" ) { 
+            cy.get(':nth-child(3) > .gap-2 > #offlineForced > .p-selectbutton > [tabindex="-1"]').click({ multiple: true });
+            cy.log('✅ Se cambió a "Desactivado" porque forzado_offline es "No".');
+         } else {
+         cy.log('⚠️ El estado ya era el esperado, no se hizo clic.');
+         }
+   });     
+   //Checks
+   cy.Check(':nth-child(3) > .grid > #allowOffline > .p-checkbox > .p-checkbox-box', permite_offline)
+   cy.Check(':nth-child(3) > .grid > #neobank > .p-checkbox > .p-checkbox-box', neobanco)
+   cy.Check(':nth-child(3) > .grid > #tokenMobile > .p-checkbox > .p-checkbox-box', token_movil)
+   cy.Check(':nth-child(3) > .grid > #international > .p-checkbox > .p-checkbox-box', internacional)
+   cy.Check(':nth-child(3) > .grid > #neobankActive > .p-checkbox > .p-checkbox-box',neobanco_activo)
+   cy.Check(':nth-child(3) > .grid > #prepaid > .p-checkbox > .p-checkbox-box', prepago)
+
+})
+
+Cypress.Commands.add("Añadir_Acciones_Alarmas", (id, accion, destinatarios) => { 
+   //Marca
+   cy.Añadir_text('.p-inputnumber > .p-inputtext', id) 
+   //Region
+   cy.Añadir_text('#action', accion) 
+   //Descripcion 
+   cy.Añadir_text('#recipients', destinatarios)  
+})
 
 
 
+
+Cypress.Commands.add("Editar_Acciones_Alarmas", (id, accion, destinatarios) => { 
+   //Marca
+   cy.get('.p-inputnumber > .p-inputtext') .should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar", id) //id
+   //Region
+   cy.Añadir_text('#action', accion) 
+   //Descripcion 
+   cy.Añadir_text('#recipients', destinatarios)  
+})
+ 
 
 Cypress.Commands.add("Editar_Tarjeta", ( id, descripcion, permite_offline, entidad, tipo_contabilidad,tipo_red, forzado_offline, credito_debito) => { 
    cy.get('#cardId > .p-inputnumber > .p-inputtext').should('not.be.enabled')
