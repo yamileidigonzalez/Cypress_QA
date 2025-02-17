@@ -33,7 +33,7 @@ describe('Transacciones Off Rechazadas', () => {
         //Fecha inicio
         cy.Elemento_visible(':nth-child(1) > .p-inputwrapper > .w-full > .text-sm')
         //Fecha fin
-        cy.Elemento_visible(':nth-child(1) > .p-inputwrapper > .w-full > .text-sm')
+        cy.Elemento_visible(':nth-child(2) > .p-inputwrapper > .w-full > .text-sm')
         //Hora inicio
         cy.Elemento_visible('#timeMin')
         //Hora fin
@@ -175,7 +175,7 @@ describe('Transacciones Off Rechazadas', () => {
       cy.Busqueda('.gap-x-3 > .inline-flex','pay',tiempo)
     })
     
-    it.only('Debe volver a procesar las operaciones correctamente', () => {
+    it('Debe volver a procesar las operaciones correctamente', () => {
         // Hacer clic en el botón para volver a procesar las operaciones
         cy.Elemento_visible('.p-element.ng-star-inserted > .p-ripple').click({force: true});
         cy.wait(tiempo)

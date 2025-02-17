@@ -33,7 +33,7 @@ describe('Transacciones Off Denegadas', () => {
         //Fecha inicio
         cy.Elemento_visible(':nth-child(1) > .p-inputwrapper > .w-full > .text-sm')
         //Fecha fin
-        cy.Elemento_visible(':nth-child(1) > .p-inputwrapper > .w-full > .text-sm')
+        cy.Elemento_visible(':nth-child(2) > .p-inputwrapper > .w-full > .text-sm')
         //Hora inicio
         cy.Elemento_visible('#timeMin')
         //Hora fin
