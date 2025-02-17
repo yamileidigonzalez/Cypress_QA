@@ -94,6 +94,20 @@ Cypress.Commands.add('Insertar_Texto', (selector, texto, t) => {
 
 
 
+Cypress.Commands.add('Añadir_Fecha', (selector_calendario, mes, año, fecha, calendario) => { 
+   cy.get(selector_calendario).click();  
+   // Clic en el mes y año si es necesario (depende de la implementación)
+   cy.get('.p-datepicker-year').click(); // Aquí se abrirá el selector de año   
+   cy.contains(año).click(); // Seleccionamos el año 2025
+   //cy.get('.p-datepicker-month').click(); // Aquí se abrirá el selector de mes
+   cy.contains(mes).click(); // Seleccionamos el mes de febrero
+   // Ahora seleccionamos el día en el calendario
+   cy.contains(fecha).click(); // Seleccionamos el día 17
+   // Cierra el calendario si es necesario (depende de la implementación)
+   cy.get(calendario).click();
+
+
+});
 
 Cypress.Commands.add('Añadir_Combo_Buscar_caja', (selector, sector_buscar, valor) => { 
    cy.get(selector).should("be.visible").click().wait(100);
@@ -823,6 +837,13 @@ Cypress.Commands.add("Añadir_Conf_Alarmas", (id, descripcion, activa) => {
 
 
 
+
+
+
+
+
+
+
 Cypress.Commands.add("Editar_Conf_Alarmas", (id, descripcion, activa) => { 
    //Marca
    cy.get('#id') .should('not.be.enabled')
@@ -843,7 +864,6 @@ Cypress.Commands.add("Editar_Acciones_Alarmas", (id, accion, destinatarios) => {
    cy.Añadir_text('#recipients', destinatarios)  
 })
  
-
 Cypress.Commands.add("Editar_Tarjeta", ( id, descripcion, permite_offline, entidad, tipo_contabilidad,tipo_red, forzado_offline, credito_debito) => { 
    cy.get('#cardId > .p-inputnumber > .p-inputtext').should('not.be.enabled')
    cy.log("⚠️ No esta permitido editar", id) //id
@@ -1346,6 +1366,7 @@ Cypress.Commands.add("Editar_TCajas",(id, capacidades_terminal, descripcion) => 
    cy.Añadir_text('#posCapabilities', capacidades_terminal)
    cy.Añadir_text('#posDescription', descripcion)     
 })
+
 
 
 Cypress.Commands.add('Guardar_Confirmar_Usuarios', (selector_guardar, selector_mensaje) => {

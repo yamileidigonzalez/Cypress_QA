@@ -19,152 +19,97 @@ describe('Anulaciones', () => {
     })
     
     //Comprobar los filtros
-    it.only('Comprobar los filtros', () => {
+    it('Comprobar los filtros', () => {
         
         cy.Click_force('app-filter > .z-20 > .inline-flex')
-        //fecha y hora
-        cy.Elemento_visible('.p-3 > .active')
-        //datos transaccion
-        cy.Elemento_visible('.p-3 > :nth-child(2)')
+        //id_transaccion
+        cy.Elemento_visible('#transactionId > .p-inputnumber > .p-inputtext')
+        //importe min
+        cy.Elemento_visible('#amountMin > .p-inputnumber > .p-inputtext')
         //datos tienda
-        cy.Elemento_visible('.p-3 > :nth-child(3)')
-        //datos tarjeta
-        cy.Elemento_visible('.p-3 > :nth-child(4)')
+        cy.Elemento_visible('#store > .p-dropdown-label')
+        //numero ticket
+        cy.Elemento_visible('#ticketNumber > .p-inputnumber > .p-inputtext')
+    
+        //tipo transaccion
+        cy.Elemento_visible('#transactionTypeInput > .p-dropdown-label')
+        //importe max
+        cy.Elemento_visible('#amountMax > .p-inputnumber > .p-inputtext')
+        //caja
+        cy.Elemento_visible('#posId > .p-inputnumber > .p-inputtext')
+        .scrollIntoView()
+
+        //Fecha inicio
+        cy.Elemento_visible('#startDate > .p-calendar > .p-inputtext')
+        //Fecha fin
+        cy.Elemento_visible('#endDate > .p-calendar > .p-inputtext')
+        //Hora inicio
+        cy.Elemento_visible('#startHourInput > .p-dropdown-label')
+        cy.Elemento_visible('#startMinInput > .p-dropdown-label')
+        //Hora fin
+        cy.Elemento_visible('#endHourInput > .p-dropdown-label')
+        cy.Elemento_visible('#endMinInput > .p-dropdown-label')
+        .scrollIntoView()
+
         //boton anular
-        cy.Click_force('[outlined="true"] > .p-ripple').wait(tiempo)
-
+        cy.Click_force('[icon="pi pi-times"] > .p-ripple').wait(tiempo)
     });
 
-    it('Recorrer todas las opciones del filtro', () => {
-        const opcionesFiltro = [
-            '.p-3 > .active',
-            '.p-3 > :nth-child(2)',
-            '.p-3 > :nth-child(3)',
-            '.p-3 > :nth-child(4)'
+    //Recorrer todas las opciones
+    it('Recorrer todas las opciones', () => {
+        const opcionesFiltro_Texto = [
+            '#transactionId > .p-inputnumber > .p-inputtext',
+            '#amountMin > .p-inputnumber > .p-inputtext',
+            '#ticketNumber > .p-inputnumber > .p-inputtext',
+            '#amountMax > .p-inputnumber > .p-inputtext',
+            '#posId > .p-inputnumber > .p-inputtext'          
         ];
-        
-        opcionesFiltro.forEach((selector) => {
-            //Limpiamos Datos
-            cy.Click_force('[icon="pi pi-filter-slash"] > .p-ripple').wait(tiempo)
-             // Realizamos busqueda
-            cy.Click_force('.z-20 > .bg-slate-200').wait(tiempo)
-            cy.get(selector).click();
-            cy.wait(tiempo);
-            cy.get(selector).should('have.class', 'active');
-             //bolon aplicar
-            cy.contains('button', 'Aplicar').should('be.visible').click()
-            // Verificar que hay un máximo de 15 elementos
-            cy.get('.gap-2 app-filter-badge').should('have.length.lte', 15);
-            cy.get('.p-scroller').should('have.length.greaterThan', 0);
-        });
-    });
-
-    it('Recorrer todas las opciones de Fecha y Hora', () => {
-        const opcionesFiltro_Mostrar_transaccion = [
-            '.flex-col.gap-2 > .flex > :nth-child(1)',
-            '.flex-col.gap-2 > .flex > :nth-child(2)',
-            '.flex-col.gap-2 > .flex > :nth-child(3)'
+        const opcionesFiltro_Combo = [
+            '#store > .p-dropdown-label',
+            '#transactionTypeInput > .p-dropdown-label',
+            '#startHourInput > .p-dropdown-label',
+            '#startMinInput > .p-dropdown-label',
+            '#endHourInput > .p-dropdown-label',
+            '#endMinInput > .p-dropdown-label'
         ];
-        
-        opcionesFiltro_Mostrar_transaccion.forEach((selector) => {
-            //Limpiamos Datos
-            cy.Click_force('[icon="pi pi-filter-slash"] > .p-ripple').wait(tiempo)
-            // Realizamos busqueda
-            cy.Click_force('.z-20 > .bg-slate-200').wait(tiempo)
-            cy.Click_force('.p-3 > :nth-child(1)')
-            cy.get(selector).click();
-            cy.wait(tiempo);
-            //bolon aplicar
-            cy.contains('button', 'Aplicar').should('be.visible').click()
-            // Verificar que hay un máximo de 15 elementos
-            cy.get('.gap-2 app-filter-badge').should('have.length.lte', 15);
-            cy.get('.p-scroller').should('have.length.greaterThan', 0);
-        });
-    });
-
-    it('Recorrer todas las opciones de Datos del transaccion', () => {
-        const opcionesFiltro_Datos_transaccion_Combo = [
-            '#opType > .p-dropdown-label',
-            '#acquirer > .p-dropdown-label'
-        ];
-        const opcionesFiltro_Datos_transaccion_Texto = [
-            ':nth-child(3) > .p-inputwrapper > .p-inputnumber > .p-inputtext',
-            ':nth-child(4) > .p-inputwrapper > .p-inputnumber > .p-inputtext',
-            '#ticket > .p-inputnumber > .p-inputtext'
-        ];
-
-        opcionesFiltro_Datos_transaccion_Combo.forEach((selectorc) => {
-            //Limpiamos Datos
-            cy.Click_force('[icon="pi pi-filter-slash"] > .p-ripple').wait(tiempo)
-            // Realizamos busqueda
-            cy.Click_force('.z-20 > .bg-slate-200').wait(tiempo)
-            cy.Click_force('.p-3 > :nth-child(2)')
-            cy.Añadir_Combo(selectorc, 'Ven')
-            cy.wait(tiempo);
-            //bolon aplicar
-            cy.contains('button', 'Aplicar').should('be.visible').click()
-            // Verificar que hay un máximo de 15 elementos
-            cy.get('.gap-2 app-filter-badge').should('have.length.lte', 15);
-            cy.get('.p-scroller').should('have.length.greaterThan', 0);
-        })        
-        
-        opcionesFiltro_Datos_transaccion_Texto.forEach((selectort) => {
-            //Limpiamos Datos
-            cy.Click_force('[icon="pi pi-filter-slash"] > .p-ripple').wait(tiempo)
-            // Realizamos busqueda
-            cy.Click_force('.z-20 > .bg-slate-200').wait(tiempo)
-            cy.Click_force('.p-3 > :nth-child(2)')
-            cy.Añadir_text(selectort, '5')
-            cy.wait(tiempo);
-            //bolon aplicar
-            cy.contains('button', 'Aplicar').should('be.visible').click()
-            // Verificar que hay un máximo de 15 elementos
-            cy.get('.gap-2 app-filter-badge').should('have.length.lte', 15);
-            cy.get('.p-scroller').should('have.length.greaterThan', 0);
-        });
-
+        // Cargar la fecha (suponiendo que el calendario tiene un formato estándar)
+        const fecha = '17';
+        const mes = 'Feb'; // O '02' si se usa un formato numérico
+        const año = '2025';      
+            
         //Limpiamos Datos
         cy.Click_force('[icon="pi pi-filter-slash"] > .p-ripple').wait(tiempo)
         // Realizamos busqueda
-        cy.Click_force('.z-20 > .bg-slate-200').wait(tiempo)
-        cy.Click_force('.p-3 > :nth-child(2)')
-        cy.Añadir_Combo_Buscar('#responseCode > .p-dropdown-label', '.p-dropdown-filter', '600')
-        cy.wait(tiempo);
-        //bolon aplicar
-        cy.contains('button', 'Aplicar').should('be.visible').click()
+        cy.Click_force('app-filter > .z-20 > .inline-flex').wait(tiempo).scrollIntoView()
+        // Abre el calendario
+        cy.Añadir_Fecha('#startDate > .p-calendar > .p-inputtext', mes, año, fecha, '#pn_id_13_panel')           
+        // Hacer clic en el botón aplicar
+        cy.contains('button', 'Aplicar').should('be.visible').click();    
         // Verificar que hay un máximo de 15 elementos
-        cy.get('.gap-2 app-filter-badge').should('have.length.lte', 15);
+        cy.get('.gap-2 app-filter-badge').should('have.length.lte', 2);            
+        // Verificar que hay elementos en el scroller
         cy.get('.p-scroller').should('have.length.greaterThan', 0);
 
         //Limpiamos Datos
         cy.Click_force('[icon="pi pi-filter-slash"] > .p-ripple').wait(tiempo)
         // Realizamos busqueda
-        cy.Click_force('.z-20 > .bg-slate-200').wait(tiempo)
-        cy.Click_force('.p-3 > :nth-child(2)')
-        cy.Check('.p-checkbox-box', "Si")
-        cy.wait(tiempo);
-        //bolon aplicar
-        cy.contains('button', 'Aplicar').should('be.visible').click()
+        cy.Click_force('app-filter > .z-20 > .inline-flex').wait(tiempo).scrollIntoView()
+        // Interactuamos con el selector de fecha
+        // Abre el calendario
+        cy.Añadir_Fecha('#endDate > .p-calendar > .p-inputtext', mes, año, fecha, '#pn_id_14_panel') 
+        // Hacer clic en el botón aplicar
+        cy.contains('button', 'Aplicar').should('be.visible').click();            
         // Verificar que hay un máximo de 15 elementos
-        cy.get('.gap-2 app-filter-badge').should('have.length.lte', 15);
+        cy.get('.gap-2 app-filter-badge').should('have.length.lte', 2);            
+        // Verificar que hay elementos en el scroller
         cy.get('.p-scroller').should('have.length.greaterThan', 0);
-        
-    });
-
-    it('Recorrer todas las opciones de Datos de Tienda', () => {
-        const opcionesFiltro_Datos_transaccion_Texto = [
-            '#pos > .p-inputnumber > .p-inputtext',
-            '#store > .p-inputnumber > .p-inputtext',
-            '#fuc'
-        ];     
-        
-        opcionesFiltro_Datos_transaccion_Texto.forEach((selectort) => {
+ 
+        opcionesFiltro_Texto.forEach((selector) => {
             //Limpiamos Datos
             cy.Click_force('[icon="pi pi-filter-slash"] > .p-ripple').wait(tiempo)
             // Realizamos busqueda
-            cy.Click_force('.z-20 > .bg-slate-200').wait(tiempo)
-            cy.Click_force('.p-3 > :nth-child(3)')
-            cy.Añadir_text(selectort, '5')
+            cy.Click_force('app-filter > .z-20 > .inline-flex').wait(tiempo)
+            cy.Añadir_text(selector,'5') 
             cy.wait(tiempo);
             //bolon aplicar
             cy.contains('button', 'Aplicar').should('be.visible').click()
@@ -172,64 +117,19 @@ describe('Anulaciones', () => {
             cy.get('.gap-2 app-filter-badge').should('have.length.lte', 15);
             cy.get('.p-scroller').should('have.length.greaterThan', 0);
         });
-        
-    });
-
-    it('Recorrer todas las opciones de Datos de Tarjeta', () => {
-        const opcionesFiltro_Datos_transaccion_Combo = [
-            '#creditDebit > .p-dropdown-label',
-            '#contactless > .p-dropdown-label',
-            '#captureMethod > .p-dropdown-label'
-
-        ];
-        const opcionesFiltro_Datos_transaccion_Texto = [
-            '#card',
-            '#bin'
-        ];
-
-        opcionesFiltro_Datos_transaccion_Combo.forEach((selectorc) => {
+        opcionesFiltro_Combo.forEach((selectorc) => {
             //Limpiamos Datos
             cy.Click_force('[icon="pi pi-filter-slash"] > .p-ripple').wait(tiempo)
             // Realizamos busqueda
-            cy.Click_force('.z-20 > .bg-slate-200').wait(tiempo)
-            cy.Click_force('.p-3 > :nth-child(4)')
-            cy.Añadir_Combo(selectorc, 'Ven')
+            cy.Click_force('app-filter > .z-20 > .inline-flex').wait(tiempo).scrollIntoView()
+            cy.Añadir_Combo(selectorc, '5')
             cy.wait(tiempo);
             //bolon aplicar
             cy.contains('button', 'Aplicar').should('be.visible').click()
             // Verificar que hay un máximo de 15 elementos
-            cy.get('.gap-2 app-filter-badge').should('have.length.lte', 15);
+            cy.get('.gap-2 app-filter-badge').should('have.length.lte', 2);
             cy.get('.p-scroller').should('have.length.greaterThan', 0);
-        })        
-        
-        opcionesFiltro_Datos_transaccion_Texto.forEach((selectort) => {
-            //Limpiamos Datos
-            cy.Click_force('[icon="pi pi-filter-slash"] > .p-ripple').wait(tiempo)
-            // Realizamos busqueda
-            cy.Click_force('.z-20 > .bg-slate-200').wait(tiempo)
-            cy.Click_force('.p-3 > :nth-child(4)')
-            cy.Añadir_text(selectort, '5')
-            cy.wait(tiempo);
-            //bolon aplicar
-            cy.contains('button', 'Aplicar').should('be.visible').click()
-            // Verificar que hay un máximo de 15 elementos
-            cy.get('.gap-2 app-filter-badge').should('have.length.lte', 15);
-            cy.get('.p-scroller').should('have.length.greaterThan', 0);
-        });
-
-        //Limpiamos Datos
-        cy.Click_force('[icon="pi pi-filter-slash"] > .p-ripple').wait(tiempo)
-        // Realizamos busqueda
-        cy.Click_force('.z-20 > .bg-slate-200').wait(tiempo)
-        cy.Click_force('.p-3 > :nth-child(4)')
-        cy.Añadir_Combo_Buscar('#issuer > .p-dropdown-label', '.p-dropdown-filter', '600')
-        cy.wait(tiempo);
-        //bolon aplicar
-        cy.contains('button', 'Aplicar').should('be.visible').click()
-        // Verificar que hay un máximo de 15 elementos
-        cy.get('.gap-2 app-filter-badge').should('have.length.lte', 15);
-        cy.get('.p-scroller').should('have.length.greaterThan', 0);
-        
+        })       
     });    
     
     //Comprobar la visualización de detalle de operaciones
@@ -244,15 +144,11 @@ describe('Anulaciones', () => {
             cy.wrap($el).click({ force: true });
             cy.wait(tiempo);  
             // Verificar que el elemento es visible después de hacer clic
-            cy.wrap($el).should('be.visible').scrollIntoView()
-            // Cerrar el popup, si tiene un botón de cerrar 
-            cy.get('.ng-trigger').should('be.visible').find('.p-dialog-header-icons > .p-ripple') 
-            .click().wait(tiempo);           
+            cy.wrap($el).should('be.visible').scrollIntoView()                     
         });
-
     });
     
-     // Listar todos los elementos
+    // Listar todos los elementos
     it('Debería listar todos los [elementos]', () => {
       cy.get('.p-scroller-viewport').should("be.visible"); // Verificar que el listado de registros se muestra
       cy.get('.p-scroller-viewport').should("have.length.greaterThan", 0); // Validar que hay al menos un registro
