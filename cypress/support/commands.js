@@ -98,11 +98,11 @@ Cypress.Commands.add('Añadir_Fecha', (selector_calendario, mes, año, fecha, ca
    cy.get(selector_calendario).click();  
    // Clic en el mes y año si es necesario (depende de la implementación)
    cy.get('.p-datepicker-year').click(); // Aquí se abrirá el selector de año   
-   cy.contains(año).click(); // Seleccionamos el año 2025
+   cy.contains(año).click({force:true}); // Seleccionamos el año 2025
    //cy.get('.p-datepicker-month').click(); // Aquí se abrirá el selector de mes
-   cy.contains(mes).click(); // Seleccionamos el mes de febrero
+   cy.contains(mes).click({force:true}); // Seleccionamos el mes de febrero
    // Ahora seleccionamos el día en el calendario
-   cy.contains(fecha).click(); // Seleccionamos el día 17
+   cy.contains(fecha).click({force:true}); // Seleccionamos el día 17
    // Cierra el calendario si es necesario (depende de la implementación)
    cy.get(calendario).click();
 
