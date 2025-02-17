@@ -18,16 +18,77 @@ describe('Insercion Claves MAC', () => {
         .click();  // Luego realiza el clic 
     })
 
-    it('Debe insertar una clave MAC correctamente', () => {
-        // Hacer clic en el botón para agregar una nueva clave MAC
-        cy.contains('button', 'Agregar Clave MAC').should('be.visible').click();
+    // Listar todos los elementos
+    it('Debería comprobar que se muestran los [elementos]', () => {
+        cy.get('.out-border').should("be.visible"); // Verificar que el listado de registros se muestra
+    });
+
+    it.only('Debe insertar una clave MAC correctamente', () => {
+        const opcionesFiltro_Combo = [
+            '#entity > .p-dropdown-label',
+            ':nth-child(2) > .ng-untouched > #macLevel > .p-dropdown-label',
+            ':nth-child(3) > .ng-untouched > #macLevel > .p-dropdown-label'
+        ];
+
+        const opcionesFiltro_texto = [
+            '#macKey1',
+            '#macKey2',
+            '#macKey3'
+        ];
+
+        const opcionesFiltro_texto_1 = [
+            '#transportKey1',
+            '#transportKey2',
+            '#transportKey3',
+            '#transportKeyKcv',
+            '#macKeyCiphered'
+        ];
+
+        // Ingresar una clave MAC válida
+        const claveMAC = '00:1A:2B:3C:4D:5E'; // Ejemplo de una MAC válida
+
+        opcionesFiltro_Combo.forEach((selectorc) => {
+            cy.Añadir_Combo(selectorc, '44')
+            cy.wait(tiempo);
+        })   
+        cy.get(':nth-child(2) > .ng-valid > #macLevel > .p-dropdown-label').then(($modo) => {
+            if($modo === 'Sin Claves de Transporte'){
+                cy.Añadir_Combo('.ng-untouched > #macLevel > .p-dropdown-label', '2')
+                opcionesFiltro_texto.forEach((selectorc) => {
+                    cy.Añadir_Combo(selectorc, claveMAC)
+                    cy.wait(tiempo);
+                })
+            } else if($modo === 'Con Claves de Transporte'){
+                cy.Añadir_Combo('.ng-untouched > #macLevel > .p-dropdown-label', '2')
+                opcionesFiltro_texto.forEach((selectorc) => {
+                    cy.Añadir_Combo(selectorc, claveMAC)
+                    cy.wait(tiempo);
+                })
+                opcionesFiltro_texto_1.forEach((selectort) => {
+                    cy.Añadir_Combo(selectort, claveMAC)
+                    cy.wait(tiempo);
+                })
+            } else {
+                cy.log("No se encontro nada")
+            }
+        })
+
+        //Filtro_Texto
+        cy.Añadir_text('#vcc', '00') 
+        cy.wait(tiempo);
+        //bolon aplicar
+        cy.contains('button', 'Submit').should('be.visible').click()
+        // Verificar que hay un máximo de 15 elementos
+        cy.get('.gap-2 app-filter-badge').should('have.length.lte', 3);
+        cy.get('.p-scroller').should('have.length.greaterThan', 0);  
+        
+        
 
         // Verificar que el modal o formulario de inserción esté visible
         cy.get('.modal-insertar-mac, .formulario-clave-mac') // Ajusta el selector si es necesario
             .should('be.visible');
 
-        // Ingresar una clave MAC válida
-        const claveMAC = '00:1A:2B:3C:4D:5E'; // Ejemplo de una MAC válida
+        
         cy.get('input[name="claveMac"]').type(claveMAC);
 
         // Confirmar la acción (suponiendo que hay un botón de Guardar o Confirmar)
