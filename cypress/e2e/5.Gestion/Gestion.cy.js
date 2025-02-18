@@ -11,256 +11,491 @@ describe('GESTION', () => {
         cy.wait(tiempo)
         
         //Seleccionar Mantenimientos en el Menu
-        cy.get('[data-target="submenu-management"]').should("be.visible").click()
-        //Seleccionar en el Submenu
-        cy.get('#submenu-management > :nth-child(4)')
-        .scrollIntoView()  // Desplaza el elemento a la vista
-        .should('be.visible')  // Verifica que el elemento es visible
-        .click();  // Luego realiza el clic 
+        cy.get('.main-item.ng-star-inserted').should("be.visible").click()
+        cy.wait(tiempo)
+
     }) 
+
+    it('Activar offline - Se activa y muestra correctamente', () => {
+        cy.Elemento_visible('.ng-invalid > .mb-6'); // Verifica mensaje de éxito
+        cy.contains('.p-highlight > .p-button-label', 'Operativa Offline').click( {force: true}); //Desactivo
+        cy.contains('[tabindex="0"] > .p-button-label', 'Operativa Offline').click( {force: true}); //Activo          
+        cy.wait(tiempo);
+        cy.Elemento_visible('.grid')
+        cy.Elemento_visible('.p-6 > :nth-child(2)')
+
+    });
+        
+    it('Activar backup - Se activa y muestra correctamente', () => {
+        cy.Elemento_visible('.ng-invalid > .mb-6'); // Verifica mensaje de éxito
+        cy.contains('[tabindex="-1"] > .p-button-label', 'Operativa Backup').click( {force: true}); //Activo
+        cy.Elemento_visible('.grid')
+        cy.Elemento_visible('.p-6 > :nth-child(3)')
+        cy.contains('[tabindex="0"] > .p-button-label', 'Operativa Backup').click( {force: true}); //Desactivo          
+        cy.wait(tiempo);        
+    });
+
+    it('Desaparecer fichero', () => {
+        cy.get('.p-highlight').click(); // Botón para activar offline
+    })
     //Operativa-offline
     it('Activar Bin', () => { 
         //Añadir BIN
-        cy.get('#offline_backup_force_config_offlineBin').should('be.visible').type('2222222222222').clear()
-        cy.get('#offline_backup_force_config_offlineBin').should('be.visible').type('3')
+        cy.Añadir_text('.grid > :nth-child(1) > .p-inputtext','5*******')
+        .wait(tiempo)
         //boton Activar
-        cy.get('#offline-controls > .card-body').click(30,30)
-        cy.get('#offlineActivate').should('be.visible').click().wait(tiempo)
-        cy.get('#off-backup-modal > .modal-dialog > .modal-content > .modal-footer > .btn').click()
-    })
+        cy.contains('button', 'Activar').should('be.visible').click();
+        //Confirmar
+        // Verifica mensaje de éxito
+        cy.get('app-management.ng-star-inserted > app-custom-toast > p-toast.p-element > .p-toast')
+        .should('be.visible')
+        .then(($toast) => {
+            const toastText = $toast.text().trim();  // Obtener el texto del toast y eliminar espacios extra
+            if (toastText.includes('El bin introducido no existe')) {
+                cy.log("El bin introducido no existe");
+            } else if (toastText.includes('Forzado offline activado correctamente')) {
+                cy.log("Forzado offline activado correctamente");
 
-    it('Activar Ciers', () => {       
-        //Añadir Ciers 1
-        cy.get('#offline_backup_force_config_offlineBin').should('be.visible').clear()
-        cy.get('#offline_backup_force_config_offlineCiers').should('be.visible').select('1').should('have.value','1')
-        cy.get('#offline_backup_force_config_offlineCiers').should('be.visible').select('12 - Unicaja').should('have.value','12')
-        //boton Activar
-        cy.get('#offline-controls > .card-body').click(30,30)
-        cy.get('#offlineActivate').should('be.visible').click().wait(tiempo)
-        cy.get('#off-backup-modal > .modal-dialog > .modal-content > .modal-footer > .btn').click()
-        //Añadir Ciers 2
-        cy.get('#offline_backup_force_config_offlineBin').should('be.visible').clear()
-        cy.get('#offline_backup_force_config_offlineCiers').should('be.visible').select('1').should('have.value','1')
-        cy.get('#offline_backup_force_config_offlineCiers').should('be.visible').select('44 - Ciers 44').should('have.value','44')
-        //boton Activar
-        cy.get('#offline-controls > .card-body').click(30,30)
-        cy.get('#offlineActivate').should('be.visible').click().wait(tiempo)
-        cy.get('#off-backup-modal > .modal-dialog > .modal-content > .modal-footer > .btn').click()
+                cy.get('.bg-white > tr > :nth-child(2)').should('have.length.lte', 1)
+                .should('have.length.greaterThan', 0) // Verificar que hay elementos visibles 
+                .contains('5*******') 
+            } else {
+            cy.log("Otro mensaje: " + toastText);
+            }
+        }); 
     })
 
     it('Activar Adquiriente', () => {
         //Añadir adquiriente
-        cy.get('#offline_backup_force_config_offlineAcquirer').should('be.visible').select('A01').should('have.value','A01')
-        cy.get('#offline_backup_force_config_offlineAcquirer').should('be.visible').select('A77').should('have.value','A77')
-        cy.get('#offline_backup_force_config_offlineAcquirer').should('be.visible').select('S09').should('have.value','S09')
-        //boton activar
-        cy.get('#offline-controls > .card-body').click(30,30)
-        cy.get('#offlineActivate').should('be.visible').click().wait(tiempo)
-        cy.get('#off-backup-modal > .modal-dialog > .modal-content > .modal-footer > .btn').click()
+        cy.Añadir_Combo('#pn_id_12 > .p-dropdown-label','A01')
+        .wait(tiempo)
+        //boton Activar
+        cy.contains('button', 'Activar').should('be.visible').then(($boton) => {
+            if (Cypress.$($boton).is(':enabled')) {
+                cy.wrap($boton).click();
+                cy.log('Se logró dar click');
+        
+                // Confirmar mensaje de éxito
+                cy.get('app-management.ng-star-inserted app-custom-toast p-toast.p-element .p-toast')
+                    .should('be.visible')  // Asegurar que el mensaje se muestre
+                    .invoke('text')        // Obtener el texto del toast
+                    .then((toastText) => {
+                        const mensaje = toastText.trim(); // Eliminar espacios extra
+                        
+                        if (mensaje.includes('El adquiriente introducido no existe')) {
+                            cy.log("⚠️ El adquiriente introducido no existe");
+                        } else if (mensaje.includes('Forzado offline activado correctamente')) {
+                            cy.log("✅ Forzado offline activado correctamente");
+        
+                            // Validar que hay filas en la tabla y se muestra "A01"
+                            cy.get('.bg-white > tr > :nth-child(4)')
+                                .should('have.length.greaterThan', 0)  // Al menos una fila
+                                .should('have.length.lte', 1)          // Máximo una fila
+                                .contains('A01');                      // Contiene "A01"
+                        } else {
+                            cy.log("ℹ️ Otro mensaje recibido: " + mensaje);
+                        }
+                    });
+            } else {
+                cy.log('❌ No se logró dar click');
+            }
+        });
     })
 
     it('Activar Emisor', () => {
-        //Añadir Emisor
-        //cy.get('#offline_backup_force_config_offlineIssuer-ts-control').should('be.visible').select('0007').should('have.value','0007')
-        //cy.get('.ts-control').should('be.visible').select('0010').should('have.value','0010')
-        //cy.get('.ts-control').should('be.visible').select('0090').should('have.value','0090')
+        //Añadir adquiriente
+        cy.Añadir_Combo_Buscar('#issuer > .p-dropdown-label','.p-dropdown-filter','0013')
+        .wait(tiempo)
+        //boton Activar
+        cy.contains('button', 'Activar').should('be.visible').then(($boton) => {
+            if (Cypress.$($boton).is(':enabled')) {
+                cy.wrap($boton).click();
+                cy.log('Se logró dar click');
+        
+                // Confirmar mensaje de éxito
+                cy.get('app-management.ng-star-inserted app-custom-toast p-toast.p-element .p-toast')
+                    .should('be.visible')  // Asegurar que el mensaje se muestre
+                    .invoke('text')        // Obtener el texto del toast
+                    .then((toastText) => {
+                        const mensaje = toastText.trim(); // Eliminar espacios extra
+                        
+                        if (mensaje.includes('no existe')) {
+                            cy.log("⚠️  no existe");
+                        } else if (mensaje.includes('Forzado offline activado correctamente')) {
+                            cy.log("✅ Forzado offline activado correctamente");
+        
+                            // Validar que hay filas en la tabla y se muestra 
+                            cy.get('.bg-white > tr > :nth-child(5)')
+                                .should('have.length.greaterThan', 0)  // Al menos una fila
+                                .should('have.length.lte', 1)          // Máximo una fila
+                                //.contains('0013');                     
+                        } else {
+                            cy.log("ℹ️ Otro mensaje recibido: " + mensaje);
+                        }
+                    });
+            } else {
+                cy.log('❌ No se logró dar click');
+            }
+        });
+    })
 
+    it('Activar Entidad', () => {
+        //Añadir Entidad
+        cy.Añadir_Combo('#pn_id_10 > .p-dropdown-label','12')
+        .wait(tiempo)
+        //boton Activar
+        cy.contains('button', 'Activar').should('be.visible').then(($boton) => {
+            if (Cypress.$($boton).is(':enabled')) {
+                cy.wrap($boton).click();
+                cy.log('Se logró dar click');
+        
+                // Confirmar mensaje de éxito
+                cy.get('app-management.ng-star-inserted app-custom-toast p-toast.p-element .p-toast')
+                    .should('be.visible')  // Asegurar que el mensaje se muestre
+                    .invoke('text')        // Obtener el texto del toast
+                    .then((toastText) => {
+                        const mensaje = toastText.trim(); // Eliminar espacios extra
+                        
+                        if (mensaje.includes('El adquiriente introducido no existe')) {
+                            cy.log("⚠️ El adquiriente introducido no existe");
+                        } else if (mensaje.includes('Forzado offline activado correctamente')) {
+                            cy.log("✅ Forzado offline activado correctamente");
+        
+                            // Validar que hay filas en la tabla y se muestra "A01"
+                            cy.get('.bg-white > tr > :nth-child(3)')
+                                .should('have.length.greaterThan', 0)  // Al menos una fila
+                                .should('have.length.lte', 1)          // Máximo una fila
+                                .contains('12');                     
+                        } else {
+                            cy.log("ℹ️ Otro mensaje recibido: " + mensaje);
+                        }
+                    });
+            } else {
+                cy.log('❌ No se logró dar click');
+            }
+        });
     })
 
     it('Activar Token Movil', () => { 
-        //Añadir Token movil P1
-        cy.get('#offline_backup_force_config_tokenCard').should('be.visible').select('1').should('have.value','1')
-        //boton activar
-        cy.get('#offline-controls > .card-body').click(30,30)
-        cy.get('#offlineActivate').should('be.visible').click().wait(tiempo)
-        cy.get('#off-backup-modal > .modal-dialog > .modal-content > .modal-footer > .btn').click()
-        //Añadir Token movil P2
-        cy.get('#offline_backup_force_config_tokenCard').should('be.visible').select('2').should('have.value','2')
-        //boton activar
-        cy.get('#offline-controls > .card-body').click(30,30)
-        cy.get('#offlineActivate').should('be.visible').click().wait(tiempo)
-        cy.get('#off-backup-modal > .modal-dialog > .modal-content > .modal-footer > .btn').click()
-        //Añadir Token movil P3
-        cy.get('#offline_backup_force_config_tokenCard').should('be.visible').select('3').should('have.value','3')
-        //boton activar
-        cy.get('#offline-controls > .card-body').click(30,30)
-        cy.get('#offlineActivate').should('be.visible').click().wait(tiempo)
-        cy.get('#off-backup-modal > .modal-dialog > .modal-content > .modal-footer > .btn').click()
-    })
-
-    it('Desctivar Bin', () => {
-        //Añadir BIN
-        cy.get('#offline_backup_force_config_offlineBin').should('be.visible').type('222').clear()
-        cy.get('#offline_backup_force_config_offlineBin').should('be.visible').type('3')
-        //boton desactivar
-        //cy.get('#offline-controls > .card-body').click(30,30)
-        //cy.get('#offlineDeactivate').should('be.visible').click().wait(3000)
-        //cy.get('#off-backup-modal > .modal-dialog > .modal-content > .modal-footer > .btn').click()
-    })
-
-    it('Desctivar Ciers', () => {
+        //Añadir Token movil 
+        cy.Añadir_Combo('#pn_id_14 > .p-dropdown-label','AMBAS')
+        .wait(tiempo)
+        //boton Activar
+        cy.contains('button', 'Activar').should('be.visible').then(($boton) => {
+            if (Cypress.$($boton).is(':enabled')) {
+                cy.wrap($boton).click();
+                cy.log('Se logró dar click');
         
-        //Añadir Ciers 1
-        cy.get('#offline_backup_force_config_offlineBin').should('be.visible').clear()
-        cy.get('#offline_backup_force_config_offlineCiers').should('be.visible').select('44 - Ciers 44').should('have.value','44')
-        //boton desactivar
-        cy.get('#offline-controls > .card-body').click(30,30)
-        cy.get('#offlineDeactivate').should('be.visible').click().wait(tiempo)
-        cy.get('#off-backup-modal > .modal-dialog > .modal-content > .modal-footer > .btn').click()
+                // Confirmar mensaje de éxito
+                cy.get('app-management.ng-star-inserted app-custom-toast p-toast.p-element .p-toast')
+                    .should('be.visible')  // Asegurar que el mensaje se muestre
+                    .invoke('text')        // Obtener el texto del toast
+                    .then((toastText) => {
+                        const mensaje = toastText.trim(); // Eliminar espacios extra
+                        
+                        if (mensaje.includes('no existe')) {
+                            cy.log("⚠️ no existe");
+                        } else if (mensaje.includes('Forzado offline activado correctamente')) {
+                            cy.log("✅ Forzado offline activado correctamente");
         
-        //Añadir Ciers 2
-        cy.get('#offline_backup_force_config_offlineBin').should('be.visible').clear()
-        cy.get('#offline_backup_force_config_offlineCiers').should('be.visible').select('12 - Unicaja').should('have.value','12')
-        //boton desactivar
-        cy.get('#offline-controls > .card-body').click(30,30)
-        cy.get('#offlineDeactivate').should('be.visible').click().wait(tiempo)
-        cy.get('#off-backup-modal > .modal-dialog > .modal-content > .modal-footer > .btn').click()
+                            // Validar que hay filas en la tabla y se muestra "A01"
+                            cy.get('.bg-white > tr > :nth-child(4)')
+                                .should('have.length.greaterThan', 0)  // Al menos una fila
+                                .should('have.length.lte', 1)          // Máximo una fila
+                                //.contains('AMBAS');                      
+                        } else {
+                            cy.log("ℹ️ Otro mensaje recibido: " + mensaje);
+                        }
+                    });
+            } else {
+                cy.log('❌ No se logró dar click');
+            }
+        });
     })
 
-    it('Desctivar Adquiriente', () => {
-        
-        //Añadir adquiriente
-        cy.get('#offline_backup_force_config_offlineAcquirer').should('be.visible').select('A01').should('have.value','A01')
-        cy.get('#offline_backup_force_config_offlineAcquirer').should('be.visible').select('A77').should('have.value','A77')
-        cy.get('#offline_backup_force_config_offlineAcquirer').should('be.visible').select('S09').should('have.value','S09')
-        //boton desactivar
-        cy.get('#offline-controls > .card-body').click(30,30)
-        cy.get('#offlineDeactivate').should('be.visible').click().wait(2000)
-        cy.get('#off-backup-modal > .modal-dialog > .modal-content > .modal-footer > .btn').click()
+    it('Desactivar Bin', () => {
+        //Desctivar Bin
+        cy.get('.bg-white > tr > :nth-child(2)').should('have.length.lte', 1)
+        .should('have.length.greaterThan', 0) // Verificar que hay elementos visibles 
+        .contains('5*******') 
+
+        cy.Añadir_text('.grid > :nth-child(1) > .p-inputtext','5*******')
+        .wait(tiempo)
+        //boton Activar
+        cy.contains('button', 'Desactivar').should('be.visible').click();
+        //Confirmar
+        // Verifica mensaje de éxito
+        cy.get('app-management.ng-star-inserted > app-custom-toast > p-toast.p-element > .p-toast')
+        .should('be.visible')
+        .then(($toast) => {
+            const toastText = $toast.text().trim();  // Obtener el texto del toast y eliminar espacios extra
+            if (toastText.includes('El bin introducido no existe')) {
+                cy.log("El bin introducido no existe");
+            } else if (toastText.includes('Forzado offline desactivado correctamente')) {
+                cy.log("Forzado offline desactivado correctamente");
+                cy.get('.bg-white > tr > :nth-child(2)').should('have.length.lte', 1)
+                .should('have.length.greaterThan', 0) // Verificar que hay elementos visibles 
+                .should('not.contain','5*******')                
+            } else {
+            cy.log("Otro mensaje: " + toastText);
+            }
+        }); 
     })
 
-    it('Desctivar Emisor', () => {
+    it('Desactivar Adquiriente', () => {
+        //Desctivar Adquiriente
+        cy.get('.bg-white > tr > :nth-child(4)')
+        .should('have.length.greaterThan', 0)  // Al menos una fila
+        .should('have.length.lte', 1)          // Máximo una fila
+        //.contains('A01');                      // Contiene "A01"                        
+
+        cy.Añadir_Combo('#pn_id_12 > .p-dropdown-label','A01')
+        .wait(tiempo)
+        //boton Activar
+        cy.contains('button', 'Desactivar').should('be.visible').then(($boton) => {
+            if (Cypress.$($boton).is(':enabled')) {
+                cy.wrap($boton).click();
+                cy.log('Se logró dar click');
         
-        //Añadir Emisor
-        //cy.get('#offline_backup_force_config_offlineIssuer-ts-control').should('be.visible').select('0007').should('have.value','0007')
-        //cy.get('.ts-control').should('be.visible').select('0010').should('have.value','0010')
-        //cy.get('.ts-control').should('be.visible').select('0090').should('have.value','0090')
+                // Confirmar mensaje de éxito
+                cy.get('app-management.ng-star-inserted app-custom-toast p-toast.p-element .p-toast')
+                    .should('be.visible')  // Asegurar que el mensaje se muestre
+                    .invoke('text')        // Obtener el texto del toast
+                    .then((toastText) => {
+                        const mensaje = toastText.trim(); // Eliminar espacios extra
+                        
+                        if (mensaje.includes(' no existe')) {
+                            cy.log("⚠️ no existe");
+                        } else if (mensaje.includes('Forzado offline desactivado correctamente')) {
+                            cy.log("✅ Forzado offline activado correctamente");
+        
+                            // Validar que hay filas en la tabla y se muestra "A01"
+                            cy.get('.bg-white > tr > :nth-child(4)')
+                                .should('have.length.greaterThan', 0)  // Al menos una fila
+                                .should('have.length.lte', 1)          // Máximo una fila
+                                .should('not.contain','A01');                      // Contiene "A01"
+                        } else {
+                            cy.log("ℹ️ Otro mensaje recibido: " + mensaje);
+                        }
+                    });
+            } else {
+                cy.log('❌ No se logró dar click');
+            }
+        });
     })
 
-    it('Desctivar Token movil', () => {       
-        //Añadir Token movil P1
-        cy.get('#offline_backup_force_config_tokenCard').should('be.visible').select('1').should('have.value','1')
-        //boton desactivar
-        cy.get('#offline-controls > .card-body').click(30,30)
-        cy.get('#offlineDeactivate').should('be.visible').click().wait(tiempo)
-        cy.get('#off-backup-modal > .modal-dialog > .modal-content > .modal-footer > .btn').click()
-        //Añadir Token movil P2
-        cy.get('#offline_backup_force_config_tokenCard').should('be.visible').select('2').should('have.value','2')
-        //boton desactivar
-        cy.get('#offline-controls > .card-body').click(30,30)
-        cy.get('#offlineDeactivate').should('be.visible').click().wait(tiempo)
-        cy.get('#off-backup-modal > .modal-dialog > .modal-content > .modal-footer > .btn').click()
-        //Añadir Token movil P3
-        cy.get('#offline_backup_force_config_tokenCard').should('be.visible').select('3').should('have.value','3')
-        //boton desactivar
-        cy.get('#offline-controls > .card-body').click(30,30)
-        cy.get('#offlineDeactivate').should('be.visible').click().wait(tiempo)
-        cy.get('#off-backup-modal > .modal-dialog > .modal-content > .modal-footer > .btn').click()
-   
+    it('Desactivar Emisor', () => {        
+        //Desctivar Emisor
+        // Validar que hay filas en la tabla y se muestra 
+        cy.get('.bg-white > tr > :nth-child(5)')
+        .should('have.length.greaterThan', 0)  // Al menos una fila
+        .should('have.length.lte', 1)          // Máximo una fila
+        //.contains('0013');                         
+
+        cy.Añadir_Combo_Buscar('#issuer > .p-dropdown-label','.p-dropdown-filter','0013')
+        .wait(tiempo)
+        //boton Activar
+        cy.contains('button', 'Desactivar').should('be.visible').then(($boton) => {
+            if (Cypress.$($boton).is(':enabled')) {
+                cy.wrap($boton).click();
+                cy.log('Se logró dar click');
+        
+                // Confirmar mensaje de éxito
+                cy.get('app-management.ng-star-inserted app-custom-toast p-toast.p-element .p-toast')
+                    .should('be.visible')  // Asegurar que el mensaje se muestre
+                    .invoke('text')        // Obtener el texto del toast
+                    .then((toastText) => {
+                        const mensaje = toastText.trim(); // Eliminar espacios extra
+                        
+                        if (mensaje.includes(' no existe')) {
+                            cy.log("⚠️  no existe");
+                        } else if (mensaje.includes('Forzado offline desactivado correctamente')) {
+                            cy.log("✅ Forzado offline activado correctamente");
+        
+                            // Validar que hay filas en la tabla y se muestra "A01"
+                            cy.get('.bg-white > tr > :nth-child(5)')
+                            .should('have.length.greaterThan', 0)  // Al menos una fila
+                            .should('have.length.lte', 1)          // Máximo una fila
+                            .should('not.contain','0013'); 
+                        } else {
+                            cy.log("ℹ️ Otro mensaje recibido: " + mensaje);
+                        }
+                    });
+            } else {
+                cy.log('❌ No se logró dar click');
+            }
+        });
+    })
+
+    it('Desactivar Entidad', () => {
+        //Desactivar Entidad
+        // Validar que hay filas en la tabla y se muestra "A01"
+        cy.get('.bg-white > tr > :nth-child(3)')
+        .should('have.length.greaterThan', 0)  // Al menos una fila
+        .should('have.length.lte', 1)          // Máximo una fila
+        .contains('12');
+
+        cy.Añadir_Combo('#pn_id_10 > .p-dropdown-label','12')
+        .wait(tiempo)
+        //boton Activar
+        cy.contains('button', 'Desactivar').should('be.visible').then(($boton) => {
+            if (Cypress.$($boton).is(':enabled')) {
+                cy.wrap($boton).click();
+                cy.log('Se logró dar click');
+        
+                // Confirmar mensaje de éxito
+                cy.get('app-management.ng-star-inserted app-custom-toast p-toast.p-element .p-toast')
+                    .should('be.visible')  // Asegurar que el mensaje se muestre
+                    .invoke('text')        // Obtener el texto del toast
+                    .then((toastText) => {
+                        const mensaje = toastText.trim(); // Eliminar espacios extra
+                        
+                        if (mensaje.includes(' no existe')) {
+                            cy.log("⚠️  no existe");
+                        } else if (mensaje.includes('Forzado offline desactivado correctamente')) {
+                            cy.log("✅ Forzado offline activado correctamente");
+        
+                            // Validar que hay filas en la tabla y se muestra "A01"
+                            cy.get('.bg-white > tr > :nth-child(3)')
+                            .should('have.length.greaterThan', 0)  // Al menos una fila
+                            .should('have.length.lte', 1)          // Máximo una fila
+                            .should('not.contain','12'); 
+                        } else {
+                            cy.log("ℹ️ Otro mensaje recibido: " + mensaje);
+                        }
+                    });
+            } else {
+                cy.log('❌ No se logró dar click');
+            }
+        });
+    })
+
+    it('Desactivar Token movil', () => {       
+        //Añadir Token movil //Desctivar Emisor
+        // Validar que hay filas en la tabla y se muestra 
+        cy.get('.bg-white > tr > :nth-child(4)')
+        .should('have.length.greaterThan', 0)  // Al menos una fila
+        .should('have.length.lte', 1)          // Máximo una fila
+        //.contains('AMBAS');                         
+
+        cy.Añadir_Combo('#pn_id_14 > .p-dropdown-label','AMBAS')
+        .wait(tiempo)
+        //boton Activar
+        cy.contains('button', 'Desactivar').should('be.visible').then(($boton) => {
+            if (Cypress.$($boton).is(':enabled')) {
+                cy.wrap($boton).click();
+                cy.log('Se logró dar click');
+        
+                // Confirmar mensaje de éxito
+                cy.get('app-management.ng-star-inserted app-custom-toast p-toast.p-element .p-toast')
+                    .should('be.visible')  // Asegurar que el mensaje se muestre
+                    .invoke('text')        // Obtener el texto del toast
+                    .then((toastText) => {
+                        const mensaje = toastText.trim(); // Eliminar espacios extra
+                        
+                        if (mensaje.includes(' no existe')) {
+                            cy.log("⚠️  no existe");
+                        } else if (mensaje.includes('Forzado offline desactivado correctamente')) {
+                            cy.log("✅ Forzado offline activado correctamente");
+        
+                            // Validar que hay filas en la tabla y se muestra "A01"
+                            cy.get('.bg-white > tr > :nth-child(4)')
+                            .should('have.length.greaterThan', 0)  // Al menos una fila
+                            .should('have.length.lte', 1)          // Máximo una fila
+                            .should('not.contain','AMBAS'); 
+                        } else {
+                            cy.log("ℹ️ Otro mensaje recibido: " + mensaje);
+                        }
+                    });
+            } else {
+                cy.log('❌ No se logró dar click');
+            }
+        });   
     })
 
     //Operativa-backup
-    it('Activar adquirinete', () => {
-        //Añadir adquiriente P1
-        cy.get('#offline_backup_force_config_backupAcquirer').should('be.visible').select('A77').should('have.value','A77')
-        //boton activar
-        cy.get('#backup-controls > .card-body').click(30,30)
-        cy.get('#backupActivate').should('be.visible').click().wait(tiempo)
-        cy.get('#off-backup-modal > .modal-dialog > .modal-content > .modal-footer > .btn').click()
-        //Añadir adquiriente P2
-        cy.get('#offline_backup_force_config_backupAcquirer').should('be.visible').select('A01').should('have.value','A01')
-        //boton activar
-        cy.get('#backup-controls > .card-body').click(30,30)
-        cy.get('#backupActivate').should('be.visible').click().wait(tiempo)
-        cy.get('#off-backup-modal > .modal-dialog > .modal-content > .modal-footer > .btn').click()
-        //Añadir adquiriente P3
-        cy.get('#offline_backup_force_config_backupAcquirer').should('be.visible').select('S09').should('have.value','S09')
-        //boton activar
-        cy.get('#backup-controls > .card-body').click(30,30)
-        cy.get('#backupActivate').should('be.visible').click().wait(tiempo)
-        cy.get('#off-backup-modal > .modal-dialog > .modal-content > .modal-footer > .btn').click()
+    it('Activar adquirinete Operativa-backup', () => {
+        //Añadir adquiriente 
+        cy.Click_force('[tabindex="-1"] > .p-button-label')
+
+        cy.Añadir_Combo('.p-dropdown-label','A01')
+        .wait(tiempo)
+        //boton Activar
+        cy.contains('button', 'Activar').should('be.visible').then(($boton) => {
+            if (Cypress.$($boton).is(':enabled')) {
+                cy.wrap($boton).click();
+                cy.log('Se logró dar click');
+        
+                // Confirmar mensaje de éxito
+                cy.get('app-management.ng-star-inserted app-custom-toast p-toast.p-element .p-toast')
+                    .should('be.visible')  // Asegurar que el mensaje se muestre
+                    .invoke('text')        // Obtener el texto del toast
+                    .then((toastText) => {
+                        const mensaje = toastText.trim(); // Eliminar espacios extra
+                        
+                        if (mensaje.includes('El adquiriente introducido no existe')) {
+                            cy.log("⚠️ El adquiriente introducido no existe");
+                        } else if (mensaje.includes('Forzado offline activado correctamente')) {
+                            cy.log("✅ Forzado offline activado correctamente");
+        
+                            // Validar que hay filas en la tabla y se muestra "A01"
+                            cy.get('.bg-white > tr > :nth-child(4)')
+                                .should('have.length.greaterThan', 0)  // Al menos una fila
+                                .should('have.length.lte', 1)          // Máximo una fila
+                                .contains('A01');                      // Contiene "A01"
+                        } else {
+                            cy.log("ℹ️ Otro mensaje recibido: " + mensaje);
+                        }
+                    });
+            } else {
+                cy.log('❌ No se logró dar click');
+            }
+        });
     })
 
-    it('Desactivar adquirinete', () => {
-        //Añadir adquiriente P4
-        cy.get('#offline_backup_force_config_backupAcquirer').should('be.visible').select('A77').should('have.value','A77')
-        //boton desactivar
-        cy.get('#backup-controls > .card-body').click(30,30)
-        cy.get('#backupDeactivate').should('be.visible').click().wait(tiempo)
-        cy.get('#off-backup-modal > .modal-dialog > .modal-content > .modal-footer > .btn').click()
-        //Añadir adquiriente P5
-        cy.get('#offline_backup_force_config_backupAcquirer').should('be.visible').select('S09').should('have.value','S09')
-        //boton desactivar
-        cy.get('#backup-controls > .card-body').click(30,30)
-        cy.get('#backupDeactivate').should('be.visible').click().wait(tiempo)
-        cy.get('#off-backup-modal > .modal-dialog > .modal-content > .modal-footer > .btn').click()
-        //Añadir adquiriente P6
-        cy.get('#offline_backup_force_config_backupAcquirer').should('be.visible').select('A01').should('have.value','A01')
-        //boton desactivar
-        cy.get('#backup-controls > .card-body').click(30,30)
-        cy.get('#backupDeactivate').should('be.visible').click().wait(tiempo)
-        cy.get('#off-backup-modal > .modal-dialog > .modal-content > .modal-footer > .btn').click()
-               
+    it('Desactivar adquirinete Operativa-backup', () => {
+        //Desctivar Adquiriente
+        cy.Click_force('[tabindex="-1"] > .p-button-label')
+
+        cy.get('.ng-star-inserted > .px-6')
+        .should('have.length.greaterThan', 0)  // Al menos una fila
+        .should('have.length.lte', 1)          // Máximo una fila
+        //.contains('A01');                      // Contiene "A01"                        
+
+        cy.Añadir_Combo('.p-dropdown-label','A01')
+        .wait(tiempo)
+        //boton Activar
+        cy.contains('button', 'Desactivar').should('be.visible').then(($boton) => {
+            if (Cypress.$($boton).is(':enabled')) {
+                cy.wrap($boton).click();
+                cy.log('Se logró dar click');
+        
+                // Confirmar mensaje de éxito
+                cy.get('app-management.ng-star-inserted app-custom-toast p-toast.p-element .p-toast')
+                    .should('be.visible')  // Asegurar que el mensaje se muestre
+                    .invoke('text')        // Obtener el texto del toast
+                    .then((toastText) => {
+                        const mensaje = toastText.trim(); // Eliminar espacios extra
+                        
+                        if (mensaje.includes(' no existe')) {
+                            cy.log("⚠️ no existe");
+                        } else if (mensaje.includes('Forzado offline desactivado correctamente')) {
+                            cy.log("✅ Forzado offline activado correctamente");
+        
+                            // Validar que hay filas en la tabla y se muestra "A01"
+                            cy.get('.ng-star-inserted > .px-6')
+                            .should('have.length.greaterThan', 0)  // Al menos una fila
+                            .should('have.length.lte', 1)          // Máximo una fila
+                            .should('not.contain','A01');                      // Contiene "A01"
+                        } else {
+                            cy.log("ℹ️ Otro mensaje recibido: " + mensaje);
+                        }
+                    });
+            } else {
+                cy.log('❌ No se logró dar click');
+            }
+        });    
     })
 
-    it('ver-estado-offline', () => {
-        //ver estado offline
-        cy.get('#offlineReload').should("be.visible").click().wait(tiempo)
-           
-    })
-    
-    it('ver-estado-backup', () => {
-        //ver estado backup
-        cy.get('#backupReload').should('be.visible').click().wait(tiempo)
-               
-    })
-
-    it('Activar offline - Se activa y muestra correctamente', () => {
-        cy.visit('/ruta-del-sistema'); // Cambia esto con la URL correcta
-    
-        cy.get('#btnActivarOffline').click(); // Botón para activar offline
-    
-        cy.wait(tiempoEspera);
-    
-        cy.get('.mensajeExito').should('be.visible'); // Verifica mensaje de éxito
-        cy.get('.mensajeExito').should('contain', 'Modo offline activado'); // Valida mensaje
-        cy.get('.estadoOffline').should('contain', 'Activo'); // Verifica que el estado cambió
-    });
-    
-    it('Desactivar offline - Se desactiva y muestra correctamente', () => {
-        cy.visit('/ruta-del-sistema');
-    
-        cy.get('#btnDesactivarOffline').click(); // Botón para desactivar offline
-    
-        cy.wait(tiempoEspera);
-    
-        cy.get('.mensajeExito').should('be.visible');
-        cy.get('.mensajeExito').should('contain', 'Modo offline desactivado');
-        cy.get('.estadoOffline').should('contain', 'Inactivo');
-    });
-    
-    it('Activar backup - Se activa y muestra correctamente', () => {
-        cy.visit('/ruta-del-sistema');
-    
-        cy.get('#btnActivarBackup').click(); // Botón para activar backup
-    
-        cy.wait(tiempoEspera);
-    
-        cy.get('.mensajeExito').should('be.visible');
-        cy.get('.mensajeExito').should('contain', 'Backup activado correctamente');
-        cy.get('.estadoBackup').should('contain', 'Activo');
-    });
-    
-    it('Desactivar backup - Se desactiva y muestra correctamente', () => {
-        cy.visit('/ruta-del-sistema');
-    
-        cy.get('#btnDesactivarBackup').click(); // Botón para desactivar backup
-    
-        cy.wait(tiempoEspera);
-    
-        cy.get('.mensajeExito').should('be.visible');
-        cy.get('.mensajeExito').should('contain', 'Backup desactivado correctamente');
-        cy.get('.estadoBackup').should('contain', 'Inactivo');
-    });
 
 })

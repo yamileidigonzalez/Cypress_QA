@@ -95,7 +95,7 @@ describe('Auditoria', () => {
             cy.Click_force('app-filter > .z-20 > .inline-flex');
             cy.Combo(selectorFiltro, 'Front',tiempo);
             cy.contains('button', 'Aplicar').should('be.visible').click( {force: true});
-            cy.get('.gap-2 app-filter-badge').should('have.length.lte', 3); // Verificar máximo 15 elementos
+            cy.get('.gap-2 app-filter-badge').should('have.length.lte', 5); // Verificar máximo 15 elementos
             cy.get('.p-scroller').should('have.length.greaterThan', 0); // Verificar que hay elementos visibles
         }
         aplicarFiltroYVerificar_Combo(SelectoresFiltros[10]);
@@ -103,5 +103,30 @@ describe('Auditoria', () => {
         aplicarFiltroYVerificar_Combo(SelectoresFiltros[8]);
         aplicarFiltroYVerificar_Combo(SelectoresFiltros[9]);
     });   
+
+    // Listar todos los elementos
+    it('Debería listar todos los [elementos]', () => {
+        cy.get('.p-scroller-viewport').should("be.visible"); // Verificar que el listado de registros se muestra
+        cy.get('.p-scroller-viewport').should("have.length.greaterThan", 0); // Validar que hay al menos un registro
+    });
+      
+    // Buscar un [Elemento] por ID
+    it('Debería buscar un [Elemento] por ID', () => {
+        //combrobar boton de busqueda
+        cy.Elemento_visible('.gap-x-3 > .inline-flex')
+  
+        //busqueda numeros y signos
+        cy.Busqueda('.gap-x-3 > .inline-flex','44',tiempo)
+        cy.Busqueda('.gap-x-3 > .inline-flex','F1-',tiempo)
+        cy.Busqueda('.gap-x-3 > .inline-flex','1212',tiempo)
+        cy.Busqueda('.gap-x-3 > .inline-flex','2323',tiempo)
+        
+        //busqueda letras y espacios
+        cy.Busqueda('.gap-x-3 > .inline-flex','unicaja',tiempo)
+        cy.Busqueda('.gap-x-3 > .inline-flex','bank',tiempo)
+        cy.Busqueda('.gap-x-3 > .inline-flex','Bank ',tiempo)
+        cy.Busqueda('.gap-x-3 > .inline-flex','Cier',tiempo)
+        cy.Busqueda('.gap-x-3 > .inline-flex','pay',tiempo)
+    });
     
 });

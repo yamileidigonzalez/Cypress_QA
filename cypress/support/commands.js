@@ -144,8 +144,9 @@ Cypress.Commands.add('Añadir_Combo_Buscar', (selector, sector_buscar, valor) =>
          cy.get(selector).should("be.visible").click().wait(100); // Cerrar el dropdown si es necesario
       } else {
          cy.log('El valor ha sido encontrado');
-         // Aquí puedes agregar más acciones si el valor sí existe
-         cy.get(selector).should("be.visible").type(valor,"{enter}");
+         // Aquí puedes agregar más acciones si el valor sí existe 
+         cy.get('.p-dropdown-items li').first().click();
+         //cy.get(selector).should("be.visible").type(valor,"{enter}");
       }
    });
 })
