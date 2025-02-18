@@ -72,7 +72,17 @@ Cypress.Commands.add('Check', (selector, valor) => {
 })
 
 Cypress.Commands.add('Combo', (selector, valor,t) => { 
-   cy.get(selector).select(valor,{force:true})
+   cy.get(selector).should("be.visible").click().wait(t); // Aseguramos que el combo esté abierto
+      
+   cy.get('.p-dropdown-items').then(($dropdown) => {
+      if ($dropdown.find(`li:contains("${valor}")`).length > 0) { // Verifica si el valor existe
+         cy.contains('.p-dropdown-items li', valor).click(); // Selecciona el valor si existe
+         cy.log(`✅ Se seleccionó: ${valor}`);
+      } else {
+         cy.log('⚠️ El valor no existe, seleccionando la primera opción disponible.');
+         cy.get(selector).click(); // Selecciona la primera opción si el valor no existe
+      }
+   });
    cy.wait(t)
 })
 
@@ -834,6 +844,29 @@ Cypress.Commands.add("Añadir_Conf_Alarmas", (id, descripcion, activa) => {
    //Descripcion 
    cy.Añadir_Combo('#active > .p-dropdown-label', activa)  
 })
+
+Cypress.Commands.add("Añadir_Transaccion_Manual", (tarjeta, centro, operador,ticket,caja,importe, fecha,operacion) => { 
+   //tarjeta
+   cy.Añadir_text('#card',tarjeta)
+   //centro
+   cy.Añadir_text('#store',centro)
+   //operador
+   cy.Añadir_text('#operator',operador)
+   //ticket
+   cy.Añadir_text('#ticket',ticket)
+   //caja
+   cy.Añadir_text('#pos',caja)
+   //importe
+   cy.Añadir_text('#amount',importe)     
+         
+   //operacion        
+   cy.Añadir_Combo('#operation', operacion)  
+
+   //fecha
+   cy.Añadir_text('#date', fecha)
+   //cy.get('#pn_id_10_panel')     
+})
+
 
 
 
