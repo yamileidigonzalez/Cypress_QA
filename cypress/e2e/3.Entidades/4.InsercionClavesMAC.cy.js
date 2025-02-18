@@ -77,7 +77,6 @@ describe('Insercion Claves MAC', () => {
         //bolon aplicar
         cy.contains('button', 'Submit').should('be.visible').click()
 
-
         // Verificar que la clave MAC se añadió correctamente a la lista
         cy.get('app-mac-tool.ng-star-inserted > app-custom-toast > p-toast.p-element > .p-toast').should('be.visible')
             .contains('MAC').should('exist');

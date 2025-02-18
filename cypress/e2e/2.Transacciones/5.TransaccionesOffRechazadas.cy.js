@@ -150,7 +150,7 @@ describe('Transacciones Off Rechazadas', () => {
         });
     });
     
-     // Listar todos los elementos
+    // Listar todos los elementos
     it('Debería listar todos los [elementos]', () => {
       cy.get('.p-scroller-viewport').should("be.visible"); // Verificar que el listado de registros se muestra
       cy.get('.p-scroller-viewport').should("have.length.greaterThan", 0); // Validar que hay al menos un registro
