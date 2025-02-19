@@ -523,8 +523,7 @@ Cypress.Commands.add("Añadir_Monedas", (ID, moneda, descripcion, simbolo, pais,
    cy.Añadir_text('#currency',moneda)
    cy.Añadir_text('#symbol',simbolo)
    cy.Añadir_text('#country',pais)
-   cy.Añadir_text('#decimalPlaces > .p-inputnumber > .p-inputtext',decimales)
-   
+   cy.Añadir_text('#decimalPlaces > .p-inputnumber > .p-inputtext',decimales)   
 })
 
 Cypress.Commands.add("Añadir_Tiendas", (ID, FUC, descripcion, provincia, permite_off) => { 

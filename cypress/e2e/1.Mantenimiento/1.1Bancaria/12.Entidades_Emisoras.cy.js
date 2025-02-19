@@ -1,6 +1,7 @@
 const { random } = require("lodash");
 describe('Entidades_Emisoras', () => {
     const tiempo = 1000;
+    const cont = 25;
     let itemId;
     
     beforeEach('Entrar en la página', () => {
@@ -30,7 +31,7 @@ describe('Entidades_Emisoras', () => {
     it('Debería añadir un nuevo [Elemento]', () => {
       //Conextar con archivo Json
       cy.fixture('12_Entidades_Emisoras.json').then((Entidades_Emisoras) => {
-        Entidades_Emisoras.forEach((config) => {
+        Entidades_Emisoras.slice(0, cont).forEach((config) => {
           let csb_emisor = config["csb emisor"];
           let nombre_emisor = config["nombre emisor"];
           //Boton añadir

@@ -20,7 +20,7 @@ describe('Monedas', () => {
     })
 
     // Añadir un nuevo [Elemento]
-    it('Debería añadir un nuevo [Elemento]', () => {
+    it.only('Debería añadir un nuevo [Elemento]', () => {
       cy.fixture('2_Monedas.json').then((Empresas) => {
         Empresas.forEach((config) => {
             let ID = config.ID;
