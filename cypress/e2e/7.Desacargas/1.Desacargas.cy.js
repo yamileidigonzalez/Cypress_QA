@@ -1,12 +1,12 @@
 describe('Descargas', () => {
-    const tiempo = 1000;
+    const tiempo = 10000;
     beforeEach('Entrar en la página', () => {
         //PAGINA
         cy.visit('https://newfront.lab.solverpay.com/login'); 
         cy.title().should('eq','Login')
         //LOGIN
         cy.login('solverpay', 'r7auF23wA.A2l1tZ2Dp4')
-        cy.wait(tiempo)
+
         
         //Seleccionar Mantenimientos en el Menu
         cy.get('.ph-bell').should("be.visible").click()
@@ -98,7 +98,7 @@ describe('Descargas', () => {
             '#submenu-entity > :nth-child(4)'      
         ] 
 
-        let Herramientas = '[data-target="submenu-management"]',  
+        let Herramientas = '[data-target="submenu-management"]'; 
 
         const Selectores_Navegacion_Herramientas = [
             //Seleccionar la pagina
@@ -106,47 +106,134 @@ describe('Descargas', () => {
             '#submenu-management > :nth-child(2)',
             '#submenu-management > :nth-child(3)',
             '#submenu-management > :nth-child(4)'      
-        ] 
+        ]     
 
-        const Selectores_Navegacion_Gestion = [
-            //Seleccionar Gestion en el Menu
-            '.sidebar-menu > .main-item.ng-star-inserted'     
-        ] 
+        let Gestion = '.sidebar-menu > .main-item.ng-star-inserted';
 
-        Selectores_Navegacion_Mantenimiento_Bancaria.forEach((selector) => {
-            //Seleccionar Mantenimientos en el Menu
-            cy.Click_force(Mantenimientos)
-            //Seleccionar Bancaria en el Submenu
-            cy.Click_force(Bancaria)            
-            // Seleccionar la entidad
-            cy.Click_force(selector) 
-
-            cy.Click_force('.gap-x-4 > .ph-heart')
-
-        })  
         
-        // Función reutilizable para aplicar filtro y verificar los resultados
-        function aplicarFiltroYVerificar(selectorFiltro) {
-            cy.Click_force('[icon="pi pi-filter-slash"] > .p-ripple')
-            cy.Click_force('app-filter > .z-20 > .inline-flex');
-            cy.Click_force(selectorFiltro);
-            cy.contains('button', 'Aplicar').should('be.visible').click();
-            cy.get('.gap-2 app-filter-badge').should('have.length.lte', 2); // Verificar máximo 15 elementos
-            cy.get('.p-scroller').should('have.length.greaterThan', 0); // Verificar que hay elementos visibles
-        }
-        // Uso de la función para aplicar diferentes filtros
-        aplicarFiltroYVerificar(SelectoresFiltros[0]); // Filtro "hoy"
-        aplicarFiltroYVerificar(SelectoresFiltros[1]); // Filtro "última semana"
-        aplicarFiltroYVerificar(SelectoresFiltros[2]); // Filtro "último mes"
-        cy.get('#id_boton_exportar').click();
-        cy.wait(5000);
-            
+        //Seleccionar el Menu
+        cy.Click_force(Mantenimientos).scrollIntoView()
+       
         // Verificación de la descarga (requiere configuración adicional en Cypress para acceder a archivos)
-        const downloadFolder = 'cypress/downloads';
-        cy.task('readDirectory', downloadFolder).then((files) => {
-            expect(files.some(file => file.includes('reporte'))).to.be.true;
-        });
-    });
+        const downloadFolder = Cypress.config('downloadsFolder');
+
+        Cypress.env('TOKEN', 'tu_token_valido_aqui');
+
+        // Función reutilizable para aplicar filtro y verificar los resultados
+        function DescargarExcel_validar() {
+            cy.Click_force('[severity="info"] > .p-ripple')
+            cy.wait(tiempo);
+            //esperar
+            cy.get('button.p-button-icon-only')
+            .should('not.have.class', 'p-button-loading') // Espera que termine de cargar
+            .should('not.be.disabled') // Espera que esté habilitado
+            .click();
+            //error
+            cy.request({
+                method: 'GET',
+                url: 'https://api.newfront.lab.solverpay.com/api/entity-channel/download',
+                headers: {
+                    Authorization: `Bearer ${Cypress.env('TOKEN')}`, // Asegúrate de definir el token en Cypress.env
+                }
+            }).then((response) => {
+                expect(response.status).to.eq(200);
+            });            
+    
+            cy.task('readDirectory', downloadFolder).then((files) => {
+                cy.log('Archivos encontrados:', files);
+                expect(files.some(file => file.includes('reporte'))).to.be.true;
+            })    
+        }
+
+        //Seleccionar Bancaria en el Submenu
+        cy.Click_force(Bancaria).scrollIntoView()   
+        Selectores_Navegacion_Mantenimiento_Bancaria.forEach((selector) => {                     
+            // Seleccionar la pagina
+            cy.Click_force(selector).scrollIntoView().wait(tiempo);
+
+            //Pulsar el botón descarga
+            DescargarExcel_validar();           
+        })
+        cy.log('Archivos encontrados en Mantenimiento_Bancaria');
+
+        //Seleccionar el Submenu
+        cy.Click_force(Base) 
+        Selectores_Navegacion_Mantenimiento_Base.forEach((selector) => {                        
+            // Seleccionar la pagina
+            cy.Click_force(selector).scrollIntoView().wait(tiempo); 
+           //Pulsar el botón descarga
+           DescargarExcel_validar();
+        })
+        cy.log('Archivos encontrados en Mantenimiento_Base');
+
+        //Seleccionar el Submenu
+        cy.Click_force(Tarjetas).scrollIntoView()
+        Selectores_Navegacion_Mantenimiento_Tarjetas.forEach((selector) => {            
+            // Seleccionar la pagina
+            cy.Click_force(selector).scrollIntoView().wait(tiempo); 
+            //Pulsar el botón descarga
+            DescargarExcel_validar();
+        })
+        cy.log('Archivos encontrados en Mantenimiento_Tarjetas');
+
+        //Seleccionar el Submenu
+        cy.Click_force(General).scrollIntoView()
+        Selectores_Navegacion_Mantenimiento_General.forEach((selector) => {            
+            // Seleccionar la pagina
+            cy.Click_force(selector).scrollIntoView().wait(tiempo); 
+            //Pulsar el botón descarga
+            DescargarExcel_validar();
+        })
+        cy.log('Archivos encontrados en Mantenimiento_General');
+
+        //Seleccionar el Submenu
+        cy.Click_force(Monitorizacion).scrollIntoView()
+        Selectores_Navegacion_Mantenimiento_Monitorizacion.forEach((selector) => {           
+            // Seleccionar la pagina
+            cy.Click_force(selector).scrollIntoView().wait(tiempo); 
+            //Pulsar el botón descarga
+            DescargarExcel_validar();;
+        })
+        cy.log('Archivos encontrados en Mantenimiento_Monitorizacion');
+        
+        //Seleccionar el Menu
+        cy.Click_force(Transacciones).scrollIntoView() 
+        Selectores_Navegacion_Transacciones.forEach((selector) => {
+            // Seleccionar la pagina
+            cy.Click_force(selector).scrollIntoView().wait(tiempo);  
+            //Pulsar el botón descarga
+            DescargarExcel_validar();
+        })
+        cy.log('Archivos encontrados en Transacciones');
+
+        //Seleccionar el Menu
+        cy.Click_force(Entidades).scrollIntoView()
+        Selectores_Navegacion_Entidades.forEach((selector) => {           
+            // Seleccionar la pagina
+            cy.Click_force(selector).scrollIntoView().wait(tiempo); 
+            //Pulsar el botón descarga
+            DescargarExcel_validar();
+        })
+        cy.log('Archivos encontrados en Entidades');
+
+        //Seleccionar el Menu
+        cy.Click_force(Herramientas).scrollIntoView()
+        Selectores_Navegacion_Herramientas.forEach((selector) => {          
+            // Seleccionar pagina
+            cy.Click_force(selector).scrollIntoView().wait(tiempo);  
+            //Pulsar el botón descarga
+            DescargarExcel_validar();
+        })
+        cy.log('Archivos encontrados en Herramientas');
+        
+        //Seleccionar el Menu
+        cy.Click_force(Herramientas).scrollIntoView()          
+        // Seleccionar pagina
+        cy.Click_force(Gestion).scrollIntoView().wait(tiempo);  
+        //Pulsar el botón descarga
+        DescargarExcel_validar();
+        })
+        cy.log('Archivos encontrados en Gestion');
     
 });
 
