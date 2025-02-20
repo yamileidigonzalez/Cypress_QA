@@ -14,13 +14,17 @@ describe('Descargas', () => {
     }) 
 
     //Comprobar la exportación a Excel
-    it('Comprobar la exportación a Excel', () => {
+    it.only('Comprobar la exportación a Excel', () => {
 
-        const Selectores_Navegacion_Mantenimiento_Bancaria = [
-            //Seleccionar Mantenimientos en el Menu
-            '[data-target="submenu-maintenance"]',
-            //Seleccionar Bancaria en el Submenu
-            '[data-target="submenu-bancaria"]',      
+        let Mantenimientos= '[data-target="submenu-maintenance"]';
+
+        let Bancaria= '[data-target="submenu-bancaria"]';
+        let Base ='[data-target="submenu-base"]';
+        let Tarjetas='[data-target="submenu-cards"]';
+        let General ='[data-target="submenu-general"]'; 
+        let Monitorizacion='[data-target="submenu-tracking"]';
+
+        const Selectores_Navegacion_Mantenimiento_Bancaria = [                 
             //Seleccionar la pagina
             '#submenu-bancaria > :nth-child(1)', 
             '#submenu-bancaria > :nth-child(2)',
@@ -36,11 +40,7 @@ describe('Descargas', () => {
             '#submenu-bancaria > :nth-child(12)'        
         ]  
 
-        const Selectores_Navegacion_Mantenimiento_Base = [
-            //Seleccionar Mantenimientos en el Menu
-            '[data-target="submenu-maintenance"]',
-            //Seleccionar Base en el Submenu
-            '[data-target="submenu-base"]',     
+        const Selectores_Navegacion_Mantenimiento_Base = [                
             //Seleccionar la pagina
             '#submenu-base > :nth-child(1)', 
             '#submenu-base > :nth-child(2)',
@@ -50,11 +50,7 @@ describe('Descargas', () => {
             '#submenu-base > :nth-child(6)'       
         ] 
 
-        const Selectores_Navegacion_Mantenimiento_Tarjetas = [
-            //Seleccionar Mantenimientos en el Menu
-            '[data-target="submenu-maintenance"]',
-            //Seleccionar Tarjetas en el Submenu
-            '[data-target="submenu-cards"]',     
+        const Selectores_Navegacion_Mantenimiento_Tarjetas = [   
             //Seleccionar la pagina
             '#submenu-cards > :nth-child(1)', 
             '#submenu-cards > :nth-child(2)',
@@ -67,11 +63,7 @@ describe('Descargas', () => {
             '#submenu-cards > :nth-child(9)'      
         ] 
 
-        const Selectores_Navegacion_Mantenimiento_General = [
-            //Seleccionar Mantenimientos en el Menu
-            '[data-target="submenu-maintenance"]',
-            //Seleccionar General en el Submenu
-            '[data-target="submenu-general"]',     
+        const Selectores_Navegacion_Mantenimiento_General = [  
             //Seleccionar la pagina
             '#submenu-general > :nth-child(1)', 
             '#submenu-general > :nth-child(2)',
@@ -79,19 +71,15 @@ describe('Descargas', () => {
             '#submenu-general > :nth-child(4)'   
         ] 
        
-        const Selectores_Navegacion_Mantenimiento_Monitorizacion = [
-            //Seleccionar Mantenimientos en el Menu
-            '[data-target="submenu-maintenance"]',
-            //Seleccionar Monitorizacion en el Submenu
-            '[data-target="submenu-tracking"]',     
+        const Selectores_Navegacion_Mantenimiento_Monitorizacion = [    
             //Seleccionar la pagina
             '#submenu-tracking > :nth-child(1)', 
             '#submenu-tracking > :nth-child(2)' 
         ] 
 
+        let Transacciones = '[data-target="submenu-transactions"]';  
+
         const Selectores_Navegacion_Transacciones = [
-            //Seleccionar Transacciones en el Menu
-            '[data-target="submenu-transactions"]',  
             //Seleccionar la pagina
             '#submenu-transactions > :nth-child(1)', 
             '#submenu-transactions > :nth-child(2)',
@@ -100,9 +88,9 @@ describe('Descargas', () => {
             '#submenu-transactions > :nth-child(5)'      
         ] 
 
-        const Selectores_Navegacion_Entidades = [
-            //Seleccionar Entidades en el Menu
-            '[data-target="submenu-entity"]',  
+        let Entidades ='[data-target="submenu-entity"]'; 
+
+        const Selectores_Navegacion_Entidades = [ 
             //Seleccionar la pagina
             '#submenu-entity > :nth-child(1)', 
             '#submenu-entity > :nth-child(2)',
@@ -110,9 +98,9 @@ describe('Descargas', () => {
             '#submenu-entity > :nth-child(4)'      
         ] 
 
+        let Herramientas = '[data-target="submenu-management"]',  
+
         const Selectores_Navegacion_Herramientas = [
-            //Seleccionar Herramientas en el Menu
-            '[data-target="submenu-management"]',  
             //Seleccionar la pagina
             '#submenu-management > :nth-child(1)', 
             '#submenu-management > :nth-child(2)',
@@ -125,19 +113,16 @@ describe('Descargas', () => {
             '.sidebar-menu > .main-item.ng-star-inserted'     
         ] 
 
+        Selectores_Navegacion_Mantenimiento_Bancaria.forEach((selector) => {
+            //Seleccionar Mantenimientos en el Menu
+            cy.Click_force(Mantenimientos)
+            //Seleccionar Bancaria en el Submenu
+            cy.Click_force(Bancaria)            
+            // Seleccionar la entidad
+            cy.Click_force(selector) 
 
+            cy.Click_force('.gap-x-4 > .ph-heart')
 
-        SelectoresFiltros.forEach((selector) => {
-            /* Pasos
-
-            cy.Click_force('app-filter > .z-20 > .inline-flex')
-            cy.Elemento_visible(selector)
-            .scrollIntoView()
-            //boton aplicar
-            cy.contains('button', 'Cancelar').should('be.visible').click()
-            // Verificar que hay un máximo de 15 elementos
-            cy.get('.gap-2 app-filter-badge').should('have.length.lte', 2);
-            cy.get('.p-scroller').should('have.length.greaterThan', 0);*/
         })  
         
         // Función reutilizable para aplicar filtro y verificar los resultados

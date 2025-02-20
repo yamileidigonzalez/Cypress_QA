@@ -26,8 +26,18 @@
 const { select } = require("async")
 
 Cypress.Commands.add("Elemento_visible", (selector) => { 
-    cy.get(selector).should('be.visible')
+    cy.get(selector).scrollIntoView().should('be.visible')
 })
+
+Cypress.Commands.add("Elemento_visible_varios", (selector) => { 
+   cy.get(selector).each(($el) => {  
+       cy.wrap($el)
+         .scrollIntoView({ block: 'center', inline: 'center' })  // Centrar en la vista
+         .wait(1000)  // Esperar para asegurar que sea visible
+         .should('be.visible'); 
+   });
+});
+
 
 Cypress.Commands.add("Click", (selector,t) => { 
     cy.get(selector).should('be.visible').click()
