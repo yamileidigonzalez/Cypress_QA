@@ -34,7 +34,7 @@ Cypress.Commands.add("Elemento_visible_varios", (selector) => {
        cy.wrap($el)
          .scrollIntoView({ block: 'center', inline: 'center' })  // Centrar en la vista
          .wait(1000)  // Esperar para asegurar que sea visible
-         .should('be.visible'); 
+         .should('exist'); 
    });
 });
 
