@@ -1,0 +1,47 @@
+[
+  {
+    "id": 200,
+    "Nombre de usuario": "usuario210a",
+    "Contraseña": "Ppassword123*",
+    "Repetir contraseña": "Ppassword123*",
+    "Rol": "OPERATOR BASIC",
+    "Idioma": "es",
+    "Activo": "Si"
+  },
+  {
+    "id": 220,
+    "Nombre de usuario": "usuario220a",
+    "Contraseña": "Cclave456*",
+    "Repetir contraseña": "Cclave456*",
+    "Rol": "OPERATOR ADVANCE",
+    "Idioma": "en",
+    "Activo": "Si"
+  },
+  {
+    "id": 230,
+    "Nombre de usuario": "usuario230a",
+    "Contraseña": "Ssecure789*",
+    "Repetir contraseña": "Ssecure789*",
+    "Rol": "OPERATOR",
+    "Idioma": "fr",
+    "Activo": "Si"
+  },
+  {
+    "id": 240,
+    "Nombre de usuario": "usuario240a",
+    "Contraseña": "Mypassword123*",
+    "Repetir contraseña": "Mypassword123*",
+    "Rol": "ADMIN",
+    "Idioma": "de",
+    "Activo": "Si"
+  },
+  {
+    "id": 250,
+    "Nombre de usuario": "usuario250a",
+    "Contraseña": "Ttestpass123*",
+    "Repetir contraseña": "Ttestpass123*",
+    "Rol": "SUPER ADMIN",
+    "Idioma": "it",
+    "Activo": "Si"
+  }
+]

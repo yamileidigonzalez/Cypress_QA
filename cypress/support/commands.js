@@ -670,7 +670,7 @@ Cypress.Commands.add("Añadir_User", (id, usuario, pass, repetir_pass, rol, Idio
      .should('be.visible')
      .scrollIntoView()
    cy.Añadir_Combo('#roles', rol)
-     .click({ force: true }); // Forzar el clic si Cypress sigue diciendo que no es visible
+     //.click({ force: true }); // Forzar el clic si Cypress sigue diciendo que no es visible
 
    //Idioma
    cy.Añadir_Combo('#language',Idioma)
@@ -1427,6 +1427,7 @@ Cypress.Commands.add('Guardar_Confirmar_Usuarios', (selector_guardar, selector_m
                cy.Guardar_Confirmar_Usuarios(selector_guardar, selector_mensaje)               
             } else if ($alert.text().includes('¡Ha ocurrido un error ')){
                cy.log('⚠️ ¡Ha ocurrido un error :( !');
+               cy.Click_Botón('.mt-20 > [icon="pi pi-times"] > .p-ripple',1000)
             } else if ($alert.text().includes('ya existe!')){
                cy.get('.mt-20 > [icon="pi pi-times"] > .p-ripple')
                .should('exist')

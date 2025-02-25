@@ -131,7 +131,7 @@ describe('Descargas', () => {
         }
     ];
     
-    it.only('Comprobar la exportación a Excel', () => {
+    it('Comprobar la exportación a Excel', () => {
         menuItems.forEach(({ menu, submenus }) => {
             cy.Click_force(menu).scrollIntoView();
     
