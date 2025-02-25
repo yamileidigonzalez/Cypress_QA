@@ -1,6 +1,6 @@
 const { CUSTOM_ELEMENTS_SCHEMA } = require("@angular/core");
 
-describe('Gestión de namees Usuario', () => { 
+describe('Gestión de roles de Usuarios', () => { 
     let tiempo= 1000
     const namees = [
       {      

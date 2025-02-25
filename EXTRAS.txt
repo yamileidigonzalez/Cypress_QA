@@ -1,6 +1,6 @@
 Codigos
 
-npx cypress run --record --key 558f44f0-8d32-4960-9a4a-2e5b4c8f46b0
+npx cypress run --record --key 558f44f0-8d32-4960-9a4a-2e5b4c8f46b0 --parallel
 git add .
 git commit -m "new commit nombre OK"
 git push origin main
