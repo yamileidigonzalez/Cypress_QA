@@ -318,9 +318,9 @@ Cypress.Commands.add("Añadir_Enrrutaminetos", (tarjeta, Empresa, centro, caja, 
 })
 
 Cypress.Commands.add("Añadir_Entidad", (id, nombre ,eodRequerido, puntoServicio ,infoSeguridad ,identificacionAdquirente, permitirOffline ,host1 , puerto1, host2 , puerto2 , host3 ,puerto3 ,redEntidad ) => { 
-   let frozado_off= " "
-   let id_protocolo= " "
-   let tipo_red = " "
+   let frozado_off= "Desactivado"
+   let id_protocolo= "90"
+   let tipo_red = "1"
 
    let Intentos_max= "0"
    let T_conexion= "0"
@@ -537,7 +537,7 @@ Cypress.Commands.add("Añadir_Monedas", (ID, moneda, descripcion, simbolo, pais,
 })
 
 Cypress.Commands.add("Añadir_Tiendas", (ID, FUC, descripcion, provincia, permite_off) => { 
-   let empresa = " ";
+   let empresa = "1";
    let direccion = " ";
    let ciudad = " ";
    let codigo_postal = " ";

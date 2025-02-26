@@ -12,9 +12,9 @@ describe('Redes_Entidades', () => {
       cy.wait(tiempo)
       
       //Seleccionar Mantenimientos en el Menu
-      cy.get('[data-target="submenu-maintenance"]').should("be.visible").click()
+      cy.get('[data-target="submenu-maintenance"]').scrollIntoView().should("be.visible").click()
       //Seleccionar Bancaria en el Submenu
-      cy.get('[data-target="submenu-bancaria"]').should("be.visible").click()  
+      cy.get('[data-target="submenu-bancaria"]').scrollIntoView().should("be.visible").click()  
       
       // Seleccionar red de entidad
       cy.get('#submenu-bancaria > :nth-child(10)')
@@ -83,6 +83,7 @@ describe('Redes_Entidades', () => {
       cy.wait(tiempo)
       cy.Eliminar_Anular('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple', '[icon="pi pi-arrow-left"] > .p-ripple', '.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
       cy.wait(tiempo)
+      cy.Busqueda('.gap-x-3 > .inline-flex','4',tiempo)
       //Hacer clic en el primer registro para eliminar
       cy.Eliminar('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple','.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
       // Validar mensaje de éxito

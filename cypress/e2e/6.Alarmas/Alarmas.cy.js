@@ -25,7 +25,7 @@ describe('Alarmas', () => {
                   // Recorremos los elementos de la lista
                   cy.get(':nth-child(n) > .p-3').each(($element, index) => {
                       // Verificamos que el elemento sea visible
-                      cy.wrap($element).should('be.visible');
+                      cy.wrap($element).scrollIntoView().should('be.visible');
                       
                       // Obtenemos y mostramos el texto del elemento
                       cy.wrap($element).invoke('text').then((text) => {

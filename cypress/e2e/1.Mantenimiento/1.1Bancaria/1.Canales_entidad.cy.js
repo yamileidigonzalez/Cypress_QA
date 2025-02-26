@@ -7,17 +7,15 @@ describe('Canales_Entidad', () => {
       cy.visit('https://newfront.lab.solverpay.com/login'); 
       cy.title().should('eq','Login')
       //LOGIN
-      cy.get('#user').should("be.visible").should("be.enabled").type('solverpay')
-      cy.get('#password').should("be.visible").should("be.enabled").type('r7auF23wA.A2l1tZ2Dp4{enter}')
+      cy.login('solverpay','r7auF23wA.A2l1tZ2Dp4{enter}')
       cy.wait(tiempo)
       
       //Seleccionar Mantenimientos en el Menu
-      cy.get('[data-target="submenu-maintenance"]').should("be.visible").click()
+      cy.get('[data-target="submenu-maintenance"]').scrollIntoView().should("be.visible").click()
       //Seleccionar Bancaria en el Submenu
-      cy.get('[data-target="submenu-bancaria"]').should("be.visible").click()  
-      
+      cy.get('[data-target="submenu-bancaria"]').scrollIntoView().should("be.visible").click()        
       // Seleccionar la entidad
-      cy.get('#submenu-bancaria > :nth-child(1)').should("be.visible").click()  
+      cy.get('#submenu-bancaria > :nth-child(1)').scrollIntoView().should("be.visible").click()  
     })
 
     // Añadir un nuevo [Elemento]
@@ -47,7 +45,8 @@ describe('Canales_Entidad', () => {
     // Modificar un [Elemento]
     it('Debería modificar un [Elemento]', () => {
       // Simular el proceso de actualización de un registro
-      cy.get('.p-datatable-tbody > :nth-child(1) > :nth-child(2)').should("be.visible").click()
+      cy.Busqueda('.gap-x-3 > .inline-flex', '0', tiempo).wait(tiempo)
+      cy.get('.p-datatable-tbody > :nth-child(1) > :nth-child(1)').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.Editar_Canales_entidad("44 - Ciers 44", '2','999', '200', " ", " ", " ", " ", " ", " "); 
       //Guardar

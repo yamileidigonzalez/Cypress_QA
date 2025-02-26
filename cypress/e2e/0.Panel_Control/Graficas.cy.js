@@ -15,8 +15,7 @@ describe('Visualización de gráficos', () => {
     cy.visit('https://newfront.lab.solverpay.com/login'); 
     cy.title().should('eq','Login')
     //LOGIN
-    cy.get('#user').should("be.visible").should("be.enabled").type('solverpay')
-    cy.get('#password').should("be.visible").should("be.enabled").type('r7auF23wA.A2l1tZ2Dp4{enter}')
+    cy.login('solverpay', 'r7auF23wA.A2l1tZ2Dp4{enter}')
     cy.wait(tiempo)
   })
 
@@ -249,6 +248,7 @@ describe('Visualización de gráficos', () => {
     cy.wait(tiempo) 
 
     titulo = "Transacciones por fecha"        
+   
     // Seleccionar el dropdown y hacer clic para desplegarlo
     cy.get('#pn_id_5 .p-dropdown-label').click();
     // Seleccionar la opción deseada por su texto
@@ -266,14 +266,19 @@ describe('Visualización de gráficos', () => {
     verificarDatosCorrectos('app-transactions-per-day.col-span-full > .mb-2') 
 
     //Todo la Grafica            
-    verificarGrafico('app-transactions-per-day.col-span-full')
-    verificarDatosCorrectos('app-transactions-per-day.col-span-full')    
+    verificarGrafico('app-transactions-per-day.col-span-full > .bg-slate-200')
+    verificarDatosCorrectos('app-transactions-per-day.col-span-full > .bg-slate-200')     
 
     //Area del Grafico
     verificarGrafico('[style="width: 484px; height: 372px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
     verificarDatosCorrectos('[style="width: 484px; height: 372px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
 
+    //Ejes X-Ys
+    verificarGrafico('[style="width: 56px; height: 372px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
+    verificarGrafico('[style="width: 484px; height: 28px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
+
     titulo ='Transacciones por mes'
+
     // Seleccionar el dropdown y hacer clic para desplegarlo
     cy.get('#pn_id_5 .p-dropdown-label').click();
     // Seleccionar la opción deseada por su texto
@@ -292,12 +297,16 @@ describe('Visualización de gráficos', () => {
     verificarDatosCorrectos('app-transactions-per-day.col-span-full > .mb-2') 
 
     //Todo la Grafica            
-    verificarGrafico('app-transactions-per-day.col-span-full')
-    verificarDatosCorrectos('app-transactions-per-day.col-span-full')  
+    verificarGrafico('app-transactions-per-day.col-span-full > .bg-slate-200')
+    verificarDatosCorrectos('app-transactions-per-day.col-span-full > .bg-slate-200')  
    
     //Area del Grafico
-    verificarGrafico('[style="width: 482px; height: 372px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
-    verificarDatosCorrectos('[style="width: 482px; height: 372px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
+    verificarGrafico('[style="width: 484px; height: 372px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
+    verificarDatosCorrectos('[style="width: 484px; height: 372px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
+
+    //Ejes X-Y
+    verificarGrafico('[style="width: 56px; height: 372px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
+    verificarGrafico('[style="width: 484px; height: 28px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
     cy.wait(tiempo)  
 
   })
@@ -338,6 +347,10 @@ describe('Visualización de gráficos', () => {
     verificarGrafico('[style="width: 482px; height: 370px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
     verificarDatosCorrectos('[style="width: 482px; height: 370px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
 
+    //Ejes X-Y
+    verificarGrafico('[style="width: 58px; height: 370px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
+    verificarGrafico('[style="width: 482px; height: 28px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
+
     // Seleccionar el dropdown y hacer clic para desplegarlo
     cy.get('#pn_id_7 > .p-dropdown-label').click();
     // Seleccionar la opción deseada por su texto
@@ -355,17 +368,19 @@ describe('Visualización de gráficos', () => {
     //Título de Grafica
     cy.get('app-amount-per-day.col-span-full > .mb-2').should('contains.text', titulo)
     verificarGrafico('app-amount-per-day.col-span-full > .mb-2')
-    verificarDatosCorrectos('app-amount-per-day.col-span-full > .mb-2') 
-    cy.wait(tiempo)  
+    verificarDatosCorrectos('app-amount-per-day.col-span-full > .mb-2')  
 
     //Todo la Grafica
     verificarGrafico('app-amount-per-day.col-span-full')
     verificarDatosCorrectos('app-amount-per-day.col-span-full')
-    cy.wait(tiempo)  
 
     //Area del Grafico
-    verificarGrafico('[style="width: 472px; height: 370px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
-    verificarDatosCorrectos('[style="width: 472px; height: 370px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
+    verificarGrafico('[style="width: 482px; height: 370px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
+    verificarDatosCorrectos('[style="width: 482px; height: 370px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
+
+    //Ejes X-Y
+    verificarGrafico('[style="width: 58px; height: 370px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
+    verificarGrafico('[style="width: 58px; height: 370px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
     cy.wait(tiempo)  
 
   })
