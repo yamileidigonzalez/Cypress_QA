@@ -10,7 +10,7 @@ describe('Transacciones Off Rechazadas', () => {
         cy.wait(tiempo)
         
         //Seleccionar Mantenimientos en el Menu
-        cy.get('[data-target="submenu-transactions"]').should("be.visible").click()
+        cy.get('[data-target="submenu-transactions"]').scrollIntoView().should("be.visible").click()
         //Seleccionar en el Submenu
         cy.get('#submenu-transactions > :nth-child(5)')
         .scrollIntoView()  // Desplaza el elemento a la vista
@@ -24,11 +24,11 @@ describe('Transacciones Off Rechazadas', () => {
         cy.Click_force('app-filter > .z-20 > .inline-flex')
 
         //hoy
-        cy.Elemento_visible('.flex-wrap > :nth-child(1)')
+        cy.Elemento_visible_varios('.flex-wrap > :nth-child(1)')
         //ultima semana
-        cy.Elemento_visible('.flex-wrap > :nth-child(2)')
+        cy.Elemento_visible_varios('.flex-wrap > :nth-child(2)')
         //ultimo mes
-        cy.Elemento_visible('.flex-wrap > :nth-child(3)')
+        cy.Elemento_visible_varios('.flex-wrap > :nth-child(3)')
 
         //Fecha inicio
         cy.Elemento_visible(':nth-child(1) > .p-inputwrapper > .w-full > .text-sm')

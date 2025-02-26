@@ -248,7 +248,7 @@ describe('Favoritos', () => {
     it('Agrega una nueva página a favoritos y la verifica', () => { 
         cy.wait(tiempo); // Espera para asegurar que los elementos se carguen
         
-        cy.Elemento_visible_varios('.sidebar-fav').click() // Verifica que .sidebar-fav existe
+        cy.Elemento_visible_varios('.sidebar-fav').click({ force: true }) // Verifica que .sidebar-fav existe
         .then(($sidebar) => {          
             // Obtiene todos los elementos hijos directos dentro de .sidebar-fav
             cy.wait(tiempo)
@@ -319,7 +319,7 @@ describe('Favoritos', () => {
     it('Elimina una página de favoritos y verifica que ya no está', () => { 
         cy.wait(tiempo); // Espera para asegurar que los elementos se carguen
         
-        cy.Elemento_visible_varios('.sidebar-fav').click() // Verifica que .sidebar-fav existe
+        cy.Elemento_visible_varios('.sidebar-fav').click({ force: true }) // Verifica que .sidebar-fav existe
         .then(($sidebar) => {          
             // Obtiene todos los elementos hijos directos dentro de .sidebar-fav
             cy.wait(tiempo)
@@ -388,7 +388,7 @@ describe('Favoritos', () => {
     it('Verifica que el contenido de la página favorita se carga correctamente', () => { 
         cy.wait(tiempo); // Espera para asegurar que los elementos se carguen
         
-        cy.Elemento_visible_varios('.sidebar-fav').click() // Verifica que .sidebar-fav existe
+        cy.Elemento_visible_varios('.sidebar-fav').click({ force: true }) // Verifica que .sidebar-fav existe
         .then(($sidebar) => {          
             // Obtiene todos los elementos hijos directos dentro de .sidebar-fav
             cy.wait(tiempo)

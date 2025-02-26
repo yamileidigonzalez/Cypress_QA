@@ -1,0 +1,8 @@
+ID;descripción;dirección;municipio;ciudad;"código postal";"permite offline"
+6;"Empresa 6";"C/ Gran Vía 88";Madrid;Madrid;28013;Si;
+7;"Empresa 7";"Paseo de Gracia 21";Barcelona;Barcelona;80007;No;
+8;"Empresa 8";"C/ La Rambla 12";Tarragona;Tarragona;43004;Si;
+2;"Empresa 2";"Av. del Mar 45";Castellón;Castellón;12001;No;
+4;"Empresa 4";"C/ Mayor 98";Murcia;Murcia;30001;Si;
+5;"Empresa 5";"Av. Andalucía 3";Sevilla;Sevilla;41012;No;
+3;"Empresa X";XXX;Valencia;Valencia;46022;No;

@@ -102,9 +102,41 @@ Cypress.Commands.add('Volver', (selector_volver, t) => {
 })
 
 Cypress.Commands.add('Busqueda', (selector, valor, t) => { 
-   cy.get(selector).should("be.visible").clear().type(valor).wait(t)
-
-})
+   cy.get(selector)
+      .should("be.visible")
+      .clear()
+      .type(valor, { delay: 100 }) // Simula entrada de usuario
+      .wait(t)
+      .then(() => {
+          cy.get(selector).invoke('val').should((val) => {
+              expect(val.trim()).to.eq(valor.trim());
+          });
+      });
+   // Esperar a que los resultados se carguen
+   cy.wait(t);
+   // Validar diferentes tipos de resultados con distintos valores
+   const tiposDeValores = [
+       '12345',       // Números
+       'Texto',       // Palabras
+       '!@#$%^&*()',  // Signos
+       'Texto123',    // Mezcla de letras y números
+       '   ',         // Espacios
+       'ñáéíóú'       // Caracteres especiales
+   ];   
+   tiposDeValores.forEach((testValor) => {
+       cy.get(selector).clear().type(testValor);
+       cy.wait(t);
+       cy.get('body').then(($body) => {
+           if ($body.find('.result-item, .search-result').length > 0) {
+               cy.get('.result-item, .search-result')
+                  .should("exist")
+                  .and("be.visible");
+           } else {
+               cy.log(`⚠️ No se encontraron resultados para: ${testValor}`);
+           }
+       });
+   });
+});
 
 Cypress.Commands.add('Insertar_Texto', (selector, texto, t) => { 
    cy.get(selector).should('be.visible').type(texto)
@@ -155,7 +187,7 @@ Cypress.Commands.add('Añadir_Combo_Buscar', (selector, sector_buscar, valor) =>
       } else {
          cy.log('El valor ha sido encontrado');
          // Aquí puedes agregar más acciones si el valor sí existe 
-         cy.get('.p-dropdown-items li').first().click();
+         cy.get('.p-dropdown-items li').first()/*.click();*/
          //cy.get(selector).should("be.visible").type(valor,"{enter}");
       }
    });

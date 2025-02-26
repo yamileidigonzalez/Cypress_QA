@@ -167,7 +167,7 @@ describe('Visualización de gráficos', () => {
     titulo = "Estado del backup forzado"
         
     //Título de Grafica
-    cy.get('app-routing-status.w-full > :nth-child(1) > .mb-2').should('contains.text', titulo)
+    cy.get('app-routing-status.w-full > :nth-child(1) > .mb-2').scrollIntoView().should('contains.text', titulo)
     verificarGrafico('app-routing-status.w-full > :nth-child(1) > .mb-2')
     verificarDatosCorrectos('app-routing-status.w-full > :nth-child(1) > .mb-2') 
     //Todo la Grafica

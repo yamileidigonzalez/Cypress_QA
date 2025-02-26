@@ -23,7 +23,7 @@ describe('Gestion de Procesos', () => {
         cy.wait(tiempo);  // Espera de tiempo para que se procese
     
         // Verifica que el spinner aparece mientras se actualiza
-        cy.Elemento_visible('.animate-spin'); // Espera a que el spinner esté visible
+        cy.Elemento_visible_varios('.animate-spin'); // Espera a que el spinner esté visible
     
         // Espera a que el spinner desaparezca, lo que indica que la actualización terminó
         cy.get('.animate-spin', { timeout: 10000 }).should('not.exist'); // Espera 10 segundos
@@ -37,7 +37,7 @@ describe('Gestion de Procesos', () => {
         cy.wait(tiempo);  // Espera de tiempo para que se procese
     
         // Verifica que el spinner aparece mientras se actualiza
-        cy.Elemento_visible('.animate-spin') // Espera a que el spinner esté visible
+        cy.Elemento_visible_varios('.animate-spin') // Espera a que el spinner esté visible
     
         // Espera a que el spinner desaparezca, lo que indica que la actualización terminó
         cy.get('.animate-spin', { timeout: 10000 }).should('not.exist'); // Espera 10 segundos

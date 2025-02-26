@@ -23,11 +23,11 @@ describe('Totales', () => {
         cy.Click_force('app-filter > .z-20 > .inline-flex')
 
         //hoy
-        cy.Elemento_visible('.flex-wrap > :nth-child(1)')
+        cy.Elemento_visible_varios('.flex-wrap > :nth-child(1)')
         //ultima semana
-        cy.Elemento_visible('.flex-wrap > :nth-child(2)')
+        cy.Elemento_visible_varios('.flex-wrap > :nth-child(2)')
         //ultimo mes
-        cy.Elemento_visible('.flex-wrap > :nth-child(3)')
+        cy.Elemento_visible_varios('.flex-wrap > :nth-child(3)')
 
         //Fecha inicio
         cy.Elemento_visible(':nth-child(1) > .p-inputwrapper > .w-full > .text-sm')

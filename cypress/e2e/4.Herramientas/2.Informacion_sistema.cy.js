@@ -19,7 +19,7 @@ describe('Informacion del Sistema', () => {
     })  
     
     it('Consulta de estado de CPU - Ejecutar la consulta correctamente', () => {  
-        cy.Elemento_visible('.grid > :nth-child(1)') // Selector del botón de consulta de CPU
+        cy.Elemento_visible_varios('.grid > :nth-child(1)') // Selector del botón de consulta de CPU
         cy.wait(tiempo);
     
         cy.Elemento_visible(':nth-child(1) > .space-y-2') // Verifica que la tabla de CPU es visible
@@ -41,7 +41,7 @@ describe('Informacion del Sistema', () => {
     });
 
     it('Consulta Sistema de Archivos', () => {  
-        cy.Elemento_visible('.border-b-2').click({ multiple: true }); // Selector del botón de consulta de CPU
+        cy.Elemento_visible_varios('.border-b-2').click({ multiple: true }); // Selector del botón de consulta de CPU
         cy.wait(tiempo);
     
         cy.Elemento_visible('.space-y-6 > .ng-star-inserted > .p-6').should('contain', 'Sistema de Archivos'); 
