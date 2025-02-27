@@ -93,7 +93,7 @@ describe('Pruebas de Ordenamiento en Tablas', () => {
         });
     }
     
-    it.only('Ordenar cada elemento de la tabla', () => {
+    it('Ordenar cada elemento de la tabla', () => {
         menuItems.forEach(({ menu, submenus }) => {
             cy.Click_force(menu).scrollIntoView();
 

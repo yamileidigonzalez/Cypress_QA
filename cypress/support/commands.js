@@ -138,6 +138,37 @@ Cypress.Commands.add('Busqueda', (selector, valor, t) => {
    });
 });
 
+Cypress.Commands.add('Buscar', (selector, valor, t) => { 
+   cy.get(selector)
+      .should("be.visible")
+      .clear()
+      .type(valor, { delay: 100 }) // Simula entrada de usuario
+      .wait(t)
+      .then(() => {
+          cy.get(selector).invoke('val').should((val) => {
+              expect(val.trim()).to.eq(valor.trim());
+          });
+      });
+   // Esperar a que los resultados se carguen
+   cy.wait(t);
+   // Validar diferentes tipos de resultados con distintos valores
+   cy.get(selector).clear().type(valor);
+   cy.wait(t);
+   cy.get('body').then(($body) => {
+      if ($body.find('.result-item, .search-result').length > 0) {
+          cy.get('.result-item, .search-result')
+             .should("exist")
+             .and("be.visible");
+      } else {
+          cy.log(`⚠️ No se encontraron resultados para: ${valor}`);
+      }
+  });       
+    
+ 
+       
+   
+});
+
 Cypress.Commands.add('Insertar_Texto', (selector, texto, t) => { 
    cy.get(selector).should('be.visible').type(texto)
    cy.wait(t)    

@@ -48,7 +48,7 @@ describe('Tarjetas', () => {
     // Modificar un [Elemento]    
     it('Debería modificar un [Elemento]', () => {
       // Simular el proceso de actualización de un registro
-      cy.Busqueda('.gap-x-3 > .inline-flex','0',tiempo)
+      cy.Buscar('.gap-x-3 > .inline-flex','0',tiempo)
       cy.Click_force('.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
@@ -85,7 +85,7 @@ describe('Tarjetas', () => {
     // Eliminar un [Elemento]
     it('Debería eliminar un [Elemento]', () => {
       cy.wait(tiempo)
-      cy.Busqueda('.gap-x-3 > .inline-flex','a',tiempo)
+      cy.Buscar('.gap-x-3 > .inline-flex','a',tiempo)
       cy.get('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple').then(($el) => {
         if ($el.length) {
           cy.Eliminar_Anular(
