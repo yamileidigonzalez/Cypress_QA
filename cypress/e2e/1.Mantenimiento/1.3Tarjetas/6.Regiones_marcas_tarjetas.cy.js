@@ -91,7 +91,7 @@ describe('Regiones_marcas_tarjetas', () => {
           cy.wait(tiempo);
           
           // Hacer clic en el primer registro para eliminar si existe
-          cy.Busqueda('.gap-x-3 > .inline-flex','4',tiempo)
+          cy.Buscar('.gap-x-3 > .inline-flex','4',tiempo)
           cy.get('.p-datatable-tbody > :nth-child(1) > :nth-child(2)').then(($row) => {
             if ($row.length) {
                 //Sin seleccionar esta desactivada

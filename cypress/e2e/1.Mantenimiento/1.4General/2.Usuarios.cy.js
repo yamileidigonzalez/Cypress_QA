@@ -86,7 +86,7 @@ describe('Usuarios', () => {
     // Eliminar un [Elemento]
     it('Debería eliminar un [Elemento]', () => {
       cy.wait(tiempo)
-      cy.Busqueda('.gap-x-3 > .inline-flex','usuario',tiempo)
+      cy.Buscar('.gap-x-3 > .inline-flex','usuario',tiempo)
       cy.Eliminar_Anular('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple', '[icon="pi pi-arrow-left"] > .p-ripple', '.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
       cy.wait(tiempo)
       //Hacer clic en el primer registro para eliminar

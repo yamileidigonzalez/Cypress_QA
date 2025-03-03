@@ -6,7 +6,7 @@ describe('Visualización de gráficos', () => {
   Quiero visualizar gráficos en tiempo real
   Para comprender el estado actual de los datos financieros
   */
-  let tiempo= 1000
+  let tiempo= 500
   let titulo = 'titulo_grafica';
   let select = 'Opcciones'
 
@@ -15,7 +15,7 @@ describe('Visualización de gráficos', () => {
     cy.visit('https://newfront.lab.solverpay.com/login'); 
     cy.title().should('eq','Login')
     //LOGIN
-    cy.login('solverpay', 'r7auF23wA.A2l1tZ2Dp4{enter}')
+    cy.login('solverpay', 'r7auF23wA.A2l1tZ2Dp4')
     cy.wait(tiempo)
   })
 
@@ -88,7 +88,7 @@ describe('Visualización de gráficos', () => {
     verificarGrafico('app-denied-per-hour.w-full')
     verificarDatosCorrectos('app-denied-per-hour.w-full')
     //Area del Grafico
-    //verificarGrafico('app-denied-per-hour.w-full > .h-\[370px\]')
+   //verificarGrafico('app-denied-per-hour.w-full > .h-\[370px\]')
     //verificarDatosCorrectos('app-denied-per-hour.w-full > .h-\[370px\]')
     //Leyenda
     //verificarGrafico('#legendContainer')

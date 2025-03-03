@@ -11,12 +11,12 @@ describe('Cajas', () => {
       cy.wait(tiempo)
       
       //Seleccionar Mantenimientos en el Menu
-      cy.get('[data-target="submenu-maintenance"]').should("be.visible").click()
+      cy.get('[data-target="submenu-maintenance"]').scrollIntoView().should("be.visible").click()
       //Seleccionar en el Submenu
-      cy.get('[data-target="submenu-base"]').should("be.visible").click()  
+      cy.get('[data-target="submenu-base"]').scrollIntoView().should("be.visible").click()  
       
       // Seleccionar la entidad
-      cy.get('#submenu-base > :nth-child(4)').should("be.visible").click()  
+      cy.get('#submenu-base > :nth-child(4)').scrollIntoView().should("be.visible").click()  
     })
 
     // Añadir un nuevo [Elemento]

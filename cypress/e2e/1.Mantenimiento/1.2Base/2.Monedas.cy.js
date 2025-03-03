@@ -11,16 +11,16 @@ describe('Monedas', () => {
       cy.wait(tiempo)
       
       //Seleccionar Mantenimientos en el Menu
-      cy.get('[data-target="submenu-maintenance"]').should("be.visible").click()
+      cy.get('[data-target="submenu-maintenance"]').scrollIntoView().should("be.visible").click()
       //Seleccionar en el Submenu
-      cy.get('[data-target="submenu-base"]').should("be.visible").click()  
+      cy.get('[data-target="submenu-base"]').scrollIntoView().should("be.visible").click()  
       
       // Seleccionar la entidad
-      cy.get('#submenu-base > :nth-child(2)').should("be.visible").click()  
+      cy.get('#submenu-base > :nth-child(2)').scrollIntoView().should("be.visible").click()  
     })
 
     // Añadir un nuevo [Elemento]
-    it.only('Debería añadir un nuevo [Elemento]', () => {
+    it('Debería añadir un nuevo [Elemento]', () => {
       cy.fixture('2_Monedas.json').then((Empresas) => {
         Empresas.forEach((config) => {
             let ID = config.ID;

@@ -7,7 +7,7 @@ describe('Canales_Entidad', () => {
       cy.visit('https://newfront.lab.solverpay.com/login'); 
       cy.title().should('eq','Login')
       //LOGIN
-      cy.login('solverpay','r7auF23wA.A2l1tZ2Dp4{enter}')
+      cy.login('solverpay','r7auF23wA.A2l1tZ2Dp4')
       cy.wait(tiempo)
       
       //Seleccionar Mantenimientos en el Menu
@@ -45,7 +45,8 @@ describe('Canales_Entidad', () => {
     // Modificar un [Elemento]
     it('Debería modificar un [Elemento]', () => {
       // Simular el proceso de actualización de un registro
-      cy.Buscar('.gap-x-3 > .inline-flex', '0', tiempo).wait(tiempo)
+      cy.Buscar('.gap-x-3 > .inline-flex', '1', tiempo)
+      cy.wait(tiempo)
       cy.get('.p-datatable-tbody > :nth-child(1) > :nth-child(1)').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.Editar_Canales_entidad("44 - Ciers 44", '2','999', '200', " ", " ", " ", " ", " ", " "); 

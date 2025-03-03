@@ -15,7 +15,7 @@
     "Repetir contraseña": "clave456",
     "Rol": "editor",
     "Idioma": "en",
-    "Activo": "No"
+    "Activo": "Si"
   },
   {
     "id": 3,
@@ -42,6 +42,6 @@
     "Repetir contraseña": "testpass",
     "Rol": "invitado",
     "Idioma": "it",
-    "Activo": "No"
+    "Activo": "Si"
   }
 ]
