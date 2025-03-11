@@ -27,7 +27,7 @@ describe('Gestión de roles de Usuarios', () => {
         cy.title().should('eq','Login')   
     })
 
-    it('Crear un usuario con diferente namees', () => {
+    it.only('Crear un usuario con diferente namees', () => {
       //LOGIN
       cy.login('solverpay', 'r7auF23wA.A2l1tZ2Dp4')
       cy.wait(tiempo)
@@ -188,7 +188,7 @@ describe('Gestión de roles de Usuarios', () => {
           cy.get('[data-target="submenu-tracking"]').should('not.exist');
     });
 
-    it('OPERATOR solo puede ver las opciones correctas', () => {
+    it.only('OPERATOR solo puede ver las opciones correctas', () => {
       //LOGIN
       cy.login('usuario230a', 'Ssecure789*');
       //PAGINAS ACCESIBLES
@@ -252,7 +252,7 @@ describe('Gestión de roles de Usuarios', () => {
           cy.get('[data-target="submenu-tracking"]').should('not.exist');
     });
   
-    it('ADMIN solo puede ver las opciones correctas', () => {
+    it.only('ADMIN solo puede ver las opciones correctas', () => {
       //LOGIN
       cy.login('usuario240a', 'Mypassword123*');
       //PAGINAS ACCESIBLES

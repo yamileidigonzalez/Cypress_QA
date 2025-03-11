@@ -58,7 +58,7 @@ Cypress.Commands.add('Click_Botón', (selector, t) => {
 
 
 Cypress.Commands.add("login", (username, password) => {
-      cy.get('#user').should("be.visible").should("be.enabled").type(username)
+      cy.get('#email').should("be.visible").should("be.enabled").type(username)
       cy.get('#password').should("be.visible").should("be.enabled").type(password).type('{enter}')
  });
 

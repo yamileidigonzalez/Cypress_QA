@@ -8,7 +8,7 @@ describe('Login', () => {
       cy.visit('https://newfront.lab.solverpay.com/login'); 
       cy.title().should('eq','Login')
       //LOGIN
-      cy.get('#user').should("be.visible").should("be.enabled").type('solverpay')
+      cy.get('#email').should("be.visible").should("be.enabled").type('solverpay')
       cy.get('#password').should("be.visible").should("be.enabled").type('r7auF23wA.A2l1tZ2Dp4{enter}')
       cy.wait(t)
     })
@@ -18,8 +18,7 @@ describe('Login', () => {
       cy.visit('https://newfront.lab.solverpay.com/login'); 
       cy.title().should('eq','Login')
       //LOGIN
-      cy.get('#user').should("be.visible").should("be.enabled").type('solverpay')
-      cy.get('#password').should("be.visible").should("be.enabled").type('r7auF23wA.A2l1tZ2Dp4{enter}')
+      cy.login('#email','r7auF23wA.A2l1tZ2Dp4')
       cy.wait(t)
     })
 
@@ -28,19 +27,19 @@ describe('Login', () => {
       cy.visit('https://newfront.lab.solverpay.com/login'); 
       cy.title().should('eq','Login')
       //LOGIN
-      cy.get('#user').should("be.visible").should("be.enabled").type(' ')
+      cy.get('#email').should("be.visible").should("be.enabled").type(' ')
       cy.get('#password').should("be.visible").should("be.enabled").type(' {enter}')
       cy.wait(t)
       //Confirmar error
-      cy.get('.text-red-600').should("be.visible").should('contain','Oops!')
+      cy.get('.text-red-600').should("be.visible").should('contain','El usuario es obligatorio!')
     })
 
     it('Inicio sesion KO-En blanco', () => {
       //PAGINA
       cy.visit('https://newfront.lab.solverpay.com/login'); 
       cy.title().should('eq','Login')
-      //LOGIN user
-      cy.get('#user').should("be.visible").should("be.enabled").click()
+      //LOGIN email
+      cy.get('#email').should("be.visible").should("be.enabled").click()
       cy.wait(t) 
       //LOGIN pass
       cy.get('#password').should("be.visible").should("be.enabled").click()
@@ -57,13 +56,14 @@ describe('Login', () => {
 
     it('Cierre de sesion', () => {
       cy.title().should('eq','Panel de control')
-      cy.wait(1000)
+      cy.wait(t)
       //Perfil de usuario
+      cy.Elemento_visible('.inline-flex > .pi').click()
       cy.get('app-avatar-box > .flex-col > .text-center').should("be.visible").click()
-      
+      cy.wait(t)
       //Cierre de sesion
       cy.get('div.py-2 > .block').should("be.visible").click()
-      cy.wait(1000)
+      cy.wait(t)
       cy.title().should('eq','Login')
 
     })
