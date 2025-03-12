@@ -15,7 +15,7 @@ describe('Visualización de gráficos', () => {
     cy.visit('https://newfront.lab.solverpay.com/login'); 
     cy.title().should('eq','Login')
     //LOGIN
-    cy.login('solverpay', 'r7auF23wA.A2l1tZ2Dp4')
+    cy.login('solverpay@prueba.qa.com', 'r7auF23wA.A2l1tZ2Dp4')
     cy.wait(tiempo)
   })
 
@@ -250,11 +250,11 @@ describe('Visualización de gráficos', () => {
     titulo = "Transacciones por fecha"        
    
     // Seleccionar el dropdown y hacer clic para desplegarlo
-    cy.get('#pn_id_5 .p-dropdown-label').click();
+    cy.get('#pn_id_4 .p-dropdown-label').scrollIntoView().click();
     // Seleccionar la opción deseada por su texto
     cy.get('.p-dropdown-item').contains('Diario').click();
     // Verificar que el texto del dropdown cambió correctamente
-    cy.get('#pn_id_5 .p-dropdown-label')
+    cy.get('#pn_id_4 .p-dropdown-label')
       .should('contain.text', 'Diario')
       .invoke('text')
       .then((textoSeleccionado) => {
@@ -280,11 +280,11 @@ describe('Visualización de gráficos', () => {
     titulo ='Transacciones por mes'
 
     // Seleccionar el dropdown y hacer clic para desplegarlo
-    cy.get('#pn_id_5 .p-dropdown-label').click();
+    cy.get('#pn_id_4 .p-dropdown-label').click();
     // Seleccionar la opción deseada por su texto
     cy.get('.p-dropdown-item').contains('Mensual').click();
     // Verificar que el texto del dropdown cambió correctamente
-    cy.get('#pn_id_5 .p-dropdown-label')
+    cy.get('#pn_id_4 .p-dropdown-label')
       .should('contain.text', 'Mensual')
       .invoke('text')
       .then((textoSeleccionado) => {
@@ -322,11 +322,11 @@ describe('Visualización de gráficos', () => {
     cy.wait(tiempo) 
 
     // Seleccionar el dropdown y hacer clic para desplegarlo
-    cy.get('#pn_id_7 > .p-dropdown-label').click();
+    cy.get('#pn_id_6 > .p-dropdown-label').click();
     // Seleccionar la opción deseada por su texto
     cy.get('.p-dropdown-item').contains('Diario').click();
     // Verificar que el texto del dropdown cambió correctamente
-    cy.get('#pn_id_7 > .p-dropdown-label')
+    cy.get('#pn_id_6 > .p-dropdown-label')
       .should('contain.text', 'Diario')
       .invoke('text')
       .then((textoSeleccionado) => {
@@ -352,11 +352,11 @@ describe('Visualización de gráficos', () => {
     verificarGrafico('[style="width: 482px; height: 28px; position: absolute; z-index: 2; left: 0px; top: 0px;"]')
 
     // Seleccionar el dropdown y hacer clic para desplegarlo
-    cy.get('#pn_id_7 > .p-dropdown-label').click();
+    cy.get('#pn_id_6 > .p-dropdown-label').click();
     // Seleccionar la opción deseada por su texto
     cy.get('.p-dropdown-item').contains('Mensual').click();
     // Verificar que el texto del dropdown cambió correctamente
-    cy.get('#pn_id_7 > .p-dropdown-label')
+    cy.get('#pn_id_6 > .p-dropdown-label')
       .should('contain.text', 'Mensual')
       .invoke('text')
       .then((textoSeleccionado) => {

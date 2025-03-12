@@ -474,5 +474,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "cypress-file-upload": "^5.0.8"
+  }
 }

@@ -24,6 +24,7 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 const { select } = require("async")
+import 'cypress-file-upload';
 
 Cypress.Commands.add("Elemento_visible", (selector) => { 
     cy.get(selector).scrollIntoView().should('be.visible')
@@ -266,7 +267,7 @@ Cypress.Commands.add('Añadir_Combo', (selector, valor) => {
 
 Cypress.Commands.add('Añadir_text', (selector_añadir, valor) => {
    //boton anadir
-   cy.get(selector_añadir).should("be.visible").clear().type(valor,"{enter}")             
+   cy.get(selector_añadir).scrollIntoView().should("be.visible").clear().type(valor,"{enter}")             
 })
 
 Cypress.Commands.add("Añadir_Adquirientes_comprobar_Check", (off_internacional, off_EMV, forzado_respaldo) => {
@@ -655,7 +656,7 @@ Cypress.Commands.add("Añadir_Configuracion_Central", (rol, propiedad, tipo, val
 })
 
 Cypress.Commands.add("Añadir_Contraseña", (selector, pass) => { 
-   cy.Añadir_text(selector, pass)
+   cy.Añadir_text(selector, pass).wait(100)
    cy.get('.ng-trigger').then(($mensaje) => {      
       if ($mensaje.is(':visible') && $mensaje.text().includes('Demasiado simple')) {
          cy.log('El mensaje indica que la contraseña es Demasiado simple');
@@ -720,10 +721,62 @@ Cypress.Commands.add("Añadir_Contraseña", (selector, pass) => {
 
 })
 
-Cypress.Commands.add("Añadir_User", (id, usuario, pass, repetir_pass, rol, Idioma, Activo) => { 
+Cypress.Commands.add("Añadir_User", (id, usuario, email, pass, repetir_pass, rol, Idioma, Activo) => { 
    // Validaciones en la UI basadas en los datos del JSON
    //Nombre user
    cy.Añadir_text('#username',usuario)   
+   //Email 
+   cy.Añadir_text('#email', email)
+   //Pass
+   cy.Añadir_Contraseña('#password > .p-password > .p-inputtext',pass)
+   cy.Añadir_Contraseña('#passwordConfirm > .p-password > .p-inputtext',repetir_pass)
+   //Rol
+   cy.get('#roles')
+     .should('exist')
+     .should('be.visible')
+     .scrollIntoView()
+   cy.Añadir_Combo('#roles', rol)
+     //.click({ force: true }); // Forzar el clic si Cypress sigue diciendo que no es visible
+
+   //Idioma
+   cy.Añadir_Combo('#language',Idioma)
+
+   //Activo 
+   cy.get('.p-selectbutton > .p-highlight')//si
+   cy.get('.p-selectbutton > [tabindex="0"]')//no
+   cy.Seleccionar_Opcion_SI_NO('.p-selectbutton > .p-highlight', '.p-selectbutton > [tabindex="0"]', Activo)
+   
+   cy.log(`Usuario añadido: ${id}`)   
+})
+
+Cypress.Commands.add("Añadir_Imagen_User", (id, usuario, name, email, pass, repetir_pass, rol, Idioma, Activo) => { 
+   // Validaciones en la UI basadas en los datos del JSON
+   //Comprobar imagen
+   cy.get('[styleclass="h-8 m-1 bg-red-500 border-none"] > .p-ripple').scrollIntoView().click()
+   cy.get('[styleclass="h-8 m-1 border-none"] > .p-ripple').scrollIntoView().click()
+   const imagenes = ['hombre-usuario-avatar.jpg', 'Selección_057.png', 'Selección_058.png','Selección_059.png', 'Selección_060.png', 'Selección_061.png', 'Selección_062.png', 'Selección_063.png']; // Lista de imágenes disponibles
+   // Selecciona aleatoriamente una imagen de la lista
+   const imagenAleatoria = imagenes[Math.floor(Math.random() * imagenes.length)];
+   cy.get('input[type="file"]').attachFile(imagenAleatoria);
+   cy.fixture('hombre-usuario-avatar.jpg', 'base64').then((fileContent) => {
+      cy.get('[styleclass="h-8 m-1 border-none"] > .p-ripple').attachFile({
+        fileContent,
+        fileName: imagenAleatoria,
+        mimeType: 'image/jpeg',
+        encoding: 'base64'
+      });
+    });
+   // Verificar que la carga fue exitosa (esto depende de tu aplicación)
+   cy.get('input[type="file"]').then(($input) => {
+      expect($input[0].files[0].name).to.equal(imagenAleatoria);
+      cy.log('Imagen subida correctamente')
+   });
+   //Nombre user
+   cy.Añadir_text(':nth-child(1) > #username',usuario)  
+   //Nombre completo
+   cy.Añadir_text(':nth-child(2) > #username', name)
+   //Email 
+   cy.Añadir_text('#email', email)
    //Pass
    cy.Añadir_Contraseña('#password > .p-password > .p-inputtext',pass)
    cy.Añadir_Contraseña('#passwordConfirm > .p-password > .p-inputtext',repetir_pass)
@@ -939,13 +992,6 @@ Cypress.Commands.add("Añadir_Transaccion_Manual", (tarjeta, centro, operador,ti
    cy.Añadir_text('#date', fecha)
    //cy.get('#pn_id_10_panel')     
 })
-
-
-
-
-
-
-
 
 
 
@@ -1477,22 +1523,24 @@ Cypress.Commands.add("Editar_TCajas",(id, capacidades_terminal, descripcion) => 
 
 Cypress.Commands.add('Guardar_Confirmar_Usuarios', (selector_guardar, selector_mensaje) => {
    // Interceptar la petición API
+  
    cy.intercept('POST', '**/api/routing/add').as('guardar');
    // Verificar si el botón de guardar es visible
    cy.get(selector_guardar).then(($btn) => {
       if ($btn.is(':visible') && ($btn.is(':enabled')) ){
          cy.get(selector_guardar).click()
-         cy.get(selector_mensaje).should('exist').and('be.visible').then(($alert) => {
+         cy.get(selector_mensaje).scrollIntoView().should('exist').and('be.visible').then(($alert) => {
             if ($alert.text().includes('¡Tú contraseña no puede ser igual a la anterior!')){
-               cy.Añadir_Contraseña('#password > .p-password > .p-inputtext','Password123.password123%')
-               cy.Añadir_Contraseña('#passwordConfirm > .p-password > .p-inputtext','Password123.password123%')
+               let pass = `Password123%${Math.floor(Math.random() * 10000)}`;
+               cy.Añadir_Contraseña('#password > .p-password > .p-inputtext',pass)
+               cy.Añadir_Contraseña('#passwordConfirm > .p-password > .p-inputtext',pass)
                cy.log('✅ ¡Contraseña Cambiada!').wait(2000)
                cy.Guardar_Confirmar_Usuarios(selector_guardar, selector_mensaje)               
             } else if ($alert.text().includes('¡Ha ocurrido un error ')){
                cy.log('⚠️ ¡Ha ocurrido un error :( !');
-               cy.Click_Botón('.mt-20 > [icon="pi pi-times"] > .p-ripple',1000)
-            } else if ($alert.text().includes('ya existe!')){
-               cy.get('.mt-20 > [icon="pi pi-times"] > .p-ripple')
+               cy.Click_Botón('.flex-row > [icon="pi pi-times"] > .p-ripple',1000)
+            } else if ($alert.text().includes('Ya existe')){
+               cy.get('.flex-row > [icon="pi pi-times"] > .p-ripple').scrollIntoView()
                .should('exist')
                .should('be.visible')
                .scrollIntoView()
@@ -1508,9 +1556,8 @@ Cypress.Commands.add('Guardar_Confirmar_Usuarios', (selector_guardar, selector_m
          // Ejemplo: hacer clic en otro botón, mostrar un mensaje o realizar otra validación
          cy.log('⚠️ ¡No se pudo guardar!')
 
-         cy.get('.mt-20 > [icon="pi pi-times"] > .p-ripple').should('exist')
-         .should('be.visible')
-         .scrollIntoView()
+         cy.get('.flex-row > [icon="pi pi-times"] > .p-ripple').scrollIntoView().should('exist')
+         .should('be.visible')         
          .click({ force: true });
       } else {
          cy.log('✅ ¡He llegado aqui!');
@@ -1860,9 +1907,6 @@ Cypress.Commands.add('Guardar_Confirmar_TCaja', (selector_guardar, selector_mens
 
 
 
-
-
-
 Cypress.Commands.add("Eliminar_Anular", (boton_borrar, boton_anular, elemento) => { 
    //Sin seleccionar esta desactivada
    cy.get(boton_borrar).should('not.be.enabled').wait(1000);
@@ -1912,8 +1956,6 @@ Cypress.Commands.add("Eliminar", (boton_borrar, elemento) => {
    // Validar mensaje de éxito
  
 })
-
-
 
 
 

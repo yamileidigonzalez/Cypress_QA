@@ -8,7 +8,7 @@ describe('Login', () => {
       cy.visit('https://newfront.lab.solverpay.com/login'); 
       cy.title().should('eq','Login')
       //LOGIN
-      cy.get('#email').should("be.visible").should("be.enabled").type('solverpay')
+      cy.get('#email').should("be.visible").should("be.enabled").type('solverpay@prueba.qa.com')
       cy.get('#password').should("be.visible").should("be.enabled").type('r7auF23wA.A2l1tZ2Dp4{enter}')
       cy.wait(t)
     })
@@ -58,7 +58,7 @@ describe('Login', () => {
       cy.title().should('eq','Panel de control')
       cy.wait(t)
       //Perfil de usuario
-      cy.Elemento_visible('.inline-flex > .pi').click()
+      //cy.Elemento_visible('.inline-flex > .pi').click()
       cy.get('app-avatar-box > .flex-col > .text-center').should("be.visible").click()
       cy.wait(t)
       //Cierre de sesion

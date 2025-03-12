@@ -1,7 +1,8 @@
 [
   {
     "id": 200,
-    "Nombre de usuario": "usuario210a",
+    "Nombre de usuario": "usuario21a",
+    "email": "usuario21a@prueba.qa.es.com",
     "Contraseña": "Ppassword123*",
     "Repetir contraseña": "Ppassword123*",
     "Rol": "OPERATOR BASIC",
@@ -10,7 +11,8 @@
   },
   {
     "id": 220,
-    "Nombre de usuario": "usuario220a",
+    "Nombre de usuario": "usuario22a",
+    "email": "usuario22a@prueba.qa.es.com",
     "Contraseña": "Cclave456*",
     "Repetir contraseña": "Cclave456*",
     "Rol": "OPERATOR ADVANCE",
@@ -19,7 +21,8 @@
   },
   {
     "id": 230,
-    "Nombre de usuario": "usuario230a",
+    "Nombre de usuario": "usuario23a",
+    "email": "usuario23a@prueba.qa.es.com",
     "Contraseña": "Ssecure789*",
     "Repetir contraseña": "Ssecure789*",
     "Rol": "OPERATOR",
@@ -28,7 +31,8 @@
   },
   {
     "id": 240,
-    "Nombre de usuario": "usuario240a",
+    "Nombre de usuario": "usuario24a",
+    "email": "usuario24a@prueba.qa.es.com",
     "Contraseña": "Mypassword123*",
     "Repetir contraseña": "Mypassword123*",
     "Rol": "ADMIN",
@@ -37,7 +41,8 @@
   },
   {
     "id": 250,
-    "Nombre de usuario": "usuario250a",
+    "Nombre de usuario": "usuario25a",
+    "email": "usuario25a@prueba.qa.es.com",
     "Contraseña": "Ttestpass123*",
     "Repetir contraseña": "Ttestpass123*",
     "Rol": "SUPER ADMIN",

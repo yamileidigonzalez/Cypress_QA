@@ -1,0 +1,57 @@
+[
+  {
+    "id": 200,
+    "Nombre de usuario": "usuario210a",
+    "Nombre completo": "usuario210a Prueba" ,
+    "Email": "usuario210a@prueba.qa.com",
+    "Contraseña": "Ppassword123*123*",
+    "Repetir contraseña": "Ppassword123*123*",
+    "Rol": "OPERATOR BASIC",
+    "Idioma": "es",
+    "Activo": "Si"
+  },
+  {
+    "id": 220,
+    "Nombre de usuario": "usuario220a",
+    "Nombre completo": "usuario220a Prueba" ,
+    "Email": "usuario220a@prueba.qa.com",
+    "Contraseña": "Cclave456*123*",
+    "Repetir contraseña": "Cclave456*123*",
+    "Rol": "OPERATOR ADVANCE",
+    "Idioma": "en",
+    "Activo": "Si"
+  },
+  {
+    "id": 230,
+    "Nombre de usuario": "usuario230a",
+    "Nombre completo": "usuario230a Prueba" ,
+    "Email": "usuario230a@prueba.qa.com",
+    "Contraseña": "Cclave456*123*",
+    "Repetir contraseña": "Cclave456*123*",
+    "Rol": "OPERATOR",
+    "Idioma": "fr",
+    "Activo": "Si"
+  },
+  {
+    "id": 240,
+    "Nombre de usuario": "usuario240a",
+    "Nombre completo": "usuario240a Prueba" ,
+    "Email": "usuario240a@prueba.qa.com",
+    "Contraseña": "Cclave456*123*",
+    "Repetir contraseña": "Cclave456*123*",
+    "Rol": "ADMIN",
+    "Idioma": "de",
+    "Activo": "Si"
+  },
+  {
+    "id": 250,
+    "Nombre de usuario": "usuario250a",
+    "Nombre completo": "usuario250a Prueba" ,
+    "Email": "usuario250a@prueba.qa.com",
+    "Contraseña": "Cclave456*123*",
+    "Repetir contraseña": "Cclave456*123*",
+    "Rol": "SUPER ADMIN",
+    "Idioma": "it",
+    "Activo": "Si"
+  }
+]
