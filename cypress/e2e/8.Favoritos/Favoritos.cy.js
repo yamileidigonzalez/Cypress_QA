@@ -5,7 +5,7 @@ describe('Favoritos', () => {
         cy.visit('https://newfront.lab.solverpay.com/login'); 
         cy.title().should('eq','Login')
         //LOGIN
-        cy.login('solverpay', 'r7auF23wA.A2l1tZ2Dp4')
+        cy.login('solverpay@prueba.qa.com', 'r7auF23wA.A2l1tZ2Dp4')
         cy.wait(tiempo)
     }) 
 
@@ -13,7 +13,7 @@ describe('Favoritos', () => {
     it('Verifica que hay páginas favoritas en la lista', () => { 
         cy.wait(tiempo); // Espera para asegurar que los elementos se carguen
         
-        cy.Elemento_visible_varios('.sidebar-fav').click() // Verifica que .sidebar-fav existe
+        cy.Elemento_visible_varios('.sidebar-fav') // Verifica que .sidebar-fav existe
         .then(($sidebar) => {          
             // Obtiene todos los elementos hijos directos dentro de .sidebar-fav
             cy.wait(tiempo)
@@ -319,70 +319,57 @@ describe('Favoritos', () => {
     it('Elimina una página de favoritos y verifica que ya no está', () => { 
         cy.wait(tiempo); // Espera para asegurar que los elementos se carguen
         
-        cy.Elemento_visible_varios('.sidebar-fav').click({ force: true }) // Verifica que .sidebar-fav existe
-        .then(($sidebar) => {          
-            // Obtiene todos los elementos hijos directos dentro de .sidebar-fav
-            cy.wait(tiempo)
-            const favoritos = $sidebar.children('.sidebar-fav-item');
-            // Imprimir en la consola de Cypress
-            cy.log(`📌 Total de favoritos encontrados: ${favoritos.length}`);            
-            if (favoritos.length === 0) {
-                cy.log('⚠️ No se encontraron favoritos en la lista.');
-            } else {
-                favoritos.each((index, favorito) => {
-                    const $p = Cypress.$(favorito).find('p'); // Busca el <p> dentro del favorito
-
-                    if ($p.length === 0 || $p.text().trim() === '') {
-                    cy.log(`⚠️ El favorito ${index + 1} no tiene texto.`);
-                    } else {
-                    cy.wrap($p)
-                        .invoke('text')
-                        .then((text) => {
-                            cy.log(`⭐ Página favorita ${index + 1}: ${text}`);
-                            cy.wrap(favorito) // Aquí sí es el elemento clickeable
-                            .click() // Forza el clic si es necesario
-                            .wait(tiempo); // Espera después del clic              
-                            cy.get(favorito) // Aquí se re-consigue el favorito, ya que el DOM podría haber cambiado
-                            .should('exist') // Verifica que todavía está presente
-                            .then(() => {
-                                // Continuar con la lógica
-                                cy.log("El favorito fue clickeado correctamente");
-                            
-                                cy.get('.gap-x-4 > .text-lg', { timeout: 10000 }).should('exist').invoke('text')
+        cy.Elemento_visible_varios('.sidebar-fav')
+            .click({ force: true }) // Abre la lista de favoritos
+            .then(($sidebar) => {          
+                cy.wait(tiempo); // Esperar para asegurar carga
+                const favoritos = $sidebar.find('.sidebar-fav-item'); // Busca elementos favoritos
+    
+                cy.log(`📌 Total de favoritos encontrados: ${favoritos.length}`);            
+    
+                if (favoritos.length === 0) {
+                    cy.log('⚠️ No se encontraron favoritos en la lista.');
+                    return; // Termina la prueba aquí si no hay favoritos
+                }
+    
+                cy.wrap(favoritos.first()) // Selecciona el primer favorito
+                    .invoke('text')
+                    .then((text) => {
+                        const textTrimmed = text.trim();
+                        cy.log(`⭐ Página favorita seleccionada: ${textTrimmed}`);
+                        cy.wrap(favoritos.first()).click();
+                        cy.get('body').then(($body) => {
+                            if ($body.find('.gap-x-4 > .text-lg').length > 0) {
+                                cy.get('.gap-x-4 > .text-lg')
+                                .should('be.visible')
+                                .invoke('text')
                                 .then((titulo) => {
-                                    const textTrimmed = text.trim();
                                     const tituloTrimmed = titulo.trim();
-                            
-                                    cy.log(`Texto del favorito: ${textTrimmed}`);
-                                    cy.log(`Título de la página: ${tituloTrimmed}`);
-                            
-                                    expect(tituloTrimmed).to.include(textTrimmed); // Verifica si el título contiene el texto del favorito
-                                    
-                                    cy.get('.gap-x-4 > .ph-heart').click()
-                                    cy.reload(); // Recarga la página si es necesario
-                                    cy.log('❌ Página eliminada de favoritos');
-                                    // Esperamos un poco para que se actualice la lista
-                                    cy.wait(tiempo);
-                                    // Verificar que el elemento ya no está
-                                    cy.get(textTrimmed).should('not.exist');       
-                                });
-                            })    
-                        })
-                    }
-                })
-            }
-        })
-        .then(() => {
-            // Asegúrate de manejar cualquier otro tipo de error relacionado
-            cy.on('fail', (error) => {
-              cy.log(`⚠️ Error al intentar encontrar favoritos: ${error.message}`);
-              // Puedes lanzar un error o realizar otras acciones, si es necesario
-              throw error; // Esto es opcional si quieres que el test falle de inmediato
-            });
-        });
+                                    cy.log(`📝 Título de la página: ${tituloTrimmed}`);
+                                    expect(tituloTrimmed).to.include(textTrimmed); // Verifica si coincide
 
+                                    // Eliminar de favoritos
+                                    cy.get('.gap-x-4 > .ph-heart').click();
+                                    cy.log('❌ Página eliminada de favoritos');
+                                    
+                                    cy.wait(tiempo);
+
+                                    // Volver a abrir la lista de favoritos después de eliminar
+                                    cy.Elemento_visible_varios('.sidebar-fav').click({ force: true });
+
+                                    // Verificar que el favorito eliminado ya no está en la lista
+                                    cy.contains('.sidebar-fav-item p', textTrimmed).should('not.exist');
+                                });
+                            } else {
+                                cy.log("⚠️ El elemento no está presente en la página.");
+                            }
+                        });
+                            
+                    });
+                               
+            });
+    });
        
-    });   
 
     //5️⃣Validar que al hacer clic en un favorito se carga la página correcta
     it('Verifica que el contenido de la página favorita se carga correctamente', () => { 

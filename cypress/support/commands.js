@@ -26,6 +26,10 @@
 const { select } = require("async")
 import 'cypress-file-upload';
 
+
+
+
+
 Cypress.Commands.add("Elemento_visible", (selector) => { 
     cy.get(selector).scrollIntoView().should('be.visible')
 })
@@ -55,12 +59,9 @@ Cypress.Commands.add('Click_Botón', (selector, t) => {
 })
 
 
-
-
-
-Cypress.Commands.add("login", (username, password) => {
-      cy.get('#email').should("be.visible").should("be.enabled").type(username)
-      cy.get('#password').should("be.visible").should("be.enabled").type(password).type('{enter}')
+Cypress.Commands.add("login", () => {
+      cy.get('#email').should("be.visible").should("be.enabled").type('solverpay@prueba.qa.com')
+      cy.get('#password').should("be.visible").should("be.enabled").type('r7auF23wA.A2l1tZ2Dp4').type('{enter}')
  });
 
 Cypress.Commands.add('Check', (selector, valor) => { 
@@ -174,8 +175,6 @@ Cypress.Commands.add('Insertar_Texto', (selector, texto, t) => {
    cy.get(selector).should('be.visible').type(texto)
    cy.wait(t)    
 })
-
-
 
 
 Cypress.Commands.add('Añadir_Fecha', (selector_calendario, mes, año, fecha, calendario) => { 
@@ -313,7 +312,7 @@ Cypress.Commands.add("Añadir_Adquirientes_comprobar_Check", (off_internacional,
       cy.log('Valor no reconocido');
    }
       
- });
+});
 
 Cypress.Commands.add("Añadir_Adquirientes", ( ID,numero_cuenta,tipo_cuenta,cuenta_asociada,nombre_cuenta,moneda,entidad,fecha_sesión,numero_secuencia,cuadre,numero_sesión,estado,numero_comercio,numero_terminal,frozado_off,identificacion_adq,CSB,terminal_on,off_internacional, off_EMV, forzado_respaldo) => { 
    cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
@@ -555,7 +554,7 @@ Cypress.Commands.add("Añadir_Empresas", (ID, descripcion, direccion, municipio,
 })
 
 Cypress.Commands.add("Añadir_Canales_entidad", (entidad,canal,t_desconexion,n_transacciones_simu, host_1,puerto_1, host_2,puerto_2,host_3,puerto_3) => { 
-   cy.get('#pn_id_11_header_action').should("be.visible").click().wait(100)
+   cy.get('#pn_id_9_header_action').should("be.visible").click().wait(100)
    //Datos principales
    cy.get('.p-dropdown-label').click().wait(100)
    cy.get('.p-dropdown-items').should("be.visible"); // Esperamos a que la lista esté visible   
@@ -572,7 +571,7 @@ Cypress.Commands.add("Añadir_Canales_entidad", (entidad,canal,t_desconexion,n_t
    cy.Añadir_text('#timeDisconnect > .p-inputnumber > .p-inputtext',t_desconexion)
    cy.Añadir_text('#transactionNumber > .p-inputnumber > .p-inputtext',n_transacciones_simu)
    //Datos de Conexion
-   cy.get('#pn_id_12_header_action').should("be.visible").click()
+   cy.get('#pn_id_10_header_action').should("be.visible").click()
 
    cy.get('#host1').should("be.visible").clear().type(host_1)
    cy.get('#port1 > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(puerto_1)
@@ -1423,7 +1422,7 @@ Cypress.Commands.add("Editar_Canales_entidad", (entidad, canal, t_desconexion, n
      .type(n_transacciones_simu);
 
    // Datos de conexión
-   cy.get('#pn_id_12_header_action')
+   cy.get('#pn_id_10_header_action')
      .should("be.visible")
      .click({ force: true }); // Si el botón está cubierto, fuerza el clic
 
@@ -1569,7 +1568,7 @@ Cypress.Commands.add('Guardar_Confirmar_canal_entidad', (selector_guardar, t) =>
    //Pulsar boton guardar 
    cy.get(selector_guardar).should("be.visible").click()
    // Espera que el mensaje sea visible
-   cy.get('app-add > app-custom-toast > p-toast.p-element > .p-toast')
+   cy.get('.p-toast')
    .should('be.visible') 
    .then(($alert) => {
      // Verifica si el texto contiene la alerta esperada
