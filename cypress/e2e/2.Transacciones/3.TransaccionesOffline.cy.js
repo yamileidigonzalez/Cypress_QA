@@ -6,7 +6,7 @@ describe('Transacciones OFF', () => {
         cy.visit('https://newfront.lab.solverpay.com/login'); 
         cy.title().should('eq','Login')
         //LOGIN
-        cy.login('solverpay', 'r7auF23wA.A2l1tZ2Dp4')
+        cy.login()
         cy.wait(tiempo)
         
         //Seleccionar Mantenimientos en el Menu

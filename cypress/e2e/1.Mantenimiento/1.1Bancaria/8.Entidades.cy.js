@@ -7,8 +7,7 @@ describe('Entidades', () => {
       cy.visit('https://newfront.lab.solverpay.com/login'); 
       cy.title().should('eq','Login')
       //LOGIN
-      cy.get('#user').should("be.visible").should("be.enabled").type('solverpay')
-      cy.get('#password').should("be.visible").should("be.enabled").type('r7auF23wA.A2l1tZ2Dp4{enter}')
+      cy.login()
       cy.wait(tiempo)
       
       //Seleccionar Mantenimientos en el Menu

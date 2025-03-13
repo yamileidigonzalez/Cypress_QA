@@ -8,7 +8,7 @@ describe('Pruebas de Ordenamiento en Tablas', () => {
         // Iniciar sesión y esperar a la carga de la página
         cy.visit('https://newfront.lab.solverpay.com/login');
         cy.title().should('eq', 'Login');
-        cy.login('solverpay@prueba.qa.com', 'r7auF23wA.A2l1tZ2Dp4');
+        cy.login();
         cy.wait(tiempo);
     });
 

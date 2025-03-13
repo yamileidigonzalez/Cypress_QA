@@ -29,7 +29,7 @@ describe('Gestión de roles de Usuarios', () => {
 
     it('Crear un usuario con diferente namees', () => {
       //LOGIN
-      cy.login('solverpay@prueba.qa.com', 'r7auF23wA.A2l1tZ2Dp4')
+      cy.login()
       cy.wait(tiempo)
       //accedo a la sección de perfil del usuario
       //Seleccionar Mantenimientos en el Menu
@@ -65,7 +65,7 @@ describe('Gestión de roles de Usuarios', () => {
 
     it.only('Cambiar la foto de perfil de un usuario', () => {
       //LOGIN
-      cy.login('solverpay@prueba.qa.com', 'r7auF23wA.A2l1tZ2Dp4')
+      cy.login()
       cy.wait(tiempo)
       //accedo a la sección de perfil del usuario
       //Seleccionar Mantenimientos en el Menu

@@ -20,9 +20,10 @@ describe('Comisiones', () => {
     })
 
     // Añadir un nuevo [Elemento]
-    it('Debería añadir un nuevo [Elemento]', () => {
+    it.only('Debería añadir un nuevo [Elemento]', () => {
       //Verificar que carga ambas pantallas  
-      cy.Elemento_visible('.left')
+      cy.Elemento_visible('div.flex.flex-col.max-h-\\[1000px\\].min-w-\\[15rem\\].w-\\[15rem\\]')      
+      cy.Elemento_visible('div.max-h-\\[1000px\\] h1.text-base.font-bold')       
       cy.Elemento_visible('.right')
 
       // Cargar los dos JSON
@@ -31,14 +32,15 @@ describe('Comisiones', () => {
           // Iterar sobre los valores de búsqueda
           valoresBusqueda.forEach((valorBusqueda, index) => {
             // Buscar el valor en la pantalla izquierda 
-            cy.get('.left > .px-4') // Selecciona el campo de búsqueda
+            cy.Elemento_visible('div.max-h-\\[1000px\\] input[placeholder="Buscar"]')
+            cy.get('input[placeholder="Buscar"]').scrollIntoView() // Selecciona el campo de búsqueda
               .should('be.visible') // Asegura que esté visible
               .clear() // Limpia cualquier valor previo
               .type(valorBusqueda.valor) // Escribe el valor de búsqueda
               .should('have.value', valorBusqueda.valor); // Verifica que el valor está en el campo de búsqueda
             
             // Esperar que aparezcan los resultados en la lista
-            cy.get('.left .inline-flex').each(($el) => {
+            cy.Elemento_visible('div.max-h-\\[1000px\\]').scrollIntoView().each(($el) => {
               // Itera sobre cada elemento
               const texto = $el.text().trim(); // Extrae el texto del div y lo limpia de espacios extras
               //cy.get('.left .inline-flex').filter(`:contains("${valorBusqueda.valor}")`).then(($filteredEl) => {
@@ -78,7 +80,7 @@ describe('Comisiones', () => {
                   cy.Añadir_text('#presentNationalCreditOwnPercentage > .p-inputnumber > .p-inputtext',config.Nacionales_propias_D )   //Nacionales_propias_D
                   cy.Añadir_text('#presentNationalDebitOwnPercentage > .p-inputnumber > .p-inputtext',config.Nacionales_propias_C )   //Nacionales_propias_C
                   cy.Añadir_text('#presentNationalDebitNonOwnPercentage > .p-inputnumber > .p-inputtext',config.Nacionales_ajenas_D )   //Nacionales_ajenas_D
-                  cy.Añadir_text('#presentNationalCreditOwnPercentage > .p-inputnumber > .p-inputtext',config.Nacionales_ajenas_C )   //Nacionales_ajenas_C
+                  cy.Añadir_text('#presentNationalCreditNonOwnPercentage > .p-inputnumber > .p-inputtext',config.Nacionales_ajenas_C )   //Nacionales_ajenas_C
                   cy.Añadir_text('#presentNeobankDebitPercentage > .p-inputnumber > .p-inputtext',config.Neobancos_D )   //Neobancos_D
                   cy.Añadir_text('#presentNeobankCreditPercentage > .p-inputnumber > .p-inputtext',config.Neobancos_C )   //Neobancos_C
                   cy.Añadir_text('#presentInternationalDebitPercentage > .p-inputnumber > .p-inputtext',config.Internacionales_D )   //Internacionales_D
@@ -99,7 +101,7 @@ describe('Comisiones', () => {
     // Modificar un [Elemento]
     it('Debería modificar un [Elemento]', () => {
       //Verificar que carga ambas pantallas  
-      cy.Elemento_visible('.left')
+      cy.Elemento_visible('main.px-5')
       cy.Elemento_visible('.right') 
       
       let contador = 1; // Valor inicial que quieres asignar
@@ -172,7 +174,7 @@ describe('Comisiones', () => {
     // Eliminar un [Elemento]
     it('Debería eliminar un [Elemento]', () => {
       //Verificar que carga ambas pantallas  
-      cy.Elemento_visible('.left')
+      cy.Elemento_visible('.main.px-5')
       cy.Elemento_visible('.right')      
       
       cy.fixture('2.1_valoresBusqueda.json').then((valoresBusqueda) => {

@@ -5,7 +5,7 @@ describe('Descargas', () => {
         cy.visit('https://newfront.lab.solverpay.com/login'); 
         cy.title().should('eq','Login')
         //LOGIN
-        cy.login('solverpay', 'r7auF23wA.A2l1tZ2Dp4')
+        cy.login()
     }) 
 
     //Comprobar la exportación a Excel

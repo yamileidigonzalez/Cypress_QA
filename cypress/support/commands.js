@@ -27,7 +27,10 @@ const { select } = require("async")
 import 'cypress-file-upload';
 
 
-
+Cypress.Commands.add("login", () => {
+   cy.get('#email').should("be.visible").should("be.enabled").type('solverpay@prueba.qa.com')
+   cy.get('#password').should("be.visible").should("be.enabled").type('r7auF23wA.A2l1tZ2Dp4').type('{enter}')
+});
 
 
 Cypress.Commands.add("Elemento_visible", (selector) => { 
@@ -58,11 +61,6 @@ Cypress.Commands.add('Click_Botón', (selector, t) => {
    cy.wait(t)
 })
 
-
-Cypress.Commands.add("login", () => {
-      cy.get('#email').should("be.visible").should("be.enabled").type('solverpay@prueba.qa.com')
-      cy.get('#password').should("be.visible").should("be.enabled").type('r7auF23wA.A2l1tZ2Dp4').type('{enter}')
- });
 
 Cypress.Commands.add('Check', (selector, valor) => { 
    cy.get(selector).then(($checkbox) => {

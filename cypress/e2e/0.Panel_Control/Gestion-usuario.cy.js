@@ -11,7 +11,7 @@ describe('Gestión de Usuario', () => {
     cy.visit('https://newfront.lab.solverpay.com/login'); 
     cy.title().should('eq','Login')
     //LOGIN
-    cy.login('solverpay@prueba.qa.com',pass_original)
+    cy.login()
     cy.wait(tiempo)
   })
 
