@@ -26,9 +26,10 @@ describe('Acuerdos_Comisiones', () => {
           let csb_emisor = config["csb emisor"];
           let csb_adquiriente = config["csb adquiriente"];
           //Boton añadir
+          cy.wait(tiempo)
           cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
           cy.Añadir_Acuerdos_Comision(csb_emisor, csb_adquiriente)
-          cy.Guardar_Confirmar_Acuerdo_Comision('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+          cy.Guardar_Confirmar_Acuerdo_Comision('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
         });
       })
     });
@@ -36,7 +37,7 @@ describe('Acuerdos_Comisiones', () => {
     // Modificar un [Elemento]
     it('Debería modificar un [Elemento]', () => {
       // Simular el proceso de actualización de un registro
-      cy.Buscar('.gap-x-3 > .inline-flex','0001',tiempo)
+      cy.Buscar('.gap-x-3 > .inline-flex','00',tiempo)
       cy.Click_force('.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()

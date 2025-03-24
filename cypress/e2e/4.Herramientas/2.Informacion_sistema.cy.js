@@ -16,6 +16,7 @@ describe('Informacion del Sistema', () => {
         .scrollIntoView()  // Desplaza el elemento a la vista
         .should('be.visible')  // Verifica que el elemento es visible
         .click();  // Luego realiza el clic 
+        cy.wait(tiempo)
     })  
     
     it('Consulta de estado de CPU - Ejecutar la consulta correctamente', () => {  

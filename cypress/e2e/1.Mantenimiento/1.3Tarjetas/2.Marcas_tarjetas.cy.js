@@ -34,7 +34,7 @@ describe('Marcas_tarjetas', () => {
             cy.wait(tiempo)
             cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
             cy.Añadir_Marcas(id, descripcion)
-            cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+            cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
         });
       })
     });   
@@ -48,7 +48,7 @@ describe('Marcas_tarjetas', () => {
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.Editar_Marcas("0","SIN ASIGNAR")
-      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
     }); 
     
      // Listar todos los elementos

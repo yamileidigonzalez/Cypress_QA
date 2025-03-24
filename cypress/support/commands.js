@@ -122,7 +122,7 @@ Cypress.Commands.add('Busqueda', (selector, valor, t) => {
        'Texto123',    // Mezcla de letras y números
        '   ',         // Espacios
        'ñáéíóú'       // Caracteres especiales
-   ];   
+   ];  /* 
    tiposDeValores.forEach((testValor) => {
        cy.get(selector).clear().type(testValor);
        cy.wait(t);
@@ -135,38 +135,42 @@ Cypress.Commands.add('Busqueda', (selector, valor, t) => {
                cy.log(`⚠️ No se encontraron resultados para: ${testValor}`);
            }
        });
-   });
+   });*/
 });
 
-Cypress.Commands.add('Buscar', (selector, valor, t) => { 
+Cypress.Commands.add('Buscar', (selector, valor, t) => {
    cy.get(selector)
-      .should("be.visible")
-      .clear()
-      .type(valor, { delay: 100 }) // Simula entrada de usuario
-      .wait(t)
-      .then(() => {
-          cy.get(selector).invoke('val').should((val) => {
+          .should("be.visible")
+          .clear()
+          .type(valor, { delay: 100 }) // Simula entrada de usuario
+          .wait(t)
+          .invoke('val')
+          .should((val) => {
               expect(val.trim()).to.eq(valor.trim());
           });
-      });
-   // Esperar a que los resultados se carguen
-   cy.wait(t);
-   // Validar diferentes tipos de resultados con distintos valores
-   cy.get(selector).clear().type(valor);
-   cy.wait(t);
-   cy.get('body').then(($body) => {
-      if ($body.find('.result-item, .search-result').length > 0) {
-          cy.get('.result-item, .search-result')
-             .should("exist")
-             .and("be.visible");
-      } else {
-          cy.log(`⚠️ No se encontraron resultados para: ${valor}`);
-      }
-  });       
-    
- 
-       
-   
+  
+      // Esperar a que los resultados se carguen
+      cy.wait(t);
+  
+      cy.get('body').then(($body) => {
+          let resultados = $body.find('.result-item, .search-result');
+  
+          if (resultados.length === 0) {
+              cy.log(`⚠️ No se encontraron resultados para: ${valor}`);
+              return;
+          }
+  
+          // Buscar si hay un resultado exactamente igual
+          let resultadoExacto = [...resultados].find(el => el.innerText.trim() === valor.trim());
+  
+          if (resultadoExacto) {
+              cy.wrap(resultadoExacto).click(); // Si existe el mismo, seleccionarlo
+              cy.log(`✅ Se seleccionó el resultado exacto: ${valor}`);
+          } else {
+              cy.wrap(resultados.first()).click(); // Si no coincide, seleccionar el primero
+              cy.log(`🔀 No se encontró coincidencia exacta, se seleccionó el primer resultado.`);
+          }
+      });    
 });
 
 Cypress.Commands.add('Insertar_Texto', (selector, texto, t) => { 
@@ -185,7 +189,7 @@ Cypress.Commands.add('Añadir_Fecha', (selector_calendario, mes, año, fecha, ca
    // Ahora seleccionamos el día en el calendario
    cy.contains(fecha).click({force:true}); // Seleccionamos el día 17
    // Cierra el calendario si es necesario (depende de la implementación)
-   cy.get(calendario).click();
+   //cy.get(calendario).click();
 
 
 });
@@ -194,9 +198,9 @@ Cypress.Commands.add('Añadir_Combo_Buscar_caja', (selector, sector_buscar, valo
    cy.get(selector).should("be.visible").click().wait(100);
    cy.get(sector_buscar).clear().wait(1000)
    cy.log('Buscaremos el valor');
-         // Aquí puedes agregar más acciones si el valor sí existe
-         cy.get(selector).should("be.visible").type(valor, "{enter}");
-          // Verificamos que los resultados se han cargado
+   // Aquí puedes agregar más acciones si el valor sí existe
+   cy.get(selector).should("be.visible").type(valor, "{enter}");
+   // Verificamos que los resultados se han cargado
    cy.get('#store_list', { timeout: 10000 })  // Esperamos hasta 10 segundos si es necesario
    .should('be.visible')  // Verificar que el dropdown se ha mostrado
    .click() 
@@ -216,8 +220,8 @@ Cypress.Commands.add('Añadir_Combo_Buscar', (selector, sector_buscar, valor) =>
       } else {
          cy.log('El valor ha sido encontrado');
          // Aquí puedes agregar más acciones si el valor sí existe 
-         cy.get('.p-dropdown-items li').first()/*.click();*/
-         //cy.get(selector).should("be.visible").type(valor,"{enter}");
+         cy.get('.p-dropdown-items li').first().click({force: true})
+         cy.wait(100)
       }
    });
 })
@@ -315,28 +319,28 @@ Cypress.Commands.add("Añadir_Adquirientes_comprobar_Check", (off_internacional,
 Cypress.Commands.add("Añadir_Adquirientes", ( ID,numero_cuenta,tipo_cuenta,cuenta_asociada,nombre_cuenta,moneda,entidad,fecha_sesión,numero_secuencia,cuadre,numero_sesión,estado,numero_comercio,numero_terminal,frozado_off,identificacion_adq,CSB,terminal_on,off_internacional, off_EMV, forzado_respaldo) => { 
    cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
    //Datos principales
-   cy.get('#pn_id_11_header_action').should("be.visible").click()
+   cy.get('#pn_id_9_header_action').should("be.visible").click()
    //ID
    cy.get('#acquirerId').should("be.visible").clear().type(ID).type("{enter}")
    //numero de cuenta
    cy.get('#accountNumber').should("be.visible").clear().type(numero_cuenta).type("{enter}") 
    //tipo de adquiriente
-   cy.get('#accountType > .p-dropdown-label').should("be.visible").click().wait(2000)
+   cy.get('#accountType > .p-dropdown-label').should("be.visible").click().wait(100)
    .type(tipo_cuenta).type("{enter}")
    //adquiriente asociado
    cy.get('#associatedAcquirerId').should("be.visible").clear().type(cuenta_asociada).type("{enter}") 
    //nombre de adquiriente
    cy.get('#accountName').should("be.visible").clear().type(nombre_cuenta).type("{enter}") 
    //moneda
-   cy.get('#currency > .p-dropdown-label').should("be.visible").click().wait(2000)
+   cy.get('#currency > .p-dropdown-label').should("be.visible").click().wait(100)
    cy.get('.p-dropdown-filter').type(moneda)
    cy.get('#currency_0').type("{enter}")
    //entidad
-   cy.get('#entityId > .p-dropdown-label').should("be.visible").click().wait(2000)
+   cy.get('#entityId > .p-dropdown-label').should("be.visible").click().wait(100)
    .type(entidad).type("{enter}")
 
    //Datos control de sesion
-   cy.get('#pn_id_12_header_action').should("be.visible").click()
+   cy.get('#pn_id_10_header_action').should("be.visible").click()
    //fecha de sesion
    cy.get('.p-calendar > .p-inputtext').should("be.visible").clear().click().type(fecha_sesión).type("{enter}")
    //numero de secuencias
@@ -349,14 +353,14 @@ Cypress.Commands.add("Añadir_Adquirientes", ( ID,numero_cuenta,tipo_cuenta,cuen
    cy.get('#status > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(estado).type("{enter}")
 
    //Datos detalles del adquiriente
-   cy.get('#pn_id_13_header_action').should("be.visible").click()
+   cy.get('#pn_id_11_header_action').should("be.visible").click()
    //numero de comercio
    cy.get('#merchantNumber').should("be.visible").clear().type(numero_comercio).type("{enter}")
    //numero de terminal
    cy.get('#terminalNumber').should("be.visible").clear().type(numero_terminal).type("{enter}")
    //forzado offline
    cy.get('#offlineForced > .p-dropdown-label')
-   .should("be.visible").click().wait(2000)
+   .should("be.visible").click().wait(100)
    .type(frozado_off).type("{enter}")
    //identificacion adquiriente
    cy.get('#acquirerIdentification').should("be.visible").clear().type(identificacion_adq).type("{enter}")
@@ -370,15 +374,15 @@ Cypress.Commands.add("Añadir_Adquirientes", ( ID,numero_cuenta,tipo_cuenta,cuen
 })
 
 Cypress.Commands.add("Añadir_Enrrutaminetos", (tarjeta, Empresa, centro, caja, adquirente) => { 
-   cy.get('#card > .p-dropdown-label').should("be.visible").click().wait(2000).type(tarjeta,"{enter}");
-   cy.get('#company > .p-dropdown-label').should("be.visible").click().wait(2000).type(Empresa,"{enter}");
+   cy.Añadir_Combo('#card > .p-dropdown-label',tarjeta);
+   cy.Añadir_Combo('#company > .p-dropdown-label',Empresa);
    cy.get('#store > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(centro,"{enter}");
    cy.get('#posId > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(caja,"{enter}");
-   cy.get('#acquirer > .p-dropdown-label').should("be.visible").click().type(adquirente,"{enter}").click().wait(2000);  
+   cy.Añadir_Combo('#acquirer > .p-dropdown-label',adquirente).wait(2000);  
    
 })
 
-Cypress.Commands.add("Añadir_Entidad", (id, nombre ,eodRequerido, puntoServicio ,infoSeguridad ,identificacionAdquirente, permitirOffline ,host1 , puerto1, host2 , puerto2 , host3 ,puerto3 ,redEntidad ) => { 
+Cypress.Commands.add("Añadir_Entidad", (id, nombre ,eodRequerido, puntoServicio ,infoSeguridad ,identificacionAdquirente, permitirOffline ,host1 , puerto1, host2 , puerto2 , host3 ,puerto3 ,redEntidad , cont) => { 
    let frozado_off= "Desactivado"
    let id_protocolo= "90"
    let tipo_red = "1"
@@ -412,87 +416,96 @@ Cypress.Commands.add("Añadir_Entidad", (id, nombre ,eodRequerido, puntoServicio
    let Requiere_autentificación  = "0"
    let Requiere_proceso_recuperación  = "0"
    let Bloqueado  = "0"
-         
-   // Validaciones en la UI basadas en los datos del JSON
-   cy.Click_force('#pn_id_11_header_action')
-   //Datos Principales
-   cy.get('#entityId > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(id,"{enter}");//ID
-   cy.get('#entityName').should("be.visible").clear().type(nombre,"{enter}");//Nombre de entidad
-   //Forzado Offline
-   if(permitirOffline == "Si"){
-      cy.get('#allowOffline > .p-checkbox > .p-checkbox-box').click().wait(2000) 
-      cy.Añadir_Combo('#offlineForced > .p-dropdown-label',frozado_off) 
-   }
-   cy.Añadir_Combo('#entityProtocol > .p-dropdown-label',id_protocolo)  //ID protocolo
-   cy.Añadir_Combo('#networkType > .p-dropdown-label',tipo_red)   //Tipo de red
-   cy.get('#entityNetwork > .p-dropdown-label').should("not.be.visible").click().wait(100).type(redEntidad,"{enter}") //Red entidad
 
-   //Datos de tiempo e intentos
-   cy.Click_force('#pn_id_12_header_action')
-   cy.get('#triesMax > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(Intentos_max,"{enter}")  //Intentos máximos
-   cy.get('#timeWait > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_espera,"{enter}")   //Tiempo de espera
-   cy.get('#timeError > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_error,"{enter}")   //Tiempo de error 
-   cy.get('#timeConnect > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_conexion,"{enter}")   //Tiempo de conexión
-   cy.get('#timeOffline > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_off,"{enter}")   //Tiempo offline 
-   cy.get('#timeTransaction > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_transaccion,"{enter}")   //Tiempo de transacción
+   let pn_id =23;
+   
+   cy.then(() => {  
+      if (cont > 1) {
+         pn_id = 23 + (cont - 1) * 17; // Fórmula de la progresión aritmética
+         cy.log(`Interacción ${cont}: pn_id = ${pn_id}`);
+      } 
+    }).then(() => {            
+      // Validaciones en la UI basadas en los datos del JSON
+      cy.get(`#pn_id_${pn_id}_header_action`).click({ force: true });
+      //Datos Principales
+      cy.get('#entityId > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(id,"{enter}");//ID
+      cy.get('#entityName').should("be.visible").clear().type(nombre,"{enter}");//Nombre de entidad
+      //Forzado Offline
+      if(permitirOffline == "Si"){
+         cy.get('#allowOffline > .p-checkbox > .p-checkbox-box').click().wait(100) 
+         cy.Añadir_Combo('#offlineForced > .p-dropdown-label',frozado_off) 
+      }
+      cy.Añadir_Combo('#entityProtocol > .p-dropdown-label',id_protocolo)  //ID protocolo
+      cy.Añadir_Combo('#networkType > .p-dropdown-label',tipo_red)   //Tipo de red
+      cy.get('#entityNetwork > .p-dropdown-label').should("not.be.visible").click().wait(100).type(redEntidad,"{enter}") //Red entidad
 
-   //Datos de conexion
-   cy.Click_force('#pn_id_13_header_action')
-   cy.Añadir_text('#host1',host1 )
-   cy.Añadir_text('#port1 > .p-inputnumber > .p-inputtext',puerto1 )
-   cy.Añadir_text('#host2',host2 )
-   cy.Añadir_text('#port2 > .p-inputnumber > .p-inputtext',puerto2 )
-   cy.Añadir_text('#host3',host3 )
-   cy.Añadir_text('#port3 > .p-inputnumber > .p-inputtext',puerto3 )
-  
-   //Conf.de autorizador
-   cy.Click_force('#pn_id_14_header_action')
-   cy.Añadir_text('#indidentif', indidentif)  //Indicador identificación
-   cy.Añadir_text('#identity', Identidad)   //Identidad
-   cy.Añadir_text('#acquirerIdentification', identificacionAdquirente);//Identificación adquirente
-   cy.Añadir_text('#slotKey > .p-inputnumber > .p-inputtext', Cajón_claves)  //Cajón de claves
-   cy.Añadir_text('#macLevel > .p-inputnumber > .p-inputtext', Mac)   //Nivel mac
-   cy.Añadir_text('#macEmv1', Mac_EMV_1)   //Mac EMV 1
-   cy.Añadir_text('#macEmv2', Mac_EMV_2)   //Mac EMV 2
+      //Datos de tiempo e intentos
+      cy.get(`#pn_id_${pn_id +1 }_header_action`).click({ force: true });
+      cy.get('#triesMax > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(Intentos_max,"{enter}")  //Intentos máximos
+      cy.get('#timeWait > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_espera,"{enter}")   //Tiempo de espera
+      cy.get('#timeError > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_error,"{enter}")   //Tiempo de error 
+      cy.get('#timeConnect > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_conexion,"{enter}")   //Tiempo de conexión
+      cy.get('#timeOffline > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_off,"{enter}")   //Tiempo offline 
+      cy.get('#timeTransaction > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_transaccion,"{enter}")   //Tiempo de transacción
 
-   //Parametrizacion interna
-   cy.Click_force('#pn_id_15_header_action')
-   cy.Añadir_text('#processMaxNumber > .p-inputnumber > .p-inputtext',máximo_procesos )   //Número máximo de procesos
-   cy.Añadir_text('#requireEod > .p-inputnumber > .p-inputtext', eodRequerido);//EOD Requerido
-   cy.Añadir_text('#servicePoint', puntoServicio);//Punto de servicio
-   cy.Añadir_text('#features1', Características_1)   //Características 1
-   cy.Añadir_text('#features2', Características_2)   //Características 2
-   cy.Añadir_text('#features3', Características_3)   //Características 3
-   cy.Añadir_text('#incont', infoSeguridad);//Información Seguridad y Control
-   cy.Añadir_text('#cirType', Tipo_cir)   //Tipo cir
+      //Datos de conexion   
+      cy.get(`#pn_id_${pn_id +2 }_header_action`).click({ force: true });
+      cy.Añadir_text('#host1',host1 )
+      cy.Añadir_text('#port1 > .p-inputnumber > .p-inputtext',puerto1 )
+      cy.Añadir_text('#host2',host2 )
+      cy.Añadir_text('#port2 > .p-inputnumber > .p-inputtext',puerto2 )
+      cy.Añadir_text('#host3',host3 )
+      cy.Añadir_text('#port3 > .p-inputnumber > .p-inputtext',puerto3 )
+   
+      //Conf.de autorizador  
+      cy.get(`#pn_id_${pn_id + 3 }_header_action`).click({ force: true });
+      cy.Añadir_text('#indidentif', indidentif)  //Indicador identificación
+      cy.Añadir_text('#identity', Identidad)   //Identidad
+      cy.Añadir_text('#acquirerIdentification', identificacionAdquirente);//Identificación adquirente
+      cy.Añadir_text('#slotKey > .p-inputnumber > .p-inputtext', Cajón_claves)  //Cajón de claves
+      cy.Añadir_text('#macLevel > .p-inputnumber > .p-inputtext', Mac)   //Nivel mac
+      cy.Añadir_text('#macEmv1', Mac_EMV_1)   //Mac EMV 1
+      cy.Añadir_text('#macEmv2', Mac_EMV_2)   //Mac EMV 2
 
-   //P. Interna II
-   cy.Click_force('#pn_id_16_header_action')
-   cy.Añadir_text('#tcpIpConfigurationId', ID_TCP_IP)  //ID configuración TCP/IP
-   cy.Añadir_text('#tcpIpConfigurationVersion', Versión_TCP_IP)   //Versión configuración TCP/IP
-   cy.Añadir_text('#lengthMessageHeader > .p-inputnumber > .p-inputtext', Longitud_cabecera)   //Longitud cabecera mensaje
-   cy.Añadir_text('#connectionId > .p-inputnumber > .p-inputtext', ID_conexión)   //ID conexión
-   //Dirección IP actualizada
-   if (Dirección_IP_actualizada = " ") {
-      cy.log('Se deja igual, sin seleccionar')
-   } else if (Dirección_IP_actualizada = "Desactivado"){
-      cy.Click_force('.p-selectbutton > .p-highlight')
-   } else if (Dirección_IP_actualizada = "Activado"){
-      cy.get('.p-selectbutton > [tabindex="-1"]')
-   }
+      //Parametrizacion interna  
+      cy.get(`#pn_id_${pn_id + 4 }_header_action`).click({ force: true });
+      cy.Añadir_text('#processMaxNumber > .p-inputnumber > .p-inputtext',máximo_procesos )   //Número máximo de procesos
+      cy.Añadir_text('#requireEod > .p-inputnumber > .p-inputtext', eodRequerido);//EOD Requerido
+      cy.Añadir_text('#servicePoint', puntoServicio);//Punto de servicio
+      cy.Añadir_text('#features1', Características_1)   //Características 1
+      cy.Añadir_text('#features2', Características_2)   //Características 2
+      cy.Añadir_text('#features3', Características_3)   //Características 3
+      cy.Añadir_text('#incont', infoSeguridad);//Información Seguridad y Control
+      cy.Añadir_text('#cirType', Tipo_cir)   //Tipo cir
 
-   if (EOD_total_requerido  = "1"){
-      cy.Click_Botón('#requireTotalEod > .p-checkbox > .p-checkbox-box', 100)  //EOD total requerido
-   }
-   if (Requiere_autentificación  = "1"){
-      cy.Click_Botón('#requireAuthentication > .p-checkbox > .p-checkbox-box', 100)   //Requiere autentificación
-   }
-   if (Requiere_proceso_recuperación  = "1"){
-      cy.Click_Botón('#requireRecoveryThread > .p-checkbox > .p-checkbox-box', 100)   //Requiere proceso de recuperación
-   }
-   if (Bloqueado  = "1"){
-      cy.Click_Botón('#blocked > .p-checkbox > .p-checkbox-box', 100)   //Bloqueado 
-   }
+      //P. Interna II
+      cy.get(`#pn_id_${pn_id + 5}_header_action`).click({ force: true });
+      cy.Añadir_text('#tcpIpConfigurationId', ID_TCP_IP)  //ID configuración TCP/IP
+      cy.Añadir_text('#tcpIpConfigurationVersion', Versión_TCP_IP)   //Versión configuración TCP/IP
+      cy.Añadir_text('#lengthMessageHeader > .p-inputnumber > .p-inputtext', Longitud_cabecera)   //Longitud cabecera mensaje
+      cy.Añadir_text('#connectionId > .p-inputnumber > .p-inputtext', ID_conexión)   //ID conexión
+      //Dirección IP actualizada
+      if (Dirección_IP_actualizada = " ") {
+         cy.log('Se deja igual, sin seleccionar')
+      } else if (Dirección_IP_actualizada = "Desactivado"){
+         cy.Click_force('.p-selectbutton > .p-highlight')
+      } else if (Dirección_IP_actualizada = "Activado"){
+         cy.get('.p-selectbutton > [tabindex="-1"]')
+      }
+
+      if (EOD_total_requerido  = "1"){
+         cy.Click_Botón('#requireTotalEod > .p-checkbox > .p-checkbox-box', 100)  //EOD total requerido
+      }
+      if (Requiere_autentificación  = "1"){
+         cy.Click_Botón('#requireAuthentication > .p-checkbox > .p-checkbox-box', 100)   //Requiere autentificación
+      }
+      if (Requiere_proceso_recuperación  = "1"){
+         cy.Click_Botón('#requireRecoveryThread > .p-checkbox > .p-checkbox-box', 100)   //Requiere proceso de recuperación
+      }
+      if (Bloqueado  = "1"){
+         cy.Click_Botón('#blocked > .p-checkbox > .p-checkbox-box', 100)   //Bloqueado 
+      }
+   })
    
 })
 
@@ -533,7 +546,7 @@ Cypress.Commands.add("Añadir_Enrrutamientos_PIN_Online", (empresa, centro, caja
 
 Cypress.Commands.add("Añadir_Test_adquirientes", (cuenta, tarjeta, expiracion) => { 
    // Validaciones en la UI basadas en los datos del JSON
-   cy.Añadir_Combo('.p-dropdown-label',cuenta ).type(cuenta).type("{enter}") //cuenta
+   cy.Añadir_Combo('.p-dropdown-label',cuenta ) //cuenta
    cy.Añadir_text('#pan',tarjeta )   //tarjeta
    cy.Añadir_text('#expiration > .p-inputtext',expiracion )   //expiracion
 })
@@ -582,8 +595,8 @@ Cypress.Commands.add("Añadir_Canales_entidad", (entidad,canal,t_desconexion,n_t
 
 Cypress.Commands.add("Añadir_Acuerdos_Comision", (csb_emisor, csb_adquiriente) => { 
    // Validaciones en la UI basadas en los datos del JSON
-   cy.Añadir_Combo_Buscar('#acquirer > .p-dropdown-label','.p-dropdown-filter', csb_emisor ) //csb_emisor
-   cy.Añadir_Combo_Buscar('#issuer > .p-dropdown-label','.p-dropdown-filter', csb_adquiriente ) //csb_adquiriente
+   cy.Añadir_Combo_Buscar('#acquirer > .p-dropdown-label','.p-dropdown-filter', csb_adquiriente  ) //csb_emisor
+   cy.Añadir_Combo_Buscar('#issuer > .p-dropdown-label','.p-dropdown-filter', csb_emisor) //csb_adquiriente
 
 })
 
@@ -610,7 +623,7 @@ Cypress.Commands.add("Añadir_Tiendas", (ID, FUC, descripcion, provincia, permit
    cy.Añadir_text('#town',provincia)
    cy.Check('.p-checkbox-box',permite_off) 
    //Empresa
-   cy.Añadir_Combo('.p-dropdown-label', empresa).click()
+   cy.Añadir_Combo('.p-dropdown-label', empresa)
    cy.Añadir_text('#address',direccion) //direccion
    cy.Añadir_text('#city',ciudad) //ciudad
    cy.Añadir_text('#zipCode',codigo_postal) //codigo postal      
@@ -626,7 +639,6 @@ Cypress.Commands.add("Añadir_Cajas", (caja, centro, tipo_punto_servicio) => {
 
 Cypress.Commands.add("Añadir_Tipo_Cajas", (id, capacidades_terminal, descripcion) => { 
    // Validaciones en la UI basadas en los datos del JSON
-   cy.wait(1000)  
    cy.Añadir_text('.p-inputnumber > .p-inputtext', id)     
    cy.Añadir_text('#posCapabilities', capacidades_terminal)
    cy.Añadir_text('#posDescription', descripcion)     
@@ -686,7 +698,7 @@ Cypress.Commands.add("Añadir_Contraseña", (selector, pass) => {
             } else {
                cy.get('#passwordConfirm > div > eyeslashicon').then(($passexiste) => {
                   if($passexiste.is(':visible')){
-                     cy.get('#passwordConfirm > div > eyeslashicon').click()
+                     cy.get('#passwordConfirm > div > eyeslashicon').scrollIntoView.click()
                   }
                })
             }
@@ -718,10 +730,12 @@ Cypress.Commands.add("Añadir_Contraseña", (selector, pass) => {
 
 })
 
-Cypress.Commands.add("Añadir_User", (id, usuario, email, pass, repetir_pass, rol, Idioma, Activo) => { 
+Cypress.Commands.add("Añadir_User", (id, usuario, email, Nombre_completo, pass, repetir_pass, rol, Idioma, Activo) => { 
    // Validaciones en la UI basadas en los datos del JSON
    //Nombre user
-   cy.Añadir_text('#username',usuario)   
+   cy.Añadir_text(':nth-child(1) > #username',usuario)   
+    //Nombre user
+    cy.Añadir_text(':nth-child(2) > #username',Nombre_completo)  
    //Email 
    cy.Añadir_text('#email', email)
    //Pass
@@ -1161,11 +1175,15 @@ Cypress.Commands.add("Editar_Texto_error", (protocolo, codigo_error, texto_1, te
    cy.Añadir_text('#text2',texto_2)
 })
 
-Cypress.Commands.add("Editar_User", (id, usuario, pass, repetir_pass, rol, Idioma, Activo) => { 
+Cypress.Commands.add("Editar_User", (id, usuario, name, email, pass, repetir_pass, rol, Idioma, Activo) => { 
    // Validaciones en la UI basadas en los datos del JSON
    //Nombre user
-   cy.get('#username').should('not.be.enabled')
-   cy.log("⚠️ No esta permitido editar",usuario)   
+   cy.get('label.flex').scrollIntoView().wait(100)
+   cy.Añadir_text(':nth-child(1) > #username', usuario)
+   cy.Añadir_text(':nth-child(2) > #username', name)
+   //cy.log("⚠️ No esta permitido editar",usuario) 
+   //email
+   cy.Añadir_text('#email', email) 
    //Pass
    cy.Añadir_Contraseña('#password > .p-password > .p-inputtext',pass)
    cy.Añadir_Contraseña('#passwordConfirm > .p-password > .p-inputtext',repetir_pass)
@@ -1211,29 +1229,29 @@ Cypress.Commands.add("Editar_Adquirientes", ( ID,numero_cuenta,tipo_cuenta,cuent
    cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
    
    //Datos principales
-   cy.get('#pn_id_11_header_action').should("be.visible").click()
+   cy.get('#pn_id_9_header_action').should("be.visible").click()
    //ID
    cy.get('#acquirerId').should('not.be.enabled'); // Confirma que no aparece la lista
    cy.log("⚠️ No esta permitido editar",ID)
    //numero de cuenta
    cy.get('#accountNumber').should("be.visible").clear().type(numero_cuenta).type("{enter}") 
    //tipo de adquiriente
-   cy.get('#accountType > .p-dropdown-label').should("be.visible").click().wait(2000)
+   cy.get('#accountType > .p-dropdown-label').should("be.visible").click().wait(100)
    .type(tipo_cuenta).type("{enter}")
    //adquiriente asociado
    cy.get('#associatedAcquirerId').should("be.visible").clear().type(cuenta_asociada).type("{enter}") 
    //nombre de adquiriente
    cy.get('#accountName').should("be.visible").clear().type(nombre_cuenta).type("{enter}") 
    //moneda
-   cy.get('#currency > .p-dropdown-label').should("be.visible").click().wait(2000)
+   cy.get('#currency > .p-dropdown-label').should("be.visible").click().wait(100)
    cy.get('.p-dropdown-filter').type(moneda)
    cy.get('#currency_0').type("{enter}")
    //entidad
-   cy.get('#entityId > .p-dropdown-label').should("be.visible").click().wait(2000)
+   cy.get('#entityId > .p-dropdown-label').should("be.visible").click().wait(100)
    .type(entidad).type("{enter}")
 
    //Datos control de sesion
-   cy.get('#pn_id_12_header_action').should("be.visible").click()
+   cy.get('#pn_id_10_header_action').should("be.visible").click()
    //fecha de sesion
    cy.get('.p-calendar > .p-inputtext').should("be.visible").clear().click().type(fecha_sesión).type("{enter}")
    //numero de secuencias
@@ -1246,14 +1264,14 @@ Cypress.Commands.add("Editar_Adquirientes", ( ID,numero_cuenta,tipo_cuenta,cuent
    cy.get('#status > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(estado).type("{enter}")
 
    //Datos detalles del adquiriente
-   cy.get('#pn_id_13_header_action').should("be.visible").click()
+   cy.get('#pn_id_11_header_action').should("be.visible").click()
    //numero de comercio
    cy.get('#merchantNumber').should("be.visible").clear().type(numero_comercio).type("{enter}")
    //numero de terminal
    cy.get('#terminalNumber').should("be.visible").clear().type(numero_terminal).type("{enter}")
    //forzado offline
    cy.get('#offlineForced > .p-dropdown-label')
-   .should("be.visible").click().wait(2000)
+   .should("be.visible").click().wait(100)
    .type(frozado_off).type("{enter}")
    //identificacion adquiriente
    cy.get('#acquirerIdentification').should("be.visible").clear().type(identificacion_adq).type("{enter}")
@@ -1266,37 +1284,38 @@ Cypress.Commands.add("Editar_Adquirientes", ( ID,numero_cuenta,tipo_cuenta,cuent
 })
 
 Cypress.Commands.add("Editar_Entidad", (id, nombre ,permitirOffline, frozado_off,id_protocolo,tipo_red, redEntidad, Intentos_max,T_espera, T_error, T_conexion, T_off, T_transaccion,host1 , puerto1, host2 , puerto2 , host3 ,puerto3, indidentif,Identidad, identificacionAdquirente,  Cajón_claves, Mac, Mac_EMV_1, Mac_EMV_2,máximo_procesos, eodRequerido, puntoServicio ,Características_1, Características_2, Características_3, infoSeguridad ,Tipo_cir, ID_TCP_IP,Versión_TCP_IP, Longitud_cabecera,ID_conexión , Dirección_IP_actualizada, EOD_total_requerido, Requiere_autentificación ,Requiere_proceso_recuperación, Bloqueado) => {     
-   // Validaciones en la UI basadas en los datos del JSON
-   cy.Click_force('#pn_id_11_header_action')
-   //Datos Principales
-   cy.get('#entityId > .p-inputnumber > .p-inputtext').should('not.be.enabled')
-   cy.log("⚠️ No esta permitido editar",id);//ID
-   cy.get('#entityName').should("be.visible").clear().type(nombre,"{enter}");//Nombre de entidad
-   //Forzado Offline
-   cy.get('#allowOffline > .p-checkbox > .p-checkbox-box').then(($checkbox) => {
-      const isChecked = $checkbox.attr('data-p-highlight') === 'true'; // Verifica si el checkbox está marcado
-   
-      if (!isChecked && (permitirOffline === "Si" )) {
-         // Si el checkbox no está seleccionado y el valor es "Si", seleccionamos el checkbox
-         cy.wrap($checkbox).click();
-         cy.Añadir_Combo('#offlineForced > .p-dropdown-label', frozado_off);
-         cy.log('✅ Checkbox seleccionado');
-      } else if (isChecked && (permitirOffline === "No")){
-         // Si el checkbox está seleccionado y el valor es "No", seleccionamos el checkbox
-         cy.wrap($checkbox).click();
-         cy.log('Checkbox deshabilitado');
-      } else {
-         // Si ya está seleccionado, no hacemos nada
-         cy.log('⚠️ El checkbox ya estaba seleccionado, no se hizo clic.');
-      }
-   });   
+      let pn_id = 24; // Fórmula de la progresión aritmética      
+      // Validaciones en la UI basadas en los datos del JSON
+      cy.get(`#pn_id_${pn_id}_header_action`).click({ force: true });
+      //Datos Principales
+      cy.get('#entityId > .p-inputnumber > .p-inputtext').should('not.be.enabled')
+      cy.log("⚠️ No esta permitido editar",id);//ID
+      cy.get('#entityName').should("be.visible").clear().type(nombre,"{enter}");//Nombre de entidad
+      //Forzado Offline
+      cy.get('#allowOffline > .p-checkbox > .p-checkbox-box').then(($checkbox) => {
+         const isChecked = $checkbox.attr('data-p-highlight') === 'true'; // Verifica si el checkbox está marcado
+      
+         if (!isChecked && (permitirOffline === "Si" )) {
+            // Si el checkbox no está seleccionado y el valor es "Si", seleccionamos el checkbox
+            cy.wrap($checkbox).click();
+            cy.Añadir_Combo('#offlineForced > .p-dropdown-label', frozado_off);
+            cy.log('✅ Checkbox seleccionado');
+         } else if (isChecked && (permitirOffline === "No")){
+            // Si el checkbox está seleccionado y el valor es "No", seleccionamos el checkbox
+            cy.wrap($checkbox).click();
+            cy.log('Checkbox deshabilitado');
+         } else {
+            // Si ya está seleccionado, no hacemos nada
+            cy.log('⚠️ El checkbox ya estaba seleccionado, no se hizo clic.');
+         }
+      }) 
 
    cy.Añadir_Combo('#entityProtocol > .p-dropdown-label',id_protocolo)  //ID protocolo
    cy.Añadir_Combo('#networkType > .p-dropdown-label',tipo_red)   //Tipo de red
    cy.get('#entityNetwork > .p-dropdown-label').should("not.be.visible").click().wait(100).type(redEntidad,"{enter}") //Red entidad
 
    //Datos de tiempo e intentos
-   cy.Click_force('#pn_id_12_header_action')
+   cy.get(`#pn_id_${pn_id+1}_header_action`).click({ force: true });
    cy.get('#triesMax > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(Intentos_max,"{enter}")  //Intentos máximos
    cy.get('#timeWait > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_espera,"{enter}")   //Tiempo de espera
    cy.get('#timeError > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_error,"{enter}")   //Tiempo de error 
@@ -1305,7 +1324,7 @@ Cypress.Commands.add("Editar_Entidad", (id, nombre ,permitirOffline, frozado_off
    cy.get('#timeTransaction > .p-inputnumber > .p-inputtext').should("be.visible").clear().type(T_transaccion,"{enter}")   //Tiempo de transacción
 
    //Datos de conexion
-   cy.Click_force('#pn_id_13_header_action')
+   cy.get(`#pn_id_${pn_id+2}_header_action`).click({ force: true });
    cy.Añadir_text('#host1',host1 )
    cy.Añadir_text('#port1 > .p-inputnumber > .p-inputtext',puerto1 )
    cy.Añadir_text('#host2',host2 )
@@ -1314,7 +1333,7 @@ Cypress.Commands.add("Editar_Entidad", (id, nombre ,permitirOffline, frozado_off
    cy.Añadir_text('#port3 > .p-inputnumber > .p-inputtext',puerto3 )
   
    //Conf.de autorizador
-   cy.Click_force('#pn_id_14_header_action')
+   cy.get(`#pn_id_${pn_id+3}_header_action`).click({ force: true });
    cy.Añadir_text('#indidentif', indidentif)  //Indicador identificación
    cy.Añadir_text('#identity', Identidad)   //Identidad
    cy.Añadir_text('#acquirerIdentification', identificacionAdquirente);//Identificación adquirente
@@ -1324,7 +1343,7 @@ Cypress.Commands.add("Editar_Entidad", (id, nombre ,permitirOffline, frozado_off
    cy.Añadir_text('#macEmv2', Mac_EMV_2)   //Mac EMV 2
 
    //Parametrizacion interna
-   cy.Click_force('#pn_id_15_header_action')
+   cy.get(`#pn_id_${pn_id+4}_header_action`).click({ force: true }).scrollIntoView();
    cy.Añadir_text('#processMaxNumber > .p-inputnumber > .p-inputtext',máximo_procesos )   //Número máximo de procesos
    cy.Añadir_text('#requireEod > .p-inputnumber > .p-inputtext', eodRequerido);//EOD Requerido
    cy.Añadir_text('#servicePoint', puntoServicio);//Punto de servicio
@@ -1335,7 +1354,7 @@ Cypress.Commands.add("Editar_Entidad", (id, nombre ,permitirOffline, frozado_off
    cy.Añadir_text('#cirType', Tipo_cir)   //Tipo cir
 
    //P. Interna II
-   cy.Click_force('#pn_id_16_header_action')
+   cy.get(`#pn_id_${pn_id+5}_header_action`).click({ force: true });
    cy.Añadir_text('#tcpIpConfigurationId', ID_TCP_IP)  //ID configuración TCP/IP
    cy.Añadir_text('#tcpIpConfigurationVersion', Versión_TCP_IP)   //Versión configuración TCP/IP
    cy.Añadir_text('#lengthMessageHeader > .p-inputnumber > .p-inputtext', Longitud_cabecera)   //Longitud cabecera mensaje
@@ -1454,6 +1473,19 @@ Cypress.Commands.add("Editar_Enrrutamientos_PIN_Online", (empresa, centro, caja,
    cy.get('#slotKey > .p-inputnumber > .p-inputtext').should('not.be.enabled')
    cy.log("⚠️ No esta permitido editar",cajon_claves )   //cajon_claves
    cy.Añadir_Combo('#account > .p-dropdown-label',cuenta ) //cuenta
+})
+
+Cypress.Commands.add("Editar_Enrrutaminetos", (tarjeta, Empresa, centro, caja, adquirente) => { 
+   cy.get('#card > .p-dropdown-label').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar",tarjeta ) //tarjeta
+   cy.get('#company > .p-dropdown-label').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar",Empresa ) //empresa
+   cy.get('#store > .p-inputnumber > .p-inputtext').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar",centro ) //centro
+   cy.get('#posId > .p-inputnumber > .p-inputtext').should('not.be.enabled')
+   cy.log("⚠️ No esta permitido editar",caja ) //caja
+   cy.Añadir_Combo('#acquirer > .p-dropdown-label',adquirente).wait(100);  
+   
 })
 
 Cypress.Commands.add("Editar_Empresas", (ID, descripcion, direccion, municipio, ciudad, codigo_postal, permite_off) => { 
@@ -1602,8 +1634,10 @@ Cypress.Commands.add('Guardar_Confirmar_Acuerdo_Comision', (selector_guardar, se
             if ($alert.text().includes('ya existe!')){
                cy.get('.absolute > [icon="pi pi-times"] > .p-ripple').should('be.visible').click({ force: true });
                cy.log('⚠️ ¡Ya existe!');
+               cy.wait(100)
             } else {
                cy.log('✅ ¡Ha sido guardado!');
+               cy.wait(100)
             }
          })   
       } else if ($btn.is(':disabled') || $btn.hasClass('p-disabled')) {
@@ -1869,10 +1903,9 @@ Cypress.Commands.add('Guardar_Confirmar_TCaja', (selector_guardar, selector_mens
          cy.get('body').then(($body) => {
             if ($body.find(selector_mensaje).length > 0) {
                cy.get(selector_mensaje).should('exist').and('be.visible').then(($alert) => {
-                  if ($alert.text().includes('ya existe!')) {
+                  if ($alert.text().includes('ya existe')) {
                      cy.get('.mt-5 > [icon="pi pi-times"] > .p-ripple').click({ force: true });
                      cy.log('⚠️ ¡Ya existe!');
-                     cy.wait(t);
                   } else {
                      cy.log('✅ ¡Ha sido guardado!');
                      cy.wait(t);

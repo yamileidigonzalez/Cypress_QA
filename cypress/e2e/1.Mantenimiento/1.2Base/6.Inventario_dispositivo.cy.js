@@ -35,7 +35,7 @@ describe('Inventario_dispositivos', () => {
           cy.wait(tiempo)
           cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
           cy.Añadir_Inventariado_Pinpad(pos, store, company, serialNumber, manufacturer, model, updateDate)
-          cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+          cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
         });
       })
     });*/
@@ -50,7 +50,7 @@ describe('Inventario_dispositivos', () => {
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.Editar_Empresas("1", "1 - SAN GREGORIO","1 - Empresa 1","00004229722","1","84","- -")
-      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
     }); */
 
      // Listar todos los elementos

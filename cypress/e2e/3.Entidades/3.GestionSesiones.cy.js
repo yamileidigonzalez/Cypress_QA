@@ -20,36 +20,81 @@ describe('Gestion de Secciones', () => {
 
     it('Debe mostrar el listado de sesiones abiertas con su estado correcto', () => {
         // Navegar hasta la sección de sesiones abiertas si es necesario
-        cy.contains('h1', 'Sesiones Abiertas').should('be.visible'); // Ajusta el selector si es necesario
+        cy.Elemento_visible('app-session-management.ng-star-inserted > .bg-white').contains('h1', 'Sesiones Activas'); // Ajusta el selector si es necesario
 
         // Verificar que la lista de sesiones se carga y tiene elementos
-        cy.get('.lista-sesiones') // Ajusta el selector de la tabla o lista de sesiones
-          .should('be.visible')
-          .find('.sesion-item')
+        cy.get('.p-scroller-viewport') // Ajusta el selector de la tabla o lista de sesiones
+          .should('be.visible').children()
           .should('have.length.greaterThan', 0);
 
         // Verificar que cada sesión tiene un estado visible y correcto
-        cy.get('.sesion-item').each(($el) => {
-            cy.wrap($el).find('.estado-sesion')
+        cy.get('.p-scroller-viewport') // Ajusta el selector de la tabla o lista de sesiones
+          .children().each(($el) => {
+            cy.wrap($el).find('tr.p-2')
                 .should('be.visible')
-                .invoke('text')
-                .should('match', /(Activa|Inactiva|Expirada)/); // Ajusta según los estados posibles
+                .contains(/(Abierta|Inactiva|Expirada)/i); // Verifica que el texto es visible en el DOM
         });
+
+        cy.get('.p-scroller-viewport') // Selecciona el elemento adecuado
+        .should('be.visible') // Asegura que el elemento esté visible
+        .invoke('text') // Obtiene el texto del elemento
+        .then((text) => {
+            const options = ['Abierta', 'Inactiva', 'Expirada'];
+            
+            // Itera sobre las opciones y verifica cuál coincide
+            options.forEach(option => {
+            if (text.includes(option)) {
+                // Si encuentra la opción, la imprime en el log
+                cy.log(`El texto contiene la palabra: ${option}`);
+            }
+            });
+        });
+      
     });
 
-    it('Debe realizar una petición de totales y completarse correctamente', () => {
-        // Hacer clic en el botón para solicitar los totales
-        cy.contains('button', 'Petición de totales').should('be.visible').click();
+    it('Debe realizar una petición de detenner sesión', () => {
+        // Navegar hasta la sección de sesiones abiertas si es necesario
+        cy.Elemento_visible('app-session-management.ng-star-inserted > .bg-white').contains('h1', 'Sesiones Activas'); // Ajusta el selector si es necesario
 
-        // Interceptar la petición a la API si aplica
-        cy.intercept('GET', '/api/totales').as('getTotales'); // Ajusta la URL de la API
-        cy.wait('@getTotales').its('response.statusCode').should('eq', 200);
+        // Verificar que la lista de sesiones se carga y tiene elementos
+        cy.get('.p-scroller-viewport') // Ajusta el selector de la tabla o lista de sesiones
+          .should('be.visible').children()
+          .should('have.length.greaterThan', 0);
 
-        // Verificar que los totales se han cargado correctamente en la UI
-        cy.get('.total-resultados').should('be.visible').and('not.have.text', '0');
+        // Verificar que cada sesión tiene un estado visible y correcto
+        cy.get('.p-scroller-viewport') // Ajusta el selector de la tabla o lista de sesiones
+          .children().each(($el) => {
+            cy.wrap($el).find('tr.p-2')
+                .should('be.visible')
+                .contains(/(Abierta|Inactiva|Expirada)/i); // Verifica que el texto es visible en el DOM
+        });
 
-        // Verificar mensaje de éxito si es aplicable
-        cy.contains('Totales calculados correctamente').should('be.visible');
+        cy.get('.p-scroller-viewport') // Selecciona el elemento adecuado
+        .should('be.visible') // Asegura que el elemento esté visible
+        .invoke('text') // Obtiene el texto del elemento
+        .then((text) => {
+          // Verifica si el texto contiene la palabra 'Abierta'
+          if (text.includes('Abierta')) {
+            // Si es "Abierta", hacer clic en el botón de "Detener sesión"
+            cy.log('La sesión está Abierta, procediendo a detenerla.');
+            
+            // Suponiendo que el botón para detener sesión tiene una clase .detener-sesion
+            cy.get(':nth-child(5) > .transition') // Selecciona el botón de detener sesión
+              .click(); // Realiza el clic
+            cy.wait(1000); // Espera un segundo para asegurar que la acción se procese (ajustar si es necesario)
+
+            cy.Elemento_visible('.p-dialog-header').contains('Confirmación')
+            cy.Elemento_visible('.p-dialog-content').contains('¿Está seguro de que quiere detener la sesión')
+            cy.Elemento_visible('.p-dialog-footer').contains('Sí')
+            cy.Click_force('.p-confirm-dialog-accept')
+            
+            // Asegura que la acción de "Detener sesión" haya tenido éxito (puedes ajustarlo según el flujo de tu aplicación)
+            cy.log('Sesión esta', text)
+          } else {
+            cy.log('La sesión no está abierta, no es necesario detenerla.');
+          }
+        });
+    
     });
     
 })

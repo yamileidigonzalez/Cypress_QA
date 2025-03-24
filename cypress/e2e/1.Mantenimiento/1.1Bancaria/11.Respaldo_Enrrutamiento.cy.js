@@ -35,7 +35,7 @@ describe('Respaldo_Enrrutamientos', () => {
           cy.wait(tiempo)
           cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
           cy.Añadir_Respaldo_Enrrutamiento(cuenta, cuenta_respaldo, prioridad)
-          cy.Guardar_Confirmar_Protocolo('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+          cy.Guardar_Confirmar_Protocolo('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
         });
       })   
     });
@@ -48,7 +48,7 @@ describe('Respaldo_Enrrutamientos', () => {
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
       cy.Editar_Respaldo_Enrrutamiento('A01', "A01", '10')
-      cy.Guardar_Confirmar_Protocolo('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+      cy.Guardar_Confirmar_Protocolo('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
     });
 
      // Listar todos los elementos

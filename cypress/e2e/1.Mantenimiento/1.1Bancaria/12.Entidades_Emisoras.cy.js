@@ -36,7 +36,7 @@ describe('Entidades_Emisoras', () => {
           cy.wait(tiempo)
           cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
           cy.Añadir_Entidades_Emisoras(csb_emisor, nombre_emisor)
-          cy.Guardar_Confirmar_Protocolo('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+          cy.Guardar_Confirmar_Protocolo('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
         });
       })  
     });
@@ -49,7 +49,7 @@ describe('Entidades_Emisoras', () => {
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
       cy.Editar_Entidades_Emisoras('0000', "AAAAAAAAAAAA")
-      cy.Guardar_Confirmar_Protocolo('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+      cy.Guardar_Confirmar_Protocolo('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
     
     });
 

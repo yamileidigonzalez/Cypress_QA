@@ -1,4 +1,4 @@
-const { random } = require("lodash");
+const { random, intersection } = require("lodash");
 describe('Entidades', () => {
     const tiempo = 1000;
     
@@ -22,6 +22,7 @@ describe('Entidades', () => {
     // Añadir un nuevo [Elemento]
     it('Debería añadir un nuevo [Elemento]', () => {
       //Conextar con archivo Json
+      let cont= 0;
       cy.fixture('8_Entidades.json').then((entidades) => {
         entidades.forEach((config) => {
           let id = config.ID;
@@ -40,7 +41,8 @@ describe('Entidades', () => {
           let redEntidad = config["red entidad"];
           //Boton añadir
           cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
-          cy.Añadir_Entidad(id, nombre ,eodRequerido, puntoServicio ,infoSeguridad ,identificacionAdquirente, permitirOffline ,host1 , puerto1, host2 , puerto2 , host3 ,puerto3 ,redEntidad)
+          cont = cont + 1;
+          cy.Añadir_Entidad(id, nombre ,eodRequerido, puntoServicio ,infoSeguridad ,identificacionAdquirente, permitirOffline ,host1 , puerto1, host2 , puerto2 , host3 ,puerto3 ,redEntidad, cont)
           cy.Guardar_Confirmar_Entidad('[icon="pi pi-save"] > .p-ripple','.bg-white > .flex-col', tiempo)
         });
       })   
@@ -53,7 +55,7 @@ describe('Entidades', () => {
       cy.Click_force('.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
-      cy.Editar_Entidad('1', "F1-Bank Ciers 44", "Si", "Activado manualmente", " ", " ", "1 - Redsys", "3", "30", "30", "30", "30", "30", "192.168.0.157", "9101", "192.168.0.157", "9101", "192.168.0.157", "9101", "136544000000000100", "138000", "136544", "2", "2", " ", " ","1" ,"1", "510101514041","1000031002", "1100000000", "1000010100", "9102250001000000",  "2","0", "0", "0", "Desactivado", "1", "0", "0", "0")
+      cy.Editar_Entidad('1', "F1-Bank Ciers 44", "Si", "Activado manualmente", "90 - 21", "4", "1 - Redsys", "3", "30", "30", "30", "30", "30", "192.168.0.157", "9101", "192.168.0.157", "9101", "192.168.0.157", "9101", "136544000000000100", "138000", "136544", "2", "2", " ", " ","1" ,"1", "510101514041","1000031002", "1100000000", "1000010100", "9102250001000000",  "2","0", "0", "0", "Desactivado", "1", "0", "0", "0")
       cy.Guardar_Confirmar_Entidad('[icon="pi pi-save"] > .p-ripple', '.bg-white > .flex-col', tiempo)
       
     });

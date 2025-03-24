@@ -41,33 +41,32 @@ describe('GESTION', () => {
     //Operativa-offline
     it('Activar Bin', () => { 
         //Añadir BIN
+        //479265**
+        //401814**
+        //8*******
         cy.Añadir_text('.grid > :nth-child(1) > .p-inputtext','5*******')
         .wait(tiempo)
         //boton Activar
-        cy.contains('button', 'Activar').should('be.visible').click();
-        //Confirmar
+        cy.contains('button', 'Activar').should('be.visible').click(); //Confirmar
         // Verifica mensaje de éxito
-        cy.get('app-management.ng-star-inserted > app-custom-toast > p-toast.p-element > .p-toast')
+        cy.get('.bg-white > tr > :nth-child(2)')
         .should('be.visible')
         .then(($toast) => {
             const toastText = $toast.text().trim();  // Obtener el texto del toast y eliminar espacios extra
-            if (toastText.includes('El bin introducido no existe')) {
-                cy.log("El bin introducido no existe");
-            } else if (toastText.includes('Forzado offline activado correctamente')) {
-                cy.log("Forzado offline activado correctamente");
-
+            if (toastText.includes('5*******')) {
+                cy.log("El bin introducido esta activado");
                 cy.get('.bg-white > tr > :nth-child(2)').should('have.length.lte', 1)
                 .should('have.length.greaterThan', 0) // Verificar que hay elementos visibles 
                 .contains('5*******') 
             } else {
-            cy.log("Otro mensaje: " + toastText);
+            cy.log('El bin introducido no se activo');
             }
         }); 
     })
 
     it('Activar Adquiriente', () => {
         //Añadir adquiriente
-        cy.Añadir_Combo('#pn_id_12 > .p-dropdown-label','A01')
+        cy.Añadir_Combo('#pn_id_10 > .p-dropdown-label','A01')
         .wait(tiempo)
         //boton Activar
         cy.contains('button', 'Activar').should('be.visible').then(($boton) => {
@@ -76,24 +75,21 @@ describe('GESTION', () => {
                 cy.log('Se logró dar click');
         
                 // Confirmar mensaje de éxito
-                cy.get('app-management.ng-star-inserted app-custom-toast p-toast.p-element .p-toast')
+                cy.get('.bg-white > tr > :nth-child(4)')
                     .should('be.visible')  // Asegurar que el mensaje se muestre
                     .invoke('text')        // Obtener el texto del toast
                     .then((toastText) => {
                         const mensaje = toastText.trim(); // Eliminar espacios extra
                         
-                        if (mensaje.includes('El adquiriente introducido no existe')) {
-                            cy.log("⚠️ El adquiriente introducido no existe");
-                        } else if (mensaje.includes('Forzado offline activado correctamente')) {
-                            cy.log("✅ Forzado offline activado correctamente");
-        
+                        if (mensaje.includes('A01')) {
+                            cy.log("✅ Forzado offline activado correctamente");        
                             // Validar que hay filas en la tabla y se muestra "A01"
                             cy.get('.bg-white > tr > :nth-child(4)')
                                 .should('have.length.greaterThan', 0)  // Al menos una fila
                                 .should('have.length.lte', 1)          // Máximo una fila
                                 .contains('A01');                      // Contiene "A01"
                         } else {
-                            cy.log("ℹ️ Otro mensaje recibido: " + mensaje);
+                            cy.log("ℹ️ No se activo");
                         }
                     });
             } else {
@@ -113,24 +109,21 @@ describe('GESTION', () => {
                 cy.log('Se logró dar click');
         
                 // Confirmar mensaje de éxito
-                cy.get('app-management.ng-star-inserted app-custom-toast p-toast.p-element .p-toast')
+                cy.get('.bg-white > tr > :nth-child(5)')
                     .should('be.visible')  // Asegurar que el mensaje se muestre
                     .invoke('text')        // Obtener el texto del toast
                     .then((toastText) => {
                         const mensaje = toastText.trim(); // Eliminar espacios extra
                         
-                        if (mensaje.includes('no existe')) {
-                            cy.log("⚠️  no existe");
-                        } else if (mensaje.includes('Forzado offline activado correctamente')) {
-                            cy.log("✅ Forzado offline activado correctamente");
-        
+                        if (mensaje.includes('0013')) {
+                             cy.log("✅ Forzado offline activado correctamente");        
                             // Validar que hay filas en la tabla y se muestra 
                             cy.get('.bg-white > tr > :nth-child(5)')
                                 .should('have.length.greaterThan', 0)  // Al menos una fila
                                 .should('have.length.lte', 1)          // Máximo una fila
                                 //.contains('0013');                     
                         } else {
-                            cy.log("ℹ️ Otro mensaje recibido: " + mensaje);
+                            cy.log("⚠️ No se añadio");
                         }
                     });
             } else {
@@ -141,7 +134,7 @@ describe('GESTION', () => {
 
     it('Activar Entidad', () => {
         //Añadir Entidad
-        cy.Añadir_Combo('#pn_id_10 > .p-dropdown-label','12')
+        cy.Añadir_Combo('#pn_id_8 > .p-dropdown-label','12')
         .wait(tiempo)
         //boton Activar
         cy.contains('button', 'Activar').should('be.visible').then(($boton) => {
@@ -150,15 +143,13 @@ describe('GESTION', () => {
                 cy.log('Se logró dar click');
         
                 // Confirmar mensaje de éxito
-                cy.get('app-management.ng-star-inserted app-custom-toast p-toast.p-element .p-toast')
+                cy.get('.bg-white > tr > :nth-child(3)')
                     .should('be.visible')  // Asegurar que el mensaje se muestre
                     .invoke('text')        // Obtener el texto del toast
                     .then((toastText) => {
                         const mensaje = toastText.trim(); // Eliminar espacios extra
                         
-                        if (mensaje.includes('El adquiriente introducido no existe')) {
-                            cy.log("⚠️ El adquiriente introducido no existe");
-                        } else if (mensaje.includes('Forzado offline activado correctamente')) {
+                        if (mensaje.includes('12')) {
                             cy.log("✅ Forzado offline activado correctamente");
         
                             // Validar que hay filas en la tabla y se muestra "A01"
@@ -167,7 +158,7 @@ describe('GESTION', () => {
                                 .should('have.length.lte', 1)          // Máximo una fila
                                 .contains('12');                     
                         } else {
-                            cy.log("ℹ️ Otro mensaje recibido: " + mensaje);
+                            ("⚠️ El adquiriente no fue introducido");
                         }
                     });
             } else {
@@ -178,7 +169,7 @@ describe('GESTION', () => {
 
     it('Activar Token Movil', () => { 
         //Añadir Token movil 
-        cy.Añadir_Combo('#pn_id_14 > .p-dropdown-label','AMBAS')
+        cy.Añadir_Combo('#pn_id_12 > .p-dropdown-label','AMBAS')
         .wait(tiempo)
         //boton Activar
         cy.contains('button', 'Activar').should('be.visible').then(($boton) => {
@@ -187,15 +178,13 @@ describe('GESTION', () => {
                 cy.log('Se logró dar click');
         
                 // Confirmar mensaje de éxito
-                cy.get('app-management.ng-star-inserted app-custom-toast p-toast.p-element .p-toast')
+                cy.get('.whitespace-nowrap')
                     .should('be.visible')  // Asegurar que el mensaje se muestre
                     .invoke('text')        // Obtener el texto del toast
                     .then((toastText) => {
                         const mensaje = toastText.trim(); // Eliminar espacios extra
                         
-                        if (mensaje.includes('no existe')) {
-                            cy.log("⚠️ no existe");
-                        } else if (mensaje.includes('Forzado offline activado correctamente')) {
+                        if (mensaje.includes('AMBAS')) {
                             cy.log("✅ Forzado offline activado correctamente");
         
                             // Validar que hay filas en la tabla y se muestra "A01"
@@ -204,7 +193,7 @@ describe('GESTION', () => {
                                 .should('have.length.lte', 1)          // Máximo una fila
                                 //.contains('AMBAS');                      
                         } else {
-                            cy.log("ℹ️ Otro mensaje recibido: " + mensaje);
+                            cy.log("⚠️ no existe");
                         }
                     });
             } else {
@@ -225,19 +214,17 @@ describe('GESTION', () => {
         cy.contains('button', 'Desactivar').should('be.visible').click();
         //Confirmar
         // Verifica mensaje de éxito
-        cy.get('app-management.ng-star-inserted > app-custom-toast > p-toast.p-element > .p-toast')
+        cy.get('.bg-white > tr > :nth-child(2)')
         .should('be.visible')
         .then(($toast) => {
             const toastText = $toast.text().trim();  // Obtener el texto del toast y eliminar espacios extra
-            if (toastText.includes('El bin introducido no existe')) {
-                cy.log("El bin introducido no existe");
-            } else if (toastText.includes('Forzado offline desactivado correctamente')) {
+            if (toastText.includes('5*******')) {
                 cy.log("Forzado offline desactivado correctamente");
                 cy.get('.bg-white > tr > :nth-child(2)').should('have.length.lte', 1)
                 .should('have.length.greaterThan', 0) // Verificar que hay elementos visibles 
                 .should('not.contain','5*******')                
             } else {
-            cy.log("Otro mensaje: " + toastText);
+                cy.log("⚠️ no existe");
             }
         }); 
     })
@@ -249,7 +236,7 @@ describe('GESTION', () => {
         .should('have.length.lte', 1)          // Máximo una fila
         //.contains('A01');                      // Contiene "A01"                        
 
-        cy.Añadir_Combo('#pn_id_12 > .p-dropdown-label','A01')
+        cy.Añadir_Combo('#pn_id_10 > .p-dropdown-label','A01')
         .wait(tiempo)
         //boton Activar
         cy.contains('button', 'Desactivar').should('be.visible').then(($boton) => {
@@ -258,14 +245,14 @@ describe('GESTION', () => {
                 cy.log('Se logró dar click');
         
                 // Confirmar mensaje de éxito
-                cy.get('app-management.ng-star-inserted app-custom-toast p-toast.p-element .p-toast')
+                cy.get('.bg-white > tr > :nth-child(4)')
                     .should('be.visible')  // Asegurar que el mensaje se muestre
                     .invoke('text')        // Obtener el texto del toast
                     .then((toastText) => {
                         const mensaje = toastText.trim(); // Eliminar espacios extra
                         
-                        if (mensaje.includes(' no existe')) {
-                            cy.log("⚠️ no existe");
+                        if (mensaje.includes('A01')) {
+                           
                         } else if (mensaje.includes('Forzado offline desactivado correctamente')) {
                             cy.log("✅ Forzado offline activado correctamente");
         
@@ -275,7 +262,7 @@ describe('GESTION', () => {
                                 .should('have.length.lte', 1)          // Máximo una fila
                                 .should('not.contain','A01');                      // Contiene "A01"
                         } else {
-                            cy.log("ℹ️ Otro mensaje recibido: " + mensaje);
+                            cy.log("⚠️ no existe");
                         }
                     });
             } else {
@@ -301,15 +288,13 @@ describe('GESTION', () => {
                 cy.log('Se logró dar click');
         
                 // Confirmar mensaje de éxito
-                cy.get('app-management.ng-star-inserted app-custom-toast p-toast.p-element .p-toast')
+                cy.get('.bg-white > tr > :nth-child(5)')
                     .should('be.visible')  // Asegurar que el mensaje se muestre
                     .invoke('text')        // Obtener el texto del toast
                     .then((toastText) => {
                         const mensaje = toastText.trim(); // Eliminar espacios extra
                         
-                        if (mensaje.includes(' no existe')) {
-                            cy.log("⚠️  no existe");
-                        } else if (mensaje.includes('Forzado offline desactivado correctamente')) {
+                        if (mensaje.includes('0013')) {
                             cy.log("✅ Forzado offline activado correctamente");
         
                             // Validar que hay filas en la tabla y se muestra "A01"
@@ -318,7 +303,7 @@ describe('GESTION', () => {
                             .should('have.length.lte', 1)          // Máximo una fila
                             .should('not.contain','0013'); 
                         } else {
-                            cy.log("ℹ️ Otro mensaje recibido: " + mensaje);
+                            cy.log("⚠️ no existe");
                         }
                     });
             } else {
@@ -335,7 +320,7 @@ describe('GESTION', () => {
         .should('have.length.lte', 1)          // Máximo una fila
         .contains('12');
 
-        cy.Añadir_Combo('#pn_id_10 > .p-dropdown-label','12')
+        cy.Añadir_Combo('#pn_id_8 > .p-dropdown-label','12')
         .wait(tiempo)
         //boton Activar
         cy.contains('button', 'Desactivar').should('be.visible').then(($boton) => {
@@ -344,15 +329,13 @@ describe('GESTION', () => {
                 cy.log('Se logró dar click');
         
                 // Confirmar mensaje de éxito
-                cy.get('app-management.ng-star-inserted app-custom-toast p-toast.p-element .p-toast')
+                cy.get('.bg-white > tr > :nth-child(3)')
                     .should('be.visible')  // Asegurar que el mensaje se muestre
                     .invoke('text')        // Obtener el texto del toast
                     .then((toastText) => {
                         const mensaje = toastText.trim(); // Eliminar espacios extra
                         
-                        if (mensaje.includes(' no existe')) {
-                            cy.log("⚠️  no existe");
-                        } else if (mensaje.includes('Forzado offline desactivado correctamente')) {
+                        if (mensaje.includes('12')) {
                             cy.log("✅ Forzado offline activado correctamente");
         
                             // Validar que hay filas en la tabla y se muestra "A01"
@@ -361,7 +344,7 @@ describe('GESTION', () => {
                             .should('have.length.lte', 1)          // Máximo una fila
                             .should('not.contain','12'); 
                         } else {
-                            cy.log("ℹ️ Otro mensaje recibido: " + mensaje);
+                            cy.log("⚠️ no existe");
                         }
                     });
             } else {
@@ -378,7 +361,7 @@ describe('GESTION', () => {
         .should('have.length.lte', 1)          // Máximo una fila
         //.contains('AMBAS');                         
 
-        cy.Añadir_Combo('#pn_id_14 > .p-dropdown-label','AMBAS')
+        cy.Añadir_Combo('#pn_id_12 > .p-dropdown-label','AMBAS')
         .wait(tiempo)
         //boton Activar
         cy.contains('button', 'Desactivar').should('be.visible').then(($boton) => {
@@ -387,15 +370,13 @@ describe('GESTION', () => {
                 cy.log('Se logró dar click');
         
                 // Confirmar mensaje de éxito
-                cy.get('app-management.ng-star-inserted app-custom-toast p-toast.p-element .p-toast')
+                cy.get('.whitespace-nowrap')
                     .should('be.visible')  // Asegurar que el mensaje se muestre
                     .invoke('text')        // Obtener el texto del toast
                     .then((toastText) => {
                         const mensaje = toastText.trim(); // Eliminar espacios extra
                         
-                        if (mensaje.includes(' no existe')) {
-                            cy.log("⚠️  no existe");
-                        } else if (mensaje.includes('Forzado offline desactivado correctamente')) {
+                        if (mensaje.includes('AMBAS')) {
                             cy.log("✅ Forzado offline activado correctamente");
         
                             // Validar que hay filas en la tabla y se muestra "A01"
@@ -404,7 +385,7 @@ describe('GESTION', () => {
                             .should('have.length.lte', 1)          // Máximo una fila
                             .should('not.contain','AMBAS'); 
                         } else {
-                            cy.log("ℹ️ Otro mensaje recibido: " + mensaje);
+                            cy.log("⚠️ no existe");
                         }
                     });
             } else {
@@ -417,7 +398,6 @@ describe('GESTION', () => {
     it('Activar adquirinete Operativa-backup', () => {
         //Añadir adquiriente 
         cy.Click_force('[tabindex="-1"] > .p-button-label')
-
         cy.Añadir_Combo('.p-dropdown-label','A01')
         .wait(tiempo)
         //boton Activar
@@ -427,25 +407,22 @@ describe('GESTION', () => {
                 cy.log('Se logró dar click');
         
                 // Confirmar mensaje de éxito
-                cy.get('app-management.ng-star-inserted app-custom-toast p-toast.p-element .p-toast')
+                cy.get('tr.ng-star-inserted > .px-6')
                     .should('be.visible')  // Asegurar que el mensaje se muestre
                     .invoke('text')        // Obtener el texto del toast
                     .then((toastText) => {
                         const mensaje = toastText.trim(); // Eliminar espacios extra
                         
-                        if (mensaje.includes('El adquiriente introducido no existe')) {
-                            cy.log("⚠️ El adquiriente introducido no existe");
-                        } else if (mensaje.includes('Forzado offline activado correctamente')) {
-                            cy.log("✅ Forzado offline activado correctamente");
-        
+                        if (mensaje.includes('A01')) {
+                            cy.log("✅ El adquiriente es introducido");
                             // Validar que hay filas en la tabla y se muestra "A01"
-                            cy.get('.bg-white > tr > :nth-child(4)')
+                            cy.get('tr.ng-star-inserted > .px-6')
                                 .should('have.length.greaterThan', 0)  // Al menos una fila
                                 .should('have.length.lte', 1)          // Máximo una fila
-                                .contains('A01');                      // Contiene "A01"
-                        } else {
-                            cy.log("ℹ️ Otro mensaje recibido: " + mensaje);
-                        }
+
+                        } else 
+                            cy.log( "⚠️ El adquiriente no es introducido");
+                        
                     });
             } else {
                 cy.log('❌ No se logró dar click');
@@ -471,24 +448,23 @@ describe('GESTION', () => {
                 cy.log('Se logró dar click');
         
                 // Confirmar mensaje de éxito
-                cy.get('app-management.ng-star-inserted app-custom-toast p-toast.p-element .p-toast')
+                cy.get('tr.ng-star-inserted > .px-6')
                     .should('be.visible')  // Asegurar que el mensaje se muestre
                     .invoke('text')        // Obtener el texto del toast
                     .then((toastText) => {
                         const mensaje = toastText.trim(); // Eliminar espacios extra
                         
-                        if (mensaje.includes(' no existe')) {
-                            cy.log("⚠️ no existe");
-                        } else if (mensaje.includes('Forzado offline desactivado correctamente')) {
-                            cy.log("✅ Forzado offline activado correctamente");
-        
+                        if (mensaje.includes('A01')) {
+                            cy.log("✅ Desactivado correctanete");
+
                             // Validar que hay filas en la tabla y se muestra "A01"
                             cy.get('.ng-star-inserted > .px-6')
                             .should('have.length.greaterThan', 0)  // Al menos una fila
                             .should('have.length.lte', 1)          // Máximo una fila
                             .should('not.contain','A01');                      // Contiene "A01"
                         } else {
-                            cy.log("ℹ️ Otro mensaje recibido: " + mensaje);
+                            cy.log( "⚠️ El adquiriente no es desactivado");
+    
                         }
                     });
             } else {

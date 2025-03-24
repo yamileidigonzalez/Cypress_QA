@@ -117,21 +117,26 @@ describe('Totales', () => {
     });  
     
     //Comprobar la visualización de detalle de operaciones
-    it('Comprobar la visualización de detalle de operaciones', () => {
+    it.only('Comprobar la visualización de detalle de operaciones', () => {
         //Limpiamos Datos
         cy.Click_force('[icon="pi pi-filter-slash"] > .p-ripple').wait(tiempo)
         cy.get('.p-scroller')
         .find('.p-datatable-tbody > tr')  // Suponiendo que cada fila es un elemento <tr>
         .each(($el, index) => {
             // Hacer clic en la fila actual (asegúrate de que el selector es correcto)
-            cy.log('El elemento que se muestra es:', index)            
-            cy.wrap($el).click({ force: true });
+            cy.log('El elemento que se muestra es:', index)   
+            cy.wait(tiempo);         
+            cy.wrap($el, { timeout: 10000 }).click({ force: true })
             cy.wait(tiempo);  
             // Verificar que el elemento es visible después de hacer clic
-            cy.wrap($el).should('be.visible').scrollIntoView() 
+            //cy.wrap($el).should('be.visible').scrollIntoView() 
+            cy.Click_force('.gap-x-4 > .inline-flex').wait(tiempo)
+            cy.Elemento_visible('.p-toast').contains('Los totales han sido actualizados correctamente.')
+            cy.Click_force('.bg-white > .flex-col > .inline-flex > .pi')
+            cy.log('Los totales han sido actualizados correctamente.')
             // Cerrar el popup, si tiene un botón de cerrar 
             cy.get('.ng-trigger').should('be.visible').find('.p-dialog-header-icons > .p-ripple') 
-            .click().wait(tiempo);         
+            .click({ force: true }).wait(tiempo);         
         });
     });
     

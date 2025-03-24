@@ -16,21 +16,40 @@ describe('Peticiones Totales', () => {
         .scrollIntoView()  // Desplaza el elemento a la vista
         .should('be.visible')  // Verifica que el elemento es visible
         .click();  // Luego realiza el clic 
+        cy.wait(tiempo)
     })
 
     it('Debe realizar una petición de totales y completarse correctamente', () => {
         // Hacer clic en el botón para solicitar los totales
-        cy.contains('button', 'Petición de totales').should('be.visible').click();
+        cy.Elemento_visible('.grid')
+        cy.get('.grid').children().each(($el) => {
+            cy.wrap($el).click();
+            cy.wait(tiempo); // Espera 500ms entre clics
+            
+            // Obtener el texto directamente del primer hijo seleccionado
+            const textToCheck = $el.find('.bg-white > .text-lg').text().trim();
 
-        // Esperar la respuesta de la petición (si se hace por API, interceptar la solicitud)
-        cy.intercept('GET', '/api/totales').as('getTotales'); // Ajusta la URL según la API real
-        cy.wait('@getTotales').its('response.statusCode').should('eq', 200);
 
-        // Verificar que los totales se han cargado correctamente en la UI
-        cy.get('.total-resultados').should('be.visible').and('not.have.text', '0');
+            cy.Elemento_visible('.mt-6 > .bg-white')
+            // Verificar que el texto esté en .text-2xl
+            //cy.get('.text-2xl').should('contain', textToCheck);
 
-        // Mensaje de éxito si aplica
-        cy.contains('Totales calculados correctamente').should('be.visible');
+            // Verificar que el texto esté en .text-2xl sin importar mayúsculas o minúsculas
+            const regex = new RegExp(textToCheck, 'i'); // 'i' hace que sea case-insensitive
+            cy.get('.text-2xl')
+            .should('be.visible') // Asegura que el elemento es visible antes de obtener el texto
+            .invoke('text') // Extrae el texto del elemento
+            .then((actualText) => {
+                const cleanedText = actualText.trim().replace(/\u00A0/g, ''); // Elimina espacios invisibles (&nbsp;)
+                const regex = /consulta de totales/i; // Expresión regular insensible a mayúsculas/minúsculas
+                expect(cleanedText).to.match(regex); // Verifica que el texto coincide con la regex
+            });
+
+            // Hacer clic en el botón dentro de .p-6 > .flex > .bg-white y esperar la actualización
+            cy.Click_force('.p-6 > .flex > .bg-white');
+            cy.wait(tiempo); // Espera 1 segundo para asegurar que la actualización se refleje
+            cy.log('Se actualizan los totales para', textToCheck, 'CORRECTAMENTE')
+        });
     });
 
 })

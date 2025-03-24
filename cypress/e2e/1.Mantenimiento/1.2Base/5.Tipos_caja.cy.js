@@ -28,10 +28,9 @@ describe('Tipos_Cajas', () => {
             let capacidades_terminal = config["capacidades terminal"] 
                    
             //Boton añadir
-            cy.wait(tiempo)
             cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
             cy.Añadir_Tipo_Cajas(id, capacidades_terminal, descripcion)
-            cy.Guardar_Confirmar_TCaja('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+            cy.Guardar_Confirmar_TCaja('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
             cy.wait(tiempo)
         });
       })
@@ -47,7 +46,7 @@ describe('Tipos_Cajas', () => {
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.Editar_TCajas('10', "200111251110", "3 - Distribución")
-      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
 
     });
 

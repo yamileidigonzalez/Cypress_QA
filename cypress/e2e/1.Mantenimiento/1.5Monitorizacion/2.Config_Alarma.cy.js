@@ -35,7 +35,7 @@ describe('Configuraccion_Alarmas', () => {
             cy.wait(tiempo)
             cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
             cy.Añadir_Conf_Alarmas( id, descripcion, activa)
-            cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+            cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
         });
       })
     });   
@@ -49,7 +49,7 @@ describe('Configuraccion_Alarmas', () => {
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal   
       cy.Editar_Conf_Alarmas( "6","6-Trx OFF Denegadas","Si")
-      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
     }); 
     
      // Listar todos los elementos

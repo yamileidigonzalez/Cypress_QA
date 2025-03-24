@@ -1,6 +1,6 @@
 [
   {
-    "empresa": "3 - bacon",
+    "empresa": "3 ",
     "centro": "3488 - FOZ",
     "caja": 3,
     "cajon claves": 3,
@@ -21,14 +21,14 @@
     "cuenta": "002 - REDSYS-TEST"
   },
   {
-    "empresa": "3 - bacon",
+    "empresa": "2 - ",
     "centro": "2004 - C.C. PONT DE LA BARCA",
     "caja": 4,
     "cajon claves": 4,
     "cuenta": "004 - REDSYS-TEST"
   },
   {
-    "empresa": "3 - bacon",
+    "empresa": "Empresa 5",
     "centro": "2002 - MERCADONA CABO BLANCO (TNFE)",
     "caja": 3,
     "cajon claves": 2,

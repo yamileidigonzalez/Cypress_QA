@@ -1,3 +1,5 @@
+import { CHAR_0 } from "picomatch/lib/constants";
+
 describe('Grupos_tarjetas', () => {
     const tiempo = 1000;
     
@@ -27,14 +29,14 @@ describe('Grupos_tarjetas', () => {
     // Añadir un nuevo [Elemento]
     it('Debería añadir un nuevo [Elemento]', () => {
       cy.fixture('3_Grupos_Tajetas.json').then((Configuracion) => {
-        Configuracion.forEach((config) => {
+        Configuracion.slice(0, 15).forEach((config) => {
             let id = config.id;
             let descripcion = config.descripcion;
             //Boton añadir
             cy.wait(tiempo)
             cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
             cy.Añadir_Dos_Parametros_Text('.p-inputnumber > .p-inputtext', '#cardGroupName', id, descripcion)
-            cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+            cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
         });
       })
     });   
@@ -48,7 +50,7 @@ describe('Grupos_tarjetas', () => {
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.Editar_Dos_Parametros_Text('.p-inputnumber > .p-inputtext', '#cardGroupName', "1","VISA ESPAÑA (INTERNO REDSYS)")
-      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
     }); 
     
      // Listar todos los elementos

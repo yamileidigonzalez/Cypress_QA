@@ -411,7 +411,7 @@ describe('Favoritos', () => {
                             
                                     cy.log(`Texto del favorito: ${textTrimmed}`);
                                     cy.log(`Título de la página: ${tituloTrimmed}`);
-                            
+                                    cy.wait(tiempo)                            
                                     expect(tituloTrimmed).to.include(textTrimmed); // Verifica si el título contiene el texto del favorito    
                                 });
                             })    

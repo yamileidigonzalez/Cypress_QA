@@ -1,0 +1,21 @@
+"bin desde";"bin hasta";tarjeta;"banco emisor";crédito/débito;internacional;"token móvil";neobanco;"neobanco activo";"permite offline";"importe limite offline";"forzado offline"
+8*******;8*******;"24 - Bankinter";"0000 - ";Desconocido;No;No;No;"0 - SIN ASIGNAR";No;No;Si;"300,00 €";No
+5*******;5*******;"24 - Bankinter";"0000 - ";Desconocido;No;No;No;"0 - SIN ASIGNAR";No;No;Si;"300,00 €";No
+43497004;43497004;"24 - Bankinter";"0000 - ";Credito;Si;No;No;" - ";Si;Si;Si;"0,00 €";No
+440285**;440285**;"24 - Bankinter";"0000 - ";Credito;No;No;No;" - ";No;No;Si;"300,00 €";No
+479265**;479265**;"24 - Bankinter";"0000 - ";Credito;No;No;No;" - ";No;No;Si;"300,00 €";No
+671301**;671301**;"24 - Bankinter";"0000 - ";Credito;No;No;No;" - ";No;No;Si;"300,00 €";No
+438382**;438382**;"24 - Bankinter";"0000 - ";Credito;No;No;No;" - ";No;No;Si;"300,00 €";No
+453203**;453203**;"24 - Bankinter";"0000 - ";Credito;No;No;No;" - ";No;No;Si;"0,00 €";No
+550283**;550283**;"24 - Bankinter";"0000 - ";Credito;No;No;No;" - ";No;No;Si;"300,00 €";No
+538775**;538775**;"24 - Bankinter";"0000 - ";Credito;No;No;No;" - ";No;No;Si;"300,00 €";No
+425746**;425746**;"24 - Bankinter";"0000 - ";Credito;No;No;No;" - ";No;No;Si;"0,00 €";No
+54359841;54359841;"24 - Bankinter";"0000 - ";Credito;Si;No;No;" - ";Si;Si;Si;"0,00 €";No
+544221**;544221**;"24 - Bankinter";"0000 - ";Credito;Si;No;No;" - ";Si;Si;Si;"0,00 €";No
+534396**;534396**;"24 - Bankinter";"0000 - ";Credito;No;No;No;" - ";No;No;Si;"0,00 €";No
+547524**;547524**;"24 - Bankinter";"0000 - ";Credito;No;No;No;" - ";No;No;Si;"0,00 €";No
+54359887;54359887;"24 - Bankinter";"0000 - ";Credito;Si;No;No;" - ";Si;Si;Si;"0,00 €";No
+434933**;434933**;"24 - Bankinter";"0000 - ";Credito;Si;No;No;" - ";Si;Si;Si;"0,00 €";No
+525330**;525330**;"24 - Bankinter";"0000 - ";Credito;No;No;No;" - ";No;No;Si;"0,00 €";No
+401814**;401814**;"24 - Bankinter";"0000 - ";Credito;No;No;No;" - ";No;No;Si;"300,00 €";No
+402129**;402129**;"30 - Santander";"0049 - BANCO SANTANDER";Credito;No;No;No;" - ";No;No;No;"300,00 €";No

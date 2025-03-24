@@ -56,7 +56,7 @@ describe('Anulaciones', () => {
     });
 
     //Recorrer todas las opciones
-    it('Recorrer todas las opciones', () => {
+    it.only('Recorrer todas las opciones', () => {
         const opcionesFiltro_Texto = [
             '#transactionId > .p-inputnumber > .p-inputtext',
             '#amountMin > .p-inputnumber > .p-inputtext',

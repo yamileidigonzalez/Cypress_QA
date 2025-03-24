@@ -35,7 +35,7 @@ describe('Empresas', () => {
           cy.wait(tiempo)
           cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
           cy.Añadir_Empresas(ID, descripcion, direccion, municipio, ciudad, codigo_postal, permite_off)
-          cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+          cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
         });
       })
     });
@@ -49,7 +49,7 @@ describe('Empresas', () => {
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.Editar_Empresas("1","Empresa X","XXX","Valencia","Valencia",'46022',"No","X")
-      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
 
     });
 

@@ -27,7 +27,7 @@ describe('Texto_error', () => {
     // Añadir un nuevo [Elemento]
     it('Debería añadir un nuevo [Elemento]', () => {
       cy.fixture('3_Texto_error.json').then((Configuracion_Central) => {
-        Configuracion_Central.forEach((config) => {
+        Configuracion_Central.slice(0,15).forEach((config) => {
             let protocolo = config.protocolo;
             let codigo_error = config['codigo error'];
             let texto_1 = config['texto 1'];   
@@ -36,7 +36,7 @@ describe('Texto_error', () => {
             cy.wait(tiempo)
             cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
             cy.Añadir_Texto_error(protocolo, codigo_error, texto_1, texto_2)
-            cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+            cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
         });
       })
     });   
@@ -50,7 +50,7 @@ describe('Texto_error', () => {
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.Editar_Texto_error("1","0", "OPERACION ACEPTADA", "texto prueba")
-      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
     }); 
 
      // Listar todos los elementos

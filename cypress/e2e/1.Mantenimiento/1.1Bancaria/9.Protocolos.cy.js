@@ -32,7 +32,7 @@ describe('Protocolos', () => {
           //Boton añadir
           cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
           cy.Añadir_Protocolos(id, descripcion, version)
-          cy.Guardar_Confirmar_Protocolo('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+          cy.Guardar_Confirmar_Protocolo('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
         });
       })       
     });

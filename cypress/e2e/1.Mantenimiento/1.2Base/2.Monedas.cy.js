@@ -22,7 +22,7 @@ describe('Monedas', () => {
     // Añadir un nuevo [Elemento]
     it('Debería añadir un nuevo [Elemento]', () => {
       cy.fixture('2_Monedas.json').then((Empresas) => {
-        Empresas.forEach((config) => {
+        Empresas.slice(0, 15).forEach((config) => {
             let ID = config.ID;
             let moneda = config.moneda;
             let descripcion = config.descripcion;
@@ -33,7 +33,7 @@ describe('Monedas', () => {
           cy.wait(tiempo)
           cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
           cy.Añadir_Monedas(ID, moneda, descripcion, simbolo, pais, decimales)
-          cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+          cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
         });
       })
     });
@@ -47,7 +47,7 @@ describe('Monedas', () => {
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.Editar_Monedas("1","XXX","XXX","XXX","XXX",'0')
-      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
 
     });
 

@@ -32,7 +32,7 @@ describe('Enrrutamientos', () => {
           //Boton añadir
           cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
           cy.Añadir_Enrrutaminetos(tarjeta,Empresa,centro,caja,cuenta)
-          cy.Guardar_Confirmar('[icon="pi pi-save"] > .p-ripple', '.ng-tns-c3576075022-11 > .bg-white > .flex-col', tiempo)
+          cy.Guardar_Confirmar('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
         });
       })   
 
@@ -41,12 +41,13 @@ describe('Enrrutamientos', () => {
     // Modificar un [Elemento]
     it('Debería modificar un [Elemento]', () => {
       // Simular el proceso de actualización de un registro
-      cy.get('.p-datatable-tbody > .p-element > :nth-child(2)').should("be.visible").wait(tiempo)
-      cy.Click_force('.p-datatable-tbody > .p-element > :nth-child(2)')
+      cy.Buscar('.gap-x-3 > .inline-flex', '1', tiempo)
+      cy.wait(tiempo)
+      cy.Click_force('.p-datatable-tbody > :nth-child(1) > :nth-child(1)')
       // Hacer clic en el primer registro para editar y Modificar el canal
-      cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
-      cy.Añadir_Enrrutaminetos("19 - BBVA","1 - Empresa 1", "0 - DEFAULT",'0',"A19 - BBVA")
-      cy.Guardar_Confirmar('[icon="pi pi-save"] > .p-ripple', '.ng-tns-c3576075022-11 > .bg-white > .flex-col', tiempo)
+      cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
+      cy.Editar_Enrrutaminetos("19 - BBVA","1 - Empresa 1", "0 - DEFAULT",'0',"A19 - BBVA")
+      cy.Guardar_Confirmar('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
       
     });
 

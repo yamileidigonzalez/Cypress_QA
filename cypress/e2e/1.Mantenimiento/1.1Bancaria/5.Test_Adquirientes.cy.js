@@ -1,6 +1,6 @@
 const { random } = require("lodash");
 describe('Test_Adquirientes', () => {
-    const tiempo = 5000;
+    const tiempo = 1000;
     
     beforeEach('Entrar en la página', () => {
       //PAGINA
@@ -32,7 +32,7 @@ describe('Test_Adquirientes', () => {
           cy.wait(tiempo)
           cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
           cy.Añadir_Test_adquirientes(cuenta, tarjeta, expiracion)
-          cy.Guardar_Confirmar_Protocolo('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+          cy.Guardar_Confirmar_Protocolo('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
         });
       })  
     });

@@ -105,7 +105,7 @@ describe('Pruebas de Ordenamiento en Tablas', () => {
                     // Verificar y ordenar las tablas
                     cy.get('table').each(($table, index) => {
                         const tablaSelector = `table:eq(${index})`;  // Definir el selector para cada tabla
-
+                        cy.wait(100)
                         cy.get(tablaSelector).find('thead th').each(($header, colIndex) => {
                             verificarOrden(tablaSelector, colIndex, $header.text());
                         });

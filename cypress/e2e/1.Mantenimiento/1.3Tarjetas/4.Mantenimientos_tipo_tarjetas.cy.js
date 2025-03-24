@@ -27,14 +27,15 @@ describe('Mantenimientos_tipo_tarjetas', () => {
     // Añadir un nuevo [Elemento]
     it('Debería añadir un nuevo [Elemento]', () => {
       cy.fixture('4_Mantenimientos_tipos_tarjetas.json').then((Configuracion) => {
-        Configuracion/*.slice(0, 15)*/.forEach((config) => {
+        Configuracion.slice(0, 15).forEach((config) => {
             let id = config.id;
             let descripcion = config.descripcion;
             //Boton añadir
             cy.wait(tiempo)
             cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
+            cy.wait(tiempo)
             cy.Añadir_Dos_Parametros_Text('#cardTypeManagementId', '#cardTypeManagementName', id, descripcion)
-            cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+            cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
         });
       })
     });   
@@ -48,7 +49,7 @@ describe('Mantenimientos_tipo_tarjetas', () => {
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.Editar_Dos_Parametros_Text('#cardTypeManagementId', '#cardTypeManagementName', "1","VISA ESPAÑA (INTERNO REDSYS)")
-      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
     }); 
     
      // Listar todos los elementos

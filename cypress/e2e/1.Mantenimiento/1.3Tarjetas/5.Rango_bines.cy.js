@@ -46,7 +46,7 @@ describe('Rangos_bines', () => {
             cy.wait(tiempo)
             cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
             cy.Añadir_Rango_Bines(bin_desde, bin_hasta, tarjeta, banco_emisor, credito_debito, internacional, token_movil,prepago, marca_tarjeta, neobanco, neobanco_activo, permite_offline, importe_limite_off, forzado_offline )
-            cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+            cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
         });
       })
     });  
@@ -60,7 +60,7 @@ describe('Rangos_bines', () => {
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal   
       cy.Editar_Rango_Bines("402129**", "402129**", "30 - Santander","0049 - BANCO SANTANDER", "Debito", "No","No", "No","0 - SIN ASIGNAR","No", "No","No", "300,00","Si")
-      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
     }); 
     
      // Listar todos los elementos

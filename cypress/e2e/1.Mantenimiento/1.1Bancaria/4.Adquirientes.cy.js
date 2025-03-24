@@ -7,7 +7,7 @@ describe('Adquirientes', () => {
       cy.visit('https://newfront.lab.solverpay.com/login'); 
       cy.title().should('eq','Login')
       //LOGIN
-      cy.cy.login()
+      cy.login()
       cy.wait(tiempo)
       
       //Seleccionar Mantenimientos en el Menu

@@ -180,7 +180,7 @@ describe('Transacciones Off Denegadas', () => {
         cy.Elemento_visible('.p-element.ng-star-inserted > .p-ripple').click();
         cy.wait(tiempo)
         // Confirmar si hay un modal de confirmación o alerta
-        cy.Elemento_visible('app-offline-transactions-denied.ng-star-inserted > app-custom-toast > p-toast.p-element > .p-toast')
+        cy.Elemento_visible('.p-toast')
 
         // Verificar que las operaciones fueron procesadas
         cy.contains('¡No se han podido reprocesar las transacciones!').should('be.visible');

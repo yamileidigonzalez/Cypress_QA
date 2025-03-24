@@ -7,7 +7,7 @@ describe('Enrrutamientos_PIN_online', () => {
       cy.visit('https://newfront.lab.solverpay.com/login'); 
       cy.title().should('eq','Login')
       //LOGIN
-      cy.cy.login()
+      cy.login()
       cy.wait(tiempo)
       
       //Seleccionar Mantenimientos en el Menu
@@ -33,7 +33,7 @@ describe('Enrrutamientos_PIN_online', () => {
           cy.wait(tiempo)
           cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
           cy.Añadir_Enrrutamientos_PIN_Online(empresa, centro, caja, cajon_claves, cuenta )
-          cy.Guardar_Confirmar_Protocolo('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+          cy.Guardar_Confirmar_Protocolo('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
         });
       }) 
     });
@@ -46,7 +46,7 @@ describe('Enrrutamientos_PIN_online', () => {
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
       cy.Editar_Enrrutamientos_PIN_Online("3 - bacon","3488 - FOZ", '3', '3',"003 - REDSYS-TEST")
-      cy.Guardar_Confirmar_Protocolo('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+      cy.Guardar_Confirmar_Protocolo('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
     });
 
      // Listar todos los elementos

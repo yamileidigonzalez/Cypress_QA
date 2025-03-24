@@ -30,6 +30,8 @@ describe('Usuarios', () => {
         Configuracion_Central.forEach((config) => {
             let id = config.id;
             let usuario = config["Nombre de usuario"] ; 
+            let Email = config.Email;
+            let Nombre_completo = config["Nombre completo"] ;
             let pass = config["Contraseña"] 
             let repetir_pass = config["Repetir contraseña"]  
             let rol = config.Rol;
@@ -39,8 +41,8 @@ describe('Usuarios', () => {
             //Boton añadir
             cy.wait(tiempo)
             cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
-            cy.Añadir_User(id, usuario, pass, repetir_pass, rol,Idioma, Activo)
-            cy.Guardar_Confirmar_Usuarios('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+            cy.Añadir_User(id, usuario, Email, Nombre_completo, pass, repetir_pass, rol,Idioma, Activo)
+            cy.Guardar_Confirmar_Usuarios('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
         });
       })
       
@@ -49,13 +51,21 @@ describe('Usuarios', () => {
     // Modificar un [Elemento]    
     it('Debería modificar un [Elemento]', () => {
       // Simular el proceso de actualización de un registro
-      cy.Buscar('.gap-x-3 > .inline-flex','usuario4',tiempo)
+      cy.Buscar('.gap-x-3 > .inline-flex','usuarioQA',tiempo)
+      //Prueba 1: no permite
       cy.Click_force('.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal
-      cy.Editar_User("6","usuario2","password123","password123","admin","es", "No")
-      cy.Guardar_Confirmar_Usuarios('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+      cy.Editar_User("011","usuarioQA",'usuarioQA','usuarioQA', "password123","password123","admin","es", "No")
+      cy.Guardar_Confirmar_Usuarios('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
+      //Prueba 2: permite
+      cy.Click_force('.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
+      // Hacer clic en el primer registro para editar y Modificar el canal
+      cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
+      // Hacer clic en el primer registro para editar y Modificar el canal
+      cy.Editar_User("00111","usuarioQA",'usuarioQA','usuarioqa@prueba.qa.it', "password1234*","password1234*","admin","es", "Si")
+      cy.Guardar_Confirmar_Usuarios('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
     }); 
 
      // Listar todos los elementos
@@ -86,7 +96,7 @@ describe('Usuarios', () => {
     // Eliminar un [Elemento]
     it('Debería eliminar un [Elemento]', () => {
       cy.wait(tiempo)
-      cy.Buscar('.gap-x-3 > .inline-flex','usuario',tiempo)
+      cy.Buscar('.gap-x-3 > .inline-flex','usuario21a',tiempo)
       cy.Eliminar_Anular('.justify-between > .gap-x-4 > [severity="danger"] > .p-ripple', '[icon="pi pi-arrow-left"] > .p-ripple', '.p-datatable-tbody > :nth-child(1) > :nth-child(2)')
       cy.wait(tiempo)
       //Hacer clic en el primer registro para eliminar

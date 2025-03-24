@@ -2,6 +2,8 @@
   {
     "id": 6,
     "Nombre de usuario": "usuario1a",
+    "Email": "usuario1a@prueba.qa.es",
+    "Nombre completo": "usuario1a Prueba QA",
     "Contraseña": "password123",
     "Repetir contraseña": "password123",
     "Rol": "admin",
@@ -11,6 +13,8 @@
   {
     "id": 2,
     "Nombre de usuario": "usuario2a",
+    "Email": "usuario2a@prueba.qa.es",
+    "Nombre completo": "usuario2a Prueba QA",
     "Contraseña": "clave456",
     "Repetir contraseña": "clave456",
     "Rol": "editor",
@@ -20,6 +24,8 @@
   {
     "id": 3,
     "Nombre de usuario": "usuario3a",
+    "Email": "usuario3a@prueba.qa.es",
+    "Nombre completo": "usuario3a Prueba QA",
     "Contraseña": "secure789",
     "Repetir contraseña": "secure789",
     "Rol": "usuario",
@@ -29,6 +35,8 @@
   {
     "id": 4,
     "Nombre de usuario": "usuario4a",
+    "Email": "usuario4a@prueba.qa.es",
+    "Nombre completo": "usuario4a Prueba QA",
     "Contraseña": "mypassword",
     "Repetir contraseña": "mypassword",
     "Rol": "moderador",
@@ -38,6 +46,8 @@
   {
     "id": 5,
     "Nombre de usuario": "usuario5a",
+    "Email": "usuario5a@prueba.qa.es",
+    "Nombre completo": "usuario5a Prueba QA",
     "Contraseña": "testpass",
     "Repetir contraseña": "testpass",
     "Rol": "invitado",

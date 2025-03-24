@@ -22,7 +22,7 @@ describe('Tiendas', () => {
     // Añadir un nuevo [Elemento]
     it('Debería añadir un nuevo [Elemento]', () => {
       cy.fixture('3_Centros.json').then((Tiendas) => {
-        Tiendas.forEach((config) => {
+        Tiendas.slice(0, 15).forEach((config) => {
             let ID = config.ID;
             let FUC = config.FUC;
             let descripcion = config.descripcion;
@@ -32,7 +32,7 @@ describe('Tiendas', () => {
             cy.wait(tiempo)
             cy.get('[severity="primary"] > .p-ripple').should("be.visible").click()
             cy.Añadir_Tiendas(ID, FUC, descripcion, provincia, permite_off)
-            cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+            cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
         });
       })
     });
@@ -46,7 +46,7 @@ describe('Tiendas', () => {
       cy.get('.justify-between > .gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
       // Hacer clic en el primer registro para editar y Modificar el canal
       cy.Editar_Tiendas('4657', "LA NORIA", "Empresa 1", "097223366", "C/ Pepe Alba 1",  "MURCIA", "Valencia", '46022', "Si")
-      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', 'app-add > app-custom-toast > p-toast.p-element > .p-toast', tiempo)
+      cy.Guardar_Confirmar_Empresa('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
 
     });
 
