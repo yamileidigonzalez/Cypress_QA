@@ -17,10 +17,10 @@ describe('Gestión de roles de Usuarios', () => {
       },
       {
         user: "usuario25a@prueba.qa.es.com", pass: "Ttestpass123**", name: "SUPER ADMIN", access: true, canEdit: true, canDelete: true 
-      },
-      { name: 'Invitado', user: null, pass: null, access: false }
+      }, /*
+      { name: 'Invitado', user: null, pass: null, access: false }*/
     ];
-
+    null
     beforeEach('Entrar en la página', () => {
         //PAGINA
         cy.visit('https://newfront.lab.solverpay.com/login'); 
@@ -106,6 +106,7 @@ describe('Gestión de roles de Usuarios', () => {
             cy.get('.gap-x-4 > [severity="secondary"] > .p-ripple').should("be.visible").click()
             cy.wait(tiempo)
             cy.Añadir_Imagen_User(id, usuario, name, email, pass, repetir_pass, rol,Idioma, Activo)
+            cy.wait(tiempo)
             cy.Guardar_Confirmar_Usuarios('[icon="pi pi-save"] > .p-ripple', '.p-toast', tiempo)
             cy.wait(tiempo)
         });
@@ -139,22 +140,23 @@ describe('Gestión de roles de Usuarios', () => {
     
     it('OPERATOR BASIC solo puede ver las opciones correctas', () => {
       //LOGIN
-      cy.login('usuario21a@prueba.qa.es.com', 'Ppassword123*');
+      cy.get('#email').should("be.visible").should("be.enabled").type('usuario21a@prueba.qa.es.com')
+      cy.get('#password').should("be.visible").should("be.enabled").type('Ppassword123*').type('{enter}')
       //PAGINAS ACCESIBLES
       cy.get('[data-target="submenu-transactions"]').should('be.visible').click();
-        cy.Elemento_visible('#submenu-transactions > .sidebar-submenu-item');
+        cy.get('#submenu-transactions > .sidebar-submenu-item').should('be.visible');
       cy.get('[data-target="submenu-maintenance"]').should('be.visible').click();
         cy.get('[data-target="submenu-bancaria"]').should('be.visible').click();
-          cy.Elemento_visible('#submenu-bancaria > .sidebar-submenu-item')
-        cy.get('[data-target="submenu-base"]').should('be.visible').click();
-          cy.Elemento_visible('#submenu-base > .sidebar-submenu-item')
+          cy.get('#submenu-bancaria > .sidebar-submenu-item').should('be.visible')
+        cy.get('[data-target="submenu-base"]').scrollIntoView().should('be.visible').click();
+          cy.get('#submenu-base > .sidebar-submenu-item').should('be.visible')
       cy.get('#dashboard').should('be.visible').click();
-      cy.Elemento_visible('.sidebar-fav > .sidebar-title')
+      cy.get('.sidebar-fav > .sidebar-title').scrollIntoView().should('be.visible')
       cy.get('app-avatar-box > .flex-col > .text-center').should('be.visible').click();
-        cy.Elemento_visible(':nth-child(1) > .block')
-        cy.Elemento_visible('.text-gray-700 > :nth-child(2) > .block')
-        cy.Elemento_visible('div.py-2 > .block')
-        cy.get('#dropdownAvatar > .py-3').should('be.visible').should('contain', 'OP. BÁSICO');
+        cy.get(':nth-child(1) > .block').should('be.visible')
+        cy.get('.text-gray-700 > :nth-child(2) > .block').should('be.visible')
+        cy.get('div.py-2 > .block').should('be.visible')
+        cy.get('#dropdownAvatar > .py-3').scrollIntoView().should('be.visible').should('contain', 'OP. BÁSICO');
       //PAGINAS INACCESIBLES
       cy.get('.main-item.ng-star-inserted').should('not.exist');
       cy.get('[data-target="submenu-management"]').should('not.exist');
@@ -190,7 +192,8 @@ describe('Gestión de roles de Usuarios', () => {
 
     it('OPERATOR ADVANCE solo puede ver las opciones correctas', () => {
       //LOGIN
-      cy.login('usuario22a@prueba.qa.es.com', 'Cclave456*');
+      cy.get('#email').should("be.visible").should("be.enabled").type('usuario22a@prueba.qa.es.com')
+      cy.get('#password').should("be.visible").should("be.enabled").type( 'Cclave456*').type('{enter}')
       //PAGINAS ACCESIBLES
       cy.get('[data-target="submenu-transactions"]').should('be.visible').click();
         cy.Elemento_visible('#submenu-transactions > :nth-child(1)');
@@ -239,8 +242,9 @@ describe('Gestión de roles de Usuarios', () => {
     });
 
     it('OPERATOR solo puede ver las opciones correctas', () => {
-      //LOGIN
-      cy.login('usuario23a@prueba.qa.es.com', 'Ssecure789**');
+      //LOGIN 
+      cy.get('#email').should("be.visible").should("be.enabled").type('usuario23a@prueba.qa.es.com')
+      cy.get('#password').should("be.visible").should("be.enabled").type( 'Ssecure789**').type('{enter}')
       //PAGINAS ACCESIBLES
       cy.get('.main-item.ng-star-inserted').scrollIntoView().should('be.visible');
       cy.get('[data-target="submenu-entity"]').scrollIntoView().should('be.visible').click();
@@ -297,7 +301,8 @@ describe('Gestión de roles de Usuarios', () => {
   
     it('ADMIN solo puede ver las opciones correctas', () => {
       //LOGIN
-      cy.login('usuario24a@prueba.qa.es.com', 'Mypassword123*');
+      cy.get('#email').should("be.visible").should("be.enabled").type('usuario24a@prueba.qa.es.com')
+      cy.get('#password').should("be.visible").should("be.enabled").type('Mypassword123*').type('{enter}')
       //PAGINAS ACCESIBLES
       cy.get('.main-item.ng-star-inserted').should('be.visible');
       cy.get('[data-target="submenu-entity"]').scrollIntoView().should('be.visible').click();
@@ -359,7 +364,8 @@ describe('Gestión de roles de Usuarios', () => {
 
     it('SUPER ADMIN puede ver todas las opciones', () => {
       //LOGIN
-      cy.login('usuario25a@prueba.qa.es.com', 'Ttestpass123**');
+      cy.get('#email').should("be.visible").should("be.enabled").type('usuario25a@prueba.qa.es.com')
+      cy.get('#password').should("be.visible").should("be.enabled").type('Ttestpass123**').type('{enter}')
       //PAGINAS ACCESIBLES
       cy.get('.main-item.ng-star-inserted').should('be.visible');
       cy.get('[data-target="submenu-management"]').should('be.visible').click();

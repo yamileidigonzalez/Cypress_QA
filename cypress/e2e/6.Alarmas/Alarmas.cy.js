@@ -12,6 +12,7 @@ describe('Alarmas', () => {
         cy.get('.ph-bell').should("be.visible").click()
         cy.wait(tiempo)
     }) 
+    
     it('Se muestran las alarmas configuradas', () => { 
         cy.wait(25000)
         cy.get('body > app-root > app-main-component > main > app-alarms > div > div').should('exist'); // Verifica que hay elementos en la lista
